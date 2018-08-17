@@ -1,0 +1,56 @@
+{{#if error}}
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{error}}
+  </div>
+{{/if}}
+
+
+<style>
+.fixed-bg-sf1 {
+    background-image: url("images/stanford.png");
+    min-height: 550px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.97;
+}
+</style>
+
+<form method="POST">
+<div class="limiter">
+		<div class="container-login100 fixed-bg-sf1  ">
+			<div class="wrap-login100 p-t-30 p-b-50">
+				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 30px;">
+					Account Login
+          <br>
+          <br>
+				</span>
+				<form class="login100-form validate-form p-b-33 p-t-3">
+
+					<div class="wrap-input100 validate-input form-group" data-validate = "Enter username">
+						<input class="input100 " type="text" name="username" placeholder="USERNAME" style = "font-family: 'Montserrat', serif; font-size: 20px;color: white;">
+						<span class="focus-input100" data-placeholder="	&#x1F464;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input form-group" data-validate="Enter password">
+						<input class="input100" type="password" name="password" placeholder="PASSWORD" style = "font-family: 'Montserrat', serif; font-size: 20px;color: white;">
+						<span class="focus-input100" data-placeholder="&#x1F512;"></span>
+					</div>
+
+
+					<div class="container-login100-form-btn m-t-32 form-group">
+						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
+							Login
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</form>
+
+<!--&#xe80f-->

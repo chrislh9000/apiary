@@ -1,0 +1,34 @@
+<div class = "session-container">
+<h1>CONSULTANT AVAILABILITY</h1> <br>
+<div class = "container-fluid">
+<iframe src="https://calendar.google.com/calendar/embed?src=o3i55kndm0ad3060lv7k230s28%40group.calendar.google.com&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+</div>
+<br><br>
+<div class = "scheduling-container">
+<h3> Schedule a Consultation </h3>
+<form method="POST" action="/scheduleSession">
+<div class="center-block">
+  <label>Consultation Date</label>
+  <input id="appt-date" class="form-control center-block" type="date" name="date"
+                  required />
+</div>
+<div class="center-block">
+  <label>Timeslot: U.S East Coast Time </label>
+  <input class="form-control center-block" value="10:00" type="time" id="appt-time" name="timeslot"
+               min="9:00" max="18:00" required />
+</div>
+<div class="center-block">
+  <label>Input</label>
+  <input id="appt-desc" type="text" name="description" class="center-block form-control" placeholder="Optionally include any requests or concerns..."/>
+</div> <br>
+<button class="btn-success">CONFIRM SESSION</button>
+</form>
+</div>
+
+<div class = "scheduled-consultation-container">
+  <h3>Your Upcoming Consultations </h3>
+  <div class = "scheduled-consultation">
+    <h5>Consultation 1</h5>
+  </div>
+
+</div>

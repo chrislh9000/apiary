@@ -1,0 +1,67 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    .fixed-bg2 {
+    background-image: url("alpine.jpg");
+    min-height: 350px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+
+<br>
+<br>
+
+<div class ="container">
+    <h1  class="type" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+    <br>
+    <div class = "row">
+        <div class = "column-two">
+        </div>
+        <div class = "column-two">
+            <div class="card">
+                    <img src={{user.imageUrl}} alt="{{user.name}}" style="width:100%; height:100%">
+                    <div style="overflow: auto" class="container">
+                        <h3 style = "color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
+                        <h5 style = "color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+                    </div>
+            </div>
+        <div class = "column-two">
+        </div>
+    </div>
+</div>
+</div>
+
+<center><i style = "color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+<br>
+<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">VIEW ALL CONSULTANTS</a><br></center>
+{{#if owner}}
+<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/edit/">EDIT PROFILE</a></center>
+{{/if}}
+
+
+<!--
+<h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
+<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
+<div style="padding: 10px; border: solid 1px black" class ="container center-block">
+<h4>Email:</h4>
+<p>{{user.email}}</p>
+<h4>Biography:</h4>
+<p>{{user.biography}}</p>
+<h4>School:</h4>
+<p>{{user.school}}</p>
+<h4>Gender:</h4>
+<p>{{user.gender}}</p> <br><br>
+<b>Logged in as:</b> {{logged}} <br>
+<a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
+{{#if owner}}
+<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
+{{/if}}
+<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
+<a class = "btn btn-danger" href= "/logout">Logout</a>
+</div>
+-->

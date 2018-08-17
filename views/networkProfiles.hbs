@@ -1,0 +1,15 @@
+<div class="container-fluid network-profiles-container">
+  <h1>ALPINE NETWORK MEMBERS</h1><br><br>
+  <div class="scrolling-wrapper">
+{{#each users}}
+<div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px;" class = "container-fluid">
+<h3 style="text-transform: uppercase"><b>{{this.name}}</b></h3>
+<!-- {{#if this.imageUrl}}
+<img style="height: 100px; width: 90px; float: left; margin-right: 20px" src={{this.imageUrl}}></img>
+{{/if}} <br> -->
+<a class = "btn btn-success" href = '/users/{{this._id}}'>View Profile</a><br><br>
+</div>
+{{/each}}
+</div>
+</div>
+<br><br><br>

@@ -1,0 +1,76 @@
+<div>
+<h2>Your Consulting Sessions this Week!</h2>
+<iframe src="https://calendar.google.com/calendar/embed?src=o3i55kndm0ad3060lv7k230s28%40group.calendar.google.com&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe><script type="text/javascript">
+  function handleClientLoad() {
+    // Loads the client library and the auth2 library together for efficiency.
+    // Loading the auth2 library is optional here since `gapi.client.init` function will load
+    // it if not already loaded. Loading it upfront can save one network request.
+    gapi.load('client:auth2', initClient);
+  }
+
+  function initClient() {
+    // Initialize the client with API key and People API, and initialize OAuth with an
+    // OAuth 2.0 client ID and scopes (space delimited string) to request access.
+    gapi.client.init({
+        apiKey: 'AIzaSyDHxW7MCk-lWgpguJ8SX32azCuz6MBVjik',
+        discoveryDocs: ["https://people.googleapis.com/$discovery/rest?version=v1"],
+        clientId: '404703630931-3bcngas6h0bt5qsuama1r9lui8gou03u.apps.googleusercontent.com',
+        scope: 'profile'
+    }).then(function () {
+      // Listen for sign-in state changes.
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+      // Handle the initial sign-in state.
+      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    });
+  }
+
+  function updateSigninStatus(isSignedIn) {
+    // When signin status changes, this function is called.
+    // If the signin status is changed to signedIn, we make an API call.
+    if (isSignedIn) {
+      console.log('successfully signed in!')
+      makeApiCall();
+    }
+  }
+
+  function handleSignInClick(event) {
+    // Ideally the button should only show up after gapi.client.init finishes, so that this
+    // handler won't be called before OAuth is initialized.
+    console.log('signing in!')
+    gapi.auth2.getAuthInstance().signIn();
+  }
+
+  function handleSignOutClick(event) {
+    gapi.auth2.getAuthInstance().signOut();
+  }
+
+  function makeApiCall() {
+    // Make an API call to the People API, and print the user's given name.
+    gapi.client.people.people.get({
+      'resourceName': 'people/me',
+      'requestMask.includeField': 'person.names'
+    }).then(function(response) {
+      console.log('whatsup')
+      console.log('Hello, ' + response.result.names[0].givenName);
+    }, function(reason) {
+      console.log('hello')
+      console.log('Error: ' + reason.result.error.message);
+    });
+  }
+</script>
+<script async defer src="https://apis.google.com/js/api.js"
+  onload="this.onload=function(){};handleClientLoad()"
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+<div>
+<button class="btn btn-primary" id="signin-button" onclick="handleSignInClick()">Sign In</button>
+<button class="btn btn-danger" id="signout-button" onclick="handleSignOutClick()">Sign Out</button> <br>
+<!-- <form method = "POST" action="/calendarTest">
+<button class="btn btn-danger" id="signout-button" onclick="handleSignOutClick()">Access Calendar</button>
+</form> -->
+<a class = "btn btn-info" href="/scheduleSession">Schedule new Session</a>
+</div>
+
+
+</div>

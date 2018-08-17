@@ -1,0 +1,27 @@
+<div style="margin-left: 2%" class="container-fluid">
+<h1> Admin Page </h1>
+<h3 style="text-align:center">Users({{users.length}})</h3>
+<a class="btn btn-info center-block" href = '/'>Back to Home Page</a> <br>
+<a class="btn btn-primary center-block" href = '/users/myProfile'>Back to My Profile</a> <br><br>
+{{#each users}}
+<div style="padding:15px; border:solid 1px black; margin: 15px;" class = "container-fluid">
+<div><b>{{this.name}}: {{this.userType}}</b></div>
+{{#if this.imageUrl}}
+<img style="height: 100px; width: 90px; float: left; margin-right: 20px" src={{this.imageUrl}}></img>
+{{/if}} <br>
+<a class = "btn btn-success" href = '/users/{{this._id}}'>View Profile</a><br><br>
+<form method="POST" action="/admin/user/{{this._id}}">
+<button class="btn btn-primary" type="submit">Make User</button>
+</form>
+<form method="POST" action="/admin/client/{{this._id}}">
+<button class="btn btn-primary" type="submit">Make Client</button>
+</form>
+<form method="POST" action="/admin/consultant/{{this._id}}">
+<button class="btn btn-primary" type="submit">Make Consultant</button>
+</form>
+<form method="POST" action="/admin/admin/{{this._id}}">
+<button class="btn btn-primary" type="submit">Make Admin</button>
+</form>
+</div>
+{{/each}}
+</div>

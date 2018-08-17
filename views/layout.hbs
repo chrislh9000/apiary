@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/webpage.css' />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600|Titillium+Web:400,600' rel='stylesheet' type='text/css'>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+<style>
+  .fixed-bg {
+    background-image: url("images/grey.jpg");
+    min-height: 350px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    .fixed-bg2 {
+    background-image: url("images/alpine.jpg");
+    min-height: 350px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    .fixed-bg-sf {
+    background-image: url("images/stanford.png");
+    min-height: 250px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.97;
+}
+
+     .alpine-net {
+    background-image: url("images/stanford.png");
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.97;
+}
+    .arch {
+        background-image: url("images/arch.png");
+    min-height: 450px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.97;
+    }
+
+    .net {
+        background-image: url("images/darkmolecule.png");
+    max-height: 180px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+</style>
+
+<body>
+  <!-- Login/Network Nav -->
+  <div>
+    {{#if loggedIn}}
+    {{#if networkToggled}}
+    <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/logout">LOGOUT</a>
+    <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/">BACK TO HOME</a>
+    {{else}}
+      <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/logout">LOGOUT</a>
+      <a class="btn btn-light btn-lg" style="text-transform: uppercase; float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/users/myProfile">{{username}}'S ALPINE NETWORK</a>
+      {{/if}}
+    {{else}}
+      <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/login">LOGIN</a>
+      <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/register">REGISTER</a>
+    {{/if}}
+  </div>
+  <!-- Navbar -->
+
+  <a href="/">
+  <img src="/images/apiary.png" alt="Alpine Consulting" style="" class="center-block logoimage">
+  <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-maroon">
+  </a>
+
+  {{#if networkToggled}}
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <a id="direct-nav" class="center-block nav-link" href="/users/myProfile" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+          MY PROFILE
+        </a>
+
+        <li class="nav-item dropdown">
+          <a1  class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DATABASES
+          </a1>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+            <a class="dropdown-item" href="#">ESSAYS</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">RESUMES</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">ACADEMIC EXCELLENCE</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">TEST PREP</a>
+          </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a1 class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            SESSIONS
+          </a1>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+            <a class="dropdown-item" href="/products">PURCHASE SESSIONS</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/scheduleSession">SCHEDULE SESSIONS</a>
+          </div>
+        </li>
+
+        <a id="direct-nav" class="center-block nav-link" href="/users/all" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+          MEMBERS
+        </a>
+
+      </ul>
+    </div>
+  </div>
+  </nav>
+
+  {{else}}
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="container-fluid">
+      <div class = "row">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <a id="direct-nav" class="nav-link center-block" href="/about" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+            ABOUT
+          </a>
+
+          <li class="nav-item dropdown">
+            <a1 class="center-block nav-link dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              OUR SERVICES
+            </a1>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <a class="dropdown-item" href="/services">WHAT WE OFFER</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/network">ALPINE NETWORK</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a1 class="center-block nav-link dropdown-toggle" href="/apply" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              APPLY
+            </a1>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <a class="dropdown-item" href="/register">REGISTER</a>
+              <a class="dropdown-item" href="/apply">APPLY</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    </nav>
+  {{/if}}
+  {{{body}}}
+</body>
+
+</html>
