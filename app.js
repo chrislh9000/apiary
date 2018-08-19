@@ -13,6 +13,7 @@ const authRouter = require('./routes/auth');
 const googleRouter = require('./routes/google');
 const preloginRouter = require('./routes/prelogin');
 const adminRouter = require('./routes/admin');
+const paymentRouter = require('./routes/payment');
 
 var models = require('./models/models');
 const User = models.User
@@ -89,7 +90,8 @@ app.use('/', indexRouter);
 app.use('/users', authRouter);
 app.use('/', googleRouter);
 app.use('/', preloginRouter);
-app.use('/', adminRouter)
+app.use('/', adminRouter);
+app.use('/', paymentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
