@@ -96,8 +96,11 @@ router.get('/users/all', function(req, res, next) {
       User.find()
       .exec()
       .then((users) => {
+        const networkMembers = _.filter(users, (user) => {
+          return user.userType !== 'user';
+        })
         res.render('networkProfiles', {
-          users: users,
+          users: networkMembers,
           logged: req.user.username,
           networkToggled: true,
           loggedIn: true
