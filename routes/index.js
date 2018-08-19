@@ -134,6 +134,42 @@ router.get('/users/:userid', function(req, res, next) {
   })
 })
 
+//Network database stuff ///
+router.get('/database/essays', (req, res, next) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Essay Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true,
+    })
+  } else {
+    res.render('essay-database', {
+      message: 'Apiary Academic Excellence Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true,
+    })
+  }
+})
+
+router.get('/database/classNotes', (req, res, next) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Academic Excellence Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true,
+    })
+  } else {
+    res.render('ib-ap', {
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true,
+    })
+  }
+})
+
 ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get('/users/consultants/:userid', function(req, res, next) {

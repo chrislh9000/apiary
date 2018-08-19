@@ -59,11 +59,16 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .bigTitleFont{
- color: white; font-family: 'Montserrat', sans-serif; font-size: 44px;
+ color: white;
+ font-family: 'Montserrat', sans-serif;
+ font-size: 44px;
 }
 
 .bigTitleFont-black {
-  color: black; font-family: 'Montserrat', sans-serif; font-size: 44px;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 44px;
+  text-align: center;
 }
 .secondTitleFont {
   color: white; font-family: 'Montserrat', sans-serif; font-size: 20px;
