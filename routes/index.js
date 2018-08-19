@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var crypto = require('crypto');
-var _ = require('underscore');
-var stripePackage = require('stripe')
+const express = require('express');
+const router = express.Router();
+const crypto = require('crypto');
+const _ = require('underscore');
+const stripePackage = require('stripe')
 const stripe = stripePackage(process.env.STRIPE_SECRET_KEY)
 //MONGOOSE MODELS
-var models = require('../models/models');
-var User = models.User;
-var Payment = models.Payment;
-var Product = models.Product
-var OauthToken = models.OauthToken
+const models = require('../models/models');
+const User = models.User;
+const Payment = models.Payment;
+const Product = models.Product
+const OauthToken = models.OauthToken
 
 function hashPassword(password) {
   var hash = crypto.createHash('sha256');
@@ -17,77 +17,6 @@ function hashPassword(password) {
   return hash.digest('hex');
 }
 
-// Non-Login functionality
-router.get('/', function(req, res, next) {
-  console.log(req.user)
-  if (req.user) {
-    res.render('index', {
-      username: req.user.username,
-      name: req.user.name,
-      loggedIn: true
-    });
-  } else {
-    res.render('index', {loggedIn: false})
-  }
-});
-
-router.get('/about', function(req, res, next) {
-  if (req.user) {
-    res.render('about', {
-      loggedIn: true,
-      username: req.user.username
-    })
-  } else {
-    res.render('about')
-  }
-})
-
-router.get('/apply', function(req, res, next) {
-  if (req.user) {
-    res.render('apply', {
-      loggedIn: true,
-      username: req.user.username
-    })
-  } else {
-    res.render('apply')
-  }
-})
-
-router.get('/services', function(req, res, next) {
-  if (req.user) {
-    res.render('our-services', {
-      loggedIn: true,
-      username: req.user.username
-    })
-  } else {
-    res.render('our-services')
-  }
-})
-
-router.get('/products', function(req, res, next) {
-  if (req.user) {
-    res.render('products', {
-      loggedIn: true,
-      username: req.user.username,
-      canPurchase: true,
-      networkToggled: true
-    })
-  } else {
-    res.redirect('/')
-  }
-})
-
-router.get('/network', function(req, res, next) {
-  if (req.user) {
-    res.render('alpine-network-pre', {
-      loggedIn: true,
-      username: req.user.username,
-      canPurchase: true
-    })
-  } else {
-    res.render('alpine-network-pre')
-  }
-})
 
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
@@ -181,81 +110,7 @@ router.get('/users/:userid', function(req, res, next) {
     res.send(error);
   })
 })
-////////////////////////////////////////PERMISSIONS/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-router.get('/admin', function(req, res, next) {
-  if (req.user.userType !== 'admin') {
-    res.redirect(404, '/')
-    console.log("error: you don't have permissions to access this page")
-  } else {
-    User.find().exec().then((users) => {
-      var filteredUsers = _.filter(users, (user) => {
-        console.log('user field', user);
-        return user.userType !== 'admin'
-      })
-      res.render('admin', {
-        users: filteredUsers,
-        logged: req.user.username
-      })
-    })
-  }
-})
 
-router.post('/admin/consultant/:userid', function(req, res, next) {
-  if (req.user.userType !== 'admin') {
-    res.redirect(404, '/')
-    console.log("error: you don't have permissions to access this page")
-  } else {
-    User.findByIdAndUpdate(req.params.userid, {userType: 'consultant'}).exec().then(function(resp) {
-      console.log('user successfully has been made consultant')
-      res.redirect('/admin')
-    }).catch(function(err) {
-      console.log('ERROR: error updating user status')
-    })
-  }
-})
-
-router.post('/admin/admin/:userid', function(req, res, next) {
-  if (req.user.userType !== 'admin') {
-    res.redirect(404, '/')
-    console.log("error: you don't have permissions to access this page")
-  } else {
-    User.findByIdAndUpdate(req.params.userid, {userType: 'admin'}).exec().then(function(resp) {
-      console.log('user successfully has been made admin')
-      res.redirect('/admin')
-    }).catch(function(err) {
-      console.log('ERROR: error updating user status')
-    })
-  }
-})
-
-router.post('/admin/client/:userid', function(req, res, next) {
-  if (req.user.userType !== 'admin') {
-    res.redirect(404, '/')
-    console.log("error: you don't have permissions to access this page")
-  } else {
-    User.findByIdAndUpdate(req.params.userid, {userType: 'client'}).exec().then(function(resp) {
-      console.log('user successfully has been made client')
-      res.redirect('/admin')
-    }).catch(function(err) {
-      console.log('ERROR: error updating user status')
-    })
-  }
-})
-
-router.post('/admin/user/:userid', function(req, res, next) {
-  if (req.user.userType !== 'admin') {
-    res.redirect(404, '/')
-    console.log("error: you don't have permissions to access this page")
-  } else {
-    User.findByIdAndUpdate(req.params.userid, {userType: 'user'}).exec().then(function(resp) {
-      console.log('user successfully has been made user')
-      res.redirect('/admin')
-    }).catch(function(err) {
-      console.log('ERROR: error updating user status')
-    })
-  }
-})
 ////////////////////////////////////////Payment Route/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 

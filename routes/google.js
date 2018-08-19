@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var models = require('../models/models');
-var OauthToken = models.OauthToken;
+const express = require('express');
+const router = express.Router();
+const crypto = require('crypto');
+const models = require('../models/models');
+const OauthToken = models.OauthToken;
 
 
 const {google} = require('googleapis');
