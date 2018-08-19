@@ -83,18 +83,38 @@ router.post('/users/edit', function(req, res, next) {
 //Viewing other profiles
 //viewing all profiles
 router.get('/users/all', function(req, res, next) {
-  User.find().exec().then((users) => {
-    res.render('networkProfiles', {
-      users: users,
-      logged: req.user.username,
-      networkToggled: true,
-      loggedIn: true
-    })
-  }).catch((error) => {
-    console.log('Error', error)
-    res.send(error);
+  User.findById(req.user._id)
+  .then((user) => {
+    if (!user || user.userType === 'user') {
+      res.render('network-payment-wall', {
+        message: 'Apiary Network Members',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true,
+      })
+    } else {
+      User.find()
+      .exec()
+      .then((users) => {
+        res.render('networkProfiles', {
+          users: users,
+          logged: req.user.username,
+          networkToggled: true,
+          loggedIn: true
+        })
+      })
+      .catch((error) => {
+        console.log('Error', error)
+        res.send(error);
+      })
+    }
+  })
+  .catch((err) => {
+    console.error(err);
   })
 })
+
+
 //view a single profile
 router.get('/users/:userid', function(req, res, next) {
   var userId = req.params.userid;

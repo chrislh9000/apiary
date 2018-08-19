@@ -65,10 +65,14 @@ router.get('/network', function(req, res, next) {
     res.render('alpine-network-pre', {
       loggedIn: true,
       username: req.user.username,
-      canPurchase: true
+      canPurchase: true,
+      message: 'APIARY NETWORK'
     })
   } else {
-    res.render('alpine-network-pre')
+    res.render('alpine-network-pre', {
+      message: 'ALPINE NETWORK',
+      loggedIn: true,
+    })
   }
 })
 

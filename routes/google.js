@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
 const models = require('../models/models');
+const User = models.User;
 const OauthToken = models.OauthToken;
 
 
@@ -97,15 +98,29 @@ function scheduleConsultation(token, event) {
 }
 
 router.get('/scheduleSession', function(req, res, next) {
-  if(req.user) {
-    res.render('scheduleSession', {
-      loggedIn: true,
-      networkToggled: true,
-      username: req.user.username
-    })
+  if (!req.user) {
+    res.redirect('/?logged=false');
   } else {
-      res.redirect('/')
-    }
+    User.findById(req.user._id)
+    .then((user) => {
+      if (!user || user.userType === 'user') {
+        res.render('network-payment-wall', {
+          loggedIn: true,
+          networkToggled: true,
+          message: 'Schedule a Session with Your Personal Consultant',
+        })
+      } else {
+        res.render('scheduleSession', {
+          loggedIn: true,
+          networkToggled: true,
+          username: req.user.username
+        })
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
 })
 
 //SCHEDULESESSION Route
