@@ -18,28 +18,20 @@
 <div class ="container">
     <h1  class="type" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
     <br>
-    <div class = "row">
-        <div class = "column-two">
-        </div>
-        <div class = "column-two">
-            <div class="card">
-                    <img src={{user.imageUrl}} alt="{{user.name}}" style="width:100%; height:100%">
-                    <div style="overflow: auto" class="container">
-                        <h3 style = "color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
-                        <h5 style = "color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
-                    </div>
+    <div class ="row profile-container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 center-block card">
+                    <img class="center-block" src={{user.imageUrl}} alt="{{user.name}}" style="width:80%; height:80%" />
+                        <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
+                        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
             </div>
-        <div class = "column-two">
-        </div>
-    </div>
 </div>
 </div>
-
+<br>
 <center><i style = "color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
 <br>
-<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">VIEW ALL CONSULTANTS</a><br></center>
+<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE ALPINE NETWORK</a><br></center>
 {{#if owner}}
-<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/edit/">EDIT PROFILE</a></center>
+<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/edit/">EDIT YOUR PROFILE</a></center>
 {{/if}}
 
 

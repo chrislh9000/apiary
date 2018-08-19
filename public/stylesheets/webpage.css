@@ -23,14 +23,14 @@ dropdown-item, collapse, navbar-collapse
 /* FONTS */
 
 .studyWhere {
-  color: white; 
-  font-family: 'Montserrat', sans-serif; 
+  color: white;
+  font-family: 'Montserrat', sans-serif;
   font-size: 48px;
 }
 
 .bridgeGap {
-  color: white; 
-  font-family: 'Montserrat', sans-serif; 
+  color: white;
+  font-family: 'Montserrat', sans-serif;
   font-size: 28px;
 }
 
@@ -922,8 +922,8 @@ html {
     height: auto;
     padding: 20px;
     margin: 15px 0px;
-    border: 1px solid black
-        ;
+    border: 1px solid black;
+    overflow: auto;
 }
 
 .service i {
@@ -1231,6 +1231,11 @@ h2.a {
 
   #appt-date {
     width: 50%;
+  }
+
+  /* My Profile Page styling */
+  .profile-container {
+    padding: 20px
   }
 
   /* networkProfiles on the members page */
