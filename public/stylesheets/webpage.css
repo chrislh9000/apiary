@@ -20,6 +20,244 @@ dropdown-item, collapse, navbar-collapse
   font-size: 31px;
 }
 
+/* FONTS */
+
+.studyWhere {
+  color: white; 
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 48px;
+}
+
+.bridgeGap {
+  color: white; 
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 28px;
+}
+
+.competitiveCollege {
+  color: indianred; font-family: 'Montserrat', sans-serif; font-size: 28px;
+}
+
+.stellarTesting {
+  color: black; font-family: 'Montserrat', sans-serif; font-size: 23px;
+}
+
+.bigStats {
+  color: indianred; font-family: 'Montserrat', sans-serif; font-size: 40px;
+}
+
+.serviceTitle {
+  color: antiquewhite; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
+}
+
+.interestedServices {
+  color: white; font-family: 'Montserrat', sans-serif; font-size: 44px;
+}
+
+.buttonFont {
+  font-family:'Montserrat', sans-serif;
+}
+
+.bigTitleFont{
+ color: white; font-family: 'Montserrat', sans-serif; font-size: 44px;
+}
+
+.secondTitleFont {
+  color: white; font-family: 'Montserrat', sans-serif; font-size: 20px;
+}
+
+.secondTitleFont-black {
+  color: black; font-family: 'Montserrat', sans-serif; font-size: 20px;
+}
+
+.thirdTitleFont {
+  color: black; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 1.6;
+}
+.teamName  {
+  color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;
+}
+
+.twoWays {
+  color: firebrick; font-family: 'Montserrat', sans-serif; font-size: 35px;
+}
+
+.transparencyMain {
+  color: maroon; font-family: 'Montserrat', sans-serif;
+}
+
+.transparencySecond {
+  color: black; font-family: 'Montserrat', sans-serif;
+}
+
+.stigma {
+  color: firebrick; font-family: 'Montserrat', sans-serif; font-size: 25px;
+}
+
+.consultantTraining {
+  color: maroon; font-family: 'Montserrat', sans-serif; font-size: 32px;
+}
+
+.tab1 {
+  background:firebrick; color: white; font-family: 'Montserrat', sans-serif; font-size: 28px;
+}
+
+.tab2 {
+  background:brown; color: white; font-family: 'Montserrat', sans-serif; font-size: 28px;
+}
+
+.tab3 {
+  background:maroon; color: white; font-family: 'Montserrat', sans-serif; font-size: 28px;
+}
+
+.applyText {
+  color: black; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 2.0;
+}
+
+.crossGeneration {
+  color: white; font-family: 'Montserrat', sans-serif; font-size: 38px; line-height: 1.6;
+}
+
+.packageContents {
+  color: black; font-family: 'Montserrat', sans-serif; font-size: 16px; color: grey;
+}
+
+.service1{
+  color: white; font-family: 'Montserrat', sans-serif;
+}
+
+.stat1{
+  color: white; font-family: 'Montserrat', sans-serif; font-size: 45px;
+}
+
+.stat2{
+  color: white; font-family: 'Montserrat', sans-serif;  font-size: 18px;
+}
+/* BACKDROPS FOR MOST PAGES */
+
+.fixed-bg {
+  background-image: url("images/grey.jpg");
+  min-height: 350px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fixed-bg2 {
+  background-image: url("alpine.jpg");
+  min-height: 350px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fixed-bg-sf {
+  background-image: url("images/stanford.png");
+  min-height: 250px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.97;
+}
+
+.alpine-net {
+  background-image: url("images/stanford.png");
+  height: 700px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.97;
+}
+
+.arch {
+  background-image: url("images/arch.png");
+  min-height: 450px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.97;
+}
+
+.net {
+  background-image: url("images/darkmolecule.png");
+  max-height: 180px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Navbar classes */
+
+.navbar {
+  margin-top: 2px;
+  margin-bottom: 0 !important;
+}
+
+.dropdown-toggle{
+  margin: 2px 0px 2px;
+  float: center;
+}
+
+/* for direct nav buttons about  */
+#direct-nav {
+  font-size: 31px;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+a#direct-nav:hover  {
+  color: #ddd;
+  background-color: #910000;
+}
+
+.navbar a {
+  float: center;
+  color: black;
+  font-size: 17px;
+  text-align: left;
+  padding: 8px 8px;
+}
+
+.dropdown {
+  float: center;
+  overflow: show;
+}
+
+.navbar a:hover, .dropdown:hover .navbar-toggler {
+  background-color: black;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-menu a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+ul li {
+    margin-left: 110px;
+    margin-right: 60px;
+}
+
+/* INDEX PAGE */
+
+.dataPic1 {
+  width: 430px; height:160px; margin: auto -30px;
+}
+
+.dataPic2 {
+  width: 350px; height: 236px; margin: auto -80px;
+}
+
+
+
 /* IM GOING TO START ORGANIZING STYLES BY PAGES UP HERE */
 
 /* ALPINE ABOUT PAGE */
@@ -258,63 +496,8 @@ width: 400px;
   color: #222; }
 */
 
-/* Navbar classes */
 
-.navbar {
-  margin-top: 2px;
-  margin-bottom: 0 !important;
-}
-
-.dropdown-toggle{
-  margin: 2px 0px 2px;
-  float: center;
-}
-
-/* for direct nav buttons about  */
-#direct-nav {
-  font-size: 31px;
-  margin-bottom: auto;
-  margin-top: auto;
-}
-
-a#direct-nav:hover  {
-  color: #ddd;
-  background-color: #910000;
-}
-
-.navbar a {
-  float: center;
-  color: black;
-  font-size: 17px;
-  text-align: left;
-  padding: 8px 8px;
-}
-
-.dropdown {
-  float: center;
-  overflow: show;
-}
-
-.navbar a:hover, .dropdown:hover .navbar-toggler {
-  background-color: black;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.dropdown-menu a:hover {
-  background-color: #ddd;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-ul li {
-    margin-left: 110px;
-    margin-right: 60px;
-}
-
-/* Design Aspects */
+/* Index CSS */
 
 .square-container {
     background-color: #F0F0F0;
@@ -448,6 +631,7 @@ div.polaroid {
     font-size: 20px;
     color: maroon;
 }*/
+
 
 /* Footer */
 
@@ -587,6 +771,7 @@ div.polaroid {
   margin: -25px -115px;
   padding: 0px;
 }
+
 
 /* about stuff */
 
