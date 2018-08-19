@@ -23,14 +23,14 @@ dropdown-item, collapse, navbar-collapse
 /* FONTS */
 
 .studyWhere {
-  color: white; 
-  font-family: 'Montserrat', sans-serif; 
+  color: white;
+  font-family: 'Montserrat', sans-serif;
   font-size: 48px;
 }
 
 .bridgeGap {
-  color: white; 
-  font-family: 'Montserrat', sans-serif; 
+  color: white;
+  font-family: 'Montserrat', sans-serif;
   font-size: 28px;
 }
 
@@ -250,6 +250,15 @@ ul li {
 }
 
 /* INDEX PAGE */
+
+.fixed-bg2 {
+  background-image: url("/images/alpine.jpg");
+  min-height: 350px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .dataPic1 {
   width: 430px; height:160px; margin: auto -30px;
@@ -925,8 +934,8 @@ html {
     height: auto;
     padding: 20px;
     margin: 15px 0px;
-    border: 1px solid black
-        ;
+    border: 1px solid black;
+    overflow: auto;
 }
 
 .service i {
@@ -1234,6 +1243,11 @@ h2.a {
 
   #appt-date {
     width: 50%;
+  }
+
+  /* My Profile Page styling */
+  .profile-container {
+    padding: 20px
   }
 
   /* networkProfiles on the members page */
@@ -1785,3 +1799,9 @@ iframe {
 .p-b-51 {padding-bottom: 51px;}
 .p-b-52 {padding-bottom: 52px;}
 .p-b-53 {padding-bottom: 53px;}
+
+/* admin page */
+.admin-form {
+  padding: 10px;
+  margin-bottom: 10px;
+}

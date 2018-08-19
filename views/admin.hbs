@@ -10,18 +10,25 @@
 <img style="height: 100px; width: 90px; float: left; margin-right: 20px" src={{this.imageUrl}}></img>
 {{/if}} <br>
 <a class = "btn btn-success" href = '/users/{{this._id}}'>View Profile</a><br><br>
-<form method="POST" action="/admin/user/{{this._id}}">
-<button class="btn btn-primary" type="submit">Make User</button>
+<form class="admin-form" method="POST" action="/admin/user/{{this._id}}">
+<button class="admin-form btn btn-primary" type="submit">Make User</button>
+</form> <br>
+<form class="admin-form" method="POST" action="/admin/client/{{this._id}}">
+<button class="admin-form btn btn-primary" type="submit">Make Client</button>
+</form> <br>
+<form class="admin-form" method="POST" action="/admin/consultant/{{this._id}}">
+<button class="admin-form btn btn-primary" type="submit">Make Consultant</button>
+</form> <br>
+<form class="admin-form" method="POST" action="/admin/admin/{{this._id}}">
+<button class="admin-form btn btn-primary" type="submit">Make Admin</button>
+</form> <br>
+<a href="/consultants/assign/{{this._id}}" class="admin-form btn btn-primary">Assign Consultant</a> <br> <br>
+<form class="admin-form" method="POST" action="/consultants/clear/{{this._id}}">
+<button type="submit" class="admin-form btn btn-primary">Remove All Consultants</button>
 </form>
-<form method="POST" action="/admin/client/{{this._id}}">
-<button class="btn btn-primary" type="submit">Make Client</button>
-</form>
-<form method="POST" action="/admin/consultant/{{this._id}}">
-<button class="btn btn-primary" type="submit">Make Consultant</button>
-</form>
-<form method="POST" action="/admin/admin/{{this._id}}">
-<button class="btn btn-primary" type="submit">Make Admin</button>
-</form>
+
+
+
 </div>
 {{/each}}
 </div>

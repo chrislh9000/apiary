@@ -8,13 +8,17 @@ var bodyParser = require('body-parser')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const googleRouter = require('./routes/google');
+const preloginRouter = require('./routes/prelogin');
+const adminRouter = require('./routes/admin');
+const paymentRouter = require('./routes/payment');
+
 var models = require('./models/models');
-var User = models.User
-var user = require('./routes/users.js')
-var app = express();
-var crypto = require('crypto');
+const User = models.User
+const app = express();
+const crypto = require('crypto');
 mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
@@ -79,10 +83,15 @@ passport.use(new LocalStrategy(function(username, password, done) {
 //initializing passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/', user(passport));
+app.use('/', authRouter(passport));
+
 //initializing other routers files as middleware
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', authRouter);
+app.use('/', googleRouter);
+app.use('/', preloginRouter);
+app.use('/', adminRouter);
+app.use('/', paymentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
