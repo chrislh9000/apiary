@@ -248,6 +248,15 @@ ul li {
 
 /* INDEX PAGE */
 
+.fixed-bg2 {
+  background-image: url("/images/alpine.jpg");
+  min-height: 350px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .dataPic1 {
   width: 430px; height:160px; margin: auto -30px;
 }
@@ -1787,3 +1796,9 @@ iframe {
 .p-b-51 {padding-bottom: 51px;}
 .p-b-52 {padding-bottom: 52px;}
 .p-b-53 {padding-bottom: 53px;}
+
+/* admin page */
+.admin-form {
+  padding: 10px;
+  margin-bottom: 10px;
+}

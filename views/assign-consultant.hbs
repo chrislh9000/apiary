@@ -1,0 +1,13 @@
+<h1> Assign {{user.name}} a Consultant </h1>
+<div class = "container-fluid">
+{{#each consultants}}
+<div class="container-fluid">
+<h3> {{this.name}} </h3>
+<form class="admin-form" method="POST" action="/admin/assign/{{user._id}}">
+<button name="consultant" value="{{this._id}}" class="admin-form btn btn-primary" type="submit">Assign as {{user.name}} consultant</button>
+</form>
+</div>
+{{/each}}
+<br>
+<a class = "btn btn-danger" href="/admin">Back to Admin Page</a>
+</div>
