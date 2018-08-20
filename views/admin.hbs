@@ -27,6 +27,10 @@
 <a href="/consultants/assign/{{this._id}}" class="admin-form btn btn-primary">Assign Consultant</a> <br> <br>
 <form class="admin-form" method="POST" action="/consultants/clear/{{this._id}}">
 <button type="submit" class="admin-form btn btn-primary">Remove All Consultants</button>
+</form> <br>
+<form class="admin-form" method="POST" action="/consultants/assignCalendarId/{{this._id}}">
+  <input class="form-control" name="calendarUrl" placeholder="input google calendar url"></input>
+<button type="submit" class="admin-form btn btn-primary">Assign Calendar ID</button>
 </form>
 
 

@@ -20,7 +20,7 @@ router.get('/admin', function(req, res, next) {
       })
       console.log('consultants', consultants);
       res.render('admin', {
-        users: filteredUsers,
+        users: users,
         logged: req.user.username,
         consultants: consultants,
         networkToggled: true,
@@ -28,6 +28,25 @@ router.get('/admin', function(req, res, next) {
       })
     }).catch((err) => {
       res.status(500).send(err);
+    })
+  }
+})
+
+router.post('/consultants/assignCalendarId/:userid', (req, res, next) => {
+  if (req.user.userType !== 'admin') {
+    res.redirect(404, '/?permissions=false');
+    console.log("error: you don't have permissions to access this page")
+  } else {
+    const userId = req.params.userid;
+    console.log('==USERID===', req.params.userid)
+    console.log('==CalendarUrl===', req.body.calendarUrl)
+    User.findByIdAndUpdate(userId, {$set: {calendarUrl: JSON.stringify(req.body.calendarUrl)}})
+    .then((resp) => {
+      console.log('====SUCCESSFULLY ADDED CALENDAR URL TO CONSULTANT======', resp);
+      res.redirect('/admin?success=true');
+    })
+    .catch((err) => {
+      console.error(err);
     })
   }
 })

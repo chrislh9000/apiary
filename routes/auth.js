@@ -31,7 +31,8 @@ router.post('/register', function(req, res, next) {
     school: req.body.school,
     email: req.body.email,
     gender: req.body.gender,
-    userType: 'user'
+    userType: 'user',
+    calendarUrl: 'abc',
   })
   newUser.save()
   .then(function(saved) {
