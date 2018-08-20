@@ -45,7 +45,7 @@ router.get('/consultants/assign/:userid', (req, res, next) => {
       User.findById(userId)
       .then((client) => {
         const formAction = '/admin/assign/' + client._id;
-        console.log('FORMACTION')
+        console.log('=======CONSULTANTS=======', consultants);
         res.render('assign-consultant', {
           user: client,
           consultants: consultants,
@@ -63,7 +63,7 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
   } else {
     const userId = req.params.userid;
     //assign and update a consultant object and also update the calendar url
-    User.findByIdAndUpdate(userId, {'consultant': req.body.consultant, 'calendarUrl': req.body.calendarUrl}, {new: true})
+    User.findByIdAndUpdate(userId, { $set : {consultant: req.body.consultant, calendarUrl: req.body.calendarUrl} }, {new: true})
     .then((resp) => {
       console.log('====SUCCESSFULLY ADDED CONSULTANT=====');
       res.redirect('/admin')
