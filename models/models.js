@@ -133,8 +133,11 @@ var consultationSchema = new Schema ({
   sessionNumber: {
     type: Number,
     required: true
-  }
-
+  },
+  eventId : {
+    type: String,
+    required: true
+  },
 })
 
 

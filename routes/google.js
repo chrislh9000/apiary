@@ -125,6 +125,15 @@ router.get('/scheduleSession', function(req, res, next) {
 
 //SCHEDULESESSION Route
 router.post('/scheduleSession', (req, res, next) => {
+  const startDate = new Date(req.body.date);
+  const endDate = new Date(req.body.date);
+  const timeSlot = req.body.timeslot;
+  const timeHours = Number(timeSlot.slice(0, 2));
+  const timeMinutes = Number(timeSlot.slice(3, 5));
+  const currDay = startDate.getDate() //if there's some sort of timezone issue
+  startDate.setHours(timeHours);
+  startDate.setMinutes(timeMinutes);
+  endDate.setHours(timeHours + 1);
   OauthToken.findOne({ user: 'apiaryCalender' })
   .then((user) => {
     console.log('CALLING TEST', user)
@@ -136,13 +145,13 @@ router.post('/scheduleSession', (req, res, next) => {
       const newConsultation = {
         'summary': `Consultation Session with ${req.user.name}` ,
         'location': 'New York, NY, 10069',
-        'description': 'A chance to hear more about Google\'s developer products.',
+        'description': 'Consultation with Apiary Solutions',
         'start': {
-          'dateTime': '2018-08-15T09:00:00-07:00',
+          'dateTime': startDate.toISOString(),
           'timeZone': 'America/Los_Angeles',
         },
         'end': {
-          'dateTime': '2018-08-17T17:00:00-08:00',
+          'dateTime': endDate.toISOString(),
           'timeZone': 'America/Los_Angeles',
         },
         'attendees': [
@@ -164,7 +173,7 @@ router.post('/scheduleSession', (req, res, next) => {
         refresh_token: oauth2Client.credentials.refresh_token,
         expiry_date: 1530585071407,
       }, newConsultation);
-      res.redirect('/scheduleSession')
+      res.redirect('/scheduleSession?success=true')
     } else {
       console.log('no token found!');
       generateOauthUrl('apiaryCalender');

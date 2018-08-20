@@ -1,10 +1,17 @@
 <h1> Assign {{user.name}} a Consultant </h1>
+<h1>{{user._id}}</h1>
 <div class = "container-fluid">
 {{#each consultants}}
+<p>TEST: {{{this.calendarUrl}}}</p>
+<p>TEST: {{{this.imageUrl}}}</p>
 <div class="container-fluid">
 <h3> {{this.name}} </h3>
-<form class="admin-form" method="POST" action="/admin/assign/{{user._id}}">
-<button name="consultant" value="{{this._id}}" class="admin-form btn btn-primary" type="submit">Assign as {{user.name}} consultant</button>
+<h3> {{this.school}} </h3>
+<p> {{this.calendarUrl}} </p>
+<h3> Test </h3>
+<form class="admin-form" method="POST" action='{{postRoute}}'>
+<input name="calendarUrl" placeholder="calendarUrl"> </input>
+<button name="consultant" value="{{this._id}}" class="admin-form btn btn-primary" type="submit"> Assign as {{user.name}} consultant</button>
 </form>
 </div>
 {{/each}}

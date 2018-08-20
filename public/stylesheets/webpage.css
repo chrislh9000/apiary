@@ -80,6 +80,11 @@ dropdown-item, collapse, navbar-collapse
   line-height: 1.6;
 }
 
+.secondTitleFont-blue {
+  color:royalblue; font-family: 'Montserrat', sans-serif; font-size: 20px;
+  line-height: 1.6;
+}
+
 .thirdTitleFont {
   color: black; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 1.6;
 }

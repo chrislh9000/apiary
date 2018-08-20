@@ -170,6 +170,23 @@ router.get('/database/classNotes', (req, res, next) => {
   }
 })
 
+router.get('/database/resumes', (req, res, next) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Resume Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true,
+    })
+  } else {
+    res.render('resumes', {
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true,
+    })
+  }
+})
+
 ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get('/users/consultants/:userid', function(req, res, next) {
