@@ -76,12 +76,7 @@ function makeCalendarAPICall(token) {
 
 // FUNCTION TO ADD A SCHEDULING EVENT
 function scheduleConsultation(token, event) {
-  console.log('=====SCHEDULING=====')
-  const oauth2Client = new google.auth.OAuth2(
-    process.env.GOOGLE_APPLICATION_ID,
-    process.env.GOOGLE_APPLICATION_SECRET,
-    process.env.REDIRECT_URL,
-  );
+  console.log('=====SCHEDULING CONSULTATION=====');
   oauth2Client.setCredentials(token);
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
   calendar.events.insert({
@@ -94,6 +89,43 @@ function scheduleConsultation(token, event) {
       return;
     }
     console.log('Event created: %s', event.htmlLink);
+  });
+}
+
+function cancelConsultation(token, eventId) {
+  console.log('=====CANCELLING CONSULTATION=====');
+  oauth2Client.setCredentials(token);
+  const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+  console.log('=====CALENDAR=====', calendar);
+  calendar.events.delete({
+    auth: oauth2Client,
+    calendarId: 'o3i55kndm0ad3060lv7k230s28@group.calendar.google.com',
+    eventId: eventId,
+  }, function(err) {
+    if (err) {
+      console.log('There was an error contacting the Calendar service: ' + err);
+      return;
+    }
+    console.log('=====Event deleted!======');
+  });
+}
+
+function updateConsultation(token, eventId, updatedEvent) {
+  console.log('=====UPDATING CONSULTATION=====');
+  oauth2Client.setCredentials(token);
+  const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+  console.log('=====CALENDAR=====', calendar);
+  calendar.events.update({
+    auth: oauth2Client,
+    calendarId: 'o3i55kndm0ad3060lv7k230s28@group.calendar.google.com',
+    eventId: eventId,
+    resource: updatedEvents,
+  }, function(err, event) {
+    if (err) {
+      console.log('There was an error contacting the Calendar service: ' + err);
+      return;
+    }
+    console.log('=====Event Updated======', event);
   });
 }
 
