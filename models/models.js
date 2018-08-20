@@ -31,7 +31,34 @@ var userSchema = new Schema({
   },
   email: {
     type: String,
+    required: true,
+  },
+  gradePointAverage: {
+    type: Number,
+    required: false,
+  },
+  academicInterests: {
+    type: String,
+    required: false,
+  },
+  extracurricularInterests: {
+    type: String,
+    required: false,
+  },
+  country: {
+    type: String
+  },
+  currentGrade: {
+    type: Number,
     required: true
+  },
+  dateJoined: {
+    type: Date,
+    required: true
+  },
+  dateOfBirth: {
+    type: Date,
+    required: true,
   },
   gender: {
     type: String,
@@ -50,14 +77,18 @@ var userSchema = new Schema({
     default: 'user',
     enum: ['admin', 'user', 'client', 'consultant']
   },
-  currentProducts: {
-    type: Array,
-    default: []
-  },
-  orderHistory: {
-    type: Array,
-    default: []
-  },
+  currentProducts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Product',
+    }
+  ],
+  orderHistory: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Product',
+    }
+  ],
   consultant: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -69,15 +100,67 @@ var userSchema = new Schema({
     type: String,
     default: null
   },
-  upcomingConsultations: {
-    type: [],
-    default: []
-  },
-  pastConsultations: {
-    type: [],
-    default: []
-  }
+  upcomingConsultations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Consultation'
+    }
+  ],
+  pastConsultations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Consultation',
+    }
+  ],
 })
+
+//Consultant and Ambassador Schema
+const consultantSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  pastConsultations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Consultation',
+    }
+  ],
+  upcomingConsultations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Consultation',
+    }
+  ],
+  totalCompensation: {
+    type: Number,
+    default: 0
+  },
+})
+
+const ambassadorSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  pastConsultations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Consultation'
+    }
+  ],
+  upcomingConsultations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Consultation'
+    }
+  ],
+  totalCompensation: {
+    type: Number,
+    default: 0
+  },
+})
+
 
 //Payment Schema: DEFINITELY MODIFY THIS
 var paymentSchema = new Schema({
@@ -102,6 +185,7 @@ var paymentSchema = new Schema({
     required: true
   }
 })
+
 //PRODUCT SCHEMA: Also modify this
 var productSchema = new Schema ({
   title : {
@@ -115,6 +199,10 @@ var productSchema = new Schema ({
   price : {
     type: String,
     required: true
+  },
+  length: {
+    type: Number,
+    required: true,
   }
 })
 
@@ -127,7 +215,7 @@ var consultationSchema = new Schema ({
     type: String,
   },
   duration : {
-    type: String,
+    type: Number,
     required: true
   },
   sessionNumber: {
@@ -155,15 +243,22 @@ var oauthTokenSchema = new Schema ({
   }
 })
 //MONGODB MODELS
-var User = mongoose.model('User', userSchema);
-var Payment = mongoose.model('Payment', paymentSchema)
-var Product = mongoose.model('Product', productSchema)
-var OauthToken = mongoose.model('Token', oauthTokenSchema)
+const User = mongoose.model('User', userSchema);
+const Payment = mongoose.model('Payment', paymentSchema);
+const Product = mongoose.model('Product', productSchema);
+const Consultant = mongoose.model('Consultant', consultantSchema);
+const Ambassador = mongoose.model('Ambassador', ambassadorSchema);
+const Consultation = mongoose.model('Consultation', consultationSchema);
+const OauthToken = mongoose.model('Token', oauthTokenSchema);
+
 
 
 module.exports = {
   User: User,
   Payment: Payment,
   Product: Product,
-  OauthToken: OauthToken
+  OauthToken: OauthToken,
+  Ambassador: Ambassador,
+  Consultant: Consultant,
+  Consultation: Consultation,
 }
