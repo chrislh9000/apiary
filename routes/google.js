@@ -217,7 +217,12 @@ router.post('/scheduleSession', (req, res, next) => {
   });
 });
 
-
+router.get('/sessions', (req, res) => {
+  res.render('./Consultations/clientSessions', {
+    loggedIn: true,
+    networkToggled: true,
+  });
+})
 
 //TEST ROUTE TO CALL ABOVE FUNCTION
 router.get('/test', (req, res, next) => {
