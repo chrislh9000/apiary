@@ -72,15 +72,22 @@ dropdown-item, collapse, navbar-collapse
 }
 .secondTitleFont {
   color: white; font-family: 'Montserrat', sans-serif; font-size: 20px;
+  line-height: 1.6;
 }
 
 .secondTitleFont-black {
   color: black; font-family: 'Montserrat', sans-serif; font-size: 20px;
+  line-height: 1.6;
 }
 
 .thirdTitleFont {
   color: black; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 1.6;
 }
+
+.thirdTitleFont-white {
+  color: white; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 1.6;
+}
+
 .teamName  {
   color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;
 }
@@ -90,11 +97,11 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .transparencyMain {
-  color: maroon; font-family: 'Montserrat', sans-serif;
+  color: maroon; font-family: 'Montserrat', sans-serif; font-size: 26px;
 }
 
 .transparencySecond {
-  color: black; font-family: 'Montserrat', sans-serif;
+  color: black; font-family: 'Montserrat', sans-serif; font-size: 18px;
 }
 
 .stigma {
@@ -227,7 +234,7 @@ a#direct-nav:hover  {
   color: black;
   font-size: 17px;
   text-align: left;
-  padding: 8px 8px;
+  padding: 8px 28px;
 }
 
 .dropdown {
@@ -305,6 +312,9 @@ ul li {
 img.logoimage {
    display: block;
    clear: both;
+   width: 540px;
+   height: 180px;
+   box-align: center;
 }
 
 .bg-maroon {
@@ -939,7 +949,7 @@ html {
     height: auto;
     padding: 20px;
     margin: 15px 0px;
-    border: 1px solid black;
+    border: 0px solid black;
     overflow: auto;
 }
 
