@@ -35,21 +35,27 @@ router.post('/register', function(req, res, next) {
     calendarUrl: 'abc',
   })
   newUser.save()
-  .then(function(saved) {
+  .then( (saved) => {
     console.log('new user saved!')
-    res.redirect('/login')
+    res.redirect('/login?register=success');
   })
   .catch(function(error) {
     res.send('Error: Unable to save user')
   })
 })
 //Login functionality
-router.get('/login', function(req, res, next) {
-  res.render('login');
+router.get('/login', (req, res, next) => {
+  if (req.query.register === 'success') {
+    res.render('login', {
+      success: 'successfully registered!'
+    })
+  } else {
+    res.render('login');
+  }
 });
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login?login=failed'}), function(req, res) {
-  res.redirect('/');
+  res.redirect('/?loggedIn=success');
   console.log('logged in !')
 });
 

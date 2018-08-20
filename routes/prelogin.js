@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
     res.render('index', {
       username: req.user.username,
       name: req.user.name,
-      loggedIn: true
+      loggedIn: true,
+      networkToggled: true
     });
   } else {
     res.render('index', {loggedIn: false})
