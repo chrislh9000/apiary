@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
+const mongoose = require('mongoose');
 const _ = require('underscore');
 const models = require('../models/models');
 const User = models.User;
@@ -165,6 +166,7 @@ router.get('/scheduleSession', function(req, res, next) {
 
 router.post('/scheduleSession/:eventid', (req, res, next) => {
   const eventId = req.params.eventid;
+  console.log('CONSULTANTID====', req.user.consultant);
   console.log('STARTDATE', req.body.startDate);
     const newConsultation = new Consultation({
       client: req.user._id,
@@ -176,9 +178,13 @@ router.post('/scheduleSession/:eventid', (req, res, next) => {
     newConsultation.save()
     //update the user and the consultant schema with the next consultation
     .then((consultation) => {
-      User.findByIdAndUpdate(req.user._id, {$push : {upcomingConsultations: consultation }})
+      // const userId = mongoose.Types.ObjectId(req.user._id);
+      console.log('====CONSULTANT=====', req.user.consultant);
+      console.log('===USERID====', req.user._id);
+      User.findByIdAndUpdate(req.user._id, {$push : {upcomingConsultations: consultation._id }}, {new: true})
       .then((user) => {
-        Consultant.findByIdAndUpdate(req.user.consultant, {$push : {upcomingConsultations: consultation }})
+        res.redirect('/users/myProfile');
+        Consultant.findOneAndUpdate({user: req.user.consultant}, {$push : {upcomingConsultations: consultation._id }}, {new: true})
         .then((consultant) => {
           console.log('SUCCESSFULLY SCHEDULED SESSION');
           res.redirect('/users/myProfile');

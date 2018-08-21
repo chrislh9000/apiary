@@ -182,7 +182,7 @@ var paymentSchema = new Schema({
   stripeSource: String,
   status: String,
   _userid : {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   name: {

@@ -1,1 +1,11 @@
 <h1 style='text-align: center'>Consultant Profile</h1>
+<div style='text-align: center;' class = "align-text-center center-block container-fluid upcoming-consultations">
+  <h2> UPCOMING CONSULTATIONS </h2>
+{{#each upcoming}}
+<div style='border: solid 1px black' class = "center-block container-fluid">
+<h5>Consultation: {{this._id}}</h3>
+<h5>Duration: {{this.duration}} Minutes </h3>
+<h5> Name: {{this.client.name}} </h3>
+</div>
+{{/each}}
+</div>

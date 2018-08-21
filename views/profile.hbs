@@ -2,42 +2,42 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-    .fixed-bg2 {
+  .fixed-bg2 {
     background-image: url("alpine.jpg");
     min-height: 350px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
+  }
 </style>
 
 <br>
 <br>
 
-<div class ="container">
-    <h1  class="type" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
-    <br>
-    <div class ="row profile-container">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 center-block card">
-                    <img class="center-block" src={{user.imageUrl}} alt="{{user.name}}" style="width:80%; height:80%" />
-                        <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
-                        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
-            </div>
-</div>
+<div class="container">
+  <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+  <br>
+  <div class="row profile-container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 center-block card">
+      <img class="center-block" alt="{{user.name}}" style="width:80%; height:80%" />
+      <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+    </div>
+  </div>
 </div>
 <br>
-<center><i style = "color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+<center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
 <br>
 <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE ALPINE NETWORK</a><br></center>
 {{#if owner}}
-<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/edit/">EDIT YOUR PROFILE</a></center>
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/edit/">EDIT YOUR PROFILE</a></center>
 {{/if}}
 {{#if consultantPortal}}
-<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/consultants/profile">CONSULTANT PORTAL</a></center>
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/consultants/profile">CONSULTANT PORTAL</a></center>
 {{/if}}
 {{#if adminPortal}}
-<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/admin">ADMIN PAGE</a></center>
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/admin">ADMIN PAGE</a></center>
 {{/if}}
 <!--
 <h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>

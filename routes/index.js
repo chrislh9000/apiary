@@ -9,7 +9,8 @@ const models = require('../models/models');
 const User = models.User;
 const Payment = models.Payment;
 const Product = models.Product
-const OauthToken = models.OauthToken
+const OauthToken = models.OauthToken;
+const Consultant = models.Consultant;
 
 function hashPassword(password) {
   var hash = crypto.createHash('sha256');
@@ -20,7 +21,8 @@ function hashPassword(password) {
 
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
-  User.findById(req.user._id)
+  console.log('====USER====', req.user);
+  User.findOne({_id: req.user._id})
   .then((user) => {
     if (user.userType === 'admin') {
       res.render('profile', {
@@ -163,7 +165,21 @@ router.get('/consultants/profile', (req, res) => {
   if(req.user.userType === 'client' || req.user.userType === 'user') {
     res.redirect('/');
   } else {
-    res.render('./Consultations/consultant-profile.hbs')
+    Consultant.findOne({user: req.user._id})
+    .populate({
+      path: 'upcomingConsultations',
+      populate: { path: 'client'}
+    })
+    .exec()
+    .then((consultant) => {
+      console.log('===CONSULTANT===', consultant)
+      res.render('./Consultations/consultant-profile.hbs', {
+        upcoming: consultant.upcomingConsultations,
+        past: consultant.pastConsultations,
+        networkToggled: true,
+        loggedIn: true,
+      })
+    })
   }
 })
 
