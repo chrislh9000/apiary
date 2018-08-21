@@ -47,7 +47,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .serviceTitle {
-  color: antiquewhite; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
+  color: white; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
 }
 
 .interestedServices {
@@ -315,7 +315,7 @@ ul li {
 }
 
 .sec-font {
-    font-family: 'Merriweather', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     color: white;
 }
@@ -475,8 +475,8 @@ div.college-admissions-g1 {
   right: 0;
   height: 100%;
   width: 100%;
-  opacity: 0;
-  transition: .5s ease;
+   /* opacity: 0; */
+  /* transition: .5s ease; */
   background-color: indianred;
 width: 400px;
     height: 272px;
