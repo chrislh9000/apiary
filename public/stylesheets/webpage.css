@@ -209,7 +209,14 @@ dropdown-item, collapse, navbar-collapse
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.net2 {
+  background-color: maroon;
+  max-height: 180px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /* Navbar classes */
 
 .navbar {
@@ -1193,6 +1200,8 @@ h2.a {
   background-repeat: no-repeat;
   background-size: cover;
   }
+
+
 
   /* Checkout Page Styling */
   .product-overview {
