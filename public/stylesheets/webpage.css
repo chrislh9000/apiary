@@ -22,13 +22,13 @@ dropdown-item, collapse, navbar-collapse
 
 /* FONTS */
 
-.studyWhere {
+.topTier {
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 48px;
 }
 
-.bridgeGap {
+.gotIn {
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 28px;
@@ -209,7 +209,14 @@ dropdown-item, collapse, navbar-collapse
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.net2 {
+  background-color: maroon;
+  max-height: 180px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /* Navbar classes */
 
 .navbar {
@@ -893,8 +900,7 @@ div.transbox p {
 .containerTab {
     padding: 20px;
     color: white;
-    width: 1139px;
-    margin: 0px -15px;
+    margin: 0px;
 }
 
 /* Clear floats after the columns */
@@ -1194,6 +1200,8 @@ h2.a {
   background-repeat: no-repeat;
   background-size: cover;
   }
+
+
 
   /* Checkout Page Styling */
   .product-overview {
