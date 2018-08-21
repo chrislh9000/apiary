@@ -11,6 +11,7 @@ const Payment = models.Payment;
 const Product = models.Product
 const OauthToken = models.OauthToken;
 const Consultant = models.Consultant;
+const Consultation = models.Consultation;
 
 function hashPassword(password) {
   var hash = crypto.createHash('sha256');
@@ -182,6 +183,69 @@ router.get('/consultants/profile', (req, res) => {
     })
   }
 })
+
+router.post('/consultation/confirm/:consultationid', (req, res) => {
+  //find consultation by id, remove it from upcoming consultations and put it in past consultations
+  const cId = req.params.consultationid
+  Consultation.findById(cId)
+  .populate('client')
+  .then((consultation) => {
+    console.log('====UPCOMING CONSULTATIONS====', consultation.client._id);
+    User.findById(consultation.client)
+    .populate('upcomingConsultations')
+    .then((user) => {
+      const newSessions = _.filter(user.upcomingConsultation,(consultation) => {
+        return consultation._id !== cId
+      })
+    })
+    .catch((err) => {
+      console.err('error', err);
+    })
+    User.findByIdAndUpdate(user._id, {$set: {upcomingConsultations: newSessions}}, {new: true})
+    .then((user) => {
+      Consultant.findOne({user: req.user._id})
+      .populate('upcomingConsultations')
+      .exec()
+      .then((consultation) => {
+        const newConsultations = _.filter(user.upcomingConsultation,(consultation) => {
+          return consultation._id !== cId
+        })
+        consultation.set({'upcomingConsultations': newConsultations});
+        consultation.save()
+        .then(() => {
+          res.redirect('/')
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+      })
+    })
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+})
+
+
+
+//Manage consultations route
+
+router.get('/sessions', (req, res) => {
+  User.findById(req.user._id)
+  .populate('upcomingConsultations')
+  .exec()
+  .then((user) => {
+    console.log('user', user);
+    res.render('./Consultations/clientSessions', {
+      loggedIn: true,
+      networkToggled: true,
+      user: user,
+      upcoming: user.upcomingConsultations
+    });
+  })
+})
+
+
 
 //Network database stuff ///
 router.get('/database/essays', (req, res, next) => {

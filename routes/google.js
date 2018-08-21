@@ -173,7 +173,8 @@ router.post('/scheduleSession/:eventid', (req, res, next) => {
       description: 'hour-long consultation session',
       duration: 60,
       eventId: eventId,
-      // time: new Date(req.body.startDate),
+      time: req.body.startDate,
+      consultant: req.user.consultant,
     })
     newConsultation.save()
     //update the user and the consultant schema with the next consultation
@@ -260,12 +261,6 @@ router.post('/scheduleSession/:eventid', (req, res, next) => {
   // });
 });
 
-router.get('/sessions', (req, res) => {
-  res.render('./Consultations/clientSessions', {
-    loggedIn: true,
-    networkToggled: true,
-  });
-})
 
 //TEST ROUTE TO CALL ABOVE FUNCTION
 router.get('/test', (req, res, next) => {

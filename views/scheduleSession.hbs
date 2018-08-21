@@ -30,8 +30,8 @@
   <form method="POST" action="/scheduleSession/{{this.id}}">
   <h5>{{this.formattedStart}} - {{this.formattedEnd}}</h5>
   <h6>(Pacific-Standard-Time)</h6>
-  <input type="hidden" value={{this.start}} name="startDate"></input>
-  <input type="hidden" value={{this.end}} name="startDate"></input>
+  <input type="hidden" value={{this.startDate}} name="startDate"></input>
+  <input type="hidden" value={{this.endDate}} name="endDate"></input>
   <button type="submit" name="consultation" value='{{this.calId}}' class="btn-success">SCHEDULE SESSION</button>
 </form>
 </div>

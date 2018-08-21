@@ -220,6 +220,11 @@ const consultationSchema = new Schema ({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  consultant: {
+    type: Schema.Types.ObjectId,
+    ref: 'Consultant',
+    required: true,
+  },
   description: {
     type: String,
   },
