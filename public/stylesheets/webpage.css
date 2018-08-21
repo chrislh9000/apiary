@@ -1233,12 +1233,18 @@ h2.a {
     padding: 10px;
   }
 
+  .schedule-slot {
+    padding: 10px;
+    border: solid 1px black;
+    margin-bottom: 10px
+  }
+
   .scheduling-container {
     border: solid 2px gray;
     padding: 10px;
     float: left;
-    width: 38%;
-    margin-left: 10%;
+    width: 44%;
+    margin-left: 28%;
   }
 
   .scheduled-consultation-container {

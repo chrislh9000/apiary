@@ -75,7 +75,7 @@ var userSchema = new Schema({
   userType: {
     type: String,
     default: 'user',
-    enum: ['admin', 'user', 'client', 'consultant']
+    enum: ['admin', 'user', 'client', 'consultant', 'ambassador']
   },
   currentProducts: [
     {
@@ -93,7 +93,7 @@ var userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  calenderUrl: {
+  calenderId: {
     type: String,
   },
   tokens: {
@@ -136,6 +136,12 @@ const consultantSchema = new Schema({
     type: Number,
     default: 0
   },
+  clients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
 })
 
 const ambassadorSchema = new Schema({
@@ -149,16 +155,16 @@ const ambassadorSchema = new Schema({
       ref: 'Consultation'
     }
   ],
-  upcomingConsultations: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Consultation'
-    }
-  ],
   totalCompensation: {
     type: Number,
     default: 0
   },
+  pastClients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
 })
 
 
@@ -206,7 +212,7 @@ var productSchema = new Schema ({
   }
 })
 
-var consultationSchema = new Schema ({
+const consultationSchema = new Schema ({
   client: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -224,12 +230,16 @@ var consultationSchema = new Schema ({
   },
   eventId : {
     type: String,
-    required: true
+    required: false,
   },
+  time : {
+    type: Date,
+    required: false,
+  }
 })
 
 
-var oauthTokenSchema = new Schema ({
+const oauthTokenSchema = new Schema ({
   accessToken: {
     type: String,
     required: true

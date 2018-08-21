@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
-  console.log(req.user)
-  if (req.user) {
+  if (req.query.networkToggled=== 'false') {
+    res.render('index', {
+      username: req.user.username,
+      name: req.user.name,
+      loggedIn: true,
+    });
+  } else if (req.user) {
     res.render('index', {
       username: req.user.username,
       name: req.user.name,

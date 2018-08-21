@@ -80,7 +80,7 @@
     {{#if loggedIn}}
     {{#if networkToggled}}
     <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/logout">LOGOUT</a>
-    <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/">BACK TO HOME</a>
+    <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/?networkToggled=false">BACK TO HOME</a>
     {{else}}
       <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/logout">LOGOUT</a>
       <a class="btn btn-light btn-lg" style="text-transform: uppercase; float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/users/myProfile">{{username}}'S ALPINE NETWORK</a>
@@ -104,7 +104,7 @@
 
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul style='float: none' class="navbar-nav mr-auto">
 
         <a id="direct-nav" class="center-block nav-link" href="/users/myProfile" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
           MY PROFILE
@@ -112,9 +112,11 @@
 
         <li class="nav-item dropdown">
           <a1  class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            DATABASES
+            NETWORK
           </a1>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+            <a class="dropdown-item" href="/users/all">APIARY NETWORK</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/database/essays">ESSAYS</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/database/resumes">RESUMES</a>
@@ -128,7 +130,7 @@
 
         <li class="nav-item dropdown">
           <a1 class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            SESSIONS
+            CONSULTING
           </a1>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
             <a class="dropdown-item" href="/products">PURCHASE CONSULATIONS</a>
@@ -138,11 +140,6 @@
             <a class="dropdown-item" href="/sessions">MANAGE CONSULTATIONS</a>
           </div>
         </li>
-
-        <a id="direct-nav" class="center-block nav-link" href="/users/all" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-          NETWORK
-        </a>
-
       </ul>
     </div>
   </div>
@@ -158,7 +155,7 @@
     <div class="container-fluid">
       <div class = "row">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul style='float: none' class="navbar-nav mr-auto">
           <a id="direct-nav" class="nav-link center-block" href="/about" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
             ABOUT
           </a>

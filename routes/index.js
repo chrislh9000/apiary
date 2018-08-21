@@ -20,17 +20,42 @@ function hashPassword(password) {
 
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
-  User.findOne({username: req.user.username}).exec().then((user) => {
-    console.log('user', user);
-    res.render('profile', {
-      user: user,
-      logged: req.user.username,
-      username: req.user.username,
-      owner: true,
-      networkToggled: true,
-      loggedIn: true
-    })
-  }).catch((error) => {
+  User.findById(req.user._id)
+  .then((user) => {
+    if (user.userType === 'admin') {
+      res.render('profile', {
+        user: user,
+        logged: req.user.username,
+        username: req.user.username,
+        owner: true,
+        networkToggled: true,
+        loggedIn: true,
+        consultantPortal: true,
+        adminPortal: true,
+      })
+    } else if (user.userType === 'consultant' || user.userType === 'admin') {
+      res.render('profile', {
+        user: user,
+        logged: req.user.username,
+        username: req.user.username,
+        owner: true,
+        networkToggled: true,
+        loggedIn: true,
+        consultantPortal: true,
+      })
+    }
+    else {
+      res.render('profile', {
+        user: user,
+        logged: req.user.username,
+        username: req.user.username,
+        owner: true,
+        networkToggled: true,
+        loggedIn: true,
+      })
+    };
+  })
+  .catch((error) => {
     res.send(error);
   })
 })
@@ -132,6 +157,14 @@ router.get('/users/:userid', function(req, res, next) {
     console.log('Error', error)
     res.send(error);
   })
+})
+//Consultant-specific routes
+router.get('/consultants/profile', (req, res) => {
+  if(req.user.userType === 'client' || req.user.userType === 'user') {
+    res.redirect('/');
+  } else {
+    res.render('./Consultations/consultant-profile.hbs')
+  }
 })
 
 //Network database stuff ///
