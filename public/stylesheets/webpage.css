@@ -22,13 +22,13 @@ dropdown-item, collapse, navbar-collapse
 
 /* FONTS */
 
-.studyWhere {
+.topTier {
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 48px;
 }
 
-.bridgeGap {
+.gotIn {
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 28px;
@@ -893,8 +893,7 @@ div.transbox p {
 .containerTab {
     padding: 20px;
     color: white;
-    width: 1139px;
-    margin: 0px -15px;
+    margin: 0px;
 }
 
 /* Clear floats after the columns */
