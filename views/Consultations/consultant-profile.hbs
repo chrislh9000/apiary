@@ -6,6 +6,12 @@
 <h5>Consultation: {{this._id}}</h3>
 <h5>Duration: {{this.duration}} Minutes </h3>
 <h5> Name: {{this.client.name}} </h3>
+<form method="POST" action="/consultation/confirm/{{this._id}}">
+  <button type="submit" class="btn btn-success">Confirm Session</button>
+</form> <br>
+<form method="POST" action="/consultation/rescheudle/{{this._id}}">
+  <button type="submit" class="btn btn-info">Reschedule Session</button>
+</form>
 </div>
 {{/each}}
 </div>
