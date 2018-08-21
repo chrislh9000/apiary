@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport')
-const models = require('../models/models')
-const User = models.User
+const passport = require('passport');
+const models = require('../models/models');
+const User = models.User;
+const Consultant = models.Consultant;
+
 const bodyParser = require('body-parser')
 const _ = require('underscore');
+
 
 router.get('/admin', function(req, res, next) {
   if (req.user.userType !== 'admin') {
@@ -40,15 +43,15 @@ router.post('/consultants/assignCalendarId/:userid', (req, res, next) => {
     const userId = req.params.userid;
     console.log('==USERID===', req.params.userid)
     console.log('==CalendarUrl===', req.body.calendarUrl)
-    User.findByIdAndUpdate(userId, {$set: {calendarUrl: JSON.stringify(req.body.calendarUrl)}})
-    .then((resp) => {
-      console.log('====SUCCESSFULLY ADDED CALENDAR URL TO CONSULTANT======', resp);
-      res.redirect('/admin?success=true');
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-  }
+    User.findByIdAndUpdate(userId, {$set: {calendarId: req.body.calendarUrl}}, {new: true})
+      .then((resp) => {
+        console.log('====SUCCESSFULLY ADDED CALENDAR URL TO CONSULTANT======', resp);
+        res.redirect('/admin?success=true');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    }
 })
 
 router.get('/consultants/assign/:userid', (req, res, next) => {
@@ -82,7 +85,7 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
   } else {
     const userId = req.params.userid;
     //assign and update a consultant object and also update the calendar url
-    User.findByIdAndUpdate(userId, { $set : {consultant: req.body.consultant, calendarUrl: req.body.calendarUrl} }, {new: true})
+    User.findByIdAndUpdate(userId, { $set : {consultant: req.body.consultant, calendarId: req.body.calendarUrl} }, {new: true})
     .then((resp) => {
       console.log('====SUCCESSFULLY ADDED CONSULTANT=====');
       res.redirect('/admin')
@@ -98,9 +101,21 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
       res.redirect(404, '/')
       console.log("error: you don't have permissions to access this page")
     } else {
-      User.findByIdAndUpdate(req.params.userid, {userType: 'consultant'}).exec().then(function(resp) {
+      User.findByIdAndUpdate(req.params.userid, {userType: 'consultant'})
+      .exec()
+      .then((resp) => {
         console.log('user successfully has been made consultant')
-        res.redirect('/admin')
+        const newConsultant = new Consultant({
+          user: req.params.userid,
+        })
+        newConsultant.save()
+        .then((user) => {
+          console.log('consultant model created!')
+          res.redirect('/admin');
+        })
+        .catch((err) => {
+          console.err(err);
+        })
       }).catch(function(err) {
         console.log('ERROR: error updating user status')
       })

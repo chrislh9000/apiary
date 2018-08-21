@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
       username: req.user.username,
       name: req.user.name,
       loggedIn: true,
-      networkToggled: true
+      networkToggled: false
     });
   } else {
     res.render('index', {loggedIn: false})

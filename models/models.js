@@ -50,7 +50,7 @@ var userSchema = new Schema({
   },
   currentGrade: {
     type: Number,
-    required: true
+    required: false
   },
   dateJoined: {
     type: Date,
@@ -58,7 +58,7 @@ var userSchema = new Schema({
   },
   dateOfBirth: {
     type: Date,
-    required: true,
+    required: false,
   },
   gender: {
     type: String,
@@ -80,6 +80,7 @@ var userSchema = new Schema({
   currentProducts: [
     {
       type: Schema.Types.ObjectId,
+      default: [],
       ref: 'Product',
     }
   ],
@@ -87,29 +88,28 @@ var userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: 'Product',
+      default: [],
     }
   ],
   consultant: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  calenderId: {
+  calendarId: {
     type: String,
-  },
-  tokens: {
-    type: String,
-    default: null
   },
   upcomingConsultations: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Consultation'
+      ref: 'Consultation',
+      default: [],
     }
   ],
   pastConsultations: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Consultation',
+      default: [],
     }
   ],
 })
@@ -123,12 +123,14 @@ const consultantSchema = new Schema({
   pastConsultations: [
     {
       type: Schema.Types.ObjectId,
+      default: [],
       ref: 'Consultation',
     }
   ],
   upcomingConsultations: [
     {
       type: Schema.Types.ObjectId,
+      default: [],
       ref: 'Consultation',
     }
   ],
@@ -139,6 +141,7 @@ const consultantSchema = new Schema({
   clients: [
     {
       type: Schema.Types.ObjectId,
+      default: [],
       ref: 'User'
     }
   ]

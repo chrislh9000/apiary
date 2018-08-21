@@ -32,7 +32,7 @@ router.post('/register', function(req, res, next) {
     email: req.body.email,
     gender: req.body.gender,
     userType: 'user',
-    calendarUrl: 'abc',
+    dateJoined: new Date()
   })
   newUser.save()
   .then( (saved) => {

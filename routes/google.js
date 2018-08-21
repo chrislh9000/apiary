@@ -4,6 +4,8 @@ const crypto = require('crypto');
 const _ = require('underscore');
 const models = require('../models/models');
 const User = models.User;
+const Consultation = models.Consultation;
+const Consultant = models.Consultant
 const OauthToken = models.OauthToken;
 
 
@@ -113,7 +115,7 @@ router.get('/scheduleSession', function(req, res, next) {
               expiry_date: 1530585071407,
             });
             calendar.events.list({
-              calendarId: 'o3i55kndm0ad3060lv7k230s28@group.calendar.google.com', // Go to setting on your calendar to get Id
+              calendarId: req.user.calendarId, // Go to setting on your calendar to get Id
               timeMin: (new Date()).toISOString(),
               maxResults: 20,
               singleEvents: true,
@@ -137,6 +139,7 @@ router.get('/scheduleSession', function(req, res, next) {
               if (events.length) {
                 console.log('====EVENTS=====', events);
                 res.render('scheduleSession', {
+                  user: req.user,
                   loggedIn: true,
                   networkToggled: true,
                   username: req.user.username,
@@ -163,10 +166,31 @@ router.get('/scheduleSession', function(req, res, next) {
 router.post('/scheduleSession/:eventid', (req, res, next) => {
   const eventId = req.params.eventid;
   console.log('STARTDATE', req.body.startDate);
-  User.findByIdAndUpdate(req._id)
-  .then((user) => {
-    res.redirect('/scheduleSession')
-  })
+    const newConsultation = new Consultation({
+      client: req.user._id,
+      description: 'hour-long consultation session',
+      duration: 60,
+      eventId: eventId,
+      // time: new Date(req.body.startDate),
+    })
+    newConsultation.save()
+    //update the user and the consultant schema with the next consultation
+    .then((consultation) => {
+      User.findByIdAndUpdate(req.user._id, {$push : {upcomingConsultations: consultation }})
+      .then((user) => {
+        Consultant.findByIdAndUpdate(req.user.consultant, {$push : {upcomingConsultations: consultation }})
+        .then((consultant) => {
+          console.log('SUCCESSFULLY SCHEDULED SESSION');
+          res.redirect('/users/myProfile');
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+    })
   .catch((err) => {
     console.error(err);
   })
