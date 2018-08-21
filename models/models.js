@@ -224,10 +224,6 @@ const consultationSchema = new Schema ({
     type: Number,
     required: true
   },
-  sessionNumber: {
-    type: Number,
-    required: true
-  },
   eventId : {
     type: String,
     required: false,
