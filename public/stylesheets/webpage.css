@@ -81,6 +81,11 @@ dropdown-item, collapse, navbar-collapse
   line-height: 1.6;
 }
 
+.secondTitleFont-green {
+  color:green; font-family: 'Montserrat', sans-serif; font-size: 20px;
+  line-height: 1.6;
+}
+
 .secondTitleFont-blue {
   color:royalblue; font-family: 'Montserrat', sans-serif; font-size: 20px;
   line-height: 1.6;
@@ -206,7 +211,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .net {
-  background-image: url("images/darkmolecule.png");
+  background-image: url("/images/gate.jpg");
   max-height: 180px;
   background-attachment: fixed;
   background-position: center;
@@ -214,6 +219,15 @@ dropdown-item, collapse, navbar-collapse
   background-size: cover;
 }
 .net2 {
+  background-image: url("/images/gate.jpg");
+  max-height: 180px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.net3 {
   background-color: maroon;
   max-height: 180px;
   background-attachment: fixed;
@@ -481,13 +495,14 @@ div.college-admissions-g1 {
   width: 100%;
    /* opacity: 0; */
   /* transition: .5s ease; */
-  background-color: indianred;
+  background-image: url("images/uchic.jpg");
 width: 400px;
     height: 272px;
 }
 
 .container:hover .overlay{
-  opacity: 0.80;
+  opacity: 0.98;
+  background-color: slategrey;
 }
 
 
@@ -1197,7 +1212,7 @@ h2.a {
   }
 
   .net {
-      background-image: url("images/darkmolecule.png");
+      background-image: url("images/gates.jpg");
   max-height: 180px;
   background-attachment: fixed;
   background-position: center;
