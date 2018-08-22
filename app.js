@@ -7,6 +7,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
+const multer = require('multer');
+const ejs = require('ejs');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
