@@ -502,7 +502,7 @@ width: 400px;
 
 .container:hover .overlay{
   opacity: 0.98;
-  background-color: slategrey;
+  background-color: #1C1D21;
 }
 
 
