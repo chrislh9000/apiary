@@ -7,8 +7,11 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
+//image uploade
 const multer = require('multer');
-const ejs = require('ejs');
+const methodOverride= require('method-override');
+const GridFsStorage= require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -34,6 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 //cookie and body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride)
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

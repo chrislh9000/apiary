@@ -1,7 +1,13 @@
-<h1> UPLOAD YOUR IMAGE HERE </h1>
-<form method="POST" action="/uploadimage">
-<label class="btn btn-default">
-    Browse <input name="image" type="file" hidden>
-</label>
-<button class="btn btn-info">Upload Image</button>
+<div class = "container-fluid">
+<div class = "row">
+  <div class = "col-md-6 m-auto">
+<h1 class = "text-center display-4 my-4"> UPLOAD YOUR IMAGE HERE </h1>
+<form method="POST" action="/uploadimage" enctype="multipart/form-data">
+<div class = "custom-file mb-3">
+  <input type= "file" name="image" id="image" class="btn custom-image-input">
+</div>
+<input type = "submit" value="Submit" class = "btn btn-primary"> </input>
 </form>
+</div>
+</div>
+</div>

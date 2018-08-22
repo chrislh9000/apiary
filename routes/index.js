@@ -1,6 +1,4 @@
 const express = require('express');
-const multer = require('multer');
-const ejs = require('ejs');
 const router = express.Router();
 const crypto = require('crypto');
 const _ = require('underscore');
@@ -14,6 +12,13 @@ const Product = models.Product
 const OauthToken = models.OauthToken;
 const Consultant = models.Consultant;
 const Consultation = models.Consultation;
+//image uploading stuff
+const multer = require('multer');
+const path = require('path');
+// const crypto = require('crypto');
+const GridFsStorage= require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const methodOverride= require('method-override');
 
 function hashPassword(password) {
   var hash = crypto.createHash('sha256');
