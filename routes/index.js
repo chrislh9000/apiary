@@ -115,14 +115,6 @@ router.post('/users/edit', function(req, res, next) {
   })
 })
 
-router.get('/uploadimage', (req, res) => {
-  res.render('./Profiles/images')
-})
-
-router.post('/uploadimage', (req, res) => {
-  console.log('====BODY===', req.body)
-  console.log('====BODY===', req.file)
-})
 //Viewing other profiles
 //viewing all profiles
 router.get('/users/all', function(req, res, next) {

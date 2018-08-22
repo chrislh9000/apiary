@@ -1,0 +1,10 @@
+<h1> View Image Test </h1>
+{{#if files}}
+{{#each files}}
+<div class = "card card-body mb-3">
+  <img style="width: 200px" src='/image/{{this.filename}}' alt=''>
+</div>
+{{/each}}
+{{else}}
+<p>No Files to Show</p>
+{{/if}}
