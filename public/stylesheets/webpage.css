@@ -117,6 +117,9 @@ dropdown-item, collapse, navbar-collapse
 .consultantTraining {
   color: maroon; font-family: 'Montserrat', sans-serif; font-size: 32px;
 }
+.schoolsRepresented {
+  color: maroon; font-family: 'Montserrat', sans-serif; font-size: 32px;
+}
 
 .tab1 {
   background:firebrick; color: white; font-family: 'Montserrat', sans-serif; font-size: 28px;
@@ -1061,7 +1064,7 @@ h2.a {
     -webkit-transition: 0.2s color;
     transition: 0.2s color;
     font-family: 'Montserrat', sans-serif;
-    font-size: 25px"
+    font-size: 25px
 }
 
 .pricing:hover .price-title {
@@ -1080,7 +1083,7 @@ h2.a {
 }
 
 .pricing .price h3 {
-  font-size: 42px;
+  font-size: 29px;
   margin: 0px;
   -webkit-transition: 0.2s color;
   transition: 0.2s color;
