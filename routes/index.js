@@ -16,9 +16,9 @@ const Consultation = models.Consultation;
 const multer = require('multer');
 const path = require('path');
 // const crypto = require('crypto');
-const GridFsStorage= require('multer-gridfs-storage');
+const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-const methodOverride= require('method-override');
+const methodOverride = require('method-override');
 
 function hashPassword(password) {
   var hash = crypto.createHash('sha256');
@@ -26,12 +26,10 @@ function hashPassword(password) {
   return hash.digest('hex');
 }
 
-
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
   console.log('====USER====', req.user);
-  User.findOne({_id: req.user._id})
-  .then((user) => {
+  User.findOne({_id: req.user._id}).then((user) => {
     if (user.userType === 'admin') {
       res.render('profile', {
         user: user,
@@ -41,7 +39,7 @@ router.get('/users/myProfile', function(req, res, next) {
         networkToggled: true,
         loggedIn: true,
         consultantPortal: true,
-        adminPortal: true,
+        adminPortal: true
       })
     } else if (user.userType === 'consultant' || user.userType === 'admin') {
       res.render('profile', {
@@ -51,21 +49,19 @@ router.get('/users/myProfile', function(req, res, next) {
         owner: true,
         networkToggled: true,
         loggedIn: true,
-        consultantPortal: true,
+        consultantPortal: true
       })
-    }
-    else {
+    } else {
       res.render('profile', {
         user: user,
         logged: req.user.username,
         username: req.user.username,
         owner: true,
         networkToggled: true,
-        loggedIn: true,
+        loggedIn: true
       })
     };
-  })
-  .catch((error) => {
+  }).catch((error) => {
     res.send(error);
   })
 })
@@ -81,14 +77,14 @@ router.get('/users/edit', function(req, res, next) {
       lastName: user.name.split(" ")[1],
       logged: req.user.username,
       genderMale: req.user.gender === 'Male'
-        ? 'checked'
-        : null,
+      ? 'checked'
+      : null,
       genderFemale: req.user.gender === 'Female'
-        ? 'checked'
-        : null,
+      ? 'checked'
+      : null,
       genderOther: req.user.gender === 'Other'
-        ? 'checked'
-        : null
+      ? 'checked'
+      : null
     })
   }).catch((error) => {
     res.send(error);
@@ -118,19 +114,16 @@ router.post('/users/edit', function(req, res, next) {
 //Viewing other profiles
 //viewing all profiles
 router.get('/users/all', function(req, res, next) {
-  User.findById(req.user._id)
-  .then((user) => {
+  User.findById(req.user._id).then((user) => {
     if (!user || user.userType === 'user') {
       res.render('network-payment-wall', {
         message: 'Apiary Network Members',
         loggedIn: true,
         canPurchase: true,
-        networkToggled: true,
+        networkToggled: true
       })
     } else {
-      User.find()
-      .exec()
-      .then((users) => {
+      User.find().exec().then((users) => {
         const networkMembers = _.filter(users, (user) => {
           return user.userType !== 'user';
         })
@@ -140,18 +133,15 @@ router.get('/users/all', function(req, res, next) {
           networkToggled: true,
           loggedIn: true
         })
-      })
-      .catch((error) => {
+      }).catch((error) => {
         console.log('Error', error)
         res.send(error);
       })
     }
-  })
-  .catch((err) => {
+  }).catch((err) => {
     console.error(err);
   })
 })
-
 
 //view a single profile
 router.get('/users/:userid', function(req, res, next) {
@@ -170,22 +160,21 @@ router.get('/users/:userid', function(req, res, next) {
 })
 //Consultant-specific routes
 router.get('/consultants/profile', (req, res) => {
-  if(req.user.userType === 'client' || req.user.userType === 'user') {
+  if (req.user.userType === 'client' || req.user.userType === 'user') {
     res.redirect('/');
   } else {
-    Consultant.findOne({user: req.user._id})
-    .populate({
+    Consultant.findOne({user: req.user._id}).populate({
       path: 'upcomingConsultations',
-      populate: { path: 'client'}
-    })
-    .exec()
-    .then((consultant) => {
+      populate: {
+        path: 'client'
+      }
+    }).exec().then((consultant) => {
       console.log('===CONSULTANT===', consultant)
       res.render('./Consultations/consultant-profile.hbs', {
         upcoming: consultant.upcomingConsultations,
         past: consultant.pastConsultations,
         networkToggled: true,
-        loggedIn: true,
+        loggedIn: true
       })
     })
   }
@@ -196,126 +185,166 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
   const cId = req.params.consultationid
   Consultation.findById(cId)
   .populate('client')
-  .then((consultation) => {
+  .then(consultation => {
     console.log('====UPCOMING CONSULTATIONS====', consultation.client._id);
     User.findById(consultation.client)
     .populate('upcomingConsultations')
-    .then((user) => {
-      const newSessions = _.filter(user.upcomingConsultation,(consultation) => {
+    .then(user => {
+      const newSessions = _.filter(user.upcomingConsultation, (consultation) => {
         return consultation._id !== cId
       })
-    })
-    .catch((err) => {
-      console.err('error', err);
-    })
-    User.findByIdAndUpdate(user._id, {$set: {upcomingConsultations: newSessions}}, {new: true})
-    .then((user) => {
-      Consultant.findOne({user: req.user._id})
-      .populate('upcomingConsultations')
-      .exec()
-      .then((consultation) => {
-        const newConsultations = _.filter(user.upcomingConsultation,(consultation) => {
-          return consultation._id !== cId
+      User.findByIdAndUpdate(user._id, {$set: {upcomingConsultations: newSessions}}, {new: true})
+      .then(user => {
+        User.findByIdAndUpdate(user._id, {$push: {pastConsultations: consultation}}, {new: true})
+        .then(user => {
+          Consultant.findOne({user: req.user._id})
+          .populate('upcomingConsultations')
+          .exec()
+          .then(consultant => {
+            const newConsultations = _.filter(user.upcomingConsultation, (consultation) => {
+              return consultation._id !== cId
+            })
+            consultant.set({'upcomingConsultations': newConsultations});
+            consultant.push({'pastConsultations': consultation});
+            consultant.save()
+            .then(() => {
+              console.log('SUCCESSFULLY UDPATED USER AND CONSULTANT MODELS')
+              res.redirect('/')
+            })
+            .catch(err => {
+              console.error(err);
+            })
+          })
+          .catch(err => {
+            console.error(err);
+          })
         })
-        consultation.set({'upcomingConsultations': newConsultations});
-        consultation.save()
-        .then(() => {
-          res.redirect('/')
-        })
-        .catch((err) => {
+        .catch(err => {
           console.error(err);
         })
       })
     })
+    .catch((err) => {
+      console.error(err);
+    })
   })
-  .catch((err) => {
+  .catch(err => {
     console.error(err);
   })
 })
 
+  //Manage consultations route
 
-
-//Manage consultations route
-
-router.get('/sessions', (req, res) => {
-  User.findById(req.user._id)
-  .populate('upcomingConsultations')
-  .exec()
-  .then((user) => {
-    console.log('user', user);
-    res.render('./Consultations/clientSessions', {
-      loggedIn: true,
-      networkToggled: true,
-      user: user,
-      upcoming: user.upcomingConsultations
-    });
+  router.get('/sessions', (req, res) => {
+    User.findById(req.user._id).populate('upcomingConsultations').exec().then((user) => {
+      console.log('user', user);
+      res.render('./Consultations/clientSessions', {
+        loggedIn: true,
+        networkToggled: true,
+        user: user,
+        upcoming: user.upcomingConsultations
+      });
+    })
   })
-})
 
+  //Network database stuff /
+  router.get('/database/essays', (req, res, next) => {
+    if (req.user.userType === 'user') {
+      res.render('network-payment-wall', {
+        message: 'Apiary Essay Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    } else {
+      res.render('essay-database', {
+        message: 'Apiary Academic Excellence Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    }
+  })
 
+  router.get('/database/internships', (req, res) => {
+    if (req.user.userType === 'user') {
+      res.render('network-payment-wall', {
+        message: 'Apiary Essay Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    } else {
+      res.render('internships', {
+        message: 'Apiary Internships Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    }
+  })
 
-//Network database stuff ///
-router.get('/database/essays', (req, res, next) => {
-  if (req.user.userType === 'user') {
-    res.render('network-payment-wall', {
-      message: 'Apiary Essay Database',
-      loggedIn: true,
-      canPurchase: true,
-      networkToggled: true,
-    })
-  } else {
-    res.render('essay-database', {
-      message: 'Apiary Academic Excellence Database',
-      loggedIn: true,
-      canPurchase: true,
-      networkToggled: true,
-    })
-  }
-})
+  router.get('/database/test-prep', (req, res) => {
+    if (req.user.userType === 'user') {
+      res.render('network-payment-wall', {
+        message: 'Apiary Essay Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    } else {
+      res.render('test-prep', {
+        message: 'Apiary Test Prep Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    }
+  })
 
-router.get('/database/classNotes', (req, res, next) => {
-  if (req.user.userType === 'user') {
-    res.render('network-payment-wall', {
-      message: 'Apiary Academic Excellence Database',
-      loggedIn: true,
-      canPurchase: true,
-      networkToggled: true,
-    })
-  } else {
-    res.render('ib-ap', {
-      loggedIn: true,
-      canPurchase: true,
-      networkToggled: true,
-    })
-  }
-})
+  router.get('/database/classNotes', (req, res, next) => {
+    if (req.user.userType === 'user') {
+      res.render('network-payment-wall', {
+        message: 'Apiary Academic Excellence Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    } else {
+      res.render('ib-ap', {
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    }
+  })
 
-router.get('/database/resumes', (req, res, next) => {
-  if (req.user.userType === 'user') {
-    res.render('network-payment-wall', {
-      message: 'Apiary Resume Database',
-      loggedIn: true,
-      canPurchase: true,
-      networkToggled: true,
-    })
-  } else {
-    res.render('resumes', {
-      loggedIn: true,
-      canPurchase: true,
-      networkToggled: true,
-    })
-  }
-})
+  router.get('/database/resumes', (req, res, next) => {
+    if (req.user.userType === 'user') {
+      res.render('network-payment-wall', {
+        message: 'Apiary Resume Database',
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    } else {
+      res.render('resumes', {
+        loggedIn: true,
+        canPurchase: true,
+        networkToggled: true
+      })
+    }
+  })
 
-////////////////////////////////////////Consulting/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-router.get('/users/consultants/:userid', function(req, res, next) {
-  //consultant profile page
-})
-//sample consultant profile with google calendars API (maybe a skype API of some sort?)
-//test route for google calendar API
-router.get('/calendar', function(req, res, next) {
-  res.render('calendar')
-})
+  ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  router.get('/users/consultants/:userid', function(req, res, next) {
+    //consultant profile page
+  })
+  //sample consultant profile with google calendars API (maybe a skype API of some sort?)
+  //test route for google calendar API
+  router.get('/calendar', function(req, res, next) {
+    res.render('calendar')
+  })
 
-module.exports = router;
+  module.exports = router;
