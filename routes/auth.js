@@ -49,7 +49,12 @@ router.get('/login', (req, res, next) => {
     res.render('login', {
       success: 'successfully registered!'
     })
-  } else {
+  } else if (req.query.login === 'failed') {
+    res.render('login', {
+      failure: 'Invalid Login Information',
+    })
+  }
+  else {
     res.render('login');
   }
 });

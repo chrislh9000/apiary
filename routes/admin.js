@@ -150,6 +150,32 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
     }
   })
 
+  router.post('/admin/ambassador/:userid', function(req, res, next) {
+    if (req.user.userType !== 'admin') {
+      res.redirect(404, '/')
+      console.log("error: you don't have permissions to access this page")
+    } else {
+      User.findByIdAndUpdate(req.params.userid, {userType: 'ambassador'})
+      .then(function(resp) {
+        console.log('user successfully has been made ambassador');
+        const newAmbassador = new Ambassador({
+          user: req.params.userid,
+        })
+        newAmbassador.save()
+        .then((user) => {
+          console.log('ambassador model created!')
+          res.redirect('/admin');
+        })
+        console.log('user successfully has been made client');
+        res.redirect('/admin')
+      })
+      .catch(function(err) {
+        console.log('ERROR: error updating user status')
+      })
+    }
+  })
+
+
   router.post('/admin/user/:userid', function(req, res, next) {
     if (req.user.userType !== 'admin') {
       res.redirect(404, '/')
@@ -163,5 +189,67 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
       })
     }
   })
+// Clearing Past and Upcoming Consultations
+  router.post('/admin/user/clearUpcomingConsultations/:userid', (req, res) => {
+    if (req.user.userType !== 'admin') {
+      res.redirect(404, '/')
+      console.log("error: you don't have permissions to access this page")
+    } else {
+      User.findByIdAndUpdate(req.params.userid, {$set: {upcomingConsultations: []}}, {new: true})
+      .then(function(resp) {
+        console.log('user successfully has cleared consultations')
+        res.redirect('/admin')
+      }).catch(function(err) {
+        console.log('ERROR: error updating user status')
+      })
+    }
+  })
+
+  router.post('/admin/user/clearPastConsultations/:userid', (req, res) => {
+    if (req.user.userType !== 'admin') {
+      res.redirect(404, '/')
+      console.log("error: you don't have permissions to access this page")
+    } else {
+      User.findByIdAndUpdate(req.params.userid, {$set: {pastConsultations: []}}, {new: true})
+      .then(function(resp) {
+        console.log('user successfully has cleared consultations')
+        res.redirect('/admin')
+      }).catch(function(err) {
+        console.log('ERROR: error updating user status')
+      })
+    }
+  })
+
+  router.post('/admin/consultant/clearUpcomingConsultations/:userid', (req, res) => {
+    if (req.user.userType !== 'admin') {
+      res.redirect(404, '/')
+      console.log("error: you don't have permissions to access this page")
+    } else {
+      Consultant.findOneAndUpdate({user: req.params.userid}, {$set: {upcomingConsultations: []}}, {new: true})
+      .then(function(resp) {
+        console.log('user successfully has cleared consultations')
+        res.redirect('/admin')
+      }).catch(function(err) {
+        console.log('ERROR: error updating user status')
+      })
+    }
+  })
+
+  router.post('/admin/consultant/clearPastConsultations/:userid', (req, res) => {
+    if (req.user.userType !== 'admin') {
+      res.redirect(404, '/')
+      console.log("error: you don't have permissions to access this page")
+    } else {
+      Consultant.findOneAndUpdate({user: req.params.userid}, {$set: {pastConsultations: []}}, {new: true})
+      .then(function(resp) {
+        console.log('user successfully has cleared consultations')
+        res.redirect('/admin')
+      }).catch(function(err) {
+        console.log('ERROR: error updating user status')
+      })
+    }
+  })
+
+
 
   module.exports = router;

@@ -3,14 +3,33 @@
   <h2> UPCOMING CONSULTATIONS </h2>
 {{#each upcoming}}
 <div style='border: solid 1px black' class = "center-block container-fluid">
-<h5>Consultation: {{this._id}}</h3>
-<h5>Duration: {{this.duration}} Minutes </h3>
-<h5> Name: {{this.client.name}} </h3>
+<h5>Consultation: {{this._id}}</h5>
+<h5>Duration: {{this.duration}} Minutes </h5>
+<h5> Name: {{this.client.name}} </h5>
+<h5>Time: {{this.time}} </h5>
 <form method="POST" action="/consultation/confirm/{{this._id}}">
   <button type="submit" class="btn btn-success">Confirm Session</button>
 </form> <br>
 <form method="POST" action="/consultation/reschedule/{{this._id}}">
   <button type="submit" class="btn btn-info">Reschedule Session</button>
+</form>
+</div>
+{{/each}}
+</div>
+
+<div style='text-align: center;' class = "align-text-center center-block container-fluid upcoming-consultations">
+  <h2> Past Consultations </h2>
+{{#each past}}
+<div style='border: solid 1px black' class = "center-block container-fluid">
+<h5>Consultation: {{this._id}}</h5>
+<h5>Duration: {{this.duration}} Minutes </h5>
+<h5>Time: {{this.time}} </h5>
+<h5> Name: {{this.client.name}} </h5>
+
+<!-- <form method="POST" action="/consultation/review/{{this._id}}"> -->
+  <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSeueARbYqEipJFxaO3ZIHf6Y9mG17ugGDkSS7AzH_anBtotZA/viewform?usp=sf_link"
+  class="btn btn-primary">Review Session</a>
+<!-- </form> <br> -->
 </form>
 </div>
 {{/each}}

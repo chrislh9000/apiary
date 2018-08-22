@@ -12,13 +12,26 @@ const Product = models.Product
 const OauthToken = models.OauthToken;
 const Consultant = models.Consultant;
 const Consultation = models.Consultation;
+const Image = models.Image;
 //image uploading stuff
-const multer = require('multer');
+// const multer = require('multer');
 const path = require('path');
 // const crypto = require('crypto');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
-const methodOverride = require('method-override');
+const multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/profiles')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname)
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.size > 1000000) cb(null, false);
+    else cb(null, true);
+  }
+});
+
+const upload =  multer({ storage: storage });
 
 function hashPassword(password) {
   var hash = crypto.createHash('sha256');
@@ -28,41 +41,56 @@ function hashPassword(password) {
 
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
-  console.log('====USER====', req.user);
-  User.findOne({_id: req.user._id}).then((user) => {
-    if (user.userType === 'admin') {
-      res.render('profile', {
-        user: user,
-        logged: req.user.username,
-        username: req.user.username,
-        owner: true,
-        networkToggled: true,
-        loggedIn: true,
-        consultantPortal: true,
-        adminPortal: true
-      })
-    } else if (user.userType === 'consultant' || user.userType === 'admin') {
-      res.render('profile', {
-        user: user,
-        logged: req.user.username,
-        username: req.user.username,
-        owner: true,
-        networkToggled: true,
-        loggedIn: true,
-        consultantPortal: true
-      })
-    } else {
-      res.render('profile', {
-        user: user,
-        logged: req.user.username,
-        username: req.user.username,
-        owner: true,
-        networkToggled: true,
-        loggedIn: true
-      })
-    };
-  }).catch((error) => {
-    res.send(error);
+  let hasImage= true;
+  Image.findOne({user: req.user._id})
+  .then(image => {
+    if (!image) hasImage = false;
+    User.findOne({_id: req.user._id})
+    .then((user) => {
+      if (user.userType === 'admin') {
+        res.render('profile', {
+          user: user,
+          logged: req.user.username,
+          username: req.user.username,
+          image: image? image.filename : null,
+          hasImage: hasImage,
+          owner: true,
+          networkToggled: true,
+          loggedIn: true,
+          consultantPortal: true,
+          adminPortal: true
+        })
+      } else if (user.userType === 'consultant' || user.userType === 'admin') {
+        res.render('profile', {
+          user: user,
+          logged: req.user.username,
+          username: req.user.username,
+          hasImage: hasImage,
+          image: image? image.filename: null,
+          owner: true,
+          networkToggled: true,
+          loggedIn: true,
+          consultantPortal: true
+        })
+      } else {
+        res.render('profile', {
+          user: user,
+          logged: req.user.username,
+          username: req.user.username,
+          hasImage: hasImage,
+          image: image? image.filename : null,
+          owner: true,
+          networkToggled: true,
+          loggedIn: true
+        })
+      };
+    }).catch((error) => {
+      res.send(error);
+    })
+  })
+  .catch(err => {
+    console.error(err)
+    res.redirect('/users/myProfile')
   })
 })
 
@@ -163,12 +191,15 @@ router.get('/consultants/profile', (req, res) => {
   if (req.user.userType === 'client' || req.user.userType === 'user') {
     res.redirect('/');
   } else {
-    Consultant.findOne({user: req.user._id}).populate({
-      path: 'upcomingConsultations',
+    Consultant.findOne({user: req.user._id})
+    .populate({
+      path: 'upcomingConsultations pastConsultations',
       populate: {
         path: 'client'
       }
-    }).exec().then((consultant) => {
+    })
+    .exec()
+    .then((consultant) => {
       console.log('===CONSULTANT===', consultant)
       res.render('./Consultations/consultant-profile.hbs', {
         upcoming: consultant.upcomingConsultations,
@@ -186,30 +217,36 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
   Consultation.findById(cId)
   .populate('client')
   .then(consultation => {
-    console.log('====UPCOMING CONSULTATIONS====', consultation.client._id);
     User.findById(consultation.client)
     .populate('upcomingConsultations')
     .then(user => {
-      const newSessions = _.filter(user.upcomingConsultation, (consultation) => {
-        return consultation._id !== cId
+      console.log('FILTERID===', cId)
+      console.log('CONSULTATIONID===', consultation._id)
+      const newSessions = _.filter(user.upcomingConsultations, (consultation) => {
+        return String(consultation._id) !== String(cId);
       })
+      console.log('====NEW SESSIONS====', newSessions);
       User.findByIdAndUpdate(user._id, {$set: {upcomingConsultations: newSessions}}, {new: true})
       .then(user => {
         User.findByIdAndUpdate(user._id, {$push: {pastConsultations: consultation}}, {new: true})
         .then(user => {
+          console.log('====USER UPDATED======', user);
           Consultant.findOne({user: req.user._id})
           .populate('upcomingConsultations')
           .exec()
           .then(consultant => {
-            const newConsultations = _.filter(user.upcomingConsultation, (consultation) => {
-              return consultation._id !== cId
+            const newConsultations = _.filter(consultant.upcomingConsultations, (consultation) => {
+              return String(consultation._id) !== String(cId);
             })
-            consultant.set({'upcomingConsultations': newConsultations});
-            consultant.push({'pastConsultations': consultation});
-            consultant.save()
-            .then(() => {
-              console.log('SUCCESSFULLY UDPATED USER AND CONSULTANT MODELS')
-              res.redirect('/')
+            console.log('====NEW CONSULTATIONS====', newConsultations);
+            Consultant.findOneAndUpdate({user: req.user._id},{$set: {upcomingConsultations: newSessions}}, {new: true})
+            .then((consultant) => {
+              console.log('====CONSULTANT UPDATED======', consultant);
+              Consultant.findOneAndUpdate({user: req.user._id}, {$push: {pastConsultations: consultation}}, {new: true})
+              .then(consultant => {
+                console.log('SUCCESSFULLY UDPATED USER AND CONSULTANT MODELS', consultant);
+                res.redirect('/consultants/profile');
+              })
             })
             .catch(err => {
               console.error(err);
@@ -236,13 +273,21 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
   //Manage consultations route
 
   router.get('/sessions', (req, res) => {
-    User.findById(req.user._id).populate('upcomingConsultations').exec().then((user) => {
+    User.findById(req.user._id)
+    .populate({
+      path: 'upcomingConsultations pastConsultations',
+      populate: {
+        path: 'consultant'
+      }
+    })
+    .exec().then((user) => {
       console.log('user', user);
       res.render('./Consultations/clientSessions', {
         loggedIn: true,
         networkToggled: true,
         user: user,
-        upcoming: user.upcomingConsultations
+        upcoming: user.upcomingConsultations,
+        past: user.pastConsultations,
       });
     })
   })
@@ -335,6 +380,59 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
       })
     }
   })
+
+  //Image UPLOADING
+  router.get('/uploadimage', (req, res) => {
+    res.render('./Profiles/images', {
+      networkToggled: true,
+      loggedIn: true,
+    })
+  })
+
+  router.post('/uploadimage', upload.single('image'), function (req, res, next) {
+    const fileType = req.file.mimetype.slice(0,5);
+    const imageExt = req.file.mimetype.slice(6,10);
+    if (fileType === 'image') {
+      Image.findOne({user: req.user._id})
+      .then(image => {
+        if (!image) {
+          const newImage = new Image({
+            filename: req.file.filename,
+            size: req.file.size,
+            type: imageExt,
+            user: req.user._id
+          })
+          newImage.save()
+          .then(resp => {
+            console.log('SUCCESSFULLY UPLOADED IMAGE');
+            res.redirect('/users/myProfile');
+          })
+          .catch(err => {
+            console.error(err);
+          })
+        } else {
+          Image.findOneAndUpdate({user: req.user._id}, {
+            filename: req.file.filename,
+            size: req.file.size,
+            type: imageExt,
+            user: req.user._id,
+          })
+          .then(() => {
+            console.log('UPDATED PROFILE IMAGE');
+            res.redirect('/users/myProfile');
+          })
+          .catch(err => {
+            console.error(err);
+            res.redirect('/users/myProfile')
+          })
+        }
+      })
+
+    } else {
+      res.send('this is not an image');
+    }
+  })
+
 
   ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////

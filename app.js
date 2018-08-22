@@ -7,8 +7,22 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
-//image uploade
+//image upload
 const multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/profiles')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname)
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.size > 1000000) cb(null, false);
+    else cb(null, true);
+  }
+});
+
+const upload =  multer({ storage: storage });
 const methodOverride= require('method-override');
 const GridFsStorage= require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
@@ -21,7 +35,8 @@ const adminRouter = require('./routes/admin');
 const paymentRouter = require('./routes/payment');
 
 var models = require('./models/models');
-const User = models.User
+const User = models.User;
+const Image = models.Image;
 const app = express();
 const crypto = require('crypto');
 
@@ -52,100 +67,6 @@ function hashPassword(password) {
   hash.update(password);
   return hash.digest('hex');
 }
-
-//Gridfs initialization
-let gfs;
-
-conn.once('open', () => {
-  //init stream
-  gfs = Grid(conn.db, mongoose.mongo)
-  gfs.collection('uploads')
-})
-//creating storage object multer grid-fs
-const storage = new GridFsStorage({
-  url: process.env.MONGODB_URI,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString('hex') + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'uploads'
-        };
-        resolve(fileInfo);
-      });
-    });
-  }
-});
-const upload = multer({ storage });
-//@route
-app.get('/uploadimage', (req, res) => {
-  res.render('./Profiles/images')
-})
-
-app.post('/uploadimage', upload.single('image'), (req, res) => {
-  res.json({ file : req.file })
-})
-
-app.get('/files', (req, res) => {
-  gfs.files.find().toArray((err, files) => {
-    if (!files || files.length === 0) {
-      return res.status(404).json({
-        err: 'No files exist'
-      })
-    }
-    res.json(files);
-  })
-})
-//
-app.get('/files/:filename', (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename}, (err, file) => {
-    if (!file) {
-      return res.status(404).json({
-        err: 'No file exist'
-      })
-    }
-    res.json(file);
-  })
-})
-
-app.get('/image/:filename', (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename}, (err, file) => {
-    if (!file) {
-      return res.status(404).json({
-        err: 'No file exist'
-      })
-    }
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res)
-    } else {
-      res.status(404).json({
-        err: 'Not an image'
-      })
-    }
-  })
-})
-
-app.get('/picture/display', (req, res) => {
-  gfs.files.find().toArray((err, files) => {
-    if (!files || files.length === 0) {
-      res.render('view-image', {files: false})
-    } else {
-      files.map(file => {
-        if(file.contentType === 'image/jpeg' || file.contentType === 'image/png')  {
-            file.isImage = true;
-          } else {
-            file.isImage = false;
-          }
-      })
-      res.render('view-image', {files: files});
-    }
-})
-})
 
 // passport serialization and local strategy
 app.use(session({

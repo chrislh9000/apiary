@@ -101,4 +101,8 @@ router.post('/checkout', function(req, res, next) {
   });
 })
 
+router.get('/payment', (req, res) => {
+  console.log('===PAYMENT INFO====', req);
+})
+
 module.exports = router;

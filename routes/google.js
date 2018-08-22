@@ -99,7 +99,7 @@ router.get('/scheduleSession', function(req, res, next) {
   } else {
     User.findById(req.user._id)
     .then((user) => {
-      if (!user || user.userType === 'user') {
+      if (!user || user.userType === 'user' || !req.user.calendarId) {
         res.render('network-payment-wall', {
           loggedIn: true,
           networkToggled: true,
@@ -168,98 +168,118 @@ router.post('/scheduleSession/:eventid', (req, res, next) => {
   const eventId = req.params.eventid;
   console.log('CONSULTANTID====', req.user.consultant);
   console.log('STARTDATE', req.body.startDate);
-    const newConsultation = new Consultation({
-      client: req.user._id,
-      description: 'hour-long consultation session',
-      duration: 60,
-      eventId: eventId,
-      time: req.body.startDate,
-      consultant: req.user.consultant,
-    })
-    newConsultation.save()
-    //update the user and the consultant schema with the next consultation
-    .then((consultation) => {
-      // const userId = mongoose.Types.ObjectId(req.user._id);
-      console.log('====CONSULTANT=====', req.user.consultant);
-      console.log('===USERID====', req.user._id);
-      User.findByIdAndUpdate(req.user._id, {$push : {upcomingConsultations: consultation._id }}, {new: true})
-      .then((user) => {
-        res.redirect('/users/myProfile');
-        Consultant.findOneAndUpdate({user: req.user.consultant}, {$push : {upcomingConsultations: consultation._id }}, {new: true})
-        .then((consultant) => {
-          console.log('SUCCESSFULLY SCHEDULED SESSION');
-          res.redirect('/users/myProfile');
+  const newConsultation = new Consultation({
+    client: req.user._id,
+    description: 'hour-long consultation session',
+    duration: 60,
+    eventId: eventId,
+    time: req.body.start,
+    consultant: req.user.consultant,
+  })
+  newConsultation.save()
+  .then((consultation) => {
+    User.findByIdAndUpdate(req.user._id, {$push : {upcomingConsultations: consultation._id }}, {new: true})
+    .then((user) => {
+      Consultant.findOneAndUpdate({user: req.user.consultant}, {$push : {upcomingConsultations: consultation._id }}, {new: true})
+      .then((consultant) => {
+        console.log('SUCCESSFULLY SCHEDULED SESSION');
+        //delete calendar event;
+        OauthToken.findOne({ user: 'apiaryCalender' })
+        .then(token => {
+          if (token && token.refreshToken) {
+            oauth2Client.setCredentials({
+              refresh_token: token.refreshToken,
+              access_token: token.accessToken
+            });
+            calendar.events.delete({
+              auth: oauth2Client,
+              calendarId: req.user.calendarId,
+              eventId: eventId,
+            }, (err) => {
+              if (err) {
+                console.log('There was an error contacting the Calendar service: ' + err);
+                res.redirect('/scheduleSession')
+              } else {
+                console.log('=====Event deleted!======');
+                res.redirect('/users/myProfile');
+              }
+            })
+          }
         })
         .catch((err) => {
           console.error(err);
         })
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       })
     })
+    .catch((err) => {
+      console.error(err);
+    })
+  })
   .catch((err) => {
     console.error(err);
   })
-  // const startDate = new Date(req.body.date);
-  // const endDate = new Date(req.body.date);
-  // const timeSlot = req.body.timeslot;
-  // const timeHours = Number(timeSlot.slice(0, 2));
-  // const timeMinutes = Number(timeSlot.slice(3, 5));
-  // const currDay = startDate.getDate() //if there's some sort of timezone issue
-  // startDate.setHours(timeHours);
-  // startDate.setMinutes(timeMinutes);
-  // endDate.setHours(timeHours + 1);
-  // OauthToken.findOne({ user: 'apiaryCalender' })
-  // .then((user) => {
-  //   console.log('CALLING TEST', user)
-  //   if (user && user.refreshToken) {
-  //     oauth2Client.setCredentials({
-  //       refresh_token: user.refreshToken,
-  //       access_token: user.accessToken
-  //     });
-  //     const newConsultation = {
-  //       'summary': `Consultation Session with ${req.user.name}` ,
-  //       'location': 'New York, NY, 10069',
-  //       'description': 'Consultation with Apiary Solutions',
-  //       'start': {
-  //         'dateTime': startDate.toISOString(),
-  //         'timeZone': 'America/Los_Angeles',
-  //       },
-  //       'end': {
-  //         'dateTime': endDate.toISOString(),
-  //         'timeZone': 'America/Los_Angeles',
-  //       },
-  //       'attendees': [
-  //         {'email': req.user.email},
-  //       ],
-  //       'reminders': {
-  //         'useDefault': false,
-  //         'overrides': [
-  //           {'method': 'email', 'minutes': 24 * 60},
-  //           {'method': 'popup', 'minutes': 10},
-  //         ],
-  //       },
-  //     };
-  //     console.log('client token', oauth2Client.credentials.access_token);
-  //     console.log('=====NEW CONSULTATION=====', newConsultation);
-  //     scheduleConsultation({
-  //       access_token: oauth2Client.credentials.access_token,
-  //       token_type: 'Bearer',
-  //       refresh_token: oauth2Client.credentials.refresh_token,
-  //       expiry_date: 1530585071407,
-  //     }, newConsultation);
-  //     res.redirect('/scheduleSession?success=true')
-  //   } else {
-  //     console.log('no token found!');
-  //     generateOauthUrl('apiaryCalender');
-  //   }
-  // })
-  // .catch((err) => {
-  //   // res.status(501).send('error: ', err)
-  //   console.log('ERROR', err);
-  // });
-});
+})
+// const startDate = new Date(req.body.date);
+// const endDate = new Date(req.body.date);
+// const timeSlot = req.body.timeslot;
+// const timeHours = Number(timeSlot.slice(0, 2));
+// const timeMinutes = Number(timeSlot.slice(3, 5));
+// const currDay = startDate.getDate() //if there's some sort of timezone issue
+// startDate.setHours(timeHours);
+// startDate.setMinutes(timeMinutes);
+// endDate.setHours(timeHours + 1);
+// OauthToken.findOne({ user: 'apiaryCalender' })
+// .then((user) => {
+//   console.log('CALLING TEST', user)
+//   if (user && user.refreshToken) {
+//     oauth2Client.setCredentials({
+//       refresh_token: user.refreshToken,
+//       access_token: user.accessToken
+//     });
+//     const newConsultation = {
+//       'summary': `Consultation Session with ${req.user.name}` ,
+//       'location': 'New York, NY, 10069',
+//       'description': 'Consultation with Apiary Solutions',
+//       'start': {
+//         'dateTime': startDate.toISOString(),
+//         'timeZone': 'America/Los_Angeles',
+//       },
+//       'end': {
+//         'dateTime': endDate.toISOString(),
+//         'timeZone': 'America/Los_Angeles',
+//       },
+//       'attendees': [
+//         {'email': req.user.email},
+//       ],
+//       'reminders': {
+//         'useDefault': false,
+//         'overrides': [
+//           {'method': 'email', 'minutes': 24 * 60},
+//           {'method': 'popup', 'minutes': 10},
+//         ],
+//       },
+//     };
+//     console.log('client token', oauth2Client.credentials.access_token);
+//     console.log('=====NEW CONSULTATION=====', newConsultation);
+//     scheduleConsultation({
+//       access_token: oauth2Client.credentials.access_token,
+//       token_type: 'Bearer',
+//       refresh_token: oauth2Client.credentials.refresh_token,
+//       expiry_date: 1530585071407,
+//     }, newConsultation);
+//     res.redirect('/scheduleSession?success=true')
+//   } else {
+//     console.log('no token found!');
+//     generateOauthUrl('apiaryCalender');
+//   }
+// })
+// .catch((err) => {
+//   // res.status(501).send('error: ', err)
+//   console.log('ERROR', err);
+// });
 
 
 //TEST ROUTE TO CALL ABOVE FUNCTION
@@ -273,12 +293,6 @@ router.get('/test', (req, res, next) => {
         access_token: user.accessToken
       });
       console.log('client token', oauth2Client.credentials.access_token);
-      listEvents({
-        access_token: oauth2Client.credentials.access_token,
-        token_type: 'Bearer',
-        refresh_token: oauth2Client.credentials.refresh_token,
-        expiry_date: 1530585071407,
-      });
       res.send('set credentials')
     } else {
       console.log('no token found!');

@@ -155,7 +155,8 @@ const ambassadorSchema = new Schema({
   pastConsultations: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Consultation'
+      ref: 'Consultation',
+      default: [],
     }
   ],
   totalCompensation: {
@@ -165,7 +166,8 @@ const ambassadorSchema = new Schema({
   pastClients: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      default: [],
     }
   ],
 })
@@ -256,6 +258,29 @@ const oauthTokenSchema = new Schema ({
     type: String,
   }
 })
+//IMAGE UPLOADING
+const imageSchema = new Schema ({
+  filename: {
+    type: String,
+    required: true
+  },
+  size: {
+    type: Number,
+    required: true
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+})
+
+
+
+
 //MONGODB MODELS
 const User = mongoose.model('User', userSchema);
 const Payment = mongoose.model('Payment', paymentSchema);
@@ -264,6 +289,7 @@ const Consultant = mongoose.model('Consultant', consultantSchema);
 const Ambassador = mongoose.model('Ambassador', ambassadorSchema);
 const Consultation = mongoose.model('Consultation', consultationSchema);
 const OauthToken = mongoose.model('Token', oauthTokenSchema);
+const ProfileImage = mongoose.model('Image', imageSchema);
 
 
 
@@ -275,4 +301,5 @@ module.exports = {
   Ambassador: Ambassador,
   Consultant: Consultant,
   Consultation: Consultation,
+  Image : ProfileImage,
 }

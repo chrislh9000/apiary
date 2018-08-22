@@ -19,10 +19,21 @@
   <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
   <br>
   <div class="row profile-container">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 center-block card">
-      <img class="center-block" alt="{{user.name}}" style="width:80%; height:80%" />
+    <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+      {{#if hasImage}}
+      <img src="/profiles/{{image}}" class="center-block" style="width:80%; height:80%" />
+      {{else}}
+      <img src="/profiles/avatar1.JPG" class="center-block" style="width:80%; height:80%" />
+      {{/if}}
       <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+      <div class = "align-text-center container-fluid">
+      <form style="border-top: 1px solid gray" method="POST" action="/uploadimage" enctype="multipart/form-data">
+        <h6 class="text-center">Upload New Profile Image</h6>
+        <input style="display: inline" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE">
+        <button style="display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD</button>
+      </form>
+    </div>
     </div>
   </div>
 </div>
