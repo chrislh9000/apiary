@@ -16,17 +16,30 @@
 <br>
 
 <div class="container">
+  {{#if successEdit}}
+    <div style="text-align: center" class="alert alert-success" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      {{successEdit}}
+    </div>
+  {{/if}}
+  {{#if failureEdit}}
+    <div style="text-align: center" class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      {{failureEdit}}
+    </div>
+  {{/if}}
   <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
   <br>
   <div class="row profile-container">
     <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-      {{#if hasImage}}
-      <img src="/profiles/{{image}}" class="center-block" style="width:80%; height:80%" />
+      {{#if image}}
+      <img src="/profiles/{{image}}" class="center-block" style="width:35%; height:60%" />
       {{else}}
-      <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="width:80%; height:80%" />
+      <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="width:50%; height:60%" />
       {{/if}}
       <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+      {{#if owner}}
       <div class = "align-text-center container-fluid">
       <form style="border-top: 1px solid gray" method="POST" action="/uploadimage" enctype="multipart/form-data">
         <h6 class="text-center">Upload New Profile Image</h6>
@@ -34,6 +47,7 @@
         <button style="display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD</button>
       </form>
     </div>
+    {{/if}}
     </div>
   </div>
 </div>

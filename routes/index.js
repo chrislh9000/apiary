@@ -52,36 +52,39 @@ router.get('/users/myProfile', function(req, res, next) {
           user: user,
           logged: req.user.username,
           username: req.user.username,
-          image: image? image.filename : null,
-          hasImage: hasImage,
+          image: user.image? image.filename : null,
           owner: true,
           networkToggled: true,
           loggedIn: true,
           consultantPortal: true,
-          adminPortal: true
+          adminPortal: true,
+          successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
+          failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
         })
       } else if (user.userType === 'consultant' || user.userType === 'admin') {
         res.render('profile', {
           user: user,
           logged: req.user.username,
           username: req.user.username,
-          hasImage: hasImage,
-          image: image? image.filename: null,
+          image: user.image? image.filename: null,
           owner: true,
           networkToggled: true,
           loggedIn: true,
-          consultantPortal: true
+          consultantPortal: true,
+          successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
+          failureEdit: req.query.image === 'fail'  || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
         })
       } else {
         res.render('profile', {
           user: user,
           logged: req.user.username,
           username: req.user.username,
-          hasImage: hasImage,
-          image: image? image.filename : null,
+          image: user.image? image.filename : null,
           owner: true,
           networkToggled: true,
-          loggedIn: true
+          loggedIn: true,
+          successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
+          failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
         })
       };
     }).catch((error) => {
@@ -132,10 +135,10 @@ router.post('/users/edit', function(req, res, next) {
     imageUrl: req.body.imageUrl
   }).exec().then((resp) => {
     console.log('User successfully updated', resp);
-    res.redirect('/users/myProfile');
+    res.redirect('/users/myProfile?edit=success');
   }).catch((error) => {
     console.log('Error', error);
-    res.send(error);
+    res.redirect('/users/myProfile?edit=fail');
   })
 })
 
@@ -177,11 +180,15 @@ router.get('/users/all', function(req, res, next) {
 //view a single profile
 router.get('/users/:userid', function(req, res, next) {
   var userId = req.params.userid;
-  User.findById(userId).exec().then((user) => {
+  User.findById(userId)
+  .populate('image')
+  .exec()
+  .then((user) => {
     res.render('profile', {
       user: user,
       logged: req.user.username,
       owner: false,
+      image: user.image? user.image.filename : null,
       networkToggled: true
     })
   }).catch((error) => {
@@ -411,11 +418,11 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
             User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
             .then(user => {
               console.log('USER SUCCESSFULLY UPDATED')
-              res.redirect('/users/myProfile');
+              res.redirect('/users/myProfile?image=success');
             })
             .catch(err => {
               console.error(err);
-              res.redirect('/users/myProfile')
+              res.redirect('/users/myProfile?image=fail')
             })
           })
           .catch(err => {
@@ -433,16 +440,16 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
             User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
             .then(user => {
               console.log('new image rendered');
-              res.redirect('/users/myProfile');
+              res.redirect('/users/myProfile?image=success');
             })
             .catch(err => {
               console.error(err)
-              res.redirect('/users/myProfile')
+              res.redirect('/users/myProfile?image=fail')
             })
           })
           .catch(err => {
             console.error(err);
-            res.redirect('/users/myProfile')
+            res.redirect('/users/myProfile?image=fail')
           })
         }
       })

@@ -1,5 +1,18 @@
 <div class = "session-container">
 <h1>CONSULTANT AVAILABILITY</h1> <br>
+{{#if success}}
+  <div style="text-align: center" class="alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    {{success}}
+  </div>
+{{/if}}
+{{#if failure}}
+  <div style="text-align: center" class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{failure}}
+  </div>
+{{/if}}
 <div class = "container-fluid">
 <iframe src="https://calendar.google.com/calendar/embed?src={{user.calendarId}}&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 </div>

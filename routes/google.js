@@ -138,7 +138,26 @@ router.get('/scheduleSession', function(req, res, next) {
               })
               console.log('===AVAILABILITY====', availability);
               if (events.length) {
-                console.log('====EVENTS=====', events);
+                if (req.query.success === 'true') {
+                  console.log('====EVENTS=====', events);
+                  res.render('scheduleSession', {
+                    user: req.user,
+                    loggedIn: true,
+                    networkToggled: true,
+                    username: req.user.username,
+                    availability: availability,
+                    success: 'Successfully Scheduled Session!'
+                  })
+                } else if (req.query.success === 'false') {
+                res.render('scheduleSession', {
+                  user: req.user,
+                  loggedIn: true,
+                  networkToggled: true,
+                  username: req.user.username,
+                  availability: availability,
+                  failure: 'There was an issue with scheduling your session. Please try again.'
+                })
+              } else {
                 res.render('scheduleSession', {
                   user: req.user,
                   loggedIn: true,
@@ -146,8 +165,14 @@ router.get('/scheduleSession', function(req, res, next) {
                   username: req.user.username,
                   availability: availability,
                 })
-              } else {
-                console.log('No upcoming events found.');
+              }
+            } else {
+                res.render('scheduleSession', {
+                  user: req.user,
+                  loggedIn: true,
+                  networkToggled: true,
+                  username: req.user.username,
+                })
               }
             });
           } else {
@@ -198,10 +223,9 @@ router.post('/scheduleSession/:eventid', (req, res, next) => {
             }, (err) => {
               if (err) {
                 console.log('There was an error contacting the Calendar service: ' + err);
-                res.redirect('/scheduleSession')
+                res.redirect('/scheduleSession?success=false');
               } else {
-                console.log('=====Event deleted!======');
-                res.redirect('/users/myProfile');
+                res.redirect('/scheduleSession?success=true');
               }
             })
           }
