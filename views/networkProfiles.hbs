@@ -2,11 +2,14 @@
   <h1>ALPINE NETWORK MEMBERS</h1><br><br>
   <div class="scrolling-wrapper">
 {{#each users}}
-<div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px;" class = "container-fluid">
-<h3 style="text-transform: uppercase"><b>{{this.name}}</b></h3>
-<!-- {{#if this.imageUrl}}
-<img style="height: 100px; width: 90px; float: left; margin-right: 20px" src={{this.imageUrl}}></img>
-{{/if}} <br> -->
+<div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
+{{#if this.image}}
+<img class="center-block" style="height: 200px; width: 150px;" src="/profiles/{{this.image.filename}}"></img>
+{{else}}
+<img class="center-block" style="height: 200px; width: 170px;" src="/profiles/avatar1.JPG"></img>
+{{/if}}
+<h5 style="text-transform: uppercase"><b>{{this.name}}</b></h5>
+<h5 style="text-transform: uppercase"><b>{{this.school}}</b></h5>
 <a class = "btn btn-success" href = '/users/{{this._id}}'>View Profile</a><br><br>
 </div>
 {{/each}}

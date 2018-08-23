@@ -68,9 +68,10 @@ var userSchema = new Schema({
     type: String,
     required: false
   },
-  imageUrl: {
-    type: String,
-    required: false
+  image: {
+    type: Schema.Types.ObjectId,
+    ref: 'Image',
+    required: false,
   },
   userType: {
     type: String,
@@ -174,7 +175,7 @@ const ambassadorSchema = new Schema({
 
 
 //Payment Schema: DEFINITELY MODIFY THIS
-var paymentSchema = new Schema({
+const stripePaymentSchema = new Schema({
   stripeBrand: String,
   stripeCustomerId: String,
   stripeExpMonth: Number,
@@ -195,6 +196,22 @@ var paymentSchema = new Schema({
     type: String,
     required: true
   }
+})
+
+const paypalPaymentSchema = new Schema ({
+  customerId: String,
+  customerEmail: String,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  price: Number,
+  product: {
+    type: Schema.Types.ObjectId,
+    ref: 'Product',
+    required: true,
+  },
 })
 
 //PRODUCT SCHEMA: Also modify this
@@ -283,7 +300,7 @@ const imageSchema = new Schema ({
 
 //MONGODB MODELS
 const User = mongoose.model('User', userSchema);
-const Payment = mongoose.model('Payment', paymentSchema);
+const StripePayment = mongoose.model('StripePayment', stripePaymentSchema);
 const Product = mongoose.model('Product', productSchema);
 const Consultant = mongoose.model('Consultant', consultantSchema);
 const Ambassador = mongoose.model('Ambassador', ambassadorSchema);
@@ -295,7 +312,7 @@ const ProfileImage = mongoose.model('Image', imageSchema);
 
 module.exports = {
   User: User,
-  Payment: Payment,
+  StripePayment: StripePayment,
   Product: Product,
   OauthToken: OauthToken,
   Ambassador: Ambassador,

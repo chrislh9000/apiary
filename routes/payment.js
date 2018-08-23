@@ -106,8 +106,10 @@ router.get('/payment-test', (req, res) => {
 })
 
 router.post('/payment', (req, res) => {
-  console.log('===PAYMENT INFO====', req);
   console.log('===PAYMENT PAYLOAD====', req.body);
+  console.log('====PAYER INFO====', req.body.payer.name);
+  console.log('====PURCHASE UNITS=====', req.body.purchase_units[0])
+  // if (req.body.resource === 'COMPLETED')
 })
 
 

@@ -151,7 +151,10 @@ router.get('/users/all', function(req, res, next) {
         networkToggled: true
       })
     } else {
-      User.find().exec().then((users) => {
+      User.find()
+      .populate('image')
+      .exec()
+      .then((users) => {
         const networkMembers = _.filter(users, (user) => {
           return user.userType !== 'user';
         })
@@ -403,9 +406,17 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
             user: req.user._id
           })
           newImage.save()
-          .then(resp => {
+          .then(img => {
             console.log('SUCCESSFULLY UPLOADED IMAGE');
-            res.redirect('/users/myProfile');
+            User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+            .then(user => {
+              console.log('USER SUCCESSFULLY UPDATED')
+              res.redirect('/users/myProfile');
+            })
+            .catch(err => {
+              console.error(err);
+              res.redirect('/users/myProfile')
+            })
           })
           .catch(err => {
             console.error(err);
@@ -417,9 +428,17 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
             type: imageExt,
             user: req.user._id,
           })
-          .then(() => {
+          .then((newImage) => {
             console.log('UPDATED PROFILE IMAGE');
-            res.redirect('/users/myProfile');
+            User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
+            .then(user => {
+              console.log('new image rendered');
+              res.redirect('/users/myProfile');
+            })
+            .catch(err => {
+              console.error(err)
+              res.redirect('/users/myProfile')
+            })
           })
           .catch(err => {
             console.error(err);

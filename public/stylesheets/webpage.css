@@ -1329,7 +1329,7 @@ h2.a {
   .members-profiles {
     display: inline-block;
     width: 33%;
-    height: 400px;
+    height: 80%;
     overflow: auto;
   }
 
