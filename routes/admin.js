@@ -72,6 +72,8 @@ router.get('/consultants/assign/:userid', (req, res, next) => {
           user: client,
           consultants: consultants,
           postRoute: formAction,
+          networkToggled: true,
+          loggedIn: true,
         })
       })
     })
