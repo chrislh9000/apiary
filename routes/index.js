@@ -132,7 +132,12 @@ router.post('/users/edit', function(req, res, next) {
     email: req.body.email,
     gender: req.body.gender,
     biography: req.body.biography,
-    imageUrl: req.body.imageUrl
+    dateOfBirth: req.body.dateOfBirth,
+    academicInterests: req.body.academicInterests,
+    extracurricularInterests: req.body.extracurricularInterests,
+    country: req.body.country,
+    intendedMajor: req.body.intendedMajor,
+    dreamUni: req.body.dreamUni
   }).exec().then((resp) => {
     console.log('User successfully updated', resp);
     res.redirect('/users/myProfile?edit=success');

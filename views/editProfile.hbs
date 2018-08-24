@@ -65,8 +65,8 @@
 
 
 <form method="POST">
-<div class="limiter">
-		<div class="container-login100 arch">
+<div class="limiter fixed-bg-sf">
+		<div class="container-login100 fixed-bg-sf">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 40px;">
           <br>
@@ -102,16 +102,30 @@
 						<span class="focus-input100" data-placeholder="&#x1F464;"></span>
 					</div>
 
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter image-URL">
-						<input class="input100" type="url" name="imageUrl" placeholder="URL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{user.imageUrl}} required>
-						<span class="focus-input100" data-placeholder="&#x1F4F8;"></span>
-					</div>
-
           <div class="wrap-input100 validate-input form-group" data-validate="Enter biography">
 						<input class="input100" type="text" name="biography" rows = "3" placeholder="BIOGRAPHY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.biography}}' required>
 						<span class="focus-input100" data-placeholder="	&#x270D;"></span>
 					</div>
 
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
+						<input class="input100" type="text" name="academicInterests" rows = "3" placeholder="ACADEMIC INTERESTS" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.academicInterests}}' required>
+						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+					</div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
+						<input class="input100" type="text" name="extracurricularInterests" rows = "3" placeholder="EXTRACURRICULAR INTERESTS" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.extracurricularInterests}}' required>
+						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+					</div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">
+						<input class="input100" type="text" name="intendedMajor" placeholder="INTENDED MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.intendedMajor}}'required>
+						<span class="focus-input100" data-placeholder="		&#x1F4D6;"></span>
+					</div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your dream university">
+						<input class="input100" type="text" name="dreamUni" placeholder="DREAM UNIVERSITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.dreamUni}}' required>
+						<span class="focus-input100" data-placeholder="		&#x1F393;"></span>
+					</div>
 					<div class="container-login100-form-btn m-t-32 form-group">
 						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
 							Save Changes

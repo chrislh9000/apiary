@@ -31,6 +31,12 @@ router.post('/register', function(req, res, next) {
     school: req.body.school,
     email: req.body.email,
     gender: req.body.gender,
+    dateOfBirth: req.body.dateOfBirth,
+    academicInterests: req.body.academicInterests,
+    extracurricularInterests: req.body.extracurricularInterests,
+    country: req.body.country,
+    intendedMajor: req.body.intendedMajor,
+    dreamUni: req.body.dreamUni,
     userType: 'user',
     dateJoined: new Date()
   })

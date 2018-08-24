@@ -14,7 +14,6 @@
 
 <br>
 <br>
-
 <div class="container">
   {{#if successEdit}}
     <div style="text-align: center" class="alert alert-success" role="alert">
@@ -30,15 +29,30 @@
   {{/if}}
   <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
   <br>
-  <div class="row profile-container">
+  <div class="row profile-container" style="min-height: 600px">
     <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
       {{#if image}}
-      <img src="/profiles/{{image}}" class="center-block" style="width:35%; height:60%" />
+      <img src="/profiles/{{image}}" class="center-block" style="width:200px; height:250px" />
       {{else}}
       <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="width:50%; height:60%" />
       {{/if}}
       <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">{{user.dateOfBirth}}</h5>
+      <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+      <br><br>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+      <h5 style="text-align: left; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">  {{user.academicInterests}}</h5>
+      <br>
+      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+      <h5 style="text-align: left; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;">  {{user.extracurricularInterests}}</h5>
+      <br>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major {{user.intendedMajor}}</h5>
+      <h5 style="text-align: left; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+      <br>
+      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
+      <h5 style="text-align: left; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
+      <br>
       {{#if owner}}
       <div class = "align-text-center container-fluid">
       <form style="border-top: 1px solid gray" method="POST" action="/uploadimage" enctype="multipart/form-data">
@@ -52,7 +66,7 @@
   </div>
 </div>
 <br>
-<center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+
 <br>
 <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE ALPINE NETWORK</a><br></center>
 {{#if owner}}

@@ -7,21 +7,9 @@
 {{/if}}
 
 
-<style>
-.fixed-bgreg {
-    background-image: url("alpine.jpg");
-    min-height: 750px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-</style>
-
 <form method="POST">
-<div class="limiter">
-		<div class="container-login100 fixed-bgreg">
+<div class="limiter fixed-bg-sf">
+		<div class="container-login100 fixed-bg-sf">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 40px;">
           <br>
@@ -42,11 +30,20 @@
 						<span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
 					</div>
 
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter nationality">
+						<input class="input100" type="text" name="country" placeholder="NATIONALITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+						<span class="focus-input100" data-placeholder="	&#x1F310;"></span>
+					</div>
+
           <div class="wrap-input100 validate-input form-group" data-validate="Enter gender">
 						<input class="input100" type="text" name="gender" placeholder="GENDER" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
 						<span class="focus-input100" data-placeholder="	&#x26A4;"></span>
 					</div>
 
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter birthday">
+						<input class="input100" type="date" name="dateOfBirth" placeholder="BIRTHDAY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+						<span class="focus-input100" data-placeholder="	&#x1F382;"></span>
+					</div>
 
           <div class="wrap-input100 validate-input form-group" data-validate="Enter email">
 						<input class="input100" type="text" name="email" placeholder="E-MAIL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
@@ -58,6 +55,26 @@
 						<span class="focus-input100" data-placeholder="	&#x1F392;"></span>
 					</div>
 
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
+						<input class="input100" type="text" name="academicInterests" placeholder="ACADEMIC INTERESTS" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+					</div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
+						<input class="input100" type="text" name="extracurricularInterests" placeholder="EXTRACURRICULAR INTERESTS" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+					</div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">
+						<input class="input100" type="text" name="intendedMajor" placeholder="INTENDED MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+						<span class="focus-input100" data-placeholder="		&#x1F4D6;"></span>
+					</div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your dream university">
+						<input class="input100" type="text" name="dreamUni" placeholder="DREAM UNIVERSITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+						<span class="focus-input100" data-placeholder="		&#x1F393;"></span>
+					</div>
+
           <div class="wrap-input100 validate-input form-group" data-validate="Enter username">
 						<input class="input100" type="text" name="username" placeholder="USERNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
 						<span class="focus-input100" data-placeholder="&#x1F464;"></span>
@@ -67,7 +84,6 @@
 						<input class="input100" type="password" name="password" placeholder="PASSWORD" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
 						<span class="focus-input100" data-placeholder="&#x1F512;"></span>
 					</div>
-        
 
 					<div class="container-login100-form-btn m-t-32 form-group">
 						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">

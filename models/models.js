@@ -23,11 +23,11 @@ var userSchema = new Schema({
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   school: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
@@ -39,22 +39,22 @@ var userSchema = new Schema({
   },
   academicInterests: {
     type: String,
-    required: false,
+    required: true,
   },
   extracurricularInterests: {
     type: String,
-    required: false,
+    required: true,
   },
   country: {
-    type: String
+    type: String,
   },
   currentGrade: {
     type: Number,
-    required: false
+    required: false,
   },
   dateJoined: {
     type: Date,
-    required: true
+    required: true,
   },
   dateOfBirth: {
     type: Date,
@@ -62,16 +62,24 @@ var userSchema = new Schema({
   },
   gender: {
     type: String,
-    required: true
+    required: true,
   },
   biography: {
     type: String,
-    required: false
+    required: false,
   },
   image: {
     type: Schema.Types.ObjectId,
     ref: 'Image',
     required: false,
+  },
+  intendedMajor: {
+    type: String,
+    required: true,
+  },
+  dreamUni: {
+    type: String,
+    required: true,
   },
   userType: {
     type: String,
