@@ -107,6 +107,12 @@ router.get('/users/edit', function(req, res, next) {
       firstName: user.name.split(" ")[0],
       lastName: user.name.split(" ")[1],
       logged: req.user.username,
+      dateOfBirth: req.body.dateOfBirth,
+      academicInterests: req.body.academicInterests,
+      extracurricularInterests: req.body.extracurricularInterests,
+      country: req.body.country,
+      intendedMajor: req.body.intendedMajor,
+      dreamUni: req.body.dreamUni,
       genderMale: req.user.gender === 'Male'
       ? 'checked'
       : null,
