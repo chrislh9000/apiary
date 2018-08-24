@@ -119,22 +119,18 @@
 					</div>
           -->
 
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
-						<input class="input100" type="text" name="interest1" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{user.academicInterests.interest1}}' required>
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interests">
+            {{#each user.extracurricularInterests}}
+						<input class="input100" type="text" name="interest{{@index}}" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
 						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
-            <input class="input100" type="text" name="interest2" placeholder="SECOND ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{user.academicInterests.interest2}}' required>
-						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
-            <input class="input100" type="text" name="interest3" placeholder="THIRD ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{user.academicInterests.interest3}}' required>
-						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+            {{/each}}
 					</div>
 
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
-						<input class="input100" type="text" name="hobby1" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{user.extracurricularInterests.hobbie1}}' required>
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interests">
+            {{#each user.extracurricularInterests}}
+						<input class="input100" type="text" name="hobby{{@index}}" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
 						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
-            <input class="input100" type="text" name="hobby2" placeholder="SECOND HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{user.extracurricularInterests.hobbie2}}' required>
-						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
-            <input class="input100" type="text" name="hobby3" placeholder="THIRD HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{user.extracurricularInterests.hobbie3}}' required>
-						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+            {{/each}}
 					</div>
 
           <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">

@@ -140,8 +140,8 @@ router.post('/users/edit', function(req, res, next) {
     gender: req.body.gender,
     biography: req.body.biography,
     dateOfBirth: req.body.dateOfBirth,
-    academicInterests: [req.body.interest1, req.body.interest2, req.body.interest3],
-    extracurricularInterests: [req.body.hobby1, req.body.hobby2, req.body.hobby3],
+    academicInterests: [req.body.interest0, req.body.interest1, req.body.interest2],
+    extracurricularInterests: [req.body.hobby0, req.body.hobby1, req.body.hobby2],
     country: req.body.country,
     intendedMajor: req.body.intendedMajor,
     dreamUni: req.body.dreamUni
