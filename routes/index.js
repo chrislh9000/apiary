@@ -100,19 +100,20 @@ router.get('/users/myProfile', function(req, res, next) {
 //editing profile
 
 router.get('/users/edit', function(req, res, next) {
-  User.findOne({username: req.user.username}).exec().then((user) => {
+  User.findOne({username: req.user.username})
+  .then((user) => {
     console.log('userSchool', user.school);
     res.render('editProfile', {
       user: user,
       firstName: user.name.split(" ")[0],
       lastName: user.name.split(" ")[1],
       logged: req.user.username,
-      dateOfBirth: req.body.dateOfBirth,
-      academicInterests: req.body.academicInterests,
-      extracurricularInterests: req.body.extracurricularInterests,
-      country: req.body.country,
-      intendedMajor: req.body.intendedMajor,
-      dreamUni: req.body.dreamUni,
+      dateOfBirth: req.user.dateOfBirth,
+      academicInterests: req.user.academicInterests,
+      extracurricularInterests: req.user.academicInterests,
+      country: req.user.country,
+      intendedMajor: req.user.intendedMajor,
+      dreamUni: req.user.dreamUni,
       genderMale: req.user.gender === 'Male'
       ? 'checked'
       : null,
@@ -139,8 +140,8 @@ router.post('/users/edit', function(req, res, next) {
     gender: req.body.gender,
     biography: req.body.biography,
     dateOfBirth: req.body.dateOfBirth,
-    academicInterests: req.body.academicInterests,
-    extracurricularInterests: req.body.extracurricularInterests,
+    academicInterests: [req.body.interest1, req.body.interest2, req.body.interest3],
+    extracurricularInterests: [req.body.hobby1, req.body.hobby2, req.body.hobby3],
     country: req.body.country,
     intendedMajor: req.body.intendedMajor,
     dreamUni: req.body.dreamUni
