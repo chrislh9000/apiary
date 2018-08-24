@@ -207,11 +207,12 @@ const paypalPaymentSchema = new Schema ({
     required: true,
   },
   price: Number,
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: 'Product',
-    required: true,
-  },
+  productId: String,
+  // product: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Product',
+  //   required: true,
+  // },
 })
 
 //PRODUCT SCHEMA: Also modify this
@@ -301,6 +302,7 @@ const imageSchema = new Schema ({
 //MONGODB MODELS
 const User = mongoose.model('User', userSchema);
 const StripePayment = mongoose.model('StripePayment', stripePaymentSchema);
+const PaypalPayment = mongoose.model('PaypalPayment', paypalPaymentSchema);
 const Product = mongoose.model('Product', productSchema);
 const Consultant = mongoose.model('Consultant', consultantSchema);
 const Ambassador = mongoose.model('Ambassador', ambassadorSchema);
@@ -319,4 +321,5 @@ module.exports = {
   Consultant: Consultant,
   Consultation: Consultation,
   Image : ProfileImage,
+  PaypalPayment: PaypalPayment,
 }

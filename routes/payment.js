@@ -106,10 +106,22 @@ router.get('/payment-test', (req, res) => {
 })
 
 router.post('/paypal/payment', (req, res) => {
-  console.log('===PAYMENT PAYLOAD====', req.body);
-  console.log('====PAYER INFO====', req.body.payer.name);
-  console.log('====PURCHASE UNITS=====', req.body.purchase_units[0])
-  // if (req.body.resource === 'COMPLETED')
+  console.log('===PAYMENT PAYLOAD====', req.body.id);
+  console.log('===SUP====');
+  console.log('====PAYER INFO====', req.body.resource);
+  // console.log('====PURCHASE UNITS=====', req.body.resource.payer.purchase_units[0])
+  if (req.body.resource === 'COMPLETED') {
+    const newPayment = new PaypalPayment({
+      customerEmail: req.body.payer.resource.payer.email_address,
+      customerId: req.body.resource.payer.payer_id,
+      price: Number(req.body.resource.gross_amount.value),
+      productId: req.body.resource.id,
+    })
+  }
+  newPayment.save()
+  .then((payment) => {
+    res.render('payment')
+  })
 })
 
 
