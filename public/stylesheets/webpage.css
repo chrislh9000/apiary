@@ -1304,7 +1304,16 @@ h2.a {
 
   /* My Profile Page styling */
   .profile-container {
-    padding: 20px
+    padding: 20px;
+  }
+
+  .profile-page {
+    background-image: url("alpine.jpg");
+    min-height: 350px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   /* networkProfiles on the members page */
