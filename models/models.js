@@ -37,14 +37,18 @@ var userSchema = new Schema({
     type: Number,
     required: false,
   },
-  academicInterests: {
-    type: String,
-    required: true,
-  },
-  extracurricularInterests: {
-    type: String,
-    required: true,
-  },
+  academicInterests: [
+    {
+      type: String,
+      default: [],
+    }
+  ],
+  extraccuricularInterests: [
+    {
+      type: String,
+      default: [],
+    }
+  ],
   country: {
     type: String,
   },
