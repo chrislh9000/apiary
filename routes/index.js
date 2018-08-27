@@ -107,6 +107,8 @@ router.get('/users/edit', function(req, res, next) {
       user: user,
       firstName: user.name.split(" ")[0],
       lastName: user.name.split(" ")[1],
+      networkToggled: true,
+      loggedIn: true,
       logged: req.user.username,
       dateOfBirth: req.user.dateOfBirth,
       academicInterests: req.user.academicInterests,

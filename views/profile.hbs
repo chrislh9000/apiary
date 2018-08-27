@@ -44,7 +44,7 @@
       <br><br>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
       {{#each user.academicInterests}}
-      <p style="text-align: left; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
       {{/each}}
       <br>
       <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
@@ -61,7 +61,7 @@
       <div class = "align-text-center container-fluid">
       <form style="border-top: 1px solid gray" method="POST" action="/uploadimage" enctype="multipart/form-data">
         <h6 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Profile Image</h6>
-       <center><input style="display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE"> </center> 
+       <center><input style="display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE"> </center>
      <center><button style="display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD</button> </center> <br>
       </form>
     </div>
