@@ -208,6 +208,7 @@ router.get('/users/:userid', function(req, res, next) {
       user: user,
       logged: req.user.username,
       owner: false,
+      consultantSkype: user.skype,
       image: user.image? user.image.cloudinaryUrl : null,
       networkToggled: true,
       loggedIn: true,
