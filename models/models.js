@@ -57,7 +57,7 @@ var userSchema = new Schema({
     type: String,
   },
   currentGrade: {
-    type: Number,
+    type: String,
     required: false,
   },
   dateJoined: {

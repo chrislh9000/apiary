@@ -35,11 +35,12 @@
       {{#if image}}
       <img src="{{image}}" class="center-block" style="width:200px; height:250px" />
       {{else}}
-      <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="width:200px; height:250px" />
+      <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="width: 100%" />
       {{/if}}
       <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
-      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">{{user.dateOfBirth}}</h5>
+      <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Grade: {{user.currentGrade}}</h5>
+        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
       <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
       <br><br>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>

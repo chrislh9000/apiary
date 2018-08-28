@@ -211,7 +211,7 @@ router.get('/users/:userid', function(req, res, next) {
       user: user,
       logged: req.user.username,
       owner: false,
-      image: user.image? user.image.filename : null,
+      image: user.image? user.image.cloudinaryUrl : null,
       networkToggled: true
     })
   }).catch((error) => {
@@ -474,12 +474,17 @@ router.post('/uploadimage', upload.single('image'), function (req, res, next) {
           User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
           .then(user => {
             console.log('USER SUCCESSFULLY UPDATED')
-            cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (result) => {
-              console.log('=====CLOUDINARY IMAGE UPLOADED=====')
-              Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
-              .then(img => {
-                res.redirect('/users/myProfile?image=success');
-              })
+            cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (err, result) => {
+              if (err) {
+                console.error(err);
+                res.redirect('/users/myProfile');
+              } else {
+                console.log('=====CLOUDINARY IMAGE UPLOADED=====')
+                Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
+                .then(img => {
+                  res.redirect('/users/myProfile?image=success');
+                })
+              }
             });
           })
           .catch(err => {
@@ -504,7 +509,7 @@ router.post('/uploadimage', upload.single('image'), function (req, res, next) {
             console.log('new image rendered');
             //upload image to cloudinary
             cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (result) => {
-              console.log('=====CLOUDINARY IMAGE UPLOADED=====')
+              console.log('=====CLOUDINARY IMAGE UPLOADED=====');
               Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
               .then(img => {
                 res.redirect('/users/myProfile?image=success');

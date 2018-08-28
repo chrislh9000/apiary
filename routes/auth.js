@@ -39,6 +39,7 @@ router.post('/register', function(req, res, next) {
     dreamUni: req.body.dreamUni,
     userType: 'user',
     skype: req.body.skypeName,
+    currentGrade: req.body.currentGrade,
     dateJoined: new Date()
   })
   newUser.save()
