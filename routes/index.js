@@ -63,6 +63,7 @@ router.get('/users/myProfile', function(req, res, next) {
     })
     .exec()
     .then((user) => {
+      console.log('===CONSULTANT====', user.consultant)
         res.render('profile', {
           user: user,
           logged: req.user.username,

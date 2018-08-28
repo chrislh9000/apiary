@@ -65,7 +65,7 @@ router.get('/consultants/assign/:userid', (req, res, next) => {
         return (user.userType === 'consultant' || user.userType === 'admin');
       })
       User.findById(userId)
-      .then((client) => {
+      .then(client => {
         const formAction = '/admin/assign/' + client._id;
         console.log('=======CONSULTANTS=======', consultants);
         res.render('assign-consultant', {
