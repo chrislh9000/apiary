@@ -55,6 +55,7 @@ var userSchema = new Schema({
   ],
   country: {
     type: String,
+    required: true,
   },
   currentGrade: {
     type: String,
