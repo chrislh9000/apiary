@@ -167,7 +167,7 @@
               OUR SERVICES
             </a1>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-              <a class="dropdown-item" href="/services">WHAT WE OFFER</a>
+              <a class="dropdown-item" href="/services">THE APIARY SOLUTION</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/network">APIARY NETWORK</a>
             </div>
@@ -187,6 +187,14 @@
     </div>
     </div>
     </nav>
+  {{/if}}
+  {{#if loggedIn}}
+  {{#if networkToggled}}
+  {{#if consultantSkype}}
+  <span class="skype-button bubble" data-contact-id={{consultantSkype}} data-color="#800000"></span>
+  <span class="skype-chat" data-color-message="#800000"></span>
+  {{/if}}
+  {{/if}}
   {{/if}}
   {{{body}}}
 </body>

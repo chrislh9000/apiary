@@ -55,8 +55,14 @@ router.get('/users/myProfile', function(req, res, next) {
   .then(image => {
     if (!image) hasImage = false;
     User.findOne({_id: req.user._id})
+    .populate({
+      path: 'consultant',
+      populate: {
+        path: 'user'
+      }
+    })
+    .exec()
     .then((user) => {
-      if (user.userType === 'admin') {
         res.render('profile', {
           user: user,
           logged: req.user.username,
@@ -65,38 +71,14 @@ router.get('/users/myProfile', function(req, res, next) {
           owner: true,
           networkToggled: true,
           loggedIn: true,
-          consultantPortal: true,
-          adminPortal: true,
+          consultantSkype: user.consultant ? user.consultant.skype : null,
+          consultantPortal: user.userType === 'admin' || user.userType === 'consultant' ? true : false,
+          adminPortal: user.userType === 'admin' ? true : false,
           successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
           failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
         })
-      } else if (user.userType === 'consultant' || user.userType === 'admin') {
-        res.render('profile', {
-          user: user,
-          logged: req.user.username,
-          username: req.user.username,
-          image: user.image? image.filename: null,
-          owner: true,
-          networkToggled: true,
-          loggedIn: true,
-          consultantPortal: true,
-          successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
-          failureEdit: req.query.image === 'fail'  || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
-        })
-      } else {
-        res.render('profile', {
-          user: user,
-          logged: req.user.username,
-          username: req.user.username,
-          image: user.image? image.filename : null,
-          owner: true,
-          networkToggled: true,
-          loggedIn: true,
-          successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
-          failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
-        })
-      };
-    }).catch((error) => {
+    })
+    .catch(error => {
       res.send(error);
     })
   })
