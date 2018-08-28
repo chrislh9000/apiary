@@ -1511,6 +1511,14 @@ iframe {
   padding: 29px 0;
 }
 
+.wrap-input80 {
+  width: 80%;
+  position: relative;
+  margin-left: 20px;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 29px 0;
+}
+
 .input100 {
   font-family: Ubuntu-Regular;
   font-size: 20px;
