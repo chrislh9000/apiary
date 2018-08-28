@@ -129,7 +129,8 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
       res.redirect(404, '/')
       console.log("error: you don't have permissions to access this page")
     } else {
-      User.findByIdAndUpdate(req.params.userid, {userType: 'admin'}).exec().then(function(resp) {
+      User.findByIdAndUpdate(req.params.userid, {userType: 'admin'})
+      .then(function(resp) {
         console.log('user successfully has been made admin')
         res.redirect('/admin')
       }).catch(function(err) {
@@ -178,7 +179,7 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
   })
 
 
-  router.post('/admin/user/:userid', function(req, res, next) {
+  router.post('/admin/user/:userid', (req, res, next) => {
     if (req.user.userType !== 'admin') {
       res.redirect(404, '/')
       console.log("error: you don't have permissions to access this page")

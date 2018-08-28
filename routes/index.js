@@ -212,7 +212,8 @@ router.get('/users/:userid', function(req, res, next) {
       logged: req.user.username,
       owner: false,
       image: user.image? user.image.cloudinaryUrl : null,
-      networkToggled: true
+      networkToggled: true,
+      loggedIn: true,
     })
   }).catch((error) => {
     console.log('Error', error)
