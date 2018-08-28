@@ -76,7 +76,7 @@ router.get('/network', function(req, res, next) {
     })
   } else {
     res.render('alpine-network-pre', {
-      message: 'ALPINE NETWORK',
+      message: 'APIARY NETWORK',
       loggedIn: true,
     })
   }
