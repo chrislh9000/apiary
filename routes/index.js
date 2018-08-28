@@ -150,7 +150,15 @@ router.post('/users/edit', function(req, res, next) {
 //Viewing other profiles
 //viewing all profiles
 router.get('/users/all', function(req, res, next) {
-  User.findById(req.user._id).then((user) => {
+  User.findById(req.user._id)
+  .populate({
+    path: 'consultant',
+    populate: {
+      path: 'user'
+    }
+  })
+  .exec()
+  .then((user) => {
     if (!user || user.userType === 'user') {
       res.render('network-payment-wall', {
         message: 'Apiary Network Members',
@@ -160,9 +168,14 @@ router.get('/users/all', function(req, res, next) {
       })
     } else {
       User.find()
-      .populate('image')
+      .populate({
+        path: 'consultant image',
+        populate: {
+          path: 'user'
+        }
+      })
       .exec()
-      .then((users) => {
+      .then(users => {
         const networkMembers = _.filter(users, (user) => {
           return user.userType !== 'user';
         })
@@ -170,6 +183,7 @@ router.get('/users/all', function(req, res, next) {
           users: networkMembers,
           logged: req.user.username,
           networkToggled: true,
+          consultantSkype: user.consultant ? user.consultant.skype : null,
           loggedIn: true
         })
       }).catch((error) => {
