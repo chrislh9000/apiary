@@ -9,6 +9,15 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
 //image upload
 const multer = require('multer');
+const cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: 'apiary-solutions',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/profiles')
@@ -23,9 +32,9 @@ var storage = multer.diskStorage({
 });
 
 const upload =  multer({ storage: storage });
-const methodOverride= require('method-override');
-const GridFsStorage= require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
+// const methodOverride= require('method-override');
+// const GridFsStorage= require('multer-gridfs-storage');
+// const Grid = require('gridfs-stream');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -54,7 +63,7 @@ app.use(express.urlencoded({ extended: false }));
 //cookie and body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride('_method'));
+// app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

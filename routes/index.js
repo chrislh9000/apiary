@@ -14,9 +14,18 @@ const Consultant = models.Consultant;
 const Consultation = models.Consultation;
 const Image = models.Image;
 //image uploading stuff
-// const multer = require('multer');
+
+//moments js
+const moment = require('moment')
+
 const path = require('path');
 // const crypto = require('crypto');
+const cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: 'apiary-solutions',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 const multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -52,7 +61,7 @@ router.get('/users/myProfile', function(req, res, next) {
           user: user,
           logged: req.user.username,
           username: req.user.username,
-          image: user.image? image.filename : null,
+          image: user.image? image.cloudinaryUrl : null,
           owner: true,
           networkToggled: true,
           loggedIn: true,
@@ -224,10 +233,25 @@ router.get('/consultants/profile', (req, res) => {
     })
     .exec()
     .then((consultant) => {
+
+      const upcomingTimes = consultant.upcomingConsultations.map(consultation => {
+        return  {
+          time: String(moment(consultation.time).format('LLLL')),
+          duration: consultation.duration,
+          name: consultation.client.name,
+        }
+      })
+      const pastTimes = consultant.pastConsultations.map(consultation => {
+        return {
+          time: String(moment(consultation.time).format('LLLL')),
+          duration: consultation.duration,
+          name: consultation.client.name,
+        }
+      })
       console.log('===CONSULTANT===', consultant)
       res.render('./Consultations/consultant-profile.hbs', {
-        upcoming: consultant.upcomingConsultations,
-        past: consultant.pastConsultations,
+        upcoming: upcomingTimes,
+        past: pastTimes,
         networkToggled: true,
         loggedIn: true
       })
@@ -294,195 +318,226 @@ router.post('/consultation/confirm/:consultationid', (req, res) => {
   })
 })
 
-  //Manage consultations route
+//Manage consultations route
 
-  router.get('/sessions', (req, res) => {
-    User.findById(req.user._id)
-    .populate({
-      path: 'upcomingConsultations pastConsultations',
-      populate: {
-        path: 'consultant'
+router.get('/sessions', (req, res) => {
+  User.findById(req.user._id)
+  .populate({
+    path: 'upcomingConsultations pastConsultations',
+    populate: {
+      path: 'consultant'
+    }
+  })
+  .exec().then((user) => {
+    console.log('user', user);
+    const formattedUpcomingTimes = user.upcomingConsultations.map(consultation => {
+      return  {
+        time: String(moment(consultation.time).format('LLLL')),
+        duration: consultation.duration,
       }
     })
-    .exec().then((user) => {
-      console.log('user', user);
-      res.render('./Consultations/clientSessions', {
-        loggedIn: true,
-        networkToggled: true,
-        user: user,
-        upcoming: user.upcomingConsultations,
-        past: user.pastConsultations,
-      });
+
+    const formattedPastTimes = user.pastConsultations.map(consultation => {
+      return {
+        time: String(moment(consultation.time).format('LLLL')),
+        duration: consultation.duration,
+      }
     })
-  })
 
-  //Network database stuff /
-  router.get('/database/essays', (req, res, next) => {
-    if (req.user.userType === 'user') {
-      res.render('network-payment-wall', {
-        message: 'Apiary Essay Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    } else {
-      res.render('essay-database', {
-        message: 'Apiary Academic Excellence Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    }
-  })
+    console.log('====FORMATTED====', formattedUpcomingTimes);
 
-  router.get('/database/internships', (req, res) => {
-    if (req.user.userType === 'user') {
-      res.render('network-payment-wall', {
-        message: 'Apiary Essay Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    } else {
-      res.render('internships', {
-        message: 'Apiary Internships Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    }
-  })
-
-  router.get('/database/test-prep', (req, res) => {
-    if (req.user.userType === 'user') {
-      res.render('network-payment-wall', {
-        message: 'Apiary Essay Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    } else {
-      res.render('test-prep', {
-        message: 'Apiary Test Prep Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    }
-  })
-
-  router.get('/database/classNotes', (req, res, next) => {
-    if (req.user.userType === 'user') {
-      res.render('network-payment-wall', {
-        message: 'Apiary Academic Excellence Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    } else {
-      res.render('ib-ap', {
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    }
-  })
-
-  router.get('/database/resumes', (req, res, next) => {
-    if (req.user.userType === 'user') {
-      res.render('network-payment-wall', {
-        message: 'Apiary Resume Database',
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    } else {
-      res.render('resumes', {
-        loggedIn: true,
-        canPurchase: true,
-        networkToggled: true
-      })
-    }
-  })
-
-  //Image UPLOADING
-  router.get('/uploadimage', (req, res) => {
-    res.render('./Profiles/images', {
-      networkToggled: true,
+    res.render('./Consultations/clientSessions', {
       loggedIn: true,
-    })
+      networkToggled: true,
+      user: user,
+      upcoming: formattedUpcomingTimes,
+      past: formattedPastTimes,
+    });
   })
+})
 
-  router.post('/uploadimage', upload.single('image'), function (req, res, next) {
-    const fileType = req.file.mimetype.slice(0,5);
-    const imageExt = req.file.mimetype.slice(6,10);
-    if (fileType === 'image') {
-      Image.findOne({user: req.user._id})
-      .then(image => {
-        if (!image) {
-          const newImage = new Image({
-            filename: req.file.filename,
-            size: req.file.size,
-            type: imageExt,
-            user: req.user._id
-          })
-          newImage.save()
-          .then(img => {
-            console.log('SUCCESSFULLY UPLOADED IMAGE');
-            User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
-            .then(user => {
-              console.log('USER SUCCESSFULLY UPDATED')
-              res.redirect('/users/myProfile?image=success');
-            })
-            .catch(err => {
-              console.error(err);
-              res.redirect('/users/myProfile?image=fail')
-            })
-          })
-          .catch(err => {
-            console.error(err);
-          })
-        } else {
-          Image.findOneAndUpdate({user: req.user._id}, {
-            filename: req.file.filename,
-            size: req.file.size,
-            type: imageExt,
-            user: req.user._id,
-          })
-          .then((newImage) => {
-            console.log('UPDATED PROFILE IMAGE');
-            User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
-            .then(user => {
-              console.log('new image rendered');
-              res.redirect('/users/myProfile?image=success');
-            })
-            .catch(err => {
-              console.error(err)
-              res.redirect('/users/myProfile?image=fail')
-            })
+//Network database stuff /
+router.get('/database/essays', (req, res, next) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Essay Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  } else {
+    res.render('essay-database', {
+      message: 'Apiary Academic Excellence Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  }
+})
+
+router.get('/database/internships', (req, res) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Essay Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  } else {
+    res.render('internships', {
+      message: 'Apiary Internships Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  }
+})
+
+router.get('/database/test-prep', (req, res) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Essay Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  } else {
+    res.render('test-prep', {
+      message: 'Apiary Test Prep Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  }
+})
+
+router.get('/database/classNotes', (req, res, next) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Academic Excellence Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  } else {
+    res.render('ib-ap', {
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  }
+})
+
+router.get('/database/resumes', (req, res, next) => {
+  if (req.user.userType === 'user') {
+    res.render('network-payment-wall', {
+      message: 'Apiary Resume Database',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  } else {
+    res.render('resumes', {
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  }
+})
+
+//Image UPLOADING
+router.get('/uploadimage', (req, res) => {
+  res.render('./Profiles/images', {
+    networkToggled: true,
+    loggedIn: true,
+  })
+})
+
+
+
+router.post('/uploadimage', upload.single('image'), function (req, res, next) {
+  const fileType = req.file.mimetype.slice(0,5);
+  const imageExt = req.file.mimetype.slice(6,10);
+  if (fileType === 'image') {
+    Image.findOne({user: req.user._id})
+    .then(image => {
+      if (!image) {
+        const newImage = new Image({
+          filename: req.file.filename,
+          size: req.file.size,
+          type: imageExt,
+          user: req.user._id
+        })
+        newImage.save()
+        .then(img => {
+          console.log('SUCCESSFULLY UPLOADED IMAGE');
+          User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+          .then(user => {
+            console.log('USER SUCCESSFULLY UPDATED')
+            cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (result) => {
+              console.log('=====CLOUDINARY IMAGE UPLOADED=====')
+              Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
+              .then(img => {
+                res.redirect('/users/myProfile?image=success');
+              })
+            });
           })
           .catch(err => {
             console.error(err);
             res.redirect('/users/myProfile?image=fail')
           })
-        }
-      })
+        })
+        .catch(err => {
+          console.error(err);
+        })
+      } else {
+        Image.findOneAndUpdate({user: req.user._id}, {
+          filename: req.file.filename,
+          size: req.file.size,
+          type: imageExt,
+          user: req.user._id,
+        })
+        .then((newImage) => {
+          console.log('UPDATED PROFILE IMAGE');
+          User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
+          .then(user => {
+            console.log('new image rendered');
+            //upload image to cloudinary
+            cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (result) => {
+              console.log('=====CLOUDINARY IMAGE UPLOADED=====')
+              Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
+              .then(img => {
+                res.redirect('/users/myProfile?image=success');
+              })
+            });
+          })
+          .catch(err => {
+            console.error(err)
+            res.redirect('/users/myProfile?image=fail')
+          })
+        })
+        .catch(err => {
+          console.error(err);
+          res.redirect('/users/myProfile?image=fail')
+        })
+      }
+    })
 
-    } else {
-      res.send('this is not an image');
-    }
-  })
+  } else {
+    res.send('this is not an image');
+  }
+})
 
 
-  ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  router.get('/users/consultants/:userid', function(req, res, next) {
-    //consultant profile page
-  })
-  //sample consultant profile with google calendars API (maybe a skype API of some sort?)
-  //test route for google calendar API
-  router.get('/calendar', function(req, res, next) {
-    res.render('calendar')
-  })
+////////////////////////////////////////Consulting/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+router.get('/users/consultants/:userid', function(req, res, next) {
+  //consultant profile page
+})
+//sample consultant profile with google calendars API (maybe a skype API of some sort?)
+//test route for google calendar API
+router.get('/calendar', function(req, res, next) {
+  res.render('calendar')
+})
 
-  module.exports = router;
+module.exports = router;

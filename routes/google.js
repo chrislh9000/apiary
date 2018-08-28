@@ -6,9 +6,11 @@ const _ = require('underscore');
 const models = require('../models/models');
 const User = models.User;
 const Consultation = models.Consultation;
-const Consultant = models.Consultant
+const Consultant = models.Consultant;
 const OauthToken = models.OauthToken;
-
+const moment = require('moment');
+moment().format()
+console.log('FORMATTED DATE', moment(new Date()).format('LLLL'));
 
 const {google} = require('googleapis');
 let accessToken;
@@ -132,8 +134,8 @@ router.get('/scheduleSession', function(req, res, next) {
                   'end': event.end.dateTime,
                   'startDate': new Date(event.start.dateTime),
                   'endDate': new Date(event.end.dateTime),
-                  'formattedStart': String(new Date(event.start.dateTime)).slice(0,21),
-                  'formattedEnd': String(new Date(event.end.dateTime)).slice(0,21),
+                  'formattedStart': String(moment(new Date(event.start.dateTime)).format('LLLL')),
+                  'formattedEnd': String(moment(new Date(event.end.dateTime)).format('LLLL')),
                 }
               })
               console.log('===AVAILABILITY====', availability);

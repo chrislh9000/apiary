@@ -4,7 +4,7 @@
 {{#each users}}
 <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
 {{#if this.image}}
-<img class="center-block" style="height: 150px; width: 122px;" src="/profiles/{{this.image.filename}}"></img>
+<img class="center-block" style="height: 150px; width: 122px;" src="{{this.image.cloudinaryUrl}}"></img>
 {{else}}
 <img class="center-block" style="height: 150px; width: 122px;" src="/profiles/1535005509011-avatar1.jpg"></img>
 {{/if}}
@@ -18,5 +18,3 @@
 </div>
 </div>
 <br><br><br></body>
-
-

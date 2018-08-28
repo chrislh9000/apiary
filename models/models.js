@@ -33,6 +33,10 @@ var userSchema = new Schema({
     type: String,
     required: true,
   },
+  skype: {
+    type: String,
+    required: true,
+  },
   gradePointAverage: {
     type: Number,
     required: false,
@@ -306,6 +310,9 @@ const imageSchema = new Schema ({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  cloudinaryUrl: {
+    type: String,
+  }
 })
 
 
