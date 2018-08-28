@@ -1,8 +1,12 @@
-<h1> Order Confirmation </h1>
+<h1> Order Confirmation: Thank you for your purchase {{user.name}} </h1>
 
-Order id: {{charge._id}}<br>
+Order id: {{paymentId}}<br>
 
-Total: {{charge.amount}}<br>
+Total: {{amount}} USD<br>
+
+Product Id: {{productId}} USD<br>
+
+Email: {{email}} USD<br>
 
 <h3> Credit Card Info </h3>
 Last 4 Digits: {{charge.stripeLast4}}<br><br>

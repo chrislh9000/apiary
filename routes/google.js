@@ -9,8 +9,6 @@ const Consultation = models.Consultation;
 const Consultant = models.Consultant;
 const OauthToken = models.OauthToken;
 const moment = require('moment');
-moment().format()
-console.log('FORMATTED DATE', moment(new Date()).format('LLLL'));
 
 const {google} = require('googleapis');
 let accessToken;

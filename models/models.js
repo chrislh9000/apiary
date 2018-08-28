@@ -215,7 +215,7 @@ const stripePaymentSchema = new Schema({
 })
 
 const paypalPaymentSchema = new Schema ({
-  customerId: String,
+  paymentId: String,
   customerEmail: String,
   user: {
     type: Schema.Types.ObjectId,
