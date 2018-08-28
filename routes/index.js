@@ -245,12 +245,11 @@ router.get('/consultants/profile', (req, res) => {
           name: consultation.client.name,
         }
       })
-      console.log('===CONSULTANT===', consultant)
       res.render('./Consultations/consultant-profile.hbs', {
         upcoming: upcomingTimes,
         past: pastTimes,
         networkToggled: true,
-        loggedIn: true
+        loggedIn: true,
       })
     })
   }
