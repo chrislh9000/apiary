@@ -17,7 +17,7 @@
 				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 40px;">
           <br>
           <br>
-					Register as User
+					Register as Ambassador
           <br>
           <br>
 				</span>
@@ -302,11 +302,11 @@
 
           <div class="wrap-input100 validate-input form-group" data-validate="Enter Current Grade">
             <select class="input100" type="text" name="currentGrade" placeholder="CURRENT SCHOOL YEAR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
-							<option value="">GRADE </option>
-							<option value="Male">University Student</option>
-							<option value="Male">Grade 12</option>
-							<option value="Female">Grade 11</option>
-							<option value="Other">Grade 10</option>
+							<option value="">YEAR IN UNIVERSITY</option>
+							<option value="Male">4</option>
+							<option value="Male">3</option>
+							<option value="Female">2</option>
+							<option value="Other">1</option>
 						</select>
           </div>
 
@@ -314,6 +314,22 @@
 						<input class="input100" type="text" name="email" placeholder="E-MAIL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
 						<span class="focus-input100" data-placeholder="	&#x1F4E7;"></span>
 					</div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter address">
+            <input class="input100" type="text" name="address" placeholder="FULL ADDRESS" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+            <span class="focus-input100" data-placeholder="&#x1F512;"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter address">
+            <input class="input100" type="text" name="city" placeholder="CITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+            <span class="focus-input100" data-placeholder="&#x1F512;"></span>
+          </div>
+
+
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter address">
+            <input class="input100" type="text" name="postalCode" placeholder="POSTAL CODE" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+            <span class="focus-input100" data-placeholder="&#x1F512;"></span>
+          </div>
 
           <div class="wrap-input100 validate-input form-group" data-validate="Enter Skype Name">
             <input class="input100" type="text" name="skypeName" placeholder="SKYPE NAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
@@ -326,32 +342,10 @@
 						<span class="focus-input100" data-placeholder="	&#x1F392;"></span>
 					</div>
 
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
-						<input class="input100" type="text" name="interest1" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
-            <input class="input100" type="text" name="interest2" placeholder="SECOND ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-						<!-- <span class="focus-input100" data-placeholder="	&#x1F913;"></span> -->
-            <input class="input100" type="text" name="interest3" placeholder="THIRD ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-						<!-- <span class="focus-input100" data-placeholder="	&#x1F913;"></span> -->
-					</div>
-
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
-						<input class="input100" type="text" name="hobbie1" placeholder="FIRST HOBBIE" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
-            <input class="input100" type="text" name="hobbie2" placeholder="SECOND HOBBIE" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-						<!-- <span class="focus-input100" data-placeholder="		&#x26BD;"></span> -->
-            <input class="input100" type="text" name="hobbie3" placeholder="THIRD HOBBIE" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-						<!-- <span class="focus-input100" data-placeholder="		&#x26BD;"></span> -->
-					</div>
 
           <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">
-						<input class="input100" type="text" name="intendedMajor" placeholder="INTENDED MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+						<input class="input100" type="text" name="intendedMajor" placeholder="MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
 						<span class="focus-input100" data-placeholder="		&#x1F4D6;"></span>
-					</div>
-
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter your dream university">
-						<input class="input100" type="text" name="dreamUni" placeholder="DREAM UNIVERSITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
-						<span class="focus-input100" data-placeholder="		&#x1F393;"></span>
 					</div>
 
           <div class="wrap-input100 validate-input form-group" data-validate="Enter username">
@@ -364,9 +358,14 @@
 						<span class="focus-input100" data-placeholder="&#x1F512;"></span>
 					</div>
 
+          <div class="wrap-input100 validate-input form-group" data-validate="Repeat password">
+            <input class="input100" type="password" name="repeatPassword" placeholder="REPEAT PASSWORD" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" required>
+            <span class="focus-input100" data-placeholder="&#x1F512;"></span>
+          </div>
+
 					<div class="container-login100-form-btn m-t-32 form-group">
 						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
-							Register
+							Register as Ambassador
 						</button>
 					</div>
 

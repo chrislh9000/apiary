@@ -88,7 +88,7 @@ var userSchema = new Schema({
   },
   dreamUni: {
     type: String,
-    required: true,
+    required: false,
   },
   userType: {
     type: String,
@@ -165,30 +165,7 @@ const consultantSchema = new Schema({
   ]
 })
 
-const ambassadorSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  pastConsultations: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Consultation',
-      default: [],
-    }
-  ],
-  totalCompensation: {
-    type: Number,
-    default: 0
-  },
-  pastClients: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      default: [],
-    }
-  ],
-})
+
 
 
 //Payment Schema: DEFINITELY MODIFY THIS
@@ -201,9 +178,13 @@ const stripePaymentSchema = new Schema({
   stripeLast4: Number,
   stripeSource: String,
   status: String,
-  _userid : {
+  user : {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  ambassasdor: {
+    type: Schema.Types.ObjectId,
+    ref: 'Ambassador'
   },
   name: {
     type: String,
@@ -316,12 +297,43 @@ const imageSchema = new Schema ({
   }
 })
 
+//Ambassador Schema
+const ambassadorSchema = new Schema({
+  user : {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  approved: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  services: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Product',
+    default: [],
+  }],
+  stripeVerified: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  address: String,
+  postalCode: String,
+  city: String,
+  stripeAccountId: String,
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
+})
 
 
 
 //MONGODB MODELS
 const User = mongoose.model('User', userSchema);
-const StripePayment = mongoose.model('StripePayment', stripePaymentSchema);
+const Stripe = mongoose.model('StripePayment', stripePaymentSchema);
 const PaypalPayment = mongoose.model('PaypalPayment', paypalPaymentSchema);
 const Product = mongoose.model('Product', productSchema);
 const Consultant = mongoose.model('Consultant', consultantSchema);
@@ -334,7 +346,7 @@ const ProfileImage = mongoose.model('Image', imageSchema);
 
 module.exports = {
   User: User,
-  StripePayment: StripePayment,
+  StripePayment: Stripe,
   Product: Product,
   OauthToken: OauthToken,
   Ambassador: Ambassador,

@@ -1,0 +1,132 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- <span class="skype-button bubble" data-contact-id="{{user.skype}}" data-color="#800000"></span>
+<span class="skype-chat" data-color-message="#800000"></span> -->
+<script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
+
+<div class="profile-page">
+<br>
+<br>
+<div class="container fixed-bg2">
+  {{#if successEdit}}
+    <div style="text-align: center" class="alert alert-success" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      {{successEdit}}
+    </div>
+  {{/if}}
+  {{#if failureEdit}}
+    <div style="text-align: center" class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      {{failureEdit}}
+    </div>
+  {{/if}}
+  <h1 style="text-align: center"> AMBASSADOR PROFILE </h1> <br>
+  <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+  <br>
+  <div class="row profile-container" style="min-height: 600px">
+    <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+      {{#if image}}
+      <img src="{{image}}" class="center-block" style="width:200px; height:250px" />
+      {{else}}
+      <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="width:250px; height:250px" />
+      {{/if}}
+      <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+      <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
+        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+      <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+      <br><br>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+      {{#each user.academicInterests}}
+      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+      {{/each}}
+      <br>
+      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+      {{#each user.extracurricularInterests}}
+      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+      {{/each}} <br>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+      <br>
+      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
+      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
+      <br>
+      {{#if owner}}
+      <div class = "align-text-center container-fluid">
+      <form style="border-top: 1px solid gray" method="POST" action="/uploadimage" enctype="multipart/form-data">
+        <h6 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Profile Image</h6>
+       <center><input style="display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE"> </center>
+     <center><button style="display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD</button> </center> <br>
+      </form>
+      <div>
+        {{#if owner}}
+          <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/users/edit/">ADD TO YOUR USER PROFILE</a></center>
+        {{/if}}
+        <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
+      </div>
+    </div>
+    {{/if}}
+    </div>
+  </div>
+</div>
+<br>
+
+<div class ="profile-container row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+  <h1 style="text-align: center"> Ambassador Profile </h1><br>
+  {{#if owner}}
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="#">COMPLETE YOUR AMBASSADOR PROFILE</a></center>
+  {{/if}}
+</div>
+</div>
+
+<div class ="profile-container row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+  <h1 style="text-align: center"> Ambassador Services </h1><br>
+  {{#if owner}}
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="#">ADD TO YOUR AMBASSODR SERVICES</a></center>
+  {{/if}}
+</div>
+</div>
+
+{{#if owner}}
+<div class ="profile-container row">
+  <div class="justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+  <h1 style="text-align: center"> Your Payment Setup </h1><br>
+  {{#if user.stripeAccountId}}
+  <center><h3>Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center>
+  <a style="margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn btn-primary" href="#">Edit Your Payment Route Information</a>
+  {{else}}
+  <h5 style="text-align: center"> Stripe Payment Info Status: Not Verified</h5>
+  <a style="margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Your Payment Route on Stripe</a>
+  {{/if}}
+</div>
+</div>
+{{/if}}
+
+<br>
+
+<!--
+<h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
+<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
+<div style="padding: 10px; border: solid 1px black" class ="container center-block">
+<h4>Email:</h4>
+<p>{{user.email}}</p>
+<h4>Biography:</h4>
+<p>{{user.biography}}</p>
+<h4>School:</h4>
+<p>{{user.school}}</p>
+<h4>Gender:</h4>
+<p>{{user.gender}}</p> <br><br>
+<b>Logged in as:</b> {{logged}} <br>
+<a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
+{{#if owner}}
+<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
+{{/if}}
+<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
+<a class = "btn btn-danger" href= "/logout">Logout</a>
+</div>
+-->
+</div>
