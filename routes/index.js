@@ -50,7 +50,10 @@ function hashPassword(password) {
 
 //Apiary forum routes
 router.get('/network/forum', (req, res) => {
-  res.render('./Forum/forum')
+  res.render('./Forum/forum', {
+    loggedIn: true,
+    networkToggled: true,
+  })
 })
 
 // Profile stuff
