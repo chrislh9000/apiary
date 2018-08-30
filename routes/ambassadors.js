@@ -44,9 +44,11 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
         let availableBalance;
         let pendingBalance;
         console.log('===Services===', ambassador.services[0])
-        if (ambassador.stripeAccountId) balance = await stripe.balance.retrieve({ stripe_account: ambassador.stripeAccountId });
-        availableBalance = balance.available[0].amount
-        pendingBalance = balance.pending[0].amount;
+        if (ambassador.stripeAccountId) {
+          balance = await stripe.balance.retrieve({ stripe_account: ambassador.stripeAccountId });
+          availableBalance = balance.available[0].amount
+          pendingBalance = balance.pending[0].amount;
+        }
         res.render('./Ambassadors/ambassador-profile', {
           user: ambassador,
           logged: req.user.username,
@@ -65,7 +67,8 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
         })
       })
       .catch(error => {
-        res.send(error);
+        res.send(error.stack);
+        console.log('Error:', error);
       })
     })
     .catch(err => {
