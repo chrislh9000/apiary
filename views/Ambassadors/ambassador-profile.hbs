@@ -92,6 +92,22 @@
     <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
       <button type="submit" class="btn btn-danger">Delete Service</button>
     </form>
+    <form action="/post/checkout" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
+    data-amount={{this.price}}
+    data-description={{this.description}}
+    data-billing-address=true
+    data-label="Purchase this Service"
+    data-name="chrislh9000"
+    data-description="Widget"
+    data-zip-code="true"
+    data-image="/images/apiarylogoblack.png"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</form>
   </div>
   {{/each}} <br>
   {{#if owner}}

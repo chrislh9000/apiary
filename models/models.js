@@ -189,7 +189,7 @@ const stripePaymentSchema = new Schema({
 })
 
 //method gives ambassador 20% of the compensation
-stripePaymentSchema.methods.amountforAmbassador() = () => {
+stripePaymentSchema.methods.amountforAmbassador = () => {
   return parseInt(this.paymentAmount * 0.8);
 }
 
