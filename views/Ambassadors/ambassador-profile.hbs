@@ -22,7 +22,7 @@
     </div>
   {{/if}}
   <h1 class = "bigTitleFont-black" style="text-align: center"> AMBASSADOR PROFILE </h1> <br>
-  <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+  <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.user.name}} </h1>
   <br>
   <div class="row profile-container" style="min-height: 600px">
     <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
@@ -31,11 +31,11 @@
       {{else}}
       <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="width:250px; height:250px" />
       {{/if}}
-      <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
-      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+      <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.email}}</h3>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.school}}</h5>
       <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
         <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-      <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+      <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.user.biography}}</i> </center>
       <br><br>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
       {{#each user.academicInterests}}

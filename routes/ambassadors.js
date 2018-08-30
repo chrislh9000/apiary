@@ -53,6 +53,7 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
           user: ambassador,
           logged: req.user.username,
           username: req.user.username,
+          consultantSkype: req.user.skypeName,
           image: ambassador.user.image? image.cloudinaryUrl : null,
           owner: true,
           networkToggled: true,
@@ -79,6 +80,39 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
     res.redirect('/users/myProfile')
   }
 })
+
+router.get('/:id', (req, res) => {
+  if (req.user.userType === 'user' || !req.user) {
+    res.redirect('/')
+  } else {
+    Ambassador.findById(req.params.id)
+    .populate({
+      path: 'user services',
+      populate: {
+        path: 'image'
+      }
+    })
+    .exec()
+    .then(ambassador => {
+      res.render('./Ambassadors/ambassador-profile', {
+        user: ambassador,
+        services: ambassador.services,
+        logged: req.user.username,
+        owner: false,
+        consultantSkype: ambassador.user.skype,
+        image: ambassador.user.image? ambassador.user.image.cloudinaryUrl : null,
+        networkToggled: true,
+        loggedIn: true,
+      })
+    }).catch((error) => {
+      console.log('Error', error)
+      res.redirect('/users/ambassdors')
+    })
+  }
+})
+
+
+
 //Ambassador profile editing routes
 router.get('/services/add', (req, res) => {
   res.render('./Ambassadors/ambassador-add-services', {

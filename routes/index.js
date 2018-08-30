@@ -13,6 +13,7 @@ const OauthToken = models.OauthToken;
 const Consultant = models.Consultant;
 const Consultation = models.Consultation;
 const Image = models.Image;
+const Ambassador = models.Ambassador;
 //image uploading stuff
 
 //moments js
@@ -203,6 +204,38 @@ router.get('/users/all', function(req, res, next) {
   }).catch((err) => {
     console.error(err);
   })
+})
+
+router.get('/users/ambassadors', (req, res) => {
+  if (req.user.userType === 'user' || !req.user.userType) {
+    res.render('network-payment-wall', {
+      message: 'Apiary Network Ambassadors',
+      loggedIn: true,
+      canPurchase: true,
+      networkToggled: true
+    })
+  } else {
+    Ambassador.find()
+    .populate({
+      path: 'user',
+      populate: {
+        path: 'image'
+      }
+    })
+    .exec()
+    .then(ambassadors => {
+      res.render('./Ambassadors/ambassador-network-profiles', {
+        ambassadors: ambassadors,
+        logged: req.user.username,
+        networkToggled: true,
+        loggedIn: true
+      })
+  })
+  .catch(err => {
+    console.error(err);
+    res.redirect('/users/myProfile');
+  })
+}
 })
 
 //view a single profile
