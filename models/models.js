@@ -130,6 +130,9 @@ var userSchema = new Schema({
       default: [],
     }
   ],
+  stripeCustomerId: {
+    type: String,
+  }
 })
 
 //Consultant and Ambassador Schema
@@ -331,6 +334,11 @@ const serviceSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true,
+  },
+  ambassador: {
+    type: Schema.Types.ObjectId,
+    ref: 'Ambassador',
     required: true,
   },
   title: {

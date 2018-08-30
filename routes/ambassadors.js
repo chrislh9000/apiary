@@ -94,6 +94,9 @@ router.get('/:id', (req, res) => {
     })
     .exec()
     .then(ambassador => {
+      ambassador.services.map((service) => {
+        service.stripePrice = service.price * 100;
+      })
       res.render('./Ambassadors/ambassador-profile', {
         user: ambassador,
         services: ambassador.services,
@@ -106,7 +109,7 @@ router.get('/:id', (req, res) => {
       })
     }).catch((error) => {
       console.log('Error', error)
-      res.redirect('/users/ambassdors')
+      res.redirect('/users/ambassadors')
     })
   }
 })
@@ -127,18 +130,26 @@ router.get('/services/delete/:id', (req, res) => {
 })
 
 router.post('/services/add', (req, res) => {
-  const newService = new Service ({
-    user: req.user._id,
-    title: req.body.serviceTitle,
-    description: req.body.serviceDescription,
-    price: Number(req.body.servicePrice),
-  })
-  newService.save()
-  .then(service => {
-    Ambassador.findOneAndUpdate({user: req.user._id}, {$push : {services: service._id}}, {new: true})
-    .then(ambassador => {
-      console.log('successfully added service!')
-      res.redirect('/ambassadors/myProfile?serviceadd=success')
+  Ambassador.findOne({user: req.user._id})
+  .then(ambassador => {
+    const newService = new Service ({
+      user: req.user._id,
+      title: req.body.serviceTitle,
+      description: req.body.serviceDescription,
+      price: Number(req.body.servicePrice),
+      ambassador: ambassador._id
+    })
+    newService.save()
+    .then(service => {
+      Ambassador.findOneAndUpdate({user: req.user._id}, {$push : {services: service._id}}, {new: true})
+      .then(ambassador => {
+        console.log('successfully added service!')
+        res.redirect('/ambassadors/myProfile?serviceadd=success')
+      })
+    })
+    .catch(err => {
+      console.error(err)
+      res.redirect('/services/add?addService=fail');
     })
   })
   .catch(err => {
@@ -209,6 +220,136 @@ router.get('/stripe/token', ambassadorRequired, async (req, res) => {
       })
     }
   });
+})
+
+router.get('/stripe/transfers', ambassadorRequired, async (req, res) => {
+  Ambassador.findOne({user: req.user._id})
+  .then(async ambassador => {
+    if (!ambassador.stripeAccountId) {
+      return res.redirect('/ambassadors/myProfile');
+    }
+    try {
+      // Generate a unique login link for the associated Stripe account.
+      const loginLink = await stripe.accounts.createLoginLink(ambassador.stripeAccountId);
+      // Retrieve the URL from the response and redirect the user to Stripe.
+      return res.redirect(loginLink.url);
+    } catch (err) {
+      console.log('Failed to create a Stripe login link.');
+      return res.redirect('/ambassadors/myProfile');
+    }
+  })
+});
+
+//payment handling
+
+router.post('/checkout/:id', (req, res) => {
+  console.log('CHECKOUT PROCESS INITIALIZED');
+  console.log('====BODY=====', req.body);
+  Service.findById(req.params.id)
+  .populate('ambassador')
+  .exec()
+  .then(service => {
+    console.log('===Service====', service);
+    console.log('===StripeCustomer====', req.user.stripeCustomerId);
+    if (req.user.stripeCustomerId) {
+      stripe.customer.retrieve(String(req.user.stripeCustomerId))
+      .then(customer => {
+        // YOUR CODE: Save the customer ID and other info in a database for later.
+        console.log('successfully created customer=====', customer);
+        const newCharge = stripe.charges.create({
+          amount: service.price*100,
+          currency: "usd",
+          customer: customer.id,
+          source: customer.source,
+          description: 'Apiary Network Ambassador Consultation',
+          destination: {
+            // Send the amount for the pilot after collecting a 20% platform fee.
+            // Typically, the `amountForPilot` method simply computes `ride.amount * 0.8`.
+            amount: service.price*80,
+            // The destination of this charge is the pilot's Stripe account.
+            account: service.ambassador.stripeAccountId,
+          },
+        });
+        return newCharge;
+      })
+      .then(charge => {
+        console.log('====charge====', charge);
+        const newStripePayment = new StripePayment({
+          stripeBrand: charge.source.brand,
+          stripeCustomerId: charge.customer,
+          stripeExpMonth: charge.source.exp_month,
+          paymentAmount: charge.amount,
+          stripeExpYear: charge.source.exp_year,
+          stripeLast4: charge.source.last4,
+          stripeSource: charge.source.id,
+          status: charge.status,
+          user: req.user._id,
+          ambassador: service.ambassador._id,
+        });
+        newStripePayment.save()
+      })
+      .then(payment => {
+        console.log('===Payment====', payment)
+        res.redirect('/users/myProfile?ambassadorPayment=success');
+      })
+      .catch(err => {
+        console.error(err)
+        res.redirect('/users/myProfile?ambassadorPayment=fail');
+      })
+    } else {
+      stripe.customers.create({
+        email: req.body.stripeEmail,
+        source: req.body.stripeToken,
+        description: `${req.user.name}'s Customer ID for Apiary Solutions'`
+      })
+      .then(customer => {
+        User.findByIdAndUpdate(req.user._id, {$set: {stripeCustomerId: customer.id}}, {new: true})
+        .then(user => {
+          // YOUR CODE: Save the customer ID and other info in a database for later.
+          console.log('successfully created customer=====', customer);
+          const newCharge = stripe.charges.create({
+            amount: service.price*100,
+            currency: "usd",
+            customer: customer.id,
+            source: customer.source,
+            description: 'Apiary Network Ambassador Consultation',
+            destination: {
+              // Send the amount for the pilot after collecting a 20% platform fee.
+              // Typically, the `amountForPilot` method simply computes `ride.amount * 0.8`.
+              amount: service.price* 80,
+              // The destination of this charge is the pilot's Stripe account.
+              account: service.ambassador.stripeAccountId,
+            },
+          });
+          return newCharge;
+        })
+        .then(charge => {
+          console.log('====charge====', charge);
+          const newStripePayment = new StripePayment({
+            stripeBrand: charge.source.brand,
+            stripeCustomerId: charge.customer,
+            stripeExpMonth: charge.source.exp_month,
+            paymentAmount: charge.amount,
+            stripeExpYear: charge.source.exp_year,
+            stripeLast4: charge.source.last4,
+            stripeSource: charge.source.id,
+            status: charge.status,
+            user: req.user._id,
+            ambassador: service.ambassador._id,
+          });
+          newStripePayment.save()
+        })
+        .then(payment => {
+          console.log('===Payment====', payment)
+          res.redirect('/users/myProfile?ambassadorPayment=success');
+        })
+      })
+      .catch(err => {
+        console.error(err)
+        res.redirect('/users/myProfile?ambassadorPayment=fail');
+      })
+    }
+  })
 })
 
 

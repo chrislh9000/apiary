@@ -84,11 +84,11 @@
     <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
       <button type="submit" class="btn btn-danger">Delete Service</button><br>
     </form>
-    <form action="/post/checkout" method="POST">
+    <form action="/ambassadors/checkout/{{this._id}}" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
-    data-amount={{this.price}}
+    data-amount={{this.stripePrice}}
     data-description={{this.description}}
     data-billing-address=true
     data-label="Purchase this Service"
@@ -115,6 +115,7 @@
   <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
   {{#if user.stripeAccountId}}
   <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
+  <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finishing Verification and View Your Stripe Transfers</a></center>
   <center><a style="margin-bottom: 10px" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
   {{else}}
   <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
