@@ -48,6 +48,11 @@ function hashPassword(password) {
   return hash.digest('hex');
 }
 
+//Apiary forum routes
+router.get('/network/forum', (req, res) => {
+  res.render('./Forum/forum')
+})
+
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
   let hasImage= true;
