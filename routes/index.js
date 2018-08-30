@@ -178,7 +178,7 @@ router.get('/users/all', function(req, res, next) {
       .exec()
       .then(users => {
         const networkMembers = _.filter(users, (user) => {
-          return user.userType !== 'user';
+          return user.userType !== 'user' || 'ambassador';
         })
         res.render('networkProfiles', {
           users: networkMembers,

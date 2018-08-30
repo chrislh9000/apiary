@@ -1,0 +1,28 @@
+<div class = "container-fluid">
+<center><h1>Add Services to Your Ambassador Page</h1></center>
+<form method="POST">
+<div style="font-size: 20" class = "profile-container">
+  <center><label>Service Name</label></center>
+  <div class="wrap-input100 validate-input form-group" data-validate = "Enter Service Title">
+    <input class="input100 " type="text" name="serviceTitle" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+    <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+  </div>
+  <center><label>Service Description</label></center>
+  <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
+    <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+    <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+  </div>
+  <center><label>Service Price <b>(Price Must Be Between $30-$150)</b></label></center>
+  <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Price">
+    <input min="30" max="150" class="input100" type="text" name="servicePrice" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+    <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+  </div>
+</div>
+<center><a class = "btn btn-danger" href="/ambassadors/myProfile">Cancel</a></center><br>
+<center><button type="submit" class="btn btn-info">Create New Service</button></center>
+</form>
+
+
+
+
+</div>

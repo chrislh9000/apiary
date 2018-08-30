@@ -186,15 +186,12 @@ const stripePaymentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Ambassador'
   },
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  }
 })
+
+//method gives ambassador 20% of the compensation
+stripePaymentSchema.methods.amountforAmbassador() = () => {
+  return parseInt(this.paymentAmount * 0.8);
+}
 
 const paypalPaymentSchema = new Schema ({
   paymentId: String,
@@ -311,7 +308,7 @@ const ambassadorSchema = new Schema({
   },
   services: [{
     type: Schema.Types.ObjectId,
-    ref: 'Product',
+    ref: 'Service',
     default: [],
   }],
   stripeVerified: {
@@ -321,6 +318,7 @@ const ambassadorSchema = new Schema({
   },
   address: String,
   postalCode: String,
+  bioInfo: String,
   city: String,
   stripeAccountId: String,
   created: {
@@ -329,7 +327,29 @@ const ambassadorSchema = new Schema({
   },
 })
 
-
+const serviceSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
+  price: {
+    type: Number,
+    required: true,
+  }
+})
 
 //MONGODB MODELS
 const User = mongoose.model('User', userSchema);
@@ -341,6 +361,7 @@ const Ambassador = mongoose.model('Ambassador', ambassadorSchema);
 const Consultation = mongoose.model('Consultation', consultationSchema);
 const OauthToken = mongoose.model('Token', oauthTokenSchema);
 const ProfileImage = mongoose.model('Image', imageSchema);
+const Service = mongoose.model('Service', serviceSchema);
 
 
 
@@ -354,4 +375,5 @@ module.exports = {
   Consultation: Consultation,
   Image : ProfileImage,
   PaypalPayment: PaypalPayment,
+  Service: Service,
 }

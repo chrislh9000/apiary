@@ -8,6 +8,9 @@ var models = require('../models/models');
 var User = models.User;
 const Ambassador = models.Ambassador;
 const Image = models.Image;
+const Service = models.Service
+
+
 var crypto = require('crypto');
 //stripe stuff//
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -27,23 +30,23 @@ router.get('/register', (req, res) => {
   res.render('./Ambassadors/ambassador-register');
 })
 
-router.get('/myProfile', (req, res) => {
+router.get('/myProfile', ambassadorRequired, async (req, res) => {
   if (req.user.userType === 'ambassador') {
     let hasImage= true;
     Image.findOne({user: req.user._id})
     .then(image => {
       if (!image) hasImage = false;
-      // User.findOne({_id: req.user._id})
-      // .populate({
-      //   path: 'consultant',
-      //   populate: {
-      //     path: 'user'
-      //   }
-      // })
       Ambassador.findOne({user: req.user._id})
-      .populate('user')
+      .populate('user services')
       .exec()
-      .then((ambassador) => {
+      .then(async (ambassador) => {
+        let balance;
+        let availableBalance;
+        let pendingBalance;
+        console.log('===Services===', ambassador.services[0])
+        if (ambassador.stripeAccountId) balance = await stripe.balance.retrieve({ stripe_account: ambassador.stripeAccountId });
+        availableBalance = balance.available[0].amount
+        pendingBalance = balance.pending[0].amount;
         res.render('./Ambassadors/ambassador-profile', {
           user: ambassador,
           logged: req.user.username,
@@ -52,6 +55,9 @@ router.get('/myProfile', (req, res) => {
           owner: true,
           networkToggled: true,
           loggedIn: true,
+          services: ambassador.services,
+          availableBalance: balance ? String(availableBalance) : '0.00',
+          pendingBalance: balance ? String(pendingBalance) : '0.00',
           consultantPortal: ambassador.user.userType === 'admin' || ambassador.user.userType === 'consultant' ? true : false,
           adminPortal: ambassador.user.userType === 'admin' ? true : false,
           successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
@@ -70,6 +76,46 @@ router.get('/myProfile', (req, res) => {
     res.redirect('/users/myProfile')
   }
 })
+//Ambassador profile editing routes
+router.get('/services/add', (req, res) => {
+  res.render('./Ambassadors/ambassador-add-services', {
+    loggedIn: true,
+    networkToggled: true,
+  });
+})
+
+router.get('/services/delete/:id', (req, res) => {
+  console.log('chill')
+  res.redirect('/ambassadors/myProfile')
+})
+
+router.post('/services/add', (req, res) => {
+  const newService = new Service ({
+    user: req.user._id,
+    title: req.body.serviceTitle,
+    description: req.body.serviceDescription,
+    price: Number(req.body.servicePrice),
+  })
+  newService.save()
+  .then(service => {
+    Ambassador.findOneAndUpdate({user: req.user._id}, {$push : {services: service._id}}, {new: true})
+    .then(ambassador => {
+      console.log('successfully added service!')
+      res.redirect('/ambassadors/myProfile?serviceadd=success')
+    })
+  })
+  .catch(err => {
+    console.error(err)
+    res.redirect('/ambassadors/myProfile?serviceadd=fail')
+  })
+})
+
+//add to ambassador profile
+router.get('/edit/ambassadorProfile', (req, res) => {
+  res.render('./Ambassadors/ambassador-add-profile')
+})
+
+//stripe authorization
 
 router.get('/stripe/authorize', ambassadorRequired, (req, res) => {
   req.session.state = Math.random().toString(36).slice(2);
@@ -127,6 +173,7 @@ router.get('/stripe/token', ambassadorRequired, async (req, res) => {
     }
   });
 })
+
 
 
 
