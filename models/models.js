@@ -288,6 +288,11 @@ const imageSchema = new Schema ({
     type: String,
     required: true,
   },
+  ambassador: {
+    type: Schema.Types.ObjectId,
+    ref: 'Ambassador',
+    required: false,
+  }
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -296,6 +301,7 @@ const imageSchema = new Schema ({
     type: String,
   }
 })
+
 
 //Ambassador Schema
 const ambassadorSchema = new Schema({
