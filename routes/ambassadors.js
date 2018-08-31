@@ -8,7 +8,8 @@ var models = require('../models/models');
 var User = models.User;
 const Ambassador = models.Ambassador;
 const Image = models.Image;
-const Service = models.Service
+const Service = models.Service;
+const StripePayment = models.StripePayment;
 
 
 var crypto = require('crypto');
@@ -250,9 +251,9 @@ router.post('/checkout/:id', (req, res) => {
   .exec()
   .then(service => {
     console.log('===Service====', service);
-    console.log('===StripeCustomer====', req.user.stripeCustomerId);
+    console.log('===StripeCustomer====', typeof req.user.stripeCustomerId);
     if (req.user.stripeCustomerId) {
-      stripe.customer.retrieve(String(req.user.stripeCustomerId))
+      stripe.customers.retrieve(String(req.user.stripeCustomerId))
       .then(customer => {
         // YOUR CODE: Save the customer ID and other info in a database for later.
         console.log('successfully created customer=====', customer);

@@ -4,11 +4,79 @@ const passport = require('passport');
 const models = require('../models/models');
 const User = models.User;
 const Consultant = models.Consultant;
+const Ambassador = models.Ambassador;
+const Service = models.Service;
 
 const bodyParser = require('body-parser')
 const _ = require('underscore');
 
+//Ambassadors
+router.get('/admin/ambassadors', (req, res) => {
+  if (req.user.userType !== 'admin') {
+    res.redirect(404, '/?permissions=false');
+    console.log("error: you don't have permissions to access this page")
+  }
+  Ambassador.find()
+  .populate('user services')
+  .exec()
+  .then(ambassadors => {
+    console.log('===AMBASSADORS===', ambassadors);
+    res.render('./Admin/admin-ambassadors', {
+      loggedIn: true,
+      networkToggled: true,
+      ambassadors: ambassadors,
+    })
+  })
+})
 
+router.get('/admin/ambassadors/approve/:id', (req, res) => {
+  if (req.user.userType !== 'admin') {
+    res.redirect(404, '/?permissions=false');
+    console.log("error: you don't have permissions to access this page")
+  }
+  Ambassador.findByIdAndUpdate(req.params.id, {$set: {approved: true}}, {new: true})
+  .then(ambassador => {
+    console.log('successful approval')
+    res.redirect('/admin/ambassadors')
+  })
+})
+
+router.get('/admin/ambassadors/block/:id', (req, res) => {
+  if (req.user.userType !== 'admin') {
+    res.redirect(404, '/?permissions=false');
+    console.log("error: you don't have permissions to access this page")
+  }
+  Ambassador.findByIdAndUpdate(req.params.id, {$set: {approved: false}}, {new: true})
+  .then(ambassador => {
+    console.log('successful unapproval')
+    res.redirect('/admin/ambassadors')
+  })
+})
+
+router.get('/admin/ambassadors/services/clear/:id', (req, res) => {
+  if (req.user.userType !== 'admin') {
+    res.redirect(404, '/?permissions=false');
+    console.log("error: you don't have permissions to access this page")
+  }
+  Ambassador.findByIdAndUpdate(req.params.id, {$set: {services: []}}, {new: true})
+  .then(ambassador => {
+    Service.deleteMany({ambassador: ambassador._id})
+    .then(resp => {
+      console.log('successful unapproval')
+      res.redirect('/admin/ambassadors')
+    })
+    .catch(err => {
+      console.error(err);
+      res.redirect('/admin')
+    })
+  })
+  .catch(err => {
+    console.error(err);
+    res.redirect('/');
+  })
+})
+
+//Clients and consultants
 router.get('/admin', function(req, res, next) {
   if (req.user.userType !== 'admin') {
     res.redirect(404, '/?permissions=false');
