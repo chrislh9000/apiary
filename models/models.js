@@ -327,6 +327,9 @@ const ambassadorSchema = new Schema({
   },
   address: String,
   postalCode: String,
+  accomplishments: String,
+  specialties: String, //potential turn into array later
+  additionalInfo: String,
   bioInfo: String,
   city: String,
   stripeAccountId: String,
@@ -362,7 +365,15 @@ const serviceSchema = new Schema({
   price: {
     type: Number,
     required: true,
-  }
+  },
+  qualifications: String,
+  exampleImages: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Image',
+      required: false,
+    }
+  ]
 })
 
 //MONGODB MODELS

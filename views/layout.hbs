@@ -105,10 +105,15 @@
         <div class = "row">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul style='float: none' class="navbar-nav mr-auto">
+            {{#if ambassadorProfile}}
+            <a style="" id="direct-nav" class="nav-link center-block" href="/ambassadors/myProfile" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+              AMBASSADOR
+            </a>
+            {{else}}
             <a style="" id="direct-nav" class="nav-link center-block" href="/users/myProfile" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
               MY PROFILE
             </a>
-
+            {{/if}}
             <li class="nav-item dropdown">
               <a1 style="margin-left:50px" id="dropdown-apiary-nav" class="center-block nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 NETWORK

@@ -54,6 +54,7 @@ router.get('/network/forum', (req, res) => {
   res.render('./Forum/forum', {
     loggedIn: true,
     networkToggled: true,
+    ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
   })
 })
 
@@ -78,6 +79,7 @@ router.get('/users/myProfile', function(req, res, next) {
           username: req.user.username,
           image: user.image? image.cloudinaryUrl : null,
           owner: true,
+          ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
           networkToggled: true,
           loggedIn: true,
           consultantSkype: user.consultant ? user.consultant.skype : null,
@@ -109,6 +111,7 @@ router.get('/users/edit', function(req, res, next) {
       lastName: user.name.split(" ")[1],
       networkToggled: true,
       loggedIn: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       logged: req.user.username,
       dateOfBirth: req.user.dateOfBirth,
       academicInterests: req.user.academicInterests,
@@ -172,6 +175,7 @@ router.get('/users/all', function(req, res, next) {
       res.render('network-payment-wall', {
         message: 'Apiary Network Members',
         loggedIn: true,
+        ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         canPurchase: true,
         networkToggled: true
       })
@@ -192,6 +196,7 @@ router.get('/users/all', function(req, res, next) {
           users: networkMembers,
           logged: req.user.username,
           networkToggled: true,
+          ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
           consultantSkype: user.consultant ? user.consultant.skype : null,
           loggedIn: true
         })
@@ -211,6 +216,7 @@ router.get('/users/ambassadors', (req, res) => {
       message: 'Apiary Network Ambassadors',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -226,6 +232,7 @@ router.get('/users/ambassadors', (req, res) => {
       res.render('./Ambassadors/ambassador-network-profiles', {
         ambassadors: ambassadors,
         logged: req.user.username,
+        ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         networkToggled: true,
         loggedIn: true
       })
@@ -248,6 +255,7 @@ router.get('/users/:userid', function(req, res, next) {
       user: user,
       logged: req.user.username,
       owner: false,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       consultantSkype: user.skype,
       image: user.image? user.image.cloudinaryUrl : null,
       networkToggled: true,
@@ -401,6 +409,7 @@ router.get('/database/essays', (req, res, next) => {
       message: 'Apiary Essay Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -408,6 +417,7 @@ router.get('/database/essays', (req, res, next) => {
       message: 'Apiary Academic Excellence Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
@@ -419,6 +429,7 @@ router.get('/database/internships', (req, res) => {
       message: 'Apiary Essay Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -426,6 +437,7 @@ router.get('/database/internships', (req, res) => {
       message: 'Apiary Internships Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
@@ -437,6 +449,7 @@ router.get('/database/test-prep', (req, res) => {
       message: 'Apiary Essay Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -444,6 +457,7 @@ router.get('/database/test-prep', (req, res) => {
       message: 'Apiary Test Prep Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
@@ -455,6 +469,7 @@ router.get('/database/classNotes', (req, res, next) => {
       message: 'Apiary Academic Excellence Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -472,26 +487,20 @@ router.get('/database/resumes', (req, res, next) => {
       message: 'Apiary Resume Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
     res.render('resumes', {
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
 })
 
-//Image UPLOADING
-router.get('/uploadimage', (req, res) => {
-  res.render('./Profiles/images', {
-    networkToggled: true,
-    loggedIn: true,
-  })
-})
-
-
+//File UPLOADING
 
 router.post('/uploadimage', upload.single('image'), function (req, res, next) {
   const fileType = req.file.mimetype.slice(0,5);
@@ -585,16 +594,16 @@ router.get('/calendar', function(req, res, next) {
 
 ////////////////////////////////////////NEWSFEED/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-router.get('/network/newsfeed', (req, res) => {
-  res.render('./Network/apiary-feed');
-});
-
-router.get('/test/newsfeed', (req, res) => {
-  res.render('./Network/newsfeed', {
-    networkToggled: true,
-    loggedIn: true,
-  });
-})
+// router.get('/network/newsfeed', (req, res) => {
+//   res.render('./Network/apiary-feed');
+// });
+//
+// router.get('/test/newsfeed', (req, res) => {
+//   res.render('./Network/newsfeed', {
+//     networkToggled: true,
+//     loggedIn: true,
+//   });
+// })
 
 
 

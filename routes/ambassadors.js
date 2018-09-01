@@ -28,7 +28,63 @@ function ambassadorRequired (req, res, next) {
 
 
 router.get('/register', (req, res) => {
-  res.render('./Ambassadors/ambassador-register');
+  res.render('./Ambassadors/ambassador-register', {
+    loggedIn: req.user? true : false,
+  });
+})
+
+router.get('/edit', (req, res) => {
+  User.findOne({username: req.user.username})
+  .then((user) => {
+    console.log('userSchool', user.school);
+    res.render('./Ambassadors/edit-ambassador', {
+      user: user,
+      firstName: user.name.split(" ")[0],
+      lastName: user.name.split(" ")[1],
+      networkToggled: true,
+      loggedIn: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+      logged: req.user.username,
+      dateOfBirth: req.user.dateOfBirth,
+      academicInterests: req.user.academicInterests,
+      extracurricularInterests: req.user.academicInterests,
+      country: req.user.country,
+      intendedMajor: req.user.intendedMajor,
+      genderMale: req.user.gender === 'Male'
+      ? 'checked'
+      : null,
+      genderFemale: req.user.gender === 'Female'
+      ? 'checked'
+      : null,
+      genderOther: req.user.gender === 'Other'
+      ? 'checked'
+      : null
+    })
+  }).catch((error) => {
+    res.send(error);
+  })
+})
+
+router.post('/edit', function(req, res, next) {
+  User.findOneAndUpdate({
+    username: req.user.username
+  }, {
+    username: req.body.username,
+    name: req.body.firstName + ' ' + req.body.lastName,
+    school: req.body.school,
+    email: req.body.email,
+    gender: req.body.gender,
+    biography: req.body.biography,
+    academicInterests: [req.body.interest0, req.body.interest1, req.body.interest2],
+    extracurricularInterests: [req.body.hobby0, req.body.hobby1, req.body.hobby2],
+    intendedMajor: req.body.intendedMajor,
+  }).exec().then((resp) => {
+    console.log('User successfully updated', resp);
+    res.redirect('/ambassadors/myProfile?edit=success');
+  }).catch((error) => {
+    console.log('Error', error);
+    res.redirect('/ambassadors/myProfile?edit=fail');
+  })
 })
 
 router.get('/myProfile', ambassadorRequired, async (req, res) => {
@@ -57,6 +113,7 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
           consultantSkype: req.user.skypeName,
           image: ambassador.user.image? image.cloudinaryUrl : null,
           owner: true,
+          ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
           networkToggled: true,
           loggedIn: true,
           services: ambassador.services,
@@ -102,6 +159,7 @@ router.get('/:id', (req, res) => {
         user: ambassador,
         services: ambassador.services,
         logged: req.user.username,
+        ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         owner: false,
         consultantSkype: ambassador.user.skype,
         image: ambassador.user.image? ambassador.user.image.cloudinaryUrl : null,
@@ -122,11 +180,11 @@ router.get('/services/add', (req, res) => {
   res.render('./Ambassadors/ambassador-add-services', {
     loggedIn: true,
     networkToggled: true,
+    ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
   });
 })
 
 router.get('/services/delete/:id', (req, res) => {
-  console.log('chill')
   res.redirect('/ambassadors/myProfile')
 })
 
@@ -161,7 +219,35 @@ router.post('/services/add', (req, res) => {
 
 //add to ambassador profile
 router.get('/edit/ambassadorProfile', (req, res) => {
-  res.render('./Ambassadors/ambassador-add-profile')
+  Ambassador.findOne({user: req.user._id})
+  .then(ambassador => {
+    res.render('./Ambassadors/ambassador-add-profile', {
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+      loggedIn: true,
+      networkToggled: true,
+      ambassador: ambassador,
+    })
+  })
+  .catch(err => {
+    console.error(err);
+    res.redirect('/ambassadors/myProfile');
+  })
+})
+
+router.post('/edit/ambassadorProfile', (req, res) => {
+  Ambassador.findOneAndUpdate({user: req.user._id}, {
+    accomplishments: req.body.accomplishments,
+    specialties: req.body.specialties,
+    additionalInfo: req.body.additionalInfo,
+  }, {new: true})
+  .then(ambassador => {
+    console.log('===NEW AMBASSADOR===', ambassador);
+    res.redirect('/ambassadors/myProfile?ambassadorEdit=success');
+  })
+  .catch(err => {
+    console.error(err);
+    res.redirect('/ambassadors/myProfile?ambassadorEdit=fail')
+  })
 })
 
 //stripe authorization
