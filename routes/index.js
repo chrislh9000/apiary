@@ -586,7 +586,7 @@ router.get('/images/information', (req, res) => {
 })
 
 router.post('/images/information', (req, res) => {
-  console.log('===========CALLBACK IMAGE INITIATED=======');
+  console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
   res.send('IMAGES!')
 })
 
