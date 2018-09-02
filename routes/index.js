@@ -590,7 +590,9 @@ router.post('/images/information', (req, res) => {
   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
   Image.findOne({user: req.user._id})
   .then(image => {
+    console.log('=====IMAGE SEARCH INITIATED=====');
     if (!image) {
+      console.log('=====IMAGE NOT FOUND CREATING IN DB=====');
       const newImage = new Image({
         filename: req.body.original_filename,
         size: req.body.bytes,
@@ -600,6 +602,7 @@ router.post('/images/information', (req, res) => {
       })
       newImage.save()
       .then(img => {
+        console.log('=====IMAGE SAVED=====');
         User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
         .then(user => {
           console.log('USER SUCCESSFULLY UPDATED');
@@ -616,6 +619,7 @@ router.post('/images/information', (req, res) => {
         res.redirect('/ambassadors/myProfile?image=fail');
       })
     } else {
+      console.log('=====IMAGE FOUND UPDATING EXISTING MODEL=====');
       Image.findOneAndUpdate({user: req.user._id}, {
         filename: req.body.filename,
         size: req.body.bytes,
