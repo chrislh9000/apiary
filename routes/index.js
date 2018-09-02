@@ -589,7 +589,7 @@ router.post('/images/information', (req, res) => {
   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
   console.log('====TEST IMAGE LOG=====', req.user);
   // res.send('IMAGE!')
-  check of user already has previously uploaded an image
+  //check of user already has previously uploaded an image
   Image.findOne({user: req.user._id})
   .then(image => {
     console.log('=====IMAGE SEARCH INITIATED=====');
