@@ -585,75 +585,61 @@ router.get('/images/information', (req, res) => {
   res.send('IMAGES!')
 })
 
+
 router.post('/images/information', (req, res) => {
   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
-  // Image.findOne({user: req.user._id})
-  // .then(image => {
-  //   if (!image) {
-  //     const newImage = new Image({
-  //       filename: req.file.filename,
-  //       size: req.file.size,
-  //       type: imageExt,
-  //       user: req.user._id
-  //     })
-  //     newImage.save()
-  //     .then(img => {
-  //       User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
-  //       .then(user => {
-  //         console.log('USER SUCCESSFULLY UPDATED')
-  //         cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (err, result) => {
-  //           if (err) {
-  //             console.error(err);
-  //             res.redirect('/users/myProfile');
-  //           } else {
-  //             console.log('=====CLOUDINARY IMAGE UPLOADED=====')
-  //             Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
-  //             .then(img => {
-  //               res.redirect('/users/myProfile?image=success');
-  //             })
-  //           }
-  //         });
-  //       })
-  //       .catch(err => {
-  //         console.error(err);
-  //         res.redirect('/users/myProfile?image=fail')
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //     })
-  //   } else {
-  //     Image.findOneAndUpdate({user: req.user._id}, {
-  //       filename: req.file.filename,
-  //       size: req.file.size,
-  //       type: imageExt,
-  //       user: req.user._id,
-  //     })
-  //     .then((newImage) => {
-  //       console.log('UPDATED PROFILE IMAGE');
-  //       User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
-  //       .then(user => {
-  //         console.log('new image rendered');
-  //         //upload image to cloudinary
-  //         cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (result) => {
-  //           console.log('=====CLOUDINARY IMAGE UPLOADED=====');
-  //           Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
-  //           .then(img => {
-  //             res.redirect('/users/myProfile?image=success');
-  //           })
-  //         });
-  //       })
-  //       .catch(err => {
-  //         console.error(err)
-  //         res.redirect('/users/myProfile?image=fail')
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.redirect('/users/myProfile?image=fail')
-  //     })
-  //   }
-  // })
+  Image.findOne({user: req.user._id})
+  .then(image => {
+    if (!image) {
+      const newImage = new Image({
+        filename: req.body.original_filename,
+        size: req.body.bytes,
+        type: req.body.format,
+        user: req.user._id,
+        cloudinaryUrl: req.body.url,
+      })
+      newImage.save()
+      .then(img => {
+        User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+        .then(user => {
+          console.log('USER SUCCESSFULLY UPDATED');
+          console.log('=====CLOUDINARY IMAGE UPLOADED=====');
+          res.redirect('/ambassadors/myProfile');
+        })
+        .catch(err => {
+          console.error(err);
+          res.redirect('/ambassadors/myProfile?image=fail');
+        })
+      })
+      .catch(err => {
+        console.error(err);
+        res.redirect('/ambassadors/myProfile?image=fail');
+      })
+    } else {
+      Image.findOneAndUpdate({user: req.user._id}, {
+        filename: req.body.filename,
+        size: req.body.bytes,
+        type: req.body.format,
+        user: req.user._id,
+        cloudinaryUrl: req.body.url,
+      })
+      .then((newImage) => {
+        console.log('UPDATED PROFILE IMAGE');
+        User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
+        .then(user => {
+          res.redirect('/ambassadors/myProfile?image=success');
+        })
+        .catch(err => {
+          console.error(err)
+          res.redirect('/ambassadors/myProfile?image=fail')
+        })
+      })
+      .catch(err => {
+        console.error(err);
+        res.redirect('/users/myProfile?image=fail')
+      })
+    }
+  })
 })
 
 ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
