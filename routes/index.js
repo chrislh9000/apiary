@@ -73,21 +73,21 @@ router.get('/users/myProfile', function(req, res, next) {
     })
     .exec()
     .then((user) => {
-        res.render('profile', {
-          user: user,
-          logged: req.user.username,
-          username: req.user.username,
-          image: user.image? image.cloudinaryUrl : null,
-          owner: true,
-          ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
-          networkToggled: true,
-          loggedIn: true,
-          consultantSkype: user.consultant ? user.consultant.skype : null,
-          consultantPortal: user.userType === 'admin' || user.userType === 'consultant' ? true : false,
-          adminPortal: user.userType === 'admin' ? true : false,
-          successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
-          failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
-        })
+      res.render('profile', {
+        user: user,
+        logged: req.user.username,
+        username: req.user.username,
+        image: user.image? image.cloudinaryUrl : null,
+        owner: true,
+        ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+        networkToggled: true,
+        loggedIn: true,
+        consultantSkype: user.consultant ? user.consultant.skype : null,
+        consultantPortal: user.userType === 'admin' || user.userType === 'consultant' ? true : false,
+        adminPortal: user.userType === 'admin' ? true : false,
+        successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
+        failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
+      })
     })
     .catch(error => {
       res.send(error);
@@ -236,12 +236,12 @@ router.get('/users/ambassadors', (req, res) => {
         networkToggled: true,
         loggedIn: true
       })
-  })
-  .catch(err => {
-    console.error(err);
-    res.redirect('/users/myProfile');
-  })
-}
+    })
+    .catch(err => {
+      console.error(err);
+      res.redirect('/users/myProfile');
+    })
+  }
 })
 
 //view a single profile
@@ -587,7 +587,73 @@ router.get('/images/information', (req, res) => {
 
 router.post('/images/information', (req, res) => {
   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
-  res.send('IMAGES!')
+  // Image.findOne({user: req.user._id})
+  // .then(image => {
+  //   if (!image) {
+  //     const newImage = new Image({
+  //       filename: req.file.filename,
+  //       size: req.file.size,
+  //       type: imageExt,
+  //       user: req.user._id
+  //     })
+  //     newImage.save()
+  //     .then(img => {
+  //       User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+  //       .then(user => {
+  //         console.log('USER SUCCESSFULLY UPDATED')
+  //         cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (err, result) => {
+  //           if (err) {
+  //             console.error(err);
+  //             res.redirect('/users/myProfile');
+  //           } else {
+  //             console.log('=====CLOUDINARY IMAGE UPLOADED=====')
+  //             Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
+  //             .then(img => {
+  //               res.redirect('/users/myProfile?image=success');
+  //             })
+  //           }
+  //         });
+  //       })
+  //       .catch(err => {
+  //         console.error(err);
+  //         res.redirect('/users/myProfile?image=fail')
+  //       })
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //     })
+  //   } else {
+  //     Image.findOneAndUpdate({user: req.user._id}, {
+  //       filename: req.file.filename,
+  //       size: req.file.size,
+  //       type: imageExt,
+  //       user: req.user._id,
+  //     })
+  //     .then((newImage) => {
+  //       console.log('UPDATED PROFILE IMAGE');
+  //       User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
+  //       .then(user => {
+  //         console.log('new image rendered');
+  //         //upload image to cloudinary
+  //         cloudinary.uploader.upload(`public/profiles/${req.file.filename}`, (result) => {
+  //           console.log('=====CLOUDINARY IMAGE UPLOADED=====');
+  //           Image.findOneAndUpdate({user: req.user._id}, {cloudinaryUrl: result.url})
+  //           .then(img => {
+  //             res.redirect('/users/myProfile?image=success');
+  //           })
+  //         });
+  //       })
+  //       .catch(err => {
+  //         console.error(err)
+  //         res.redirect('/users/myProfile?image=fail')
+  //       })
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //       res.redirect('/users/myProfile?image=fail')
+  //     })
+  //   }
+  // })
 })
 
 ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
