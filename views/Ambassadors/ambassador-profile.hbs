@@ -34,8 +34,12 @@
         <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 10px #910000; width:250px; height:250px" />
         <!-- </div> -->
         {{/if}} <br>
+        {{#if owner}}
         <h6 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Profile Image</h6>
+        <div style="color: green" class="cloudinary-overwrite">
         <center><button id="image-upload" class ="btn btn-primary">Upload New Image</button></center>
+      </div>
+      {{/if}}
 
         <!-- <form style="border-bottom: 1px solid gray;" method="POST" action="/uploadimage" enctype="multipart/form-data">
         <center><input style="float: left; display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE" required> </center>
@@ -58,7 +62,7 @@
       <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
       {{/each}} <br>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Major </h5>
-      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.user.intendedMajor}}</h5>
       <div style="border-top: 1px solid gray" class = "qualifications-container container-fluid">
         <center><h2 style="color:#910000">Ambassador Qualifications</h2></center>
         <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Accomplishments and Accolades</h5>
@@ -91,16 +95,35 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
     <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
     <div class = "container-fluid">
+      <center><h3 style="color: #910000">Documents</h3></center>
       {{#each user.documents}}
+      <!-- <form>
+        <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
+        <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
+      </form> -->
       <a target="_blank" href={{this.cloudinaryUrl}}>
       <img class="center-block" src={{this.cloudinaryThumbnail}} />
-    </a>
+    </a> <br>
+    {{#if owner}}
+      <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
+      {{/if}}
       {{/each}}
     </div>
-    <form style="border-top: 1px solid gray" method="POST" action="/ambassadors/uploaddocument" enctype="multipart/form-data">
+    <center><h3 style="color: #910000">Links</h3></center>
+    {{#each user.links}}
+    <ul>
+    <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
+  </ul>
+    {{/each}}
+    {{#if owner}}
       <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
       <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
-    </form>
+      <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
+      <form method="POST" action="/documents/addlink">
+        <input class="form-control" name="link" placeholder="add links..."></input> <br>
+        <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
+      </form> <br>
+    {{/if}}
   </div>
 </div>
 
@@ -182,6 +205,7 @@
 -->
 <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 <script type="text/javascript">
+
 $('#image-upload').cloudinary_upload_widget(
   { cloud_name: 'apiary-solutions', upload_preset: 'test_upload',
   cropping: 'server', folder: 'ambassador_profiles' },
@@ -233,5 +257,7 @@ $('#image-upload').cloudinary_upload_widget(
         }
       })
     });
+
+    $('.cloudinary-button').text('Upload File')
 </script>
 </div>

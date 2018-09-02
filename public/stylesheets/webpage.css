@@ -21,7 +21,10 @@ dropdown-item, collapse, navbar-collapse
 }
 
 /* FONTS */
-
+.cloudinary-button {
+  font-family: sans-serif !important;
+  background-color: #910000 !important;
+}
 
 .topTier {
   color: white;

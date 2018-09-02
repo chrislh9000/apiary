@@ -288,6 +288,7 @@ const imageSchema = new Schema ({
     type: String,
     required: true,
   },
+  title: String,
   ambassador: {
     type: Schema.Types.ObjectId,
     ref: 'Ambassador',
@@ -329,6 +330,10 @@ const ambassadorSchema = new Schema({
   documents: [{
     type: Schema.Types.ObjectId,
     ref: 'Image',
+    default: [],
+  }],
+  links: [{
+    type: String,
     default: [],
   }],
   address: String,

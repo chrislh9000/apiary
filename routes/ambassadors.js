@@ -145,7 +145,7 @@ router.get('/:id', (req, res) => {
   } else {
     Ambassador.findById(req.params.id)
     .populate({
-      path: 'user services',
+      path: 'user services documents',
       populate: {
         path: 'image'
       }

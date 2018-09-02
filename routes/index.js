@@ -681,6 +681,13 @@ router.post('/documents/information', (req, res) => {
   })
 })
 
+router.post('/documents/addlink', (req, res) => {
+  Ambassador.findOneAndUpdate({user: req.user._id}, {$push : {links: req.body.link}}, {new: true})
+  .then(ambassador => {
+    console.log('====AMBASSADOR SUCCESSFULLY UPDATED======')
+    res.redirect('/ambassadors/myProfile?newlink=success');
+  })
+})
 
 // router.post('/images/information', (req, res) => {
 //   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
