@@ -585,38 +585,35 @@ router.get('/images/information', (req, res) => {
   res.send('IMAGES!')
 })
 
-
 router.post('/images/information', (req, res) => {
   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
   console.log('====TEST IMAGE LOG=====');
+  //check of user already has previously uploaded an image
   Image.findOne({user: req.user._id})
   .then(image => {
     console.log('=====IMAGE SEARCH INITIATED=====');
     if (!image) {
+      //case 1: user is uploading an image for the first time: create a new image and link it to the user model
       console.log('=====IMAGE NOT FOUND CREATING IN DB=====');
-      const newImage = new Image({
+      const newImage = new Image ({
         filename: req.body.original_filename,
         size: req.body.bytes,
         type: req.body.format,
         user: req.user._id,
         cloudinaryUrl: req.body.url,
       })
-      newImage.save();
+      newImage.save()
       .then(img => {
-        console.log('=====IMAGE SAVED=====');
+        //new image created, now update the user model to link the two together
+        console.log('====IMAGE SAVED===')
         User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
         .then(user => {
-          console.log('USER SUCCESSFULLY UPDATED');
-          console.log('=====CLOUDINARY IMAGE UPLOADED=====');
-          res.redirect('/ambassadors/myProfile');
-        })
-        .catch(err => {
-          console.error(err);
-          res.redirect('/ambassadors/myProfile?image=fail');
+          console.log('USER SUCCESSFULLY LINKED TO IMAGE');
+          res.redirect('/ambassadors/myProfile?image=success');
         })
       })
       .catch(err => {
-        console.error(err);
+        console.error(err)
         res.redirect('/ambassadors/myProfile?image=fail');
       })
     } else {
@@ -628,25 +625,85 @@ router.post('/images/information', (req, res) => {
         user: req.user._id,
         cloudinaryUrl: req.body.url,
       })
-      .then((newImage) => {
-        console.log('UPDATED PROFILE IMAGE');
-        User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
-        .then(user => {
-          res.redirect('/ambassadors/myProfile?image=success');
-        })
-        .catch(err => {
-          console.error(err)
-          res.redirect('/ambassadors/myProfile?image=fail')
-        })
+      .then(newImage => {
+        console.log('===SUCCESSFULLY UPDATED NEW IMAGE===')
+        res.redirect('/ambassadors/myProfile?image=success')
       })
       .catch(err => {
-        res.send('Error:', err);
-        console.error(err);
-        res.redirect('/users/myProfile?image=fail')
+        console.error(err)
+        res.redirect('/ambassadors/myProfile?image=fail')
       })
+      //case 2: user has already uploaded image, in which case just modify the image and user models
     }
   })
+  .catch(err => {
+    console.error(err)
+    res.send("ERROR FINDING IMAGE")
+  })
 })
+
+
+// router.post('/images/information', (req, res) => {
+//   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
+//   console.log('====TEST IMAGE LOG=====');
+//   Image.findOne({user: req.user._id})
+//   .then(image => {
+//     console.log('=====IMAGE SEARCH INITIATED=====');
+//     if (!image) {
+//       console.log('=====IMAGE NOT FOUND CREATING IN DB=====');
+//       const newImage = new Image({
+//         filename: req.body.original_filename,
+//         size: req.body.bytes,
+//         type: req.body.format,
+//         user: req.user._id,
+//         cloudinaryUrl: req.body.url,
+//       })
+//       newImage.save()
+//       .then(img => {
+//         console.log('=====IMAGE SAVED=====');
+//         User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+//         .then(user => {
+//           console.log('USER SUCCESSFULLY UPDATED');
+//           console.log('=====CLOUDINARY IMAGE UPLOADED=====');
+//           res.redirect('/ambassadors/myProfile');
+//         })
+//         .catch(err => {
+//           console.error(err);
+//           res.redirect('/ambassadors/myProfile?image=fail');
+//         })
+//       })
+//       .catch(err => {
+//         console.error(err);
+//         res.redirect('/ambassadors/myProfile?image=fail');
+//       })
+//     } else {
+//       console.log('=====IMAGE FOUND UPDATING EXISTING MODEL=====');
+//       Image.findOneAndUpdate({user: req.user._id}, {
+//         filename: req.body.filename,
+//         size: req.body.bytes,
+//         type: req.body.format,
+//         user: req.user._id,
+//         cloudinaryUrl: req.body.url,
+//       })
+//       .then((newImage) => {
+//         console.log('UPDATED PROFILE IMAGE');
+//         User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
+//         .then(user => {
+//           res.redirect('/ambassadors/myProfile?image=success');
+//         })
+//         .catch(err => {
+//           console.error(err)
+//           res.redirect('/ambassadors/myProfile?image=fail')
+//         })
+//       })
+//       .catch(err => {
+//         res.send('Error:', err);
+//         console.error(err);
+//         res.redirect('/users/myProfile?image=fail')
+//       })
+//     }
+//   })
+// })
 
 ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
