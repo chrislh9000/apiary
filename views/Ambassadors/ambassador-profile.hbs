@@ -27,163 +27,211 @@
       <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
         {{#if image}}
         <!-- <div class = "profile-image-frame container-fluid"> -->
-        <img src="{{image}}" class="center-block" style="width:200px; height:250px; border: solid 2px red" />
-      <!-- </div> -->
+        <img src="{{image}}" class="center-block" style="width:250px; height:250px; border: solid 10px #910000" />
+        <!-- </div> -->
         {{else}}
         <!-- <div style="background-color: gray;" class = "profile-image-frame container-fluid"> -->
         <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 10px #910000; width:250px; height:250px" />
-            <!-- </div> -->
+        <!-- </div> -->
         {{/if}} <br>
-          <h6 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Profile Image</h6>
+        <h6 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Profile Image</h6>
         <center><button id="image-upload" class ="btn btn-primary">Upload New Image</button></center>
 
         <!-- <form style="border-bottom: 1px solid gray;" method="POST" action="/uploadimage" enctype="multipart/form-data">
-          <center><input style="float: left; display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE" required> </center>
-          <center><button style="float: left; display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD IMAGE</button> </center> <br><br>
-        </form> -->
-        <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.email}}</h3>
-        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.school}}</h5>
-        <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
-        <center><h2 style="color:#910000">Basic Ambassador Information</h2></center>
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-        <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.user.biography}}</i> </center>
-        <br><br>
-        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
-        {{#each user.user.academicInterests}}
-        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-        {{/each}}
-        <br>
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
-        {{#each user.user.extracurricularInterests}}
-        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-        {{/each}} <br>
-        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Major </h5>
-        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
-        <div style="border-top: 1px solid gray" class = "qualifications-container container-fluid">
-          <center><h2 style="color:#910000">Ambassador Qualifications</h2></center>
-          <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Accomplishments and Accolades</h5>
-          {{user.accomplishments}}
-          <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Specialties</h5>
-          {{user.specialties}}
-          <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Additional Information</h5>
-          {{user.additionalInfo}}
-        </div>
-        <br>
-        {{#if owner}}
-        <div class = "align-text-center container-fluid">
-
-          <div>
-            {{#if owner}}
-            <br>
-            <center> <a style="background-color: #910000; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/edit/">EDIT YOUR BASIC INFO</a></center>
-            <center> <a style="background-color: #910000; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/edit/ambassadorProfile"> COMPLETE/EDIT AMBASSADOR PROFILE</a></center>
-            {{/if}}
-            <!-- <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE APIARY NETWORK</a><br></center> -->
-          </div>
-        </div>
-        {{/if}}
+        <center><input style="float: left; display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE" required> </center>
+        <center><button style="float: left; display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD IMAGE</button> </center> <br><br>
+      </form> -->
+      <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.email}}</h3>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.school}}</h5>
+      <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
+      <center><h2 style="color:#910000">Basic Ambassador Information</h2></center>
+      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+      <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.user.biography}}</i> </center>
+      <br><br>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+      {{#each user.user.academicInterests}}
+      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+      {{/each}}
+      <br>
+      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+      {{#each user.user.extracurricularInterests}}
+      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+      {{/each}} <br>
+      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Major </h5>
+      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+      <div style="border-top: 1px solid gray" class = "qualifications-container container-fluid">
+        <center><h2 style="color:#910000">Ambassador Qualifications</h2></center>
+        <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Accomplishments and Accolades</h5>
+        {{user.accomplishments}}
+        <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Specialties</h5>
+        {{user.specialties}}
+        <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Additional Information</h5>
+        {{user.additionalInfo}}
       </div>
+      <br>
+      {{#if owner}}
+      <div class = "align-text-center container-fluid">
+
+        <div>
+          {{#if owner}}
+          <br>
+          <center> <a style="background-color: #910000; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/edit/">EDIT YOUR BASIC INFO</a></center>
+          <center> <a style="background-color: #910000; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/edit/ambassadorProfile"> COMPLETE/EDIT AMBASSADOR PROFILE</a></center>
+          {{/if}}
+          <!-- <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE APIARY NETWORK</a><br></center> -->
+        </div>
+      </div>
+      {{/if}}
     </div>
   </div>
-  <br>
+</div>
+<br>
 
-  <div class ="profile-container row fixed-bg-sf">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-      <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
-      <form style="border-top: 1px solid gray" method="POST" action="/ambassadors/uploaddocument" enctype="multipart/form-data">
-        <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
-        <center><input style="float: left; display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE" required> </center>
-        <center><button style="float: left; display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD FILES</button> </center> <br><br>
+<div class ="profile-container row fixed-bg-sf">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+    <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
+    <div class = "container-fluid">
+      {{#each user.documents}}
+      <a target="_blank" href={{this.cloudinaryUrl}}>
+      <img class="center-block" src={{this.cloudinaryThumbnail}} />
+    </a>
+      {{/each}}
+    </div>
+    <form style="border-top: 1px solid gray" method="POST" action="/ambassadors/uploaddocument" enctype="multipart/form-data">
+      <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
+      <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
+    </form>
+  </div>
+</div>
+
+<div class ="profile-container row fixed-bg-sf">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+    <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Services </h1><br>
+    {{#each services}}
+    <div style="text-align: center" class="profile-container card">
+      <h5 class = "consultantTraining" >{{this.title}}</h5>
+      <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
+      <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
+      <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
+        <button type="submit" class="btn btn-danger">Delete Service</button><br>
+      </form>
+      <form action="/ambassadors/checkout/{{this._id}}" method="POST">
+        <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
+        data-amount={{this.stripePrice}}
+        data-description={{this.description}}
+        data-billing-address=true
+        data-label="Purchase this Service"
+        data-name="chrislh9000"
+        data-zip-code="true"
+        data-image="/images/apiarylogoblack.png"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto">
+        </script>
       </form>
     </div>
+    {{/each}} <br>
+    {{#if owner}}
+    <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/services/add">ADD TO YOUR AMBASSADOR SERVICES</a></center>
+    {{/if}}
   </div>
+</div>
 
-  <div class ="profile-container row fixed-bg-sf">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-      <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Services </h1><br>
-      {{#each services}}
-      <div style="text-align: center" class="profile-container card">
-        <h5 class = "consultantTraining" >{{this.title}}</h5>
-        <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
-        <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
-        <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
-          <button type="submit" class="btn btn-danger">Delete Service</button><br>
-        </form>
-        <form action="/ambassadors/checkout/{{this._id}}" method="POST">
-          <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
-          data-amount={{this.stripePrice}}
-          data-description={{this.description}}
-          data-billing-address=true
-          data-label="Purchase this Service"
-          data-name="chrislh9000"
-          data-zip-code="true"
-          data-image="/images/apiarylogoblack.png"
-          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-          data-locale="auto">
-          </script>
-        </form>
-      </div>
-      {{/each}} <br>
-      {{#if owner}}
-      <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/services/add">ADD TO YOUR AMBASSADOR SERVICES</a></center>
-      {{/if}}
-    </div>
+{{#if owner}}
+<div class ="profile-container row">
+  <div class="justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+    <h1 class  = "consultantTraining" style="text-align: center"> Your Payment Settings </h1>
+    <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
+    <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
+    {{#if user.stripeAccountId}}
+    <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
+    <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
+    <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
+    {{else}}
+    <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
+    <a style="margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Your Payment Route on Stripe</a>
+    {{/if}}
   </div>
+</div>
+{{/if}}
 
-  {{#if owner}}
-  <div class ="profile-container row">
-    <div class="justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-      <h1 class  = "consultantTraining" style="text-align: center"> Your Payment Settings </h1>
-      <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
-      <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
-      {{#if user.stripeAccountId}}
-      <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
-      <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
-      <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
-      {{else}}
-      <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
-      <a style="margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Your Payment Route on Stripe</a>
-      {{/if}}
-    </div>
-  </div>
-  {{/if}}
+<br>
 
-  <br>
-
-  <!--
-  <h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
-  <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
-  <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
-  <div style="padding: 10px; border: solid 1px black" class ="container center-block">
-  <h4>Email:</h4>
-  <p>{{user.email}}</p>
-  <h4>Biography:</h4>
-  <p>{{user.biography}}</p>
-  <h4>School:</h4>
-  <p>{{user.school}}</p>
-  <h4>Gender:</h4>
-  <p>{{user.gender}}</p> <br><br>
-  <b>Logged in as:</b> {{logged}} <br>
-  <a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
-  {{#if owner}}
-  <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
-  {{/if}}
-  <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
-  <a class = "btn btn-danger" href= "/logout">Logout</a>
+<!--
+<h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
+<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
+<div style="padding: 10px; border: solid 1px black" class ="container center-block">
+<h4>Email:</h4>
+<p>{{user.email}}</p>
+<h4>Biography:</h4>
+<p>{{user.biography}}</p>
+<h4>School:</h4>
+<p>{{user.school}}</p>
+<h4>Gender:</h4>
+<p>{{user.gender}}</p> <br><br>
+<b>Logged in as:</b> {{logged}} <br>
+<a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
+{{#if owner}}
+<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
+{{/if}}
+<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
+<a class = "btn btn-danger" href= "/logout">Logout</a>
 </div>
 -->
 <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 <script type="text/javascript">
-// const models = require('models');
-// const User = models.User;
-// const Image = models.Image;
-  $('#image-upload').cloudinary_upload_widget(
-    { cloud_name: 'apiary-solutions', upload_preset: 'test_upload',
-      cropping: 'server', folder: 'ambassador_profiles' },
-      (error, result) => {
-        console.log(error, result);
-      });
+$('#image-upload').cloudinary_upload_widget(
+  { cloud_name: 'apiary-solutions', upload_preset: 'test_upload',
+  cropping: 'server', folder: 'ambassador_profiles' },
+  (error, result) => {
+    var imageInfo = result[0]
+    console.log(error, result);
+    $.ajax({
+      url: 'http://localhost:3000/images/information',
+      type:'POST',
+      data: {
+        filename: imageInfo.original_filename,
+        size: imageInfo.bytes,
+        type: imageInfo.format,
+        cloudinaryUrl: imageInfo.url,
+        cloudinaryThumbnail: imageInfo.thumbnail_url,
+      },
+      success: (response) => {
+        console.log(response);
+        window.location.href= "http://localhost:3000/ambassadors/myProfile?image=success"
+      },
+      error: (resp) => {
+        alert('incorrect input fields');
+      }
+    })
+  });
+
+  $('#document-upload').cloudinary_upload_widget(
+    { cloud_name: 'apiary-solutions', upload_preset: 'upload_pdf',
+    cropping: 'server', folder: 'ambassador_documents' },
+    (error, result) => {
+      var docInfo = result[0];
+      console.log(error, result);
+      $.ajax({
+        url: 'http://localhost:3000/documents/information',
+        type:'POST',
+        data: {
+          filename: docInfo.original_filename,
+          size: docInfo.bytes,
+          type: docInfo.format,
+          cloudinaryUrl: docInfo.url,
+          cloudinaryThumbnail: docInfo.thumbnail_url,
+        },
+        success: (response) => {
+          console.log(response);
+          window.location.href= "http://localhost:3000/ambassadors/myProfile?document=success"
+        },
+        error: (resp) => {
+          alert('incorrect input fields');
+        }
+      })
+    });
 </script>
 </div>

@@ -299,7 +299,8 @@ const imageSchema = new Schema ({
   },
   cloudinaryUrl: {
     type: String,
-  }
+  },
+  cloudinaryThumbnail: String,
 })
 
 
@@ -325,6 +326,11 @@ const ambassadorSchema = new Schema({
     required: true,
     default: false,
   },
+  documents: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Image',
+    default: [],
+  }],
   address: String,
   postalCode: String,
   accomplishments: String,

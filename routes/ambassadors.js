@@ -94,7 +94,7 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
     .then(image => {
       if (!image) hasImage = false;
       Ambassador.findOne({user: req.user._id})
-      .populate('user services')
+      .populate('user services documents')
       .exec()
       .then(async (ambassador) => {
         let balance;
@@ -111,6 +111,7 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
           username: req.user.username,
           consultantSkype: req.user.skypeName,
           image: ambassador.user.image? image.cloudinaryUrl : null,
+          thumbnail: ambassador.user.image? image.cloudinaryThumbnail : null,
           owner: true,
           ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
           networkToggled: true,
