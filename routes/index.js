@@ -587,60 +587,60 @@ router.get('/images/information', (req, res) => {
 
 router.post('/images/information', (req, res) => {
   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
-  console.log('====TEST IMAGE LOG=====');
-  res.send('IMAGE!')
-  //check of user already has previously uploaded an image
-  // Image.findOne({user: req.user._id})
-  // .then(image => {
-  //   console.log('=====IMAGE SEARCH INITIATED=====');
-  //   if (!image) {
-  //     //case 1: user is uploading an image for the first time: create a new image and link it to the user model
-  //     console.log('=====IMAGE NOT FOUND CREATING IN DB=====');
-  //     const newImage = new Image ({
-  //       filename: req.body.original_filename,
-  //       size: req.body.bytes,
-  //       type: req.body.format,
-  //       user: req.user._id,
-  //       cloudinaryUrl: req.body.url,
-  //     })
-  //     newImage.save()
-  //     .then(img => {
-  //       //new image created, now update the user model to link the two together
-  //       console.log('====IMAGE SAVED===')
-  //       User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
-  //       .then(user => {
-  //         console.log('USER SUCCESSFULLY LINKED TO IMAGE');
-  //         res.redirect('/ambassadors/myProfile?image=success');
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.error(err)
-  //       res.redirect('/ambassadors/myProfile?image=fail');
-  //     })
-  //   } else {
-  //     console.log('=====IMAGE FOUND UPDATING EXISTING MODEL=====');
-  //     Image.findOneAndUpdate({user: req.user._id}, {
-  //       filename: req.body.filename,
-  //       size: req.body.bytes,
-  //       type: req.body.format,
-  //       user: req.user._id,
-  //       cloudinaryUrl: req.body.url,
-  //     })
-  //     .then(newImage => {
-  //       console.log('===SUCCESSFULLY UPDATED NEW IMAGE===')
-  //       res.redirect('/ambassadors/myProfile?image=success')
-  //     })
-  //     .catch(err => {
-  //       console.error(err)
-  //       res.redirect('/ambassadors/myProfile?image=fail')
-  //     })
-  //     //case 2: user has already uploaded image, in which case just modify the image and user models
-  //   }
-  // })
-  // .catch(err => {
-  //   console.error(err)
-  //   res.send("ERROR FINDING IMAGE")
-  // })
+  console.log('====TEST IMAGE LOG=====', req.user);
+  // res.send('IMAGE!')
+  check of user already has previously uploaded an image
+  Image.findOne({user: req.user._id})
+  .then(image => {
+    console.log('=====IMAGE SEARCH INITIATED=====');
+    if (!image) {
+      //case 1: user is uploading an image for the first time: create a new image and link it to the user model
+      console.log('=====IMAGE NOT FOUND CREATING IN DB=====');
+      const newImage = new Image ({
+        filename: req.body.original_filename,
+        size: req.body.bytes,
+        type: req.body.format,
+        user: req.user._id,
+        cloudinaryUrl: req.body.url,
+      })
+      newImage.save()
+      .then(img => {
+        //new image created, now update the user model to link the two together
+        console.log('====IMAGE SAVED===')
+        User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+        .then(user => {
+          console.log('USER SUCCESSFULLY LINKED TO IMAGE');
+          // res.redirect('/ambassadors/myProfile?image=success');
+        })
+      })
+      .catch(err => {
+        console.error(err)
+        // res.redirect('/ambassadors/myProfile?image=fail');
+      })
+    } else {
+      console.log('=====IMAGE FOUND UPDATING EXISTING MODEL=====');
+      Image.findOneAndUpdate({user: req.user._id}, {
+        filename: req.body.filename,
+        size: req.body.bytes,
+        type: req.body.format,
+        user: req.user._id,
+        cloudinaryUrl: req.body.url,
+      })
+      .then(newImage => {
+        console.log('===SUCCESSFULLY UPDATED NEW IMAGE===')
+        // res.redirect('/ambassadors/myProfile?image=success')
+      })
+      .catch(err => {
+        console.error(err)
+        // res.redirect('/ambassadors/myProfile?image=fail')
+      })
+      //case 2: user has already uploaded image, in which case just modify the image and user models
+    }
+  })
+  .catch(err => {
+    console.error(err)
+    // res.send("ERROR FINDING IMAGE")
+  })
 })
 
 
