@@ -588,6 +588,7 @@ router.get('/images/information', (req, res) => {
 
 router.post('/images/information', (req, res) => {
   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
+  console.log('====TEST IMAGE LOG=====');
   Image.findOne({user: req.user._id})
   .then(image => {
     console.log('=====IMAGE SEARCH INITIATED=====');
@@ -600,7 +601,7 @@ router.post('/images/information', (req, res) => {
         user: req.user._id,
         cloudinaryUrl: req.body.url,
       })
-      newImage.save()
+      newImage.save();
       .then(img => {
         console.log('=====IMAGE SAVED=====');
         User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
@@ -639,6 +640,7 @@ router.post('/images/information', (req, res) => {
         })
       })
       .catch(err => {
+        res.send('Error:', err);
         console.error(err);
         res.redirect('/users/myProfile?image=fail')
       })
