@@ -100,7 +100,6 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
         let balance;
         let availableBalance;
         let pendingBalance;
-        console.log('===Services===', ambassador.services[0])
         if (ambassador.stripeAccountId) {
           balance = await stripe.balance.retrieve({ stripe_account: ambassador.stripeAccountId });
           availableBalance = balance.available[0].amount

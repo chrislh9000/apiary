@@ -580,6 +580,15 @@ router.post('/uploadimage', upload.single('image'), function (req, res, next) {
   }
 })
 
+router.get('/images/information', (req, res) => {
+  console.log('===========CALLBACK IMAGE INITIATED=======');
+  res.send('IMAGES!')
+})
+
+router.post('/images/information', (req, res) => {
+  console.log('===========CALLBACK IMAGE INITIATED=======');
+  res.send('IMAGES!')
+})
 
 ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
