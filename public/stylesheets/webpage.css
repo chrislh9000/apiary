@@ -32,6 +32,12 @@ dropdown-item, collapse, navbar-collapse
   color: white;
 }
 
+.apiary-button2 {
+  font-family: 'Montserrat', sans-serif;
+  background-color: gray;
+  color: white;
+}
+
 .topTier {
   color: white;
   font-family: 'Alegreya Sans SC', sans-serif;

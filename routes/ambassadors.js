@@ -105,10 +105,14 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
           availableBalance = balance.available[0].amount
           pendingBalance = balance.pending[0].amount;
         }
+        const names = req.user.name.split(' ');
         res.render('./Ambassadors/ambassador-profile', {
-          user: ambassador,
+          ambassador: ambassador,
+          user: req.user,
           logged: req.user.username,
           username: req.user.username,
+          firstName: names[0],
+          lastName: names[1],
           consultantSkype: req.user.skypeName,
           image: ambassador.user.image? image.cloudinaryUrl : null,
           thumbnail: ambassador.user.image? image.cloudinaryThumbnail : null,
