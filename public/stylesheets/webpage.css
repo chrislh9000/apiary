@@ -1385,6 +1385,10 @@ h2.a {
     color: white !important;
   }
 
+  .apiary-collapse-btn:focus {
+    color: white !important;
+  }
+
   .profile-page {
     background-image: url("alpine.jpg");
     min-height: 350px;

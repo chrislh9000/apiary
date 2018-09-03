@@ -20,7 +20,6 @@
       {{failureEdit}}
     </div>
     {{/if}}
-    <h1 class = "bigTitleFont-black" style="text-align: center"> AMBASSADOR PROFILE </h1> <br>
     <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.user.name}} </h1>
     <br>
     <div class="row profile-container" style="min-height: 600px">
@@ -37,9 +36,9 @@
         {{#if owner}}
         <h6 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Profile Image</h6>
         <div style="color: green" class="cloudinary-overwrite">
-        <center><button id="image-upload" class ="btn btn-primary">Upload New Image</button></center>
-      </div>
-      {{/if}}
+          <center><button id="image-upload" class ="btn btn-primary">Upload New Image</button></center>
+        </div>
+        {{/if}}
 
         <!-- <form style="border-bottom: 1px solid gray;" method="POST" action="/uploadimage" enctype="multipart/form-data">
         <center><input style="float: left; display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE" required> </center>
@@ -48,216 +47,72 @@
       <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.email}}</h3>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.school}}</h5>
       <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
-      <center><h2 style="color:#910000">Basic Ambassador Information</h2></center>
-      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-      <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.user.biography}}</i> </center>
-      <br><br>
-      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
-      {{#each user.user.academicInterests}}
-      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-      {{/each}}
-      <br>
-      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
-      {{#each user.user.extracurricularInterests}}
-      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-      {{/each}} <br>
-      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Major </h5>
-      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.user.intendedMajor}}</h5>
-      <div style="border-top: 1px solid gray" class = "qualifications-container container-fluid">
-        <center><h2 style="color:#910000">Ambassador Qualifications</h2></center>
-        <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Accomplishments and Accolades</h5>
-        {{user.accomplishments}}
-        <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Specialties</h5>
-        {{user.specialties}}
-        <h5 style="padding: 10px; text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">Additional Information</h5>
-        {{user.additionalInfo}}
-      </div>
-      <br>
-      {{#if owner}}
-      <div class = "align-text-center container-fluid">
+      <!-- card one -->
+      <div class="card">
+        <div class="card-header apiary-collapsable" id="headingOne">
+          <h5 class="mb-0">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              View {{user.user.name}}'s Biography and Interests
+            </button>
+          </h5>
+        </div>
 
-        <div>
-          {{#if owner}}
-          <br>
-          <center> <a style="background-color: #910000; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/edit/">EDIT YOUR BASIC INFO</a></center>
-          <center> <a style="background-color: #910000; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/edit/ambassadorProfile"> COMPLETE/EDIT AMBASSADOR PROFILE</a></center>
-          {{/if}}
-          <!-- <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE APIARY NETWORK</a><br></center> -->
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+            <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.user.biography}}</i> </center>
+            <br><br>
+            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+            {{#each user.user.academicInterests}}
+            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+            {{/each}}
+            <br>
+            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+            {{#each user.user.extracurricularInterests}}
+            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+            {{/each}} <br>
+            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+            <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.user.intendedMajor}}</h5>
+            <br>
+          </div>
         </div>
       </div>
-      {{/if}}
-    </div>
-  </div>
-</div>
-<br>
-
-<div class ="profile-container row fixed-bg-sf">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-    <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
-    <div class = "container-fluid">
-      <center><h3 style="color: #910000">Documents</h3></center>
-      {{#each user.documents}}
-      <!-- <form>
-        <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
-        <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
-      </form> -->
-      <a target="_blank" href={{this.cloudinaryUrl}}>
-      <img class="center-block" src={{this.cloudinaryThumbnail}} />
-    </a> <br>
-    {{#if owner}}
-      <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
-      {{/if}}
-      {{/each}}
-    </div>
-    <center><h3 style="color: #910000">Links</h3></center>
-    {{#each user.links}}
-    <ul>
-    <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
-  </ul>
-    {{/each}}
-    {{#if owner}}
-      <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
-      <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
-      <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
-      <form method="POST" action="/documents/addlink">
-        <input class="form-control" name="link" placeholder="add links..."></input> <br>
-        <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
-      </form> <br>
-    {{/if}}
-  </div>
-</div>
-
-<div class ="profile-container row fixed-bg-sf">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-    <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Services </h1><br>
-    {{#each services}}
-    <div style="text-align: center" class="profile-container card">
-      <h5 class = "consultantTraining" >{{this.title}}</h5>
-      <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
-      <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
-      <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
-        <button type="submit" class="btn btn-danger">Delete Service</button><br>
-      </form>
-      <form action="/ambassadors/checkout/{{this._id}}" method="POST">
-        <script
-        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
-        data-amount={{this.stripePrice}}
-        data-description="{{this.title}}: {{this.description}}"
-        data-billing-address=true
-        data-label="Purchase this Service"
-        data-name="chrislh9000"
-        data-zip-code="true"
-        data-image="/images/apiarylogoblack.png"
-        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-        data-locale="auto">
-        </script>
-      </form>
-    </div>
-    {{/each}} <br>
-    {{#if owner}}
-    <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/services/add">ADD TO YOUR AMBASSADOR SERVICES</a></center>
-    {{/if}}
-  </div>
-</div>
-
-<div class ="profile-container row fixed-bg-sf">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-    <h1 class = "bigTitleFont-black" style="text-align: center"> Email Ambassador </h1><br>
-    <form>
-      <input class="form-control" placeholder="Email Subject" />
-      <!-- <textarea style="border: solid 1px black" placeholder="Your message here..."></textarea> -->
-    </form>
-</div>
-</div>
-
-{{#if owner}}
-<div class ="profile-container row">
-  <div class="justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-    <h1 class  = "consultantTraining" style="text-align: center"> Your Payment Settings </h1>
-    <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
-    <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
-    {{#if user.stripeAccountId}}
-    <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
-    <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
-    <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
-    {{else}}
-    <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
-    <a style="margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Your Payment Route on Stripe</a>
-    {{/if}}
-  </div>
-</div>
-{{/if}}
-
-<br>
-
-<div id="accordion">
-  <div class="card">
-    <div class="card-header apiary-collapsable" id="headingOne">
-      <h5 class="mb-0">
-        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          View {{user.user.name}}'s Biography and Interests
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-        <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.user.biography}}</i> </center>
-        <br><br>
-        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
-        {{#each user.user.academicInterests}}
-        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-        {{/each}}
-        <br>
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
-        {{#each user.user.extracurricularInterests}}
-        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-        {{/each}} <br>
-        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
-        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.user.intendedMajor}}</h5>
-        <br>
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
-        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.user.dreamUni}}</h5>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header apiary-collapsable" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          View {{user.user.name}}'s Accomplishments
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-        <div class ="profile-container row fixed-bg-sf">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-            <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
-            <div class = "container-fluid">
-              <center><h3 style="color: #910000">Documents</h3></center>
-              {{#each user.documents}}
-              <!-- <form>
-                <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
-                <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
-              </form> -->
-              <a target="_blank" href={{this.cloudinaryUrl}}>
-              <img class="center-block" src={{this.cloudinaryThumbnail}} />
-            </a> <br>
-            {{#if owner}}
-              <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
-              {{/if}}
+      <!-- Card One -->
+      <br>
+      <!-- Card Two -->
+      <div class="card">
+        <div class="card-header apiary-collapsable" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              View {{user.user.name}}'s Accomplishments
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+                <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
+                <div class = "container-fluid">
+                  <center><h3 style="color: #910000">Documents</h3></center>
+                  {{#each user.documents}}
+                  <!-- <form>
+                  <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
+                  <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
+                </form> -->
+                <a target="_blank" href={{this.cloudinaryUrl}}>
+                  <img class="center-block" src={{this.cloudinaryThumbnail}} />
+                </a> <br>
+                {{#if owner}}
+                <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
+                {{/if}}
+                {{/each}}
+              </div>
+              <center><h3 style="color: #910000">Links</h3></center>
+              {{#each user.links}}
+              <ul>
+                <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
+              </ul>
               {{/each}}
-            </div>
-            <center><h3 style="color: #910000">Links</h3></center>
-            {{#each user.links}}
-            <ul>
-            <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
-          </ul>
-            {{/each}}
-            {{#if owner}}
+              {{#if owner}}
               <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
               <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
               <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
@@ -265,97 +120,157 @@
                 <input class="form-control" name="link" placeholder="add links..."></input> <br>
                 <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
               </form> <br>
-            {{/if}}
+              {{/if}}
+        </div>
+      </div>
+      </div>
+      <br>
+      <!-- Card Two -->
+
+      <!-- Card Three -->
+      <div class="card">
+        <div class="card-header apiary-collapsable" id="headingThree">
+          <h5 class="mb-0">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              View {{user.user.name}}'s Services
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+                <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Services </h1><br>
+                {{#each services}}
+                <div style="text-align: center" class="profile-container card">
+                  <h5 class = "consultantTraining" >{{this.title}}</h5>
+                  <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
+                  <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
+                  <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
+                    <button type="submit" class="btn btn-danger">Delete Service</button><br>
+                  </form>
+                  <form action="/ambassadors/checkout/{{this._id}}" method="POST">
+                    <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
+                    data-amount={{this.stripePrice}}
+                    data-description="{{this.title}}: {{this.description}}"
+                    data-billing-address=true
+                    data-label="Purchase this Service"
+                    data-name="chrislh9000"
+                    data-zip-code="true"
+                    data-image="/images/apiarylogoblack.png"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="auto">
+                    </script>
+                  </form>
+                </div>
+                {{/each}} <br>
+                {{#if owner}}
+                <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/services/add">ADD TO YOUR AMBASSADOR SERVICES</a></center>
+                {{/if}}
           </div>
         </div>
-    </div>
-  </div>
+      </div>
+      <br>
+    <!-- Card Three -->
+  <!-- Card Four -->
+
   <div class="card">
     <div class="card-header apiary-collapsable" id="headingThree">
       <h5 class="mb-0">
-        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
           Contact {{user.user.name}}
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <h1 class = "bigTitleFont-black" style="text-align: center"> Email Ambassador </h1><br>
+            <form>
+              <input class="form-control" placeholder="Email Subject" />
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <br>
+    <!-- Card Four -->
+    <!-- Card Five -->
 
-<!--
-<h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
-<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
-<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
-<div style="padding: 10px; border: solid 1px black" class ="container center-block">
-<h4>Email:</h4>
-<p>{{user.email}}</p>
-<h4>Biography:</h4>
-<p>{{user.biography}}</p>
-<h4>School:</h4>
-<p>{{user.school}}</p>
-<h4>Gender:</h4>
-<p>{{user.gender}}</p> <br><br>
-<b>Logged in as:</b> {{logged}} <br>
-<a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
-{{#if owner}}
-<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
-{{/if}}
-<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
-<a class = "btn btn-danger" href= "/logout">Logout</a>
-</div>
--->
-<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-<script type="text/javascript">
+    {{#if owner}}
+    <div class="card">
+      <div class="card-header apiary-collapsable" id="headingFive">
+        <h5 class="mb-0">
+          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+            Your Payment Settings
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          {{#if owner}}
+              <h1 class  = "consultantTraining" style="text-align: center"> Your Payment Settings </h1>
+              <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
+              <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
+              {{#if user.stripeAccountId}}
+              <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
+              <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
+              <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
+              {{else}}
+              <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
+              <a style="margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Your Payment Route on Stripe</a>
+              {{/if}}
+          {{/if}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+    <!-- Card Five -->
+    <br>
 
-$('#image-upload').cloudinary_upload_widget(
-  { cloud_name: 'apiary-solutions', upload_preset: 'test_upload',
-  cropping: 'server', folder: 'ambassador_profiles' },
-  (error, result) => {
-    var imageInfo = result[0]
-    console.log(error, result);
-    $.ajax({
-      url: 'http://localhost:3000/images/information',
-      type:'POST',
-      data: {
-        filename: imageInfo.original_filename,
-        size: imageInfo.bytes,
-        type: imageInfo.format,
-        cloudinaryUrl: imageInfo.url,
-        cloudinaryThumbnail: imageInfo.thumbnail_url,
-      },
-      success: (response) => {
-        console.log(response);
-        window.location.href= "http://localhost:3000/ambassadors/myProfile?image=success"
-      },
-      error: (resp) => {
-        alert('incorrect input fields');
-      }
-    })
-  });
 
-  $('#document-upload').cloudinary_upload_widget(
-    { cloud_name: 'apiary-solutions', upload_preset: 'upload_pdf',
-    cropping: 'server', folder: 'ambassador_documents' },
+
+      <!--
+      <h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+      <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
+      <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
+      <div style="padding: 10px; border: solid 1px black" class ="container center-block">
+      <h4>Email:</h4>
+      <p>{{user.email}}</p>
+      <h4>Biography:</h4>
+      <p>{{user.biography}}</p>
+      <h4>School:</h4>
+      <p>{{user.school}}</p>
+      <h4>Gender:</h4>
+      <p>{{user.gender}}</p> <br><br>
+      <b>Logged in as:</b> {{logged}} <br>
+      <a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
+      {{#if owner}}
+      <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
+      {{/if}}
+      <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
+      <a class = "btn btn-danger" href= "/logout">Logout</a>
+    </div>
+  -->
+  <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+  $('#image-upload').cloudinary_upload_widget(
+    { cloud_name: 'apiary-solutions', upload_preset: 'test_upload',
+    cropping: 'server', folder: 'ambassador_profiles' },
     (error, result) => {
-      var docInfo = result[0];
+      var imageInfo = result[0]
       console.log(error, result);
       $.ajax({
-        url: 'http://localhost:3000/documents/information',
+        url: 'http://localhost:3000/images/information',
         type:'POST',
         data: {
-          filename: docInfo.original_filename,
-          size: docInfo.bytes,
-          type: docInfo.format,
-          cloudinaryUrl: docInfo.url,
-          cloudinaryThumbnail: docInfo.thumbnail_url,
+          filename: imageInfo.original_filename,
+          size: imageInfo.bytes,
+          type: imageInfo.format,
+          cloudinaryUrl: imageInfo.url,
+          cloudinaryThumbnail: imageInfo.thumbnail_url,
         },
         success: (response) => {
           console.log(response);
-          window.location.href= "http://localhost:3000/ambassadors/myProfile?document=success"
+          window.location.href= "http://localhost:3000/ambassadors/myProfile?image=success"
         },
         error: (resp) => {
           alert('incorrect input fields');
@@ -363,6 +278,32 @@ $('#image-upload').cloudinary_upload_widget(
       })
     });
 
-    $('.cloudinary-button').text('Upload File')
-</script>
-</div>
+    $('#document-upload').cloudinary_upload_widget(
+      { cloud_name: 'apiary-solutions', upload_preset: 'upload_pdf',
+      cropping: 'server', folder: 'ambassador_documents' },
+      (error, result) => {
+        var docInfo = result[0];
+        console.log(error, result);
+        $.ajax({
+          url: 'http://localhost:3000/documents/information',
+          type:'POST',
+          data: {
+            filename: docInfo.original_filename,
+            size: docInfo.bytes,
+            type: docInfo.format,
+            cloudinaryUrl: docInfo.url,
+            cloudinaryThumbnail: docInfo.thumbnail_url,
+          },
+          success: (response) => {
+            console.log(response);
+            window.location.href= "http://localhost:3000/ambassadors/myProfile?document=success"
+          },
+          error: (resp) => {
+            alert('incorrect input fields');
+          }
+        })
+      });
+
+      $('.cloudinary-button').text('Upload File')
+      </script>
+    </div>

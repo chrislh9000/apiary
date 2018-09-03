@@ -37,88 +37,59 @@
         <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
         <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
         <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-        <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
-        <br><br>
-        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
-        {{#each user.academicInterests}}
-        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-        {{/each}}
-        <br>
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
-        {{#each user.extracurricularInterests}}
-        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-        {{/each}} <br>
-        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
-        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
-        <br>
-        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
-        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
-        <br>
-      </div>
-    </div>
-  </div>
+        <div>
+          <!-- Card One -->
+          <div class="card">
+            <div class="card-header apiary-collapsable" id="headingOne">
+              <h5 class="mb-0">
+                <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  View {{user.name}}'s Biography and Interests
+                </button>
+              </h5>
+            </div>
 
-
-
-  <div id="accordion">
-    <div class="card">
-      <div class="card-header apiary-collapsable" id="headingOne">
-        <h5 class="mb-0">
-          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            View {{user.name}}'s Biography and Interests
-          </button>
-        </h5>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+                <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+                <br><br>
+                <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+                {{#each user.academicInterests}}
+                <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+                {{/each}}
+                <br>
+                <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+                {{#each user.extracurricularInterests}}
+                <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+                {{/each}} <br>
+                <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+                <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+                <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University </h5>
+                <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
+                <br>
+              </div>
+            </div>
+          </div>
+          <!-- Card One -->
+          <!-- Card Two -->
+          <div class="card">
+            <div class="card-header apiary-collapsable" id="headingThree">
+              <h5 class="mb-0">
+                <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                  Contact {{user.name}}
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                    <h1 class = "bigTitleFont-black" style="text-align: center"> Email {{user.name}} </h1><br>
+                    <form>
+                      <input class="form-control" placeholder="Email Subject" />
+                </div>
+              </div>
+            </div>
+          <!-- Card Two -->
       </div>
-
-      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-          <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
-          <br><br>
-          <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
-          {{#each user.academicInterests}}
-          <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-          {{/each}}
-          <br>
-          <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
-          {{#each user.extracurricularInterests}}
-          <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-          {{/each}} <br>
-          <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
-          <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
-          <br>
-          <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
-          <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header apiary-collapsable" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            View {{user.name}}'s Accomplishments
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header apiary-collapsable" id="headingThree">
-        <h5 class="mb-0">
-          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Contact {{user.name}}
-          </button>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
       </div>
     </div>
   </div>
