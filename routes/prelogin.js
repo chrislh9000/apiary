@@ -21,13 +21,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('about', {
-    loggedIn: req.user._id ? true : false,
-    username: req.user ? req.user.username : null,
-    consultingScroll: req.query.scroll === 'consulting' ? true : false,
-    databaseScroll: req.query.scroll === 'database' ? true : false,
-    networkScroll: req.query.scroll === 'network' ? true : false,
-  })
+  if (req.user) {
+    res.render('about', {
+      loggedIn: req.user._id ? true : false,
+      username: req.user ? req.user.username : null,
+      consultingScroll: req.query.scroll === 'consulting' ? true : false,
+      databaseScroll: req.query.scroll === 'database' ? true : false,
+      networkScroll: req.query.scroll === 'network' ? true : false,
+    })
+  } else {
+    res.render('about', {
+      loggedIn: false,
+      consultingScroll: req.query.scroll === 'consulting' ? true : false,
+      databaseScroll: req.query.scroll === 'database' ? true : false,
+      networkScroll: req.query.scroll === 'network' ? true : false,
+    })
+  }
 })
 
 router.get('/apply', function(req, res, next) {
