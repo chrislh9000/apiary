@@ -1,13 +1,15 @@
 <style>
 .sidenav {
     /* margin-top: 20%; */
+    float: left;
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 180px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    /* position: fixed /* Fixed Sidebar (stay in place on scroll) */ */
+    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
+    top: 120px/; /* Stay at the top */
     left: 0;
-    background-color: #111; /* Black */
+    background-color: #e6e6e6; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
 }
@@ -17,13 +19,13 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 18px;
-    color: #818181;
+    color: black;
     display: block;
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: #910000;
 }
 
 .side-nav-mini-link {
@@ -43,9 +45,9 @@
 }
 </style>
 
-<div class="sidenav">
-  <a style="border-bottom: solid 1px gray;" href="#">Apiary Network</a>
-  <a style="border-bottom: solid 1px gray;" href="#">Apiary Forums</a>
+<div style="border-top: solid 1px white" class="sidenav">
+  <a style="border-bottom: solid 2px white;" href="#">Apiary Network</a>
+  <a style="border-bottom: solid 2px white;" href="#">Apiary Forums</a>
   <a href="#">Apiary Database</a>
   <ul>
   <a style="font-size: 15px" class="side-nav-mini-link" href="#">Essays</a>
@@ -54,12 +56,13 @@
   <a style="font-size: 15px" class="side-nav-mini-link" href="#">Test Prep</a>
   <a style="font-size: 15px" class="side-nav-mini-link" href="#">Internships</a>
 </ul>
-  <a style="border-top: solid 1px gray;" href="#">Apiary Consulting</a>
+  <a style="border-top: solid 1px white;" href="#">Apiary Consulting</a>
   <ul>
   <a style="font-size: 15px" class="side-nav-mini-link" href="#">Purchase</a>
   <a style="font-size: 15px" class="side-nav-mini-link" href="#">Schedule</a>
   <a style="font-size: 15px" class="side-nav-mini-link" href="#">Manage</a>
 </ul>
+<a style="border-bottom: solid 2px white;" href="#">See More...</a>
 </div>
 
 
