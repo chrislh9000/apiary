@@ -60,6 +60,9 @@ router.get('/network/forum', (req, res) => {
 
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
+  if (req.user.userType === 'ambassador') {
+    res.redirect('/ambassadors/myProfile');
+  }
   let hasImage= true;
   Image.findOne({user: req.user._id})
   .then(image => {
