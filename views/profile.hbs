@@ -6,140 +6,156 @@
 <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
 
 <div class="profile-page">
-<br>
-<br>
-<div class="container fixed-bg2">
-  {{#if successEdit}}
+  <br>
+  <br>
+  <div class="container fixed-bg2">
+    {{#if successEdit}}
     <div style="text-align: center" class="alert alert-success" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       {{successEdit}}
     </div>
-  {{/if}}
-  {{#if failureEdit}}
+    {{/if}}
+    {{#if failureEdit}}
     <div style="text-align: center" class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       {{failureEdit}}
     </div>
-  {{/if}}
-  <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
-  <br>
-  <div class="row profile-container" style="min-height: 600px">
-    <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
-      {{#if image}}
-      <img src="{{image}}" class="center-block" style="border: solid 10px #910000; width:200px; height:250px" />
-      {{else}}
-      <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 10px #910000; width:250px; height:250px" />
-      {{/if}}
-      {{#if owner}}
-      <br>
-      <center><button id="image-upload" class ="btn btn-primary">Upload New Image</button></center>
-      {{/if}}
-      <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
-      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
-      <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
+    {{/if}}
+    <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+    <br>
+    <div class="row profile-container" style="min-height: 600px">
+      <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+        {{#if image}}
+        <img src="{{image}}" class="center-block" style="border: solid 10px #910000; width:200px; height:250px" />
+        {{else}}
+        <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 10px #910000; width:250px; height:250px" />
+        {{/if}}
+        {{#if owner}}
+        <br>
+        <center><button id="image-upload" class ="btn btn-primary">Upload New Image</button></center>
+        {{/if}}
+        <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.email}}</h3>
+        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.school}}</h5>
+        <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
         <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-      <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
-      <br><br>
-      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
-      {{#each user.academicInterests}}
-      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-      {{/each}}
-      <br>
-      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
-      {{#each user.extracurricularInterests}}
-      <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
-      {{/each}} <br>
-      <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
-      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
-      <br>
-      <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
-      <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
-      <br>
-    </div>
-  </div>
-</div>
-
-
-
-<div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <center><h5>View Profile Information</h5><center>
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+        <br><br>
+        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+        {{#each user.academicInterests}}
+        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+        {{/each}}
+        <br>
+        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+        {{#each user.extracurricularInterests}}
+        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+        {{/each}} <br>
+        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+        <br>
+        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
+        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
+        <br>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <center><h5>View Accomplishments</h5><center>
-        </button>
-      </h5>
+
+
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header apiary-collapsable" id="headingOne">
+        <h5 class="mb-0">
+          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            View {{user.name}}'s Biography and Interests
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+          <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+          <br><br>
+          <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+          {{#each user.academicInterests}}
+          <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+          {{/each}}
+          <br>
+          <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+          {{#each user.extracurricularInterests}}
+          <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+          {{/each}} <br>
+          <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+          <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+          <br>
+          <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
+          <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.dreamUni}}</h5>
+        </div>
+      </div>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    <div class="card">
+      <div class="card-header apiary-collapsable" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            View {{user.name}}'s Accomplishments
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header apiary-collapsable" id="headingThree">
+        <h5 class="mb-0">
+          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Contact {{user.name}}
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <center><h5>Contact {{user.name}}</h5><center>
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
 
-<br>
+  <br>
 
-<br>
-<center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
-{{#if owner}}
+  <br>
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
+  {{#if owner}}
   <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/edit/">EDIT YOUR PROFILE</a></center>
-{{/if}}
-{{#if consultantPortal}}
+  {{/if}}
+  {{#if consultantPortal}}
   <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/consultants/profile">CONSULTANT PORTAL</a></center>
-{{/if}}
-{{#if adminPortal}}
+  {{/if}}
+  {{#if adminPortal}}
   <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/admin">ADMIN PAGE</a></center>
-{{/if}}
-<!--
-<h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
-<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
-<h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
-<div style="padding: 10px; border: solid 1px black" class ="container center-block">
-<h4>Email:</h4>
-<p>{{user.email}}</p>
-<h4>Biography:</h4>
-<p>{{user.biography}}</p>
-<h4>School:</h4>
-<p>{{user.school}}</p>
-<h4>Gender:</h4>
-<p>{{user.gender}}</p> <br><br>
-<b>Logged in as:</b> {{logged}} <br>
-<a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
-{{#if owner}}
-<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
-{{/if}}
-<a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
-<a class = "btn btn-danger" href= "/logout">Logout</a>
+  {{/if}}
+  <!--
+  <h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+  <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
+  <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
+  <div style="padding: 10px; border: solid 1px black" class ="container center-block">
+  <h4>Email:</h4>
+  <p>{{user.email}}</p>
+  <h4>Biography:</h4>
+  <p>{{user.biography}}</p>
+  <h4>School:</h4>
+  <p>{{user.school}}</p>
+  <h4>Gender:</h4>
+  <p>{{user.gender}}</p> <br><br>
+  <b>Logged in as:</b> {{logged}} <br>
+  <a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
+  {{#if owner}}
+  <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
+  {{/if}}
+  <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
+  <a class = "btn btn-danger" href= "/logout">Logout</a>
 </div>
 -->
 </div>

@@ -191,6 +191,101 @@
 
 <br>
 
+<div id="accordion">
+  <div class="card">
+    <div class="card-header apiary-collapsable" id="headingOne">
+      <h5 class="mb-0">
+        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          View {{user.user.name}}'s Biography and Interests
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+        <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.user.biography}}</i> </center>
+        <br><br>
+        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+        {{#each user.user.academicInterests}}
+        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+        {{/each}}
+        <br>
+        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+        {{#each user.user.extracurricularInterests}}
+        <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+        {{/each}} <br>
+        <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.user.intendedMajor}}</h5>
+        <br>
+        <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Dream University</h5>
+        <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.user.dreamUni}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header apiary-collapsable" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          View {{user.user.name}}'s Accomplishments
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <div class ="profile-container row fixed-bg-sf">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+            <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
+            <div class = "container-fluid">
+              <center><h3 style="color: #910000">Documents</h3></center>
+              {{#each user.documents}}
+              <!-- <form>
+                <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
+                <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
+              </form> -->
+              <a target="_blank" href={{this.cloudinaryUrl}}>
+              <img class="center-block" src={{this.cloudinaryThumbnail}} />
+            </a> <br>
+            {{#if owner}}
+              <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
+              {{/if}}
+              {{/each}}
+            </div>
+            <center><h3 style="color: #910000">Links</h3></center>
+            {{#each user.links}}
+            <ul>
+            <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
+          </ul>
+            {{/each}}
+            {{#if owner}}
+              <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
+              <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
+              <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
+              <form method="POST" action="/documents/addlink">
+                <input class="form-control" name="link" placeholder="add links..."></input> <br>
+                <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
+              </form> <br>
+            {{/if}}
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header apiary-collapsable" id="headingThree">
+      <h5 class="mb-0">
+        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Contact {{user.user.name}}
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--
 <h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
 <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>

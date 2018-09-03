@@ -1374,6 +1374,17 @@ h2.a {
     padding: 20px;
   }
 
+  .apiary-collapsable {
+    background-color: #910000;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+  }
+
+  .apiary-collapse-btn:hover {
+    color: white !important;
+  }
+
   .profile-page {
     background-image: url("alpine.jpg");
     min-height: 350px;
