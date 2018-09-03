@@ -1,7 +1,7 @@
 <!-- <span class="skype-button bubble" data-contact-id="arjun.chakraborty42" data-color="#800000"></span>
 <span class="skype-chat" data-color-message="#800000"></span> -->
 <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
-
+<div style="width: 100%; padding:0" class="container-fluid">
 <div class = "container-fluid arch">
   <!-- <br>
   <br> -->
@@ -19,7 +19,7 @@
   <br>
   <h1 class = "bigTitleFont-black"><strong> <center> CONSULTING </center></strong> </h1>
   <h3 class = "secondTitleFont-black"> <center> Our consultants are the most recent admits to top universities. This means that they know what it takes to give your application a successful edge, and that they were in your place just a few years ago. They serve as extensively trained advisors, peer supporters, and role models for clients. Here are some of our active consultants: </center> </h3>
-</div>
+  <center><button data-toggle="modal" data-target="#consulting-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Take a look at some of Apiary's Consulting Work</button></center>
 </div>
 <br>
 <br>
@@ -119,8 +119,8 @@
   <br>
   <h1 class = "bigTitleFont-black"><strong> <center> THE DATABASE </center></strong> </h1>
   <h3 class = "secondTitleFont-black"> <center> Ever wonder what your peers are using to craft successful applications - ever wonder if you're missing something? Access the extensive database of essays, AP/IB study-guides, standardized test prep, resumes, and internship contacts that got our network members into top schools.</center></h3>
+  <center><button data-toggle="modal" data-target="#database-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Take a look at the Apiary Database</button></center>
 </div>
-
 <br>
 <div style="overflow: auto" class="section sm-padding net2">
 
@@ -185,13 +185,13 @@
   <br>
   <h1 class = "bigTitleFont-black"><strong> <center> THE NETWORK </center></strong> </h1>
   <h3 class = "secondTitleFont-black"> <center>  Join a network of ambitious and accomplished students also headed to the world's top universities. Get insider information about campus culture, extracurriculars, and traditions to make your supplements stand out. Share internship opportunities, ask class questions, organize meetups. Connect with tomorrow's leaders.</center></h3>
-  <center><a style="color: white" href="#" class="apiary-button btn btn-lg">Take a Peek at the Network</a></center>
+  <center><button data-toggle="modal" data-target="#network-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Take a look at the Apiary Network</button></center>
 </div> <br>
 <center><strong><bold><h2 class = "schoolsRepresented"> Apiary Ambassadors </h2> </bold></strong></center>
 <h3 class = "secondTitleFont-black"> <center>  As a member of the Apiary Network, you can freely reach out to any one of our many Apiary ambassadors. Apiary ambassadors are trained college students who have demonstrated their ability to perform and excel in some of the top colleges and universities in the country. </center></h3>
-<center><a style="color: white" href="#" class="apiary-button btn btn-lg">View a Sample Ambassador Profile</a></center>
+<center><button data-toggle="modal" data-target="#ambassador-modal" type="button" style="color: white" class="apiary-button btn btn-lg">View a Sample Ambassador Profile</button></center>
 <br>
-<center><strong><bold><h2 class = "schoolsRepresented"> Schools Represented on our Network</h2> </bold></strong></center>
+<center><strong><bold><h2 class = "schoolsRepresented"> Schools Represented on the Apiary Network</h2> </bold></strong></center>
 <br>
 <div style="overflow: auto" class="section sm-padding net2">
 
@@ -375,7 +375,7 @@ function openTab(tabName) {
     <p class = "first-font"> Copyright © 2018 All rights reserved </p>
   </div>
 </footer>
-
+</div>
 {{#if networkScroll}}
 <script type="text/javascript">
 document.querySelector('#about-network-info').scrollIntoView({
@@ -399,3 +399,68 @@ document.querySelector('#about-database-info').scrollIntoView({
 });
 </script>
 {{/if}}
+
+<!-- Modals -->
+<div class="modal fade" id="ambassador-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ambassador Profile: Christopher Hemm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Will include Christopher Hemm's Ambassador Profile
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="network-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apiary Network</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Will include preview of Apiary Network
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="database-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apiary Database</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Will include preview of Apiary Database
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="consulting-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apiary Consulting</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Will include preview of Apiary Consulting Work (Edited Essays, Email Outreach, Website Building etc.)
+      </div>
+    </div>
+  </div>
+</div>
