@@ -86,7 +86,9 @@
       <a class="btn btn-light btn-lg" style="background-color: #910000; font-size: 12px; color: white; text-transform: uppercase; float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/users/myProfile">{{username}}'S APIARY NETWORK</a>
       {{/if}}
     {{else}}
-      <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/login">LOGIN</a>
+      <!-- <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/login">LOGIN</a> -->
+      <center><button style="float: right; margin-right: 10px; margin-top: 7px; font-family: 'Montserrat', sans-serif"  data-toggle="modal" data-target="#login-modal" type="button" style="color: white" class="apiary-button btn btn-lg">LOGIN</button></center>
+    </div>
       <!-- <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/register">REGISTER</a> -->
     {{/if}}
   </div>
@@ -259,5 +261,80 @@
   {{/if}}
   {{{body}}}
 </body>
+<!-- Modals -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login to the Apiary Network</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{#if success}}
+          <div style="text-align: center" class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{success}}
+          </div>
+        {{/if}}
+        {{#if failure}}
+          <div style="text-align: center" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{failure}}
+          </div>
+        {{/if}}
 
+
+        <style>
+        .fixed-bg-sf1 {
+            background-image: url("images/stanford.png");
+            min-height: 550px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.97;
+        }
+        </style>
+
+        <form method="POST" action="/login">
+        <div class="limiter">
+        		<div class="container-login100 fixed-bg-sf1  ">
+        			<div class="wrap-login100 p-t-30 p-b-50">
+        				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 30px;">
+        					Account Login
+                  <br>
+                  <br>
+        				</span>
+        				<form class="login100-form validate-form p-b-33 p-t-3">
+
+        					<div class="wrap-input100 validate-input form-group" data-validate = "Enter username">
+        						<input class="input100 " type="text" name="username" placeholder="USERNAME" style = "font-family: 'Montserrat', serif; font-size: 20px;color: white;">
+        						<span class="focus-input100" data-placeholder="	&#x1F464;"></span>
+        					</div>
+
+        					<div class="wrap-input100 validate-input form-group" data-validate="Enter password">
+        						<input class="input100" type="password" name="password" placeholder="PASSWORD" style = "font-family: 'Montserrat', serif; font-size: 20px;color: white;">
+        						<span class="focus-input100" data-placeholder="&#x1F512;"></span>
+        					</div>
+
+
+        					<div class="container-login100-form-btn m-t-32 form-group">
+        						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
+        							Login
+        						</button>
+        					</div>
+
+        				</form>
+        			</div>
+        		</div>
+        	</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </html>

@@ -548,7 +548,7 @@ document.querySelector('#about-database-info').scrollIntoView({
           <div class="mySlides">
             <center><h3>Access Top Essays</h3></center>
             <div class="numbertext">1 / 3</div>
-            <img src="/images/stanford.png" style="width:100%;">
+            <img src="/images/modal-examples/database1.jpeg" style="width:100%;">
           </div>
 
           <div class="mySlides">
@@ -588,7 +588,36 @@ document.querySelector('#about-database-info').scrollIntoView({
         </button>
       </div>
       <div class="modal-body">
-        Will include preview of Apiary Consulting Work (Edited Essays, Email Outreach, Website Building etc.)
+        <div class="slideshow-container">
+
+          <div class="mySlides2">
+            <center><h3>Comprehensive Essay Reviews and Brainstorming Sessions</h3></center>
+            <div class="numbertext">1 / 3</div>
+            <img src="/images/modal-examples/essay-review.jpeg" style="width:100%;">
+          </div>
+
+          <div class="mySlides2">
+            <center><h3>Get Referred to Top Professors</h3></center>
+            <div class="numbertext">2 / 3</div>
+            <img src="/images/modal-examples/outreach.jpg" style="width:100%">
+          </div>
+
+          <div class="mySlides2">
+            <center><h3>Engage in Large-Scale Projects to Showcase Your Accomplishments</h3></center>
+            <img src="/images/modal-examples/personal-website.jpeg" style="width:100%">
+          </div>
+
+          <a class="prev" onclick="plusSlidesConsulting(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlidesConsulting(1)">&#10095;</a>
+
+        </div>
+        <br>
+
+        <div style="text-align:center">
+          <span class="dot2" onclick="currentSlideConsulting(1)"></span>
+          <span class="dot2" onclick="currentSlideConsulting(2)"></span>
+          <span class="dot2" onclick="currentSlideConsulting(3)"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -598,6 +627,7 @@ document.querySelector('#about-database-info').scrollIntoView({
 <script>
 var slideIndex = 1;
 showSlides(slideIndex);
+showSlidesConsulting(slideIndex);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
@@ -605,6 +635,14 @@ function plusSlides(n) {
 
 function currentSlide(n) {
   showSlides(slideIndex = n);
+}
+
+function plusSlidesConsulting(n) {
+  showSlidesConsulting(slideIndex += n);
+}
+
+function currentSlideConsulting(n) {
+  showSlidesConsulting(slideIndex = n);
 }
 
 function showSlides(n) {
@@ -622,4 +660,21 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+function showSlidesConsulting(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides2");
+  var dots = document.getElementsByClassName("dot2");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
 </script>
