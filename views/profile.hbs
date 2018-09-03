@@ -97,39 +97,136 @@
   <br>
 
   <br>
-  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
   {{#if owner}}
-  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-primary" href="/users/edit/">EDIT YOUR PROFILE</a></center>
+    <center><button data-toggle="modal" data-target="#edit-user-profile-modal" type="button" style="font-family: 'Montserrat'; color: white" class="btn apiary-button">EDIT PROFILE</button></center> <br>
   {{/if}}
   {{#if consultantPortal}}
-  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/consultants/profile">CONSULTANT PORTAL</a></center>
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/consultants/profile">CONSULTANT PORTAL</a></center>
   {{/if}}
   {{#if adminPortal}}
-  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-success" href="/admin">ADMIN PAGE</a></center>
+  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/admin">ADMIN PAGE</a></center>
   {{/if}}
-  <!--
-  <h1  class="" style= "text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
-  <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:maroon; margin-top:0%";> {{user.email}} </h2>
-  <h2 style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 20px; color:black; margin-top:0%";> {{user.biography}} </h2>
-  <div style="padding: 10px; border: solid 1px black" class ="container center-block">
-  <h4>Email:</h4>
-  <p>{{user.email}}</p>
-  <h4>Biography:</h4>
-  <p>{{user.biography}}</p>
-  <h4>School:</h4>
-  <p>{{user.school}}</p>
-  <h4>Gender:</h4>
-  <p>{{user.gender}}</p> <br><br>
-  <b>Logged in as:</b> {{logged}} <br>
-  <a style="margin-bottom: 10px" class="btn btn-info" href="/">Home Page</a><br>
-  {{#if owner}}
-  <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/edit/">Edit Profile</a><br>
-  {{/if}}
-  <a style="margin-bottom: 10px" class="btn btn-primary" href="/users/all">View All Consultants</a><br>
-  <a class = "btn btn-danger" href= "/logout">Logout</a>
 </div>
--->
+
+
+<!-- Modals -->
+
+<div class="modal fade bd-example-modal-lg" id="edit-user-profile-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit User Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+        <div class="limiter fixed-bg-sf">
+        		<div class="container-login100 fixed-bg-sf">
+        			<div class="wrap-login100 p-t-30 p-b-50">
+        				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 40px;">
+                  <br>
+                  <br>
+        					Edit Profile
+                  <br>
+                  <br>
+        				</span>
+        				<form class="login100-form validate-form p-b-33 p-t-5">
+
+        					<div class="wrap-input100 validate-input form-group" data-validate = "Enter firstname">
+        						<input class="input100 " type="text" name="firstName" placeholder="FIRSTNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{firstName}} required>
+        						<span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+        					</div>
+
+        					<div class="wrap-input100 validate-input form-group" data-validate="Enter lastname">
+        						<input class="input100" type="text" name="lastName" placeholder="LASTNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{lastName}} required>
+        						<span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+        					</div>
+
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter email">
+        						<input class="input100" type="text" name="email" placeholder="E-MAIL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{user.email}} required>
+        						<span class="focus-input100" data-placeholder="	&#x1F4E7;"></span>
+        					</div>
+
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter school">
+        						<input class="input100" type="text" name="school" placeholder="SCHOOL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.school}}' required>
+        						<span class="focus-input100" data-placeholder="	&#x1F392;"></span>
+        					</div>
+
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter username">
+        						<input class="input100" type="text" name="username" placeholder="USERNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{user.username}} required>
+        						<span class="focus-input100" data-placeholder="&#x1F464;"></span>
+        					</div>
+
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter biography">
+        						<input class="input100" type="text" name="biography" rows = "3" placeholder="BIOGRAPHY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.biography}}' required>
+        						<span class="focus-input100" data-placeholder="	&#x270D;"></span>
+        					</div>
+                  {{#if user.academicInterests}}
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interests">
+                    {{#each user.academicInterests}}
+        						<input class="input100" type="text" name="interest{{@index}}" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
+        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+                    {{/each}}
+        					</div>
+                  {{else}}
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
+        						<input class="input100" type="text" name="interest0" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+                    <input class="input100" type="text" name="interest1" placeholder="SECOND ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+                    <input class="input100" type="text" name="interest2" placeholder="THIRD ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+        					</div>
+                  {{/if}}
+
+                  {{#if user.extracurricularInterests}}
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interests">
+                    {{#each user.extracurricularInterests}}
+        						<input class="input100" type="text" name="hobby{{@index}}" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
+        						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+                    {{/each}}
+        					</div>
+                  {{else}}
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
+                    <input class="input100" type="text" name="hobby0" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+                    <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+                    <input class="input100" type="text" name="hobby1" placeholder="SECOND HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+                    <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+                    <input class="input100" type="text" name="hobbie2" placeholder="THIRD HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+                    <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+                  </div>
+                  {{/if}}
+
+
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">
+        						<input class="input100" type="text" name="intendedMajor" placeholder="INTENDED MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.intendedMajor}}'required>
+        						<span class="focus-input100" data-placeholder="		&#x1F4D6;"></span>
+        					</div>
+
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your dream university">
+        						<input class="input100" type="text" name="dreamUni" placeholder="DREAM UNIVERSITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.dreamUni}}' required>
+        						<span class="focus-input100" data-placeholder="		&#x1F393;"></span>
+        					</div>
+        					<div class="container-login100-form-btn m-t-32 form-group">
+        						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
+        							Save Changes
+        						</button>
+        					</div>
+
+        				</form>
+        			</div>
+        		</div>
+        	</div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Modals -->
 
 <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 <script type="text/javascript">

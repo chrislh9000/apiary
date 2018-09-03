@@ -76,6 +76,7 @@ router.get('/users/myProfile', function(req, res, next) {
     })
     .exec()
     .then((user) => {
+      const names = user.name.split(' ');
       res.render('profile', {
         user: user,
         logged: req.user.username,
@@ -85,6 +86,8 @@ router.get('/users/myProfile', function(req, res, next) {
         ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         networkToggled: true,
         loggedIn: true,
+        firstName: names[0],
+        lastName: names[1],
         consultantSkype: user.consultant ? user.consultant.skype : null,
         consultantPortal: user.userType === 'admin' || user.userType === 'consultant' ? true : false,
         adminPortal: user.userType === 'admin' ? true : false,
