@@ -764,22 +764,9 @@ router.get('/users/consultants/:userid', function(req, res, next) {
 })
 //sample consultant profile with google calendars API (maybe a skype API of some sort?)
 //test route for google calendar API
-router.get('/calendar', function(req, res, next) {
-  res.render('calendar')
+router.get('/test-nav', (req, res) => {
+  res.render('./Testing/sidenav-test.hbs');
 })
-
-////////////////////////////////////////NEWSFEED/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// router.get('/network/newsfeed', (req, res) => {
-//   res.render('./Network/apiary-feed');
-// });
-//
-// router.get('/test/newsfeed', (req, res) => {
-//   res.render('./Network/newsfeed', {
-//     networkToggled: true,
-//     loggedIn: true,
-//   });
-// })
 
 
 
