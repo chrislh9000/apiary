@@ -105,8 +105,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login?login=failed'}), function(req, res) {
-  res.redirect('/?loggedIn=success');
-  console.log('logged in !')
+  res.redirect('/users/all');
 });
 
 //logout functionality
