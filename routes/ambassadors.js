@@ -160,7 +160,8 @@ router.get('/:id', (req, res) => {
         service.stripePrice = service.price * 100;
       })
       res.render('./Ambassadors/ambassador-profile', {
-        user: ambassador,
+        ambassador: ambassador,
+        user: ambassador.user,
         services: ambassador.services,
         logged: req.user.username,
         ambassadorProfile: req.user.userType === 'ambassador' ? true : false,

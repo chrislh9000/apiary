@@ -81,13 +81,13 @@
 }
 
 /* @-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+from {opacity: .4}
+to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+from {opacity: .4}
+to {opacity: 1}
 } */
 
 /* On smaller screens, decrease text size */
@@ -511,170 +511,304 @@ document.querySelector('#about-database-info').scrollIntoView({
         </button>
       </div>
       <div class="modal-body">
-        Will include Christopher Hemm's Ambassador Profile
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="network-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Apiary Network</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Will include preview of Apiary Network
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="database-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Apiary Database</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="slideshow-container">
-
-          <div class="mySlides">
-            <center><h3>Access Top Essays</h3></center>
-            <div class="numbertext">1 / 3</div>
-            <img src="/images/modal-examples/database1.jpeg" style="width:100%;">
-          </div>
-
-          <div class="mySlides">
-            <center><h3>Fine Tune Your Resume</h3></center>
-            <div class="numbertext">2 / 3</div>
-            <img src="/images/stanford.png" style="width:100%">
-          </div>
-
-          <div class="mySlides">
-            <center><h3>Search for Internships</h3></center>
-            <img src="/images/stanford.png" style="width:100%">
-          </div>
-
-          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-          <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-        </div>
+        <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> Christopher Hemm </h1>
         <br>
+        <div class="row profile-container" style="weight: 100%; min-height: 600px">
+          <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+            <!-- <div style="background-color: gray;" class = "profile-image-frame container-fluid"> -->
+            <img src="/images/team/Christopher.jpg" class="center-block" style="border: solid 10px #910000; width:250px; height:280px" />
+            <!-- </div> -->
+            <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">chrishemm@gmail.com</h3>
+            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">University of Chicago</h5>
+            <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: United States</h5>
 
-        <div style="text-align:center">
-          <span class="dot" onclick="currentSlide(1)"></span>
-          <span class="dot" onclick="currentSlide(2)"></span>
-          <span class="dot" onclick="currentSlide(3)"></span>
+            <div class="card">
+              <div class="card-header apiary-collapsable" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    View {{user.name}}'s Biography and Interests
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+                  <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> Born in Hong Kong and Lived in Shanghai. I speak English and Chinese Fluently
+                    and enjoy Oil Painting, Tennis, and Programming. Liverpool FC Supporter and New York Knicks Fan.</i> </center>
+                    <br><br>
+                    <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Philosophy</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Computer Science</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Math</p>
+                    <br>
+                    <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Painting</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Tennis</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Programming</p>
+                    <br>
+                    <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+                    <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Philosophy and Math</h5>
+                    <br>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header apiary-collapsable" id="headingTwo">
+                  <h5 class="mb-0">
+                    <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      View Christopher's Accomplishments
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div class="card-body">
+                    <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
+                    <div class = "container-fluid">
+                      <center><h3 style="color: #910000">Documents</h3></center>
+                      <a target="_blank" href="http://res.cloudinary.com/apiary-solutions/image/upload/v1535928833/ambassador_documents/dbvxk48nzz75kxateobt.pdf">
+                        <img class="center-block" src="http://res.cloudinary.com/apiary-solutions/image/upload/c_limit,h_60,w_90/v1535928833/ambassador_documents/dbvxk48nzz75kxateobt.jpg" />
+                      </a> <br>
+                    </div>
+                    <center><h3 style="color: #910000">Links</h3></center>
+                    <center><a target="_blank" href='https://www.flickr.com/photos/148599945@N05'>Art Portfolio</a></center>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header apiary-collapsable" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      View Christopher's Services
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                    <h1 class = "bigTitleFont-black" style="text-align: center">Christopher's Ambassador Services </h1><br>
+                    <div style="text-align: center" class="profile-container card">
+                      <h5 class = "consultantTraining" >Why UChicago Essay Review</h5>
+                      <h5 class = "transparencySecond" style = "line-height: 1.6;"><i>I have reviewed over 50 Why UChicago Essays. Additionally, my Why UChicago Essay was selected
+                        by UChicago admissions and showcased as an examples as what an outstanding Why UChicago Essay looks like.</i></h5>
+                        <h5 class = "stigma" >Price: $20</h5> <br>
+                        <center><button class="apiary-button">Purchase this Service</button></center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header apiary-collapsable" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        Contact Christopher
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                      <h1 class = "bigTitleFont-black" style="text-align: center"> Email Ambassador </h1><br>
+                      <form>
+                        <input class="form-control" placeholder="Email Subject" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="consulting-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Apiary Consulting</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="slideshow-container">
-
-          <div class="mySlides2">
-            <center><h3>Comprehensive Essay Reviews and Brainstorming Sessions</h3></center>
-            <div class="numbertext">1 / 3</div>
-            <img src="/images/modal-examples/essay-review.jpeg" style="width:100%;">
+      <div class="modal fade" id="network-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Apiary Network</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="" class="container-fluid network-profiles-container">
+                <div class="scrolling-wrapper">
+              <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+              <img class="center-block" style=" height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+              <h5 style="text-transform: uppercase"><b>Christopher Hemm</b></h5>
+              <h5 style="text-transform: uppercase"><b>University of Chicago</b></h5>
+              <h5 style="text-transform: uppercase; color: maroon;"><b>chrishemm@gmail.com</b></h5>
+              <h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: Math and Philosophy</b></h5>
+              <a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
+              </div>
+              <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+              <img class="center-block" style=" height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+              <h5 style="text-transform: uppercase"><b>Christopher Hemm</b></h5>
+              <h5 style="text-transform: uppercase"><b>University of Chicago</b></h5>
+              <h5 style="text-transform: uppercase; color: maroon;"><b>chrishemm@gmail.com</b></h5>
+              <h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: Math and Philosophy</b></h5>
+              <a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
+              </div>
+              <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+              <img class="center-block" style=" height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+              <h5 style="text-transform: uppercase"><b>Christopher Hemm</b></h5>
+              <h5 style="text-transform: uppercase"><b>University of Chicago</b></h5>
+              <h5 style="text-transform: uppercase; color: maroon;"><b>chrishemm@gmail.com</b></h5>
+              <h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: Math and Philosophy</b></h5>
+              <a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
+              </div>
+              </div>
+              </div>
+            </div>
+            </div>
           </div>
-
-          <div class="mySlides2">
-            <center><h3>Get Referred to Top Professors</h3></center>
-            <div class="numbertext">2 / 3</div>
-            <img src="/images/modal-examples/outreach.jpg" style="width:100%">
-          </div>
-
-          <div class="mySlides2">
-            <center><h3>Engage in Large-Scale Projects to Showcase Your Accomplishments</h3></center>
-            <img src="/images/modal-examples/personal-website.jpeg" style="width:100%">
-          </div>
-
-          <a class="prev" onclick="plusSlidesConsulting(-1)">&#10094;</a>
-          <a class="next" onclick="plusSlidesConsulting(1)">&#10095;</a>
-
         </div>
-        <br>
 
-        <div style="text-align:center">
-          <span class="dot2" onclick="currentSlideConsulting(1)"></span>
-          <span class="dot2" onclick="currentSlideConsulting(2)"></span>
-          <span class="dot2" onclick="currentSlideConsulting(3)"></span>
+      <div class="modal fade" id="database-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Apiary Database</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="slideshow-container">
+
+                <div class="mySlides">
+                  <center><h3>Access Top Essays</h3></center>
+                  <div class="numbertext">1 / 3</div>
+                  <img src="/images/modal-examples/database1.jpeg" style="width:100%;">
+                </div>
+
+                <div class="mySlides">
+                  <center><h3>Fine Tune Your Resume</h3></center>
+                  <div class="numbertext">2 / 3</div>
+                  <img src="/images/stanford.png" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+                  <center><h3>Search for Internships</h3></center>
+                  <img src="/images/stanford.png" style="width:100%">
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+              </div>
+              <br>
+
+              <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- Modal javascript -->
-<script>
-var slideIndex = 1;
-showSlides(slideIndex);
-showSlidesConsulting(slideIndex);
+      <div class="modal fade" id="consulting-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Apiary Consulting</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="slideshow-container">
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+                <div class="mySlides2">
+                  <center><h3>Comprehensive Essay Reviews and Brainstorming Sessions</h3></center>
+                  <div class="numbertext">1 / 3</div>
+                  <img src="/images/modal-examples/essay-review.jpeg" style="width:100%;">
+                </div>
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+                <div class="mySlides2">
+                  <center><h3>Get Referred to Top Professors</h3></center>
+                  <div class="numbertext">2 / 3</div>
+                  <img src="/images/modal-examples/outreach.jpg" style="width:100%">
+                </div>
 
-function plusSlidesConsulting(n) {
-  showSlidesConsulting(slideIndex += n);
-}
+                <div class="mySlides2">
+                  <center><h3>Engage in Large-Scale Projects to Showcase Your Accomplishments</h3></center>
+                  <img src="/images/modal-examples/personal-website.jpeg" style="width:100%">
+                </div>
 
-function currentSlideConsulting(n) {
-  showSlidesConsulting(slideIndex = n);
-}
+                <a class="prev" onclick="plusSlidesConsulting(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlidesConsulting(1)">&#10095;</a>
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
+              </div>
+              <br>
 
-function showSlidesConsulting(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides2");
-  var dots = document.getElementsByClassName("dot2");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
+              <div style="text-align:center">
+                <span class="dot2" onclick="currentSlideConsulting(1)"></span>
+                <span class="dot2" onclick="currentSlideConsulting(2)"></span>
+                <span class="dot2" onclick="currentSlideConsulting(3)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</script>
+      <!-- Modal javascript -->
+      <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+      showSlidesConsulting(slideIndex);
+
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function plusSlidesConsulting(n) {
+        showSlidesConsulting(slideIndex += n);
+      }
+
+      function currentSlideConsulting(n) {
+        showSlidesConsulting(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+
+      function showSlidesConsulting(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides2");
+        var dots = document.getElementsByClassName("dot2");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+
+    </script>
