@@ -147,8 +147,8 @@
   </button>
   <a style="display: flex; align-items: center; justify-content: center" class="navbar-brand" href="/users/all"><img src="/images/post-login-logo.jpg" style="border-radius: 10px; height: 38px" /></a>
   <form style="margin-left: 2%" class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search For Users..." aria-label="Search">
-    <button style="color: white; border: 1px solid white; border-radius: 10px" class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+    <input id="apiary-user-searchfield" class="form-control mr-sm-2" type="search" placeholder="Search For Users..." aria-label="Search">
+    <button id="apiary-user-search-btn" style="color: white; border: 1px solid white; border-radius: 10px" class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span></button>
   </form>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -331,4 +331,17 @@
     </div>
   </div>
 </div>
+
+<script>
+$('#apiary-user-search-btn').on('click', (event) => {
+  event.preventDefault();
+  var searchOption = $('#apiary-user-searchfield').val();
+  window.location.href = `/users/all?search=${searchOption}`;
+})
+
+</script>
+
+
+
+
 </html>

@@ -198,9 +198,15 @@ router.get('/users/all', function(req, res, next) {
         const networkMembers = _.filter(users, (user) => {
           return user.userType !== 'user' || 'ambassador';
         })
+        if (req.query.search) {
+          const searchUser = req.query.search.toLowerCase();
+          searchMembers = _.filter(users, (user) => {
+            return ((user.name).toLowerCase()).includes(searchUser);
+          })
+        }
         res.render('networkProfiles', {
           user: req.user,
-          users: networkMembers,
+          users: req.query.search ? searchMembers : networkMembers,
           logged: req.user.username,
           networkToggled: true,
           ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
