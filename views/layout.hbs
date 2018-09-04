@@ -141,32 +141,32 @@
   <!-- Navbar -->
 {{#if networkToggled}}
 
-<nav style="display: flex; justify-content: center; align-items: center" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav style="display: flex; justify-content: center; align-items: center; background-color: #910000 " class="navbar navbar-expand-lg navbar-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a style="display: flex; align-items: center; justify-content: center" class="navbar-brand" href="#"><img src="/images/apiary-network-icon.jpg" style="height: 50px" /></a>
   <form style="margin-left: 2%" class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search For Users..." aria-label="Search">
-    <button style="color: #910000" class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+    <button style="color: white; border: 1px solid white; border-radius: 10px" class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span></button>
   </form>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li style="display: flex; align-items: center;" class="nav-item">
-        <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' /> <a href="/users/myProfile">My Profile</a>
+        <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' /> <a style="color: white" class="apiary-post-nav-text" href="/users/myProfile">My Profile</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/">Back Home</a>
+        <a style="color: white;" class="nav-link" href="/">Back Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a style="color: white;" class="nav-link" href="/logout">Logout</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<div style="border-top: solid 1px white" class="sidenav">
+<div style="float: left; border-top: solid 1px white" class="sidenav">
   <a style="font-family: 'Montserrat'; border-bottom: solid 2px white;" href="#"> Apiary Network</a>
   <ul>
   <a style="font-size: 15px" class="side-nav-mini-link" href="/users/ambassadors"> <span class="glyphicon glyphicon-user"></span> Ambassadors</a>
