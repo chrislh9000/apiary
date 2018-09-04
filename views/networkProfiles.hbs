@@ -3,15 +3,16 @@
     /* margin-top: 20%; */
     float: left;
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 180px; /* Set the width of the sidebar */
+    width: 200px; /* Set the width of the sidebar */
     /* position: fixed /* Fixed Sidebar (stay in place on scroll) */ */
     position: absolute; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 120px/; /* Stay at the top */
     left: 0;
-    background-color: #e6e6e6; /* Black */
+    background-color: white; /* Light Gray */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+    margin-right: 10px
 }
 
 /* The navigation menu links */
@@ -19,6 +20,8 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 18px;
+    font-family: 'Montserrat';
+    text-transform: capitalize;
     color: black;
     display: block;
 }
@@ -44,46 +47,79 @@
     .sidenav a {font-size: 18px;}
 }
 </style>
+<br>
+<!-- <div style="height: 60px; display: flex; align-items: center; background-color: #910000">
+  <input style="margin-left: 18%; width: 300px; height: 40px" class="form-control" placeholder="Search By School..." />
+</div> -->
+<nav style="display: flex; justify-content: center; align-items: center" class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Apiary Network</a>
+  <form style="margin-left: 2%" class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search For Users..." aria-label="Search">
+    <button style="color: #910000" class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+  </form>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <div>
+        <!-- <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' /> -->
+        </div>
+        <a style="margin-left: 10px" class="nav-link" href="#">My Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <div style="border-top: solid 1px white" class="sidenav">
-  <a style="border-bottom: solid 2px white;" href="#">Apiary Network</a>
-  <a style="border-bottom: solid 2px white;" href="#">Apiary Forums</a>
+  <a style="font-family: 'Montserrat'; border-bottom: solid 2px white;" href="#"> Apiary Network</a>
+  <ul>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-user"></span> Ambassadors</a>
+    <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-user"></span> Users</a>
+  </ul>
+  <a style="font-family: 'Montserrat'; border-bottom: solid 2px white;" href="#"> Apiary Forums</a>
   <a href="#">Apiary Database</a>
   <ul>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Essays</a>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Resumes</a>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Academic Excellence</a>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Test Prep</a>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Internships</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-list-alt"></span> Essays</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-save-file"></span> Resumes</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-file"></span> Academic Excellence</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-book"></span> Test Prep</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-briefcase"></span> Internships</a>
 </ul>
   <a style="border-top: solid 1px white;" href="#">Apiary Consulting</a>
   <ul>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Purchase</a>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Schedule</a>
-  <a style="font-size: 15px" class="side-nav-mini-link" href="#">Manage</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Purchase</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-calendar"></span> Schedule</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-tasks"></span> Manage</a>
 </ul>
-<a style="border-bottom: solid 2px white;" href="#">See More...</a>
+<!-- <a style="border-bottom: solid 2px white;" href="#">See More...</a> -->
 </div>
 
-
-<body class = "fixed-bg-sf"><div class="container-fluid network-profiles-container">
-  <h1>APIARY NETWORK MEMBERS</h1><br><br>
-  <center><a style="background-color: #910000; color: white;" class="btn btn-info" href="/users/ambassadors">View Ambassador Profiles</a>
+<div style="" class="container-fluid network-profiles-container">
   <div class="scrolling-wrapper">
 {{#each users}}
 <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
 {{#if this.image}}
-<img class="center-block" style="height: 150px; width: 122px;" src="{{this.image.cloudinaryUrl}}"></img>
+<img class="center-block" style="height: 250px; width: 180px;" src="{{this.image.cloudinaryUrl}}"></img>
 {{else}}
-<img class="center-block" style="height: 150px; width: 122px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+<img class="center-block" style="height: 250px; width: 180px;" src="/profiles/1535005509011-avatar1.jpg"></img>
 {{/if}}
 <h5 style="text-transform: uppercase"><b>{{this.name}}</b></h5>
 <h5 style="text-transform: uppercase"><b>{{this.school}}</b></h5>
 <h5 style="text-transform: uppercase; color: maroon;"><b>{{this.email}}</b></h5>
-<h5 style="text-transform: uppercase; color: indianred;"><b>{{this.intendedMajor}}</b></h5>
-<a class = "btn btn-success" href = '/users/{{this._id}}'>View Profile</a><br><br>
+<h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: {{this.intendedMajor}}</b></h5>
+<a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
 </div>
 {{/each}}
 </div>
 </div>
-<br><br><br></body>
+
+<br><br><br>

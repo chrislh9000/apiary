@@ -199,6 +199,7 @@ router.get('/users/all', function(req, res, next) {
           return user.userType !== 'user' || 'ambassador';
         })
         res.render('networkProfiles', {
+          user: req.user,
           users: networkMembers,
           logged: req.user.username,
           networkToggled: true,
