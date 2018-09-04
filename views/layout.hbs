@@ -17,6 +17,54 @@
 
 </head>
 <style>
+.sidenav {
+    /* margin-top: 20%; */
+    float: left;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 200px; /* Set the width of the sidebar */
+    /* position: fixed /* Fixed Sidebar (stay in place on scroll) */ */
+    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 120px/; /* Stay at the top */
+    left: 0;
+    background-color: white; /* Light Gray */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    margin-right: 10px
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    text-transform: capitalize;
+    color: black;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #910000;
+}
+
+.side-nav-mini-link {
+  font-size: 15px;
+}
+
+/* Style page content */
+.main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
   .fixed-bg {
     background-image: url("images/grey.jpg");
     min-height: 350px;
@@ -92,6 +140,7 @@
   </div>
   <!-- Navbar -->
 {{#if networkToggled}}
+
 <nav style="display: flex; justify-content: center; align-items: center" class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -105,17 +154,41 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li style="display: flex; align-items: center;" class="nav-item">
-        <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' /> <a href="#">My Profile</a>
+        <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' /> <a href="/users/myProfile">My Profile</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Back Home</a>
+        <a class="nav-link" href="/">Back Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
+        <a class="nav-link" href="/logout">Logout</a>
       </li>
     </ul>
   </div>
 </nav>
+
+<div style="border-top: solid 1px white" class="sidenav">
+  <a style="font-family: 'Montserrat'; border-bottom: solid 2px white;" href="#"> Apiary Network</a>
+  <ul>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/users/ambassadors"> <span class="glyphicon glyphicon-user"></span> Ambassadors</a>
+    <a style="font-size: 15px" class="side-nav-mini-link" href="/users/all"><span class="glyphicon glyphicon-user"></span> Users</a>
+  </ul>
+  <a style="font-family: 'Montserrat'; border-bottom: solid 2px white;" href="/network/forum"> Apiary Forums</a>
+  <a href="">Apiary Database</a>
+  <ul>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/essay"><span class="glyphicon glyphicon-list-alt"></span> Essays</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/resumes"><span class="glyphicon glyphicon-save-file"></span> Resumes</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/classNotes"><span class="glyphicon glyphicon-file"></span> Academic Excellence</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/test-prep"><span class="glyphicon glyphicon-book"></span> Test Prep</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/internships"><span class="glyphicon glyphicon-briefcase"></span> Internships</a>
+</ul>
+  <a style="border-top: solid 1px white;" href="#">Apiary Consulting</a>
+  <ul>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Purchase</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/scheduleSession"><span class="glyphicon glyphicon-calendar"></span> Schedule</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="#"><span class="glyphicon glyphicon-tasks"></span> Manage</a>
+</ul>
+<!-- <a style="border-bottom: solid 2px white;" href="#">See More...</a> -->
+</div>
 {{else}}
   <a href="/">
   <img src="/images/apiary.png" alt="Alpine Consulting" class="center-block logoimage">
