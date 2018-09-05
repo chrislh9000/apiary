@@ -25,7 +25,7 @@
     /* position: fixed /* Fixed Sidebar (stay in place on scroll) */ */
     position: absolute; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
-    top: 120px/; /* Stay at the top */
+    top: 150px/; /* Stay at the top */
     left: 0;
     background-color: white; /* Light Gray */
     overflow-x: hidden; /* Disable horizontal scroll */
@@ -152,9 +152,12 @@
   </form>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul style="justify-content: center; align-items: center" class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li style="display: flex; align-items: center;" class="nav-item">
-        <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' /> <a style="font-family: 'Montserrat'; color: white" class="apiary-post-nav-text" href="/users/myProfile">My Profile</a>
+        <a href="/users/all">
+        <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' />
+      </a>
+        <a style="font-family: 'Montserrat'; color: white" class="apiary-post-nav-text" href="/users/myProfile">My Profile</a>
       </li>
       <li class="nav-item">
         <a style="font-family: 'Montserrat'; color: white;" class="nav-link" href="/?networkToggled=false">Pre-Login</a>
@@ -166,7 +169,7 @@
   </div>
 </nav>
 
-<div style="float: left; border-top: solid 1px white" class="sidenav">
+<div style="border-radius: 10px; box-shadow: 0 4px 4px 0 #910000; float: left; border-top: solid 1px white" class="sidenav">
   <a style="font-family: 'Montserrat'; border-bottom: solid 1px #910000;" href="#"> Apiary Network</a>
   <ul>
   <a style="font-size: 15px" class="side-nav-mini-link" href="/users/ambassadors"> <span class="glyphicon glyphicon-user"></span> Ambassadors</a>
