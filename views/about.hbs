@@ -1,176 +1,194 @@
 <!-- <span class="skype-button bubble" data-contact-id="arjun.chakraborty42" data-color="#800000"></span>
 <span class="skype-chat" data-color-message="#800000"></span> -->
+<style>
+.mySlides {display: none}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 500px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: black;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+/* @-webkit-keyframes fade {
+from {opacity: .4}
+to {opacity: 1}
+}
+
+@keyframes fade {
+from {opacity: .4}
+to {opacity: 1}
+} */
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+
+
+
+
+
 <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
-
-    <div class = "container-fluid arch">
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1 class = "bigTitleFont"><strong> <center> THE VISION </center></strong> </h1>
-        <p  class = "textbox secondTitleFont"> Apiary solutions is committed to promoting and developing connections between thriving, ambitious high school students and college students who attend the worlds most elite universities. By leveraging a diverse, cross-generational network of college and high school students, Apiary carries out this mission through intense personal mentorship, with the aim to successfully guide students through the college application process and beyond. </p>
-    </div>
-
-    <br>
-    <br>
-<div class = "container">
-       <br>
-       <h1 class = "bigTitleFont-black"><strong> <center> THE TEAM </center></strong> </h1>
-       <h3 class = "secondTitleFont-black"> <center> Our consultants are the most recent admits to top universities. This means that they know what it takes to give your application a successful edge, and that they were in your place just a few years ago. They serve as extensively trained advisors, peer supporters, and role models for clients. Here are some of our active consultants: </center> </h3>
-       <div class="scrolling-wrapper">
-        <!-- <div class="row"> -->
-
-            <!-- <div class="col-lg-3 col-sm-12"> -->
-                <!-- <br> -->
-                <!-- <div class="card card-profile members-profiles"> -->
-                <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
-                    <img src="/images/team/Christopher.jpg" alt="Jane" style="height: 370px; width:100%">
-                    <div class="alpine-team-container">
-                    <h3 class = "teamName">Christopher Hemm</h3>
-                    <p class="title"> Head of Consulting and Finance </p>
-                    <p>University of Chicago </p>
-                    </div>
-                </div>
-            <!-- </div> -->
-
-            <!-- <div class="col-lg-3 col-sm-12"> -->
-                <!-- <br> -->
-                <!-- <div class="card card-profile members-profiles"> -->
-                <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
-                    <img src="/images/team/Helena.jpg" alt="Jane" style="height: 370px; width:100%">
-                    <div class="alpine-team-container">
-                    <h3 class = "teamName">Helena Thomas</h3>
-                    <p class="title"> Senior Network Developer </p>
-                    <p>University of Chicago </p>
-                    </div>
-                </div>
-            <!-- </div> -->
-
-            <!-- <div class="col-lg-3 col-sm-12"> -->
-                <!-- <br> -->
-                <!-- <div class="card card-profile members-profiles"> -->
-                <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
-                    <img src="/images/team/Abhi.jpg" alt="John" style="height: 370px; width:100%">
-                    <div class="alpine-team-container">
-                        <h3 class = "teamName"> Abhi Kottamasu </h3>
-                        <p class="title">Chief Technology Officer</p>
-                        <p>University of Michigan </p>
-                    </div>
-                </div>
-            <!-- </div> -->
-
-             <!-- <div class="col-lg-3 col-sm-12"> -->
-                <!-- <br> -->
-                <!-- <div class="card card-profile members-profiles"> -->
-                <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
-                    <img src="/images/team/Arjun.jpg" alt="Mike" style="height: 370px; width:100%">
-                    <div class="alpine-team-container">
-                        <h3 class = "teamName"> Arjun Chakraborty </h3>
-                        <p class="title">Head of Network Development</p>
-                        <p>University of Chicago </p>
-                    </div>
-                </div>
-            <!-- </div> -->
-
-            <!-- <div class="col-lg-3 col-sm-12"> -->
-                <!-- <br> -->
-                <!-- <div class="card card-profile members-profiles"> -->
-                <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
-                    <img src="/images/team/Daniel.jpg" alt="Mike" style="height: 370px; width:100%">
-                      <div class="alpine-team-container">
-                        <h3 class = "teamName"> Daniel Lee </h3>
-                        <p class="title">Marketing Director and Legal Counsel</p>
-                        <p>University of Chicago</p>
-                      </div>
-
-                </div>
-            <!-- </div> -->
-
-            <!-- <div class="col-lg-3 col-sm-12"> -->
-                <!-- <br> -->
-                <!-- <div class="card card-profile members-profiles"> -->
-                <!-- <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
-                    <img src="/images/avatar2.png" alt="Mike" style="height: 370px; width:100%">
-                      <div class="alpine-team-container">
-                        <h3 class = "teamName"> George Kingston </h3>
-                        <p class="title">Art Director</p>
-                        <p>Stanford University</p>
-                      </div>
-
-                </div> -->
-            <!-- </div> -->
-    </div>
-    <h1 class = "bigTitleFont-black" style="color: black; font-size: 30px;"><strong> <center> SCROLL RIGHT TO SEE ALL </center></strong> </h1>
-  </div>
-</div>
- <br>
- <br>
-
-
-    <!-- <div class = "container-fluid fixed-bg" style = "min-height: 420px;">
-        <br>
-        <center> <h1 class = "bigTitleFont-black" > WE STRIVE FOR TRANSPARENCY</h1></center>
-
-    <center> <p class = "twoWays textbox"> IN TWO WAYS </p></center> -->
-        <!-- Container -->
-		<!-- <div class="container"> -->
-
-			<!-- Row -->
-			<!-- <div class="row"> -->
-
-				<!-- Section header -->
-				<!-- <div class="section-header text-center">
-					<h2 class="a">What we offer</h2>
-				</div>
-                <br> -->
-				<!-- /Section header -->
-
-				<!-- service -->
-				<!-- <div class="col-md-4 col-sm-6">
-					<div class="service2">
-
-						<h3 class = "transparencyMain" ><center>  Transparency from Us </center></h3>
-						<p1 class = "transparencySecond" ><center> Clarity in all features, services and prices during all stages of involvement with Apiary. </center></p1>
-					</div>
-				</div> -->
-				<!-- /service -->
-
-				<!-- service -->
-				<!-- <div class="col-md-4 col-sm-6">
-					<div class="service2">
-						<h3 class = "transparencyMain" ><center>  Transparency from You </center></h3>
-						<p1 class = "transparencySecond" ><center> We want to promote transparency so that students perceive college-consulting as a source of pride.  </center></p1>
-					</div>
-				</div> -->
-				<!-- /service -->
-
-			<!-- </div> -->
-			<!-- /Row -->
-
-          <!-- <center> <strong>  <p class = "stigma textbox2"> Our goal is to remove the unjustified stigma behind college consulting. </p></strong></center>
-		</div> -->
-		<!-- /Container -->
-
-	<!-- </div> -->
-	<!-- /Service -->
-
-
-
-   <!-- training stuff -->
+<div style="width: 100%; padding:0" class="container-fluid">
+  <div class = "container-fluid arch">
     <!-- <br>
+    <br> -->
     <br>
     <br>
+    <h1 class = "bigTitleFont"><strong> <center> THE VISION </center></strong> </h1>
+    <p  class = "textbox secondTitleFont"> Apiary solutions is committed to promoting and developing connections between thriving, ambitious high school students and college students who attend the worlds most elite universities. By leveraging a diverse, cross-generational network of college and high school students, Apiary carries out this mission through intense personal mentorship, with the aim to successfully guide students through the college application process and beyond. </p>
+    <br>
+    <br>
+  </div>
+
+  <br>
+  <br>
+  <div id="about-consulting-info" class = "container">
+    <br>
+    <h1 class = "bigTitleFont-black"><strong> <center> CONSULTING </center></strong> </h1>
+    <h3 class = "secondTitleFont-black"> <center> Our consultants are the most recent admits to top universities. This means that they know what it takes to give your application a successful edge, and that they were in your place just a few years ago. They serve as extensively trained advisors, peer supporters, and role models for clients. Here are some of our active consultants: </center> </h3>
+    <center><button data-toggle="modal" data-target="#consulting-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Take a look at some of Apiary's Consulting Work</button></center>
+  </div>
+  <br>
+  <br>
 
 
-    <div class = "container">
-        <h1 class = "bigTitleFont-black"><strong> <center> TRAINING </center></strong> </h1>
-    <h3 class = "thirdTitleFont"> Each consultant derives from a unique background, both academically and culturally. They are studying in a diverse range of top universities. Despite the team's diversity, they all share an undisputed record of academic excellence, unrivaled intellectual curiosity, and the ambition to become the best at what they do in college and beyond.  </h3>
-        <br>
-        <br>
-        <br> -->
-        <center><strong><bold><h2 class = "consultantTraining"> THE CONSULTANT TRAINING PROCESS </h2> </bold></strong></center>
-    <br>
-    <div class="row">
+  <!-- <div class = "container-fluid fixed-bg" style = "min-height: 420px;">
+  <br>
+  <center> <h1 class = "bigTitleFont-black" > WE STRIVE FOR TRANSPARENCY</h1></center>
+
+  <center> <p class = "twoWays textbox"> IN TWO WAYS </p></center> -->
+  <!-- Container -->
+  <!-- <div class="container"> -->
+
+  <!-- Row -->
+  <!-- <div class="row"> -->
+
+  <!-- Section header -->
+  <!-- <div class="section-header text-center">
+  <h2 class="a">What we offer</h2>
+</div>
+<br> -->
+<!-- /Section header -->
+
+<!-- service -->
+<!-- <div class="col-md-4 col-sm-6">
+<div class="service2">
+
+<h3 class = "transparencyMain" ><center>  Transparency from Us </center></h3>
+<p1 class = "transparencySecond" ><center> Clarity in all features, services and prices during all stages of involvement with Apiary. </center></p1>
+</div>
+</div> -->
+<!-- /service -->
+
+<!-- service -->
+<!-- <div class="col-md-4 col-sm-6">
+<div class="service2">
+<h3 class = "transparencyMain" ><center>  Transparency from You </center></h3>
+<p1 class = "transparencySecond" ><center> We want to promote transparency so that students perceive college-consulting as a source of pride.  </center></p1>
+</div>
+</div> -->
+<!-- /service -->
+
+<!-- </div> -->
+<!-- /Row -->
+
+<!-- <center> <strong>  <p class = "stigma textbox2"> Our goal is to remove the unjustified stigma behind college consulting. </p></strong></center>
+</div> -->
+<!-- /Container -->
+
+<!-- </div> -->
+<!-- /Service -->
+
+
+
+<!-- training stuff -->
+<!-- <br>
+<br>
+<br>
+
+
+<div class = "container">
+<h1 class = "bigTitleFont-black"><strong> <center> TRAINING </center></strong> </h1>
+<h3 class = "thirdTitleFont"> Each consultant derives from a unique background, both academically and culturally. They are studying in a diverse range of top universities. Despite the team's diversity, they all share an undisputed record of academic excellence, unrivaled intellectual curiosity, and the ambition to become the best at what they do in college and beyond.  </h3>
+<br>
+<br>
+<br> -->
+<center><strong><bold><h2 class = "consultantTraining"> THE CONSULTANT TRAINING PROCESS </h2> </bold></strong></center>
+<br>
+<div class="row">
   <div class="column1 col-lg-4 col-sm-12  tab1" onclick="openTab('b1');" >Essay Review Training</div>
   <div class="column1 col-lg-4 col-sm-12 tab2" onclick="openTab('b2');" >College Expertise</div>
   <div class="column1 col-lg-4 col-sm-12 tab3" onclick="openTab('b3');" >Consulting Experience</div>
@@ -181,13 +199,13 @@
   <!-- If you want the ability to close the container, add a close button -->
   <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
   <p class = "thirdTitleFont-white">Our consultants have been extensively trained on the process essay reviewing. Not only have they been exposed to a multitude of sample-essays, but also they have been refined their advising and scrutinize skills using the Apiary essay database.
-</p>
+  </p>
 </div>
 
 <div id="b2" class="containerTab" style="display:none;background:brown">
   <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
   <p class = "thirdTitleFont-white">Apiary differentiates itself by ensuring that its consultants are experts in two unorthodox ways. Firstly, the consultants are college students who each excel in their communities from an academic and extracurricular context; they can be considered the goal for any aspiring student in high school. Secondly, they form our data gathering team, putting the consultants at the forefront of college related research and making them the most informed regarding new college developments.
-</p>
+  </p>
 </div>
 
 <div id="b3" class="containerTab" style="display:none;background:maroon">
@@ -196,10 +214,12 @@
 </div>
 <br>
 <br>
-<div class = "container">
-   <br>
-   <h1 class = "bigTitleFont-black"><strong> <center> THE DATABASE </center></strong> </h1>
-   <h3 class = "secondTitleFont-black"> <center> Ever wonder what your peers are using to craft successful applications - ever wonder if you're missing something? Access the extensive database of essays, AP/IB study-guides, standardized test prep, resumes, and internship contacts that got our network members into top schools.</center></h3>
+
+<div id="about-database-info" class = "container">
+  <br>
+  <h1 class = "bigTitleFont-black"><strong> <center> THE DATABASE </center></strong> </h1>
+  <h3 class = "secondTitleFont-black"> <center> Ever wonder what your peers are using to craft successful applications - ever wonder if you're missing something? Access the extensive database of essays, AP/IB study-guides, standardized test prep, resumes, and internship contacts that got our network members into top schools.</center></h3>
+  <center><button data-toggle="modal" data-target="#database-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Take a look at the Apiary Database</button></center>
 </div>
 <br>
 <div style="overflow: auto" class="section sm-padding net2">
@@ -259,108 +279,536 @@
 <!-- /Numbers -->
 <br>
 <br>
-<div class = "container">
-   <br>
-   <h1 class = "bigTitleFont-black"><strong> <center> THE NETWORK </center></strong> </h1>
-   <h3 class = "secondTitleFont-black"> <center>  Join a network of ambitious and accomplished students also headed to the world's top universities. Get insider information about campus culture, extracurriculars, and traditions to make your supplements stand out. Share internship opportunities, ask class questions, organize meetups. Connect with tomorrow's leaders.</center></h3>
+<div id="about-network-info"> <br>
+  <div class ="container-fluid">
+    <div class = "container">
+      <br>
+      <h1 class = "bigTitleFont-black"><strong> <center> THE NETWORK </center></strong> </h1>
+      <h3 class = "secondTitleFont-black"> <center>  Join a network of ambitious and accomplished students also headed to the world's top universities. Get insider information about campus culture, extracurriculars, and traditions to make your supplements stand out. Share internship opportunities, ask class questions, organize meetups. Connect with tomorrow's leaders.</center></h3>
+      <center><button data-toggle="modal" data-target="#network-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Take a look at the Apiary Network</button></center>
+    </div> <br>
+    <center><strong><bold><h2 class = "schoolsRepresented"> Apiary Ambassadors </h2> </bold></strong></center>
+    <h3 class = "secondTitleFont-black"> <center>  As a member of the Apiary Network, you can freely reach out to any one of our many Apiary ambassadors. Apiary ambassadors are trained college students who have demonstrated their ability to perform and excel in some of the top colleges and universities in the country. </center></h3>
+    <center><button data-toggle="modal" data-target="#ambassador-modal" type="button" style="color: white" class="apiary-button btn btn-lg">View a Sample Ambassador Profile</button></center>
+    <br>
+    <center><strong><bold><h2 class = "schoolsRepresented"> Schools Represented on the Apiary Network</h2> </bold></strong></center>
+    <br>
+    <div style="overflow: auto" class="section sm-padding net2">
+
+      <div class="container-fluid" >
+        <!-- Row -->
+        <div class="row">
+
+          <!-- number -->
+          <div class="col-xs-12 col-sm-3" >
+            <div class="number">
+              <i class="fa fa-users"></i>
+              <ul  class="stat2 white-text">Harvard</ul>
+              <ul  class="stat2 white-text">Yale</ul>
+              <ul  class="stat2 white-text">Princeton</ul>
+              <ul  class="stat2 white-text">Stanford</ul>
+            </div>
+          </div>
+          <!-- /number -->
+
+          <!-- number -->
+          <div class="col-xs-12 col-sm-3">
+            <div class="number">
+              <i class="fa fa-trophy"></i>
+              <ul  class="stat2 white-text">Columbia</ul>
+              <ul  class="stat2 white-text">UPenn</ul>
+              <ul  class="stat2 white-text">UChicago</ul>
+              <ul  class="stat2 white-text">Brown</ul>
+            </div>
+          </div>
+          <!-- /number -->
+
+          <!-- number -->
+          <div class="col-xs-12 col-sm-3">
+            <div class="number">
+              <i class="fa fa-coffee"></i>
+              <ul  class="stat2 white-text">Cornell</ul>
+              <ul  class="stat2 white-text">Dartmouth</ul>
+              <ul  class="stat2 white-text">Carnegie Mellon</ul>
+              <ul  class="stat2 white-text">University of Michigan</ul>
+            </div>
+          </div>
+          <!-- /number -->
+
+          <!-- number -->
+          <div class="col-sm-3 col-xs-12">
+            <div class="number">
+              <ul  class="stat2 white-text">Northwestern</ul>
+              <ul  class="stat2 white-text">Williams</ul>
+              <ul  class="stat2 white-text">Wellesly</ul>
+              <ul  class="stat2 white-text">NYU</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<br>
-<center><strong><bold><h2 class = "schoolsRepresented"> Schools Represented on our Network</h2> </bold></strong></center>
-<br>
-<div style="overflow: auto" class="section sm-padding net2">
+<br><br>
+<div class="container">
+  <h1 class = "bigTitleFont-black"><strong> <center> THE APIARY TEAM </center></strong> </h1>
+  <div class="scrolling-wrapper">
+    <!-- <div class="row"> -->
 
-<div class="container-fluid" >
-  <!-- Row -->
-  <div class="row">
-
-    <!-- number -->
-    <div class="col-xs-12 col-sm-3" >
-      <div class="number">
-        <i class="fa fa-users"></i>
-        <ul  class="stat2 white-text">Harvard</ul>
-        <ul  class="stat2 white-text">Yale</ul>
-        <ul  class="stat2 white-text">Princeton</ul>
-        <ul  class="stat2 white-text">Stanford</ul>
+    <!-- <div class="col-lg-3 col-sm-12"> -->
+    <!-- <br> -->
+    <!-- <div class="card card-profile members-profiles"> -->
+    <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+      <img src="/images/team/Christopher.jpg" alt="Jane" style="height: 370px; width:100%">
+      <div class="alpine-team-container">
+        <h3 class = "teamName">Christopher Hemm</h3>
+        <p class="title"> Head of Consulting and Finance </p>
+        <p>University of Chicago </p>
       </div>
     </div>
-    <!-- /number -->
+    <!-- </div> -->
 
-    <!-- number -->
-    <div class="col-xs-12 col-sm-3">
-      <div class="number">
-        <i class="fa fa-trophy"></i>
-        <ul  class="stat2 white-text">Columbia</ul>
-        <ul  class="stat2 white-text">UPenn</ul>
-        <ul  class="stat2 white-text">UChicago</ul>
-        <ul  class="stat2 white-text">Brown</ul>
+    <!-- <div class="col-lg-3 col-sm-12"> -->
+    <!-- <br> -->
+    <!-- <div class="card card-profile members-profiles"> -->
+    <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+      <img src="/images/team/Helena.jpg" alt="Jane" style="height: 370px; width:100%">
+      <div class="alpine-team-container">
+        <h3 class = "teamName">Helena Thomas</h3>
+        <p class="title"> Senior Network Developer </p>
+        <p>University of Chicago </p>
       </div>
     </div>
-    <!-- /number -->
+    <!-- </div> -->
 
-    <!-- number -->
-    <div class="col-xs-12 col-sm-3">
-      <div class="number">
-        <i class="fa fa-coffee"></i>
-        <ul  class="stat2 white-text">Cornell</ul>
-        <ul  class="stat2 white-text">Dartmouth</ul>
-        <ul  class="stat2 white-text">Carnegie Mellon</ul>
-        <ul  class="stat2 white-text">University of Michigan</ul>
+    <!-- <div class="col-lg-3 col-sm-12"> -->
+    <!-- <br> -->
+    <!-- <div class="card card-profile members-profiles"> -->
+    <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+      <img src="/images/team/Abhi.jpg" alt="John" style="height: 370px; width:100%">
+      <div class="alpine-team-container">
+        <h3 class = "teamName"> Abhi Kottamasu </h3>
+        <p class="title">Chief Technology Officer</p>
+        <p>University of Michigan </p>
       </div>
     </div>
-    <!-- /number -->
+    <!-- </div> -->
 
-    <!-- number -->
-    <div class="col-sm-3 col-xs-12">
-      <div class="number">
-        <ul  class="stat2 white-text">Northwestern</ul>
-        <ul  class="stat2 white-text">Williams</ul>
-        <ul  class="stat2 white-text">Wellesly</ul>
-        <ul  class="stat2 white-text">NYU</ul>
+    <!-- <div class="col-lg-3 col-sm-12"> -->
+    <!-- <br> -->
+    <!-- <div class="card card-profile members-profiles"> -->
+    <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+      <img src="/images/team/Arjun.jpg" alt="Mike" style="height: 370px; width:100%">
+      <div class="alpine-team-container">
+        <h3 class = "teamName"> Arjun Chakraborty </h3>
+        <p class="title">Head of Network Development</p>
+        <p>University of Chicago </p>
       </div>
     </div>
+    <!-- </div> -->
 
+    <!-- <div class="col-lg-3 col-sm-12"> -->
+    <!-- <br> -->
+    <!-- <div class="card card-profile members-profiles"> -->
+    <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+      <img src="/images/team/Daniel.jpg" alt="Mike" style="height: 370px; width:100%">
+      <div class="alpine-team-container">
+        <h3 class = "teamName"> Daniel Lee </h3>
+        <p class="title">Marketing Director and Legal Counsel</p>
+        <p>University of Chicago</p>
+      </div>
 
     </div>
+    <!-- </div> -->
 
+    <!-- <div class="col-lg-3 col-sm-12"> -->
+    <!-- <br> -->
+    <!-- <div class="card card-profile members-profiles"> -->
+    <!-- <div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
+    <img src="/images/avatar2.png" alt="Mike" style="height: 370px; width:100%">
+    <div class="alpine-team-container">
+    <h3 class = "teamName"> George Kingston </h3>
+    <p class="title">Art Director</p>
+    <p>Stanford University</p>
   </div>
 
+</div> -->
+<!-- </div> -->
+</div>
 </div>
 <br> <br> <br> <br>
-    <script>
+<script>
 function openTab(tabName) {
   var i, x;
   x = document.getElementsByClassName("containerTab");
   for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
+    x[i].style.display = "none";
   }
   document.getElementById(tabName).style.display = "block";
 }
 </script>
 
-    <div style="height:520px;" class="fixed-bg-sf p_120">
-            <div class="container">
-            <div class="block">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-            <h1 class = "interestedServices"><strong> <center> WANT TO KNOW MORE? </center></strong> </h1>
-                <br>
-                <center><a type="button" href="/services" class="btn btn-light btn-lg" style = "font-family:'Montserrat', sans-serif ">OUR SERVICES</a></center><br>
-                <center><a type="button" href="/register" class="btn btn-light btn-lg" style = "font-family:'Montserrat', sans-serif ">REGISTER</a></center>
+<div style="height:520px;" class="fixed-bg-sf p_120">
+  <div class="container">
+    <div class="block">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1 class = "interestedServices"><strong> <center> WANT TO KNOW MORE? </center></strong> </h1>
+      <br>
+      <center><a type="button" href="/services" class="btn btn-light btn-lg" style = "font-family:'Montserrat', sans-serif ">OUR SERVICES</a></center><br>
+      <center><a type="button" href="/register" class="btn btn-light btn-lg" style = "font-family:'Montserrat', sans-serif ">REGISTER</a></center>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-area section_gap" style = "height: 240px;">
+  <div class="container">
+
+    <center> <img src = "images/apiarylogoblack.png" style = "width: 250px; height: 157px;"> </center>
+    <div class="border_line"></div>
+    <p class = "first-font"> Copyright © 2018 All rights reserved </p>
+  </div>
+</footer>
+</div>
+{{#if networkScroll}}
+<script type="text/javascript">
+document.querySelector('#about-network-info').scrollIntoView({
+  behavior: 'smooth'
+});
+</script>
+{{/if}}
+
+{{#if consultingScroll}}
+<script type="text/javascript">
+document.querySelector('#about-consulting-info').scrollIntoView({
+  behavior: 'smooth'
+});
+</script>
+{{/if}}
+
+{{#if databaseScroll}}
+<script type="text/javascript">
+document.querySelector('#about-database-info').scrollIntoView({
+  behavior: 'smooth'
+});
+</script>
+{{/if}}
+
+<!-- Modals -->
+<div class="modal fade" id="ambassador-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ambassador Profile: Christopher Hemm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> Christopher Hemm </h1>
+        <br>
+        <div class="row profile-container" style="weight: 100%; min-height: 600px">
+          <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+            <!-- <div style="background-color: gray;" class = "profile-image-frame container-fluid"> -->
+            <img src="/images/team/Christopher.jpg" class="center-block" style="border: solid 10px #910000; width:250px; height:280px" />
+            <!-- </div> -->
+            <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">chrishemm@gmail.com</h3>
+            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">University of Chicago</h5>
+            <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: United States</h5>
+
+            <div class="card">
+              <div class="card-header apiary-collapsable" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    View {{user.name}}'s Biography and Interests
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
+                  <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> Born in Hong Kong and Lived in Shanghai. I speak English and Chinese Fluently
+                    and enjoy Oil Painting, Tennis, and Programming. Liverpool FC Supporter and New York Knicks Fan.</i> </center>
+                    <br><br>
+                    <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Philosophy</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Computer Science</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Math</p>
+                    <br>
+                    <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Painting</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Tennis</p>
+                    <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">Programming</p>
+                    <br>
+                    <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
+                    <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Philosophy and Math</h5>
+                    <br>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header apiary-collapsable" id="headingTwo">
+                  <h5 class="mb-0">
+                    <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      View Christopher's Accomplishments
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div class="card-body">
+                    <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
+                    <div class = "container-fluid">
+                      <center><h3 style="color: #910000">Documents</h3></center>
+                      <a target="_blank" href="http://res.cloudinary.com/apiary-solutions/image/upload/v1535928833/ambassador_documents/dbvxk48nzz75kxateobt.pdf">
+                        <img class="center-block" src="http://res.cloudinary.com/apiary-solutions/image/upload/c_limit,h_60,w_90/v1535928833/ambassador_documents/dbvxk48nzz75kxateobt.jpg" />
+                      </a> <br>
+                    </div>
+                    <center><h3 style="color: #910000">Links</h3></center>
+                    <center><a target="_blank" href='https://www.flickr.com/photos/148599945@N05'>Art Portfolio</a></center>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header apiary-collapsable" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      View Christopher's Services
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                    <h1 class = "bigTitleFont-black" style="text-align: center">Christopher's Ambassador Services </h1><br>
+                    <div style="text-align: center" class="profile-container card">
+                      <h5 class = "consultantTraining" >Why UChicago Essay Review</h5>
+                      <h5 class = "transparencySecond" style = "line-height: 1.6;"><i>I have reviewed over 50 Why UChicago Essays. Additionally, my Why UChicago Essay was selected
+                        by UChicago admissions and showcased as an examples as what an outstanding Why UChicago Essay looks like.</i></h5>
+                        <h5 class = "stigma" >Price: $20</h5> <br>
+                        <center><button class="apiary-button">Purchase this Service</button></center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header apiary-collapsable" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        Contact Christopher
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                      <h1 class = "bigTitleFont-black" style="text-align: center"> Email Ambassador </h1><br>
+                      <form>
+                        <input class="form-control" placeholder="Email Subject" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="network-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Apiary Network</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="" class="container-fluid network-profiles-container">
+                <div class="scrolling-wrapper">
+              <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+              <img class="center-block" style=" height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+              <h5 style="text-transform: uppercase"><b>Christopher Hemm</b></h5>
+              <h5 style="text-transform: uppercase"><b>University of Chicago</b></h5>
+              <h5 style="text-transform: uppercase; color: maroon;"><b>chrishemm@gmail.com</b></h5>
+              <h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: Math and Philosophy</b></h5>
+              <a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
+              </div>
+              <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+              <img class="center-block" style=" height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+              <h5 style="text-transform: uppercase"><b>Christopher Hemm</b></h5>
+              <h5 style="text-transform: uppercase"><b>University of Chicago</b></h5>
+              <h5 style="text-transform: uppercase; color: maroon;"><b>chrishemm@gmail.com</b></h5>
+              <h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: Math and Philosophy</b></h5>
+              <a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
+              </div>
+              <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+              <img class="center-block" style=" height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+              <h5 style="text-transform: uppercase"><b>Christopher Hemm</b></h5>
+              <h5 style="text-transform: uppercase"><b>University of Chicago</b></h5>
+              <h5 style="text-transform: uppercase; color: maroon;"><b>chrishemm@gmail.com</b></h5>
+              <h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: Math and Philosophy</b></h5>
+              <a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
+              </div>
+              </div>
+              </div>
             </div>
             </div>
+          </div>
         </div>
 
-        <footer class="footer-area section_gap" style = "height: 240px;">
-            <div class="container">
-
-                                     <center> <img src = "images/apiarylogoblack.png" style = "width: 250px; height: 157px;"> </center>
-                <div class="border_line"></div>
-              <p class = "first-font"> Copyright © 2018 All rights reserved </p>
+      <div class="modal fade" id="database-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Apiary Database</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-        </footer>
+            <div class="modal-body">
+              <div class="slideshow-container">
+
+                <div class="mySlides">
+                  <center><h3>Access Top Essays</h3></center>
+                  <div class="numbertext">1 / 3</div>
+                  <img src="/images/modal-examples/database1.jpeg" style="width:100%;">
+                </div>
+
+                <div class="mySlides">
+                  <center><h3>Fine Tune Your Resume</h3></center>
+                  <div class="numbertext">2 / 3</div>
+                  <img src="/images/stanford.png" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+                  <center><h3>Search for Internships</h3></center>
+                  <img src="/images/stanford.png" style="width:100%">
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+              </div>
+              <br>
+
+              <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="consulting-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Apiary Consulting</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="slideshow-container">
+
+                <div class="mySlides2">
+                  <center><h3>Comprehensive Essay Reviews and Brainstorming Sessions</h3></center>
+                  <div class="numbertext">1 / 3</div>
+                  <img src="/images/modal-examples/essay-review.jpeg" style="width:100%;">
+                </div>
+
+                <div class="mySlides2">
+                  <center><h3>Get Referred to Top Professors</h3></center>
+                  <div class="numbertext">2 / 3</div>
+                  <img src="/images/modal-examples/outreach.jpg" style="width:100%">
+                </div>
+
+                <div class="mySlides2">
+                  <center><h3>Engage in Large-Scale Projects to Showcase Your Accomplishments</h3></center>
+                  <img src="/images/modal-examples/personal-website.jpeg" style="width:100%">
+                </div>
+
+                <a class="prev" onclick="plusSlidesConsulting(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlidesConsulting(1)">&#10095;</a>
+
+              </div>
+              <br>
+
+              <div style="text-align:center">
+                <span class="dot2" onclick="currentSlideConsulting(1)"></span>
+                <span class="dot2" onclick="currentSlideConsulting(2)"></span>
+                <span class="dot2" onclick="currentSlideConsulting(3)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal javascript -->
+      <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+      showSlidesConsulting(slideIndex);
+
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function plusSlidesConsulting(n) {
+        showSlidesConsulting(slideIndex += n);
+      }
+
+      function currentSlideConsulting(n) {
+        showSlidesConsulting(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+
+      function showSlidesConsulting(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides2");
+        var dots = document.getElementsByClassName("dot2");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+
+    </script>

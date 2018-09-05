@@ -1,18 +1,15 @@
 <div style="margin-left: 2%" class="container-fluid">
 <h1> Admin Page </h1>
-<h3 style="text-align:center">Users({{users.length}})</h3>
+<h3 style="text-align:center">Ambassdors({{ambassadors.length}})</h3>
 <a class="btn btn-info center-block" href = '/'>Back to Home Page</a> <br>
-<a class="btn btn-info center-block" href = '/admin/ambassadors'>Manage Ambassadors</a> <br>
+<a class="btn btn-info center-block" href = '/admin'>Back to Users Admin Page</a> <br>
 <a class="btn btn-primary center-block" href = '/users/myProfile'>Back to My Profile</a> <br><br>
-{{#each users}}
+{{#each ambassadors}}
 <div style="padding:15px; border:solid 1px black; margin: 15px;" class = "container-fluid">
-<div><b>{{this.name}}: {{this.userType}}</b></div>
-<div><b>Consultant: {{this.consultant}}</div>
-  <div><b>CalendarUrl: {{this.calendarId}}</div>
-{{#if this.imageUrl}}
-<img style="height: 100px; width: 90px; float: left; margin-right: 20px" src={{this.imageUrl}}></img>
-{{/if}} <br>
-<a class = "btn btn-success" href = '/users/{{this._id}}'>View Profile</a><br><br>
+<div><b>{{this.user.name}}</b></div>
+<div><b>Approved?: {{this.approved}}</div>
+<div><b>Stripe Verified?: {{this.stripeVerified}}</div>
+<div><b>Services Offered: {{this.services.length}}</div>
 <!-- <form class="admin-form" method="POST" action="/admin/user/{{this._id}}">
 <button class="admin-form btn btn-primary" type="submit">Make User</button>
 </form> <br> -->
@@ -30,14 +27,11 @@
 </form> <br> -->
 <ul class="nav-item dropdown btn btn-primary">
   <a1  class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    ASSIGNING CONSULTANTS
+    AMBASSADOR APPROVAL
   </a1>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-    <a href="/consultants/assign/{{this._id}}" class="admin-form btn btn-primary">Assign Consultant</a>
-      <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/consultants/clear/{{this._id}}">
-    <button type="submit" class="admin-form btn btn-primary">Remove All Consultants</button>
-    </form>
+    <a href="/admin/ambassadors/approve/{{this._id}}" class="admin-form btn btn-primary">Approve Ambassador</a>
+    <a href="/admin/ambassadors/block/{{this._id}}" class="admin-form btn btn-primary">Unapprove Ambassador</a>
   </div>
 </ul>
 
@@ -48,59 +42,23 @@
 
 <ul class="nav-item dropdown btn btn-primary">
   <a1  class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    PERMISSIONS
+    AMBASSADOR SERVICES
   </a1>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-    <form class="admin-form" method="POST" action="/admin/user/{{this._id}}">
-    <button class="admin-form btn btn-primary" type="submit">Make User</button>
+    <form class="admin-form" method="GET" action="/admin/ambassadors/services/clear/{{this._id}}">
+    <button class="admin-form btn btn-primary" type="submit">Clear Services</button>
     </form>
-
-    <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/admin/client/{{this._id}}">
-    <button class="admin-form btn btn-primary" type="submit">Make Client</button>
-    </form>
-
-    <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/admin/consultant/{{this._id}}">
-    <button class="admin-form btn btn-primary" type="submit">Make Consultant</button>
-    </form>
-
-    <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/admin/ambassador/{{this._id}}">
-    <button class="admin-form btn btn-primary" type="submit">Make Ambassador</button>
-    </form>
-
-    <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/admin/admin/{{this._id}}">
-    <button class="admin-form btn btn-primary" type="submit">Make Admin</button>
-    </form>
-
   </div>
 </ul>
 <!-- Consultation Buttons -->
 
 <ul class="nav-item dropdown btn btn-primary">
   <a1  class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    MANAGE CONSULTATIONS
+    REFUNDS
   </a1>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
     <form class="admin-form" method="POST" action="/admin/user/clearUpcomingConsultations/{{this._id}}">
-    <button type="submit" class="admin-form btn btn-primary">Clear Upcoming User Consultations</button>
-    </form>
-
-    <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/admin/user/clearPastConsultations/{{this._id}}">
-    <button type="submit" class="admin-form btn btn-primary">Clear Past User Consultations</button>
-    </form>
-
-    <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/admin/consultant/clearUpcomingConsultations/{{this._id}}">
-    <button type="submit" class="admin-form btn btn-primary">Clear Upcoming Consultant Consultations</button>
-    </form>
-
-    <div class="dropdown-divider"></div>
-    <form class="admin-form" method="POST" action="/admin/consultant/clearPastConsultations/{{this._id}}">
-    <button type="submit" class="admin-form btn btn-primary">Clear Past Consultant Consultations</button>
+    <button type="submit" class="admin-form btn btn-primary">Send Refund</button>
     </form>
   </div>
 </ul> <br> <br>
@@ -126,12 +84,6 @@
 
 
 <!-- CalendarUrl -->
-
-<form class="admin-form" method="POST" action="/consultants/assignCalendarId/{{this._id}}">
-  <input class="form-control" name="calendarUrl" placeholder="input google calendar url"></input> <br>
-<button type="submit" class="admin-form btn btn-primary">Assign Calendar ID</button>
-</form>
-
 
 
 </div>

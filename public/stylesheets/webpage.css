@@ -16,23 +16,39 @@ textarea,
 dropdown-menu,
 dropdown-item, collapse, navbar-collapse
 {
-  font-family: 'Sunflower', sans-serif;
+  font-family: 'Alegreya Sans SC', sans-serif;
   font-size: 31px;
 }
 
 /* FONTS */
+.cloudinary-button {
+  font-family: sans-serif !important;
+  background-color: #910000 !important;
+}
 
+.apiary-button {
+  font-family: 'Alegreya Sans SC', 'Montserrat', sans-serif;
+  background-color: #910000;
+  color: white;
+}
+
+.apiary-button2 {
+  font-family: 'Montserrat', sans-serif;
+  background-color: gray;
+  color: white;
+}
 
 .topTier {
   color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 48px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 50px;
+  text-transform: lowercase
 }
 
 .gotIn {
   color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 28px;
+  font-family: 'Segan', sans-serif;
+  font-size: 25px;
 }
 
 .competitiveCollege {
@@ -44,11 +60,18 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .bigStats {
-  color: indianred; font-family: 'Montserrat', sans-serif; font-size: 40px;
+  color: #1a778e; font-family: 'Montserrat', sans-serif; font-size: 50px;
+  text-transform: lowercase;
 }
 
 .serviceTitle {
-  color: white; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
+  color: black; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
+}
+
+.serviceText {
+  font-family: 'Alegreya Sans SC';
+  color: black;
+  font-size: 17px;
 }
 
 .interestedServices {
@@ -61,8 +84,8 @@ dropdown-item, collapse, navbar-collapse
 
 .bigTitleFont{
  color: white;
- font-family: 'Montserrat', sans-serif;
- font-size: 44px;
+ font-family: 'Alegreya Sans SC', sans-serif;
+ font-size: 45px;
 }
 
 .bigTitleFont-black {
@@ -72,13 +95,13 @@ dropdown-item, collapse, navbar-collapse
   text-align: center;
 }
 .secondTitleFont {
-  color: white; font-family: 'Montserrat', sans-serif; font-size: 20px;
+  color: white; font-family: 'Segan', sans-serif; font-size: 25px;
   line-height: 1.6;
   text-align: center;
 }
 
 .secondTitleFont-black {
-  color: black; font-family: 'Montserrat', sans-serif; font-size: 20px;
+  color: #1a778e; font-family: 'Montserrat', sans-serif; font-size: 25px;
   line-height: 1.6;
 }
 
@@ -92,8 +115,12 @@ dropdown-item, collapse, navbar-collapse
   line-height: 1.6;
 }
 
+#homepage-conclusion {
+  /* background-image: url('/images/uchic1.jpg'); */
+}
+
 .thirdTitleFont {
-  color: black; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 1.6;
+  color: gray; font-family: 'Segan', sans-serif; font-size: 17px; line-height: 1.6;
 }
 
 .thirdTitleFont-white {
@@ -250,14 +277,34 @@ dropdown-item, collapse, navbar-collapse
 
 /* for direct nav buttons about  */
 #direct-nav {
-  font-size: 31px;
+  font-size: 25px;
   margin-bottom: auto;
   margin-top: auto;
+  color: white;
+  opacity: 0.9;
 }
 
 a#direct-nav:hover  {
-  color: #ddd;
+  color: #e6e6e6;
   background-color: #910000;
+}
+
+.nav-link:hover {
+  color: #ddd;
+}
+
+#dropdown-apiary-nav{
+  font-size: 25px;
+  opacity:0.9;
+  color: white;
+}
+
+#dropdown-apiary-nav:hover {
+  color: #e6e6e6;
+}
+
+#homepage-info-background {
+  /* background-image: url('/images/uchic1.jpg'); */
 }
 
 .navbar a {
@@ -274,7 +321,7 @@ a#direct-nav:hover  {
 }
 
 .navbar a:hover, .dropdown:hover .navbar-toggler {
-  background-color: black;
+  background-color: #910000;
 }
 
 /* Add a grey background color to dropdown links on hover */
@@ -346,13 +393,37 @@ ul li {
 img.logoimage {
    display: block;
    clear: both;
-   width: 540px;
-   height: 180px;
+   width: 350px;
+   height: 115px;
    box-align: center;
 }
 
 .bg-maroon {
-  background-color: #910000 !important;
+  background-color: #910000;
+}
+
+#homepage-subheader {
+  padding: 15px;
+  background-color: white;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  /* border-bottom: solid 1px #910000; */
+  color: #910000;
+  font-size: 35px;
+  font-family: 'Alegreya Sans SC';
+  font-weight: bold;
+}
+
+#homepage-stats {
+  background-color: #e6e6e6;
+}
+
+#learn-more-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #910000;
+  font-family: 'Alegreya Sans SC';
+  border: white;
+  /* padding: 10px */
 }
 
 .bg-lightgrey {
@@ -491,19 +562,21 @@ div.college-admissions-g1 {
   top: 0;
   bottom: 0;
   left: 15px;
+  padding: 10px;
   right: 0;
   height: 100%;
   width: 100%;
    /* opacity: 0; */
   /* transition: .5s ease; */
-  background-image: url("images/uchic.jpg");
+  /* background-image: url("images/uchic.jpg"); */
+  background-color: #e6e6e6;
 width: 400px;
     height: 272px;
 }
 
 .container:hover .overlay{
   opacity: 0.98;
-  background-color: #1C1D21;
+  background-color: gray;
 }
 
 
@@ -1307,6 +1380,21 @@ h2.a {
     padding: 20px;
   }
 
+  .apiary-collapsable {
+    background-color: #910000;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+  }
+
+  .apiary-collapse-btn:hover {
+    color: white !important;
+  }
+
+  .apiary-collapse-btn:focus {
+    color: white !important;
+  }
+
   .profile-page {
     background-image: url("alpine.jpg");
     min-height: 350px;
@@ -1878,4 +1966,59 @@ iframe {
 .admin-form {
   padding: 10px;
   margin-bottom: 10px;
+}
+
+/* Sidenav Styles */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.float-mutt {
+  float: right !important;
+}
+
+.mutt {
+  float: right;
+}
+
+.apiary-post-nav-text {
+  color: white;
+}
+
+#mutt-float {
+  float: right !important;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }

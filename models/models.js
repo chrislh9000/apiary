@@ -88,7 +88,7 @@ var userSchema = new Schema({
   },
   dreamUni: {
     type: String,
-    required: true,
+    required: false,
   },
   userType: {
     type: String,
@@ -130,6 +130,9 @@ var userSchema = new Schema({
       default: [],
     }
   ],
+  stripeCustomerId: {
+    type: String,
+  }
 })
 
 //Consultant and Ambassador Schema
@@ -165,30 +168,7 @@ const consultantSchema = new Schema({
   ]
 })
 
-const ambassadorSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  pastConsultations: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Consultation',
-      default: [],
-    }
-  ],
-  totalCompensation: {
-    type: Number,
-    default: 0
-  },
-  pastClients: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      default: [],
-    }
-  ],
-})
+
 
 
 //Payment Schema: DEFINITELY MODIFY THIS
@@ -201,19 +181,20 @@ const stripePaymentSchema = new Schema({
   stripeLast4: Number,
   stripeSource: String,
   status: String,
-  _userid : {
+  user : {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  name: {
-    type: String,
-    required: true
+  ambassasdor: {
+    type: Schema.Types.ObjectId,
+    ref: 'Ambassador'
   },
-  email: {
-    type: String,
-    required: true
-  }
 })
+
+//method gives ambassador 20% of the compensation
+stripePaymentSchema.methods.amountforAmbassador = () => {
+  return parseInt(this.paymentAmount * 0.8);
+}
 
 const paypalPaymentSchema = new Schema ({
   paymentId: String,
@@ -307,21 +288,108 @@ const imageSchema = new Schema ({
     type: String,
     required: true,
   },
+  title: String,
+  ambassador: {
+    type: Schema.Types.ObjectId,
+    ref: 'Ambassador',
+    required: false,
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
   cloudinaryUrl: {
     type: String,
-  }
+  },
+  cloudinaryThumbnail: String,
 })
 
 
+//Ambassador Schema
+const ambassadorSchema = new Schema({
+  user : {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  approved: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  services: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Service',
+    default: [],
+  }],
+  stripeVerified: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  documents: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Image',
+    default: [],
+  }],
+  links: [{
+    type: String,
+    default: [],
+  }],
+  address: String,
+  postalCode: String,
+  accomplishments: String,
+  specialties: String, //potential turn into array later
+  additionalInfo: String,
+  bioInfo: String,
+  city: String,
+  stripeAccountId: String,
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
+})
 
+const serviceSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  ambassador: {
+    type: Schema.Types.ObjectId,
+    ref: 'Ambassador',
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  qualifications: String,
+  exampleImages: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Image',
+      required: false,
+    }
+  ]
+})
 
 //MONGODB MODELS
 const User = mongoose.model('User', userSchema);
-const StripePayment = mongoose.model('StripePayment', stripePaymentSchema);
+const Stripe = mongoose.model('StripePayment', stripePaymentSchema);
 const PaypalPayment = mongoose.model('PaypalPayment', paypalPaymentSchema);
 const Product = mongoose.model('Product', productSchema);
 const Consultant = mongoose.model('Consultant', consultantSchema);
@@ -329,12 +397,13 @@ const Ambassador = mongoose.model('Ambassador', ambassadorSchema);
 const Consultation = mongoose.model('Consultation', consultationSchema);
 const OauthToken = mongoose.model('Token', oauthTokenSchema);
 const ProfileImage = mongoose.model('Image', imageSchema);
+const Service = mongoose.model('Service', serviceSchema);
 
 
 
 module.exports = {
   User: User,
-  StripePayment: StripePayment,
+  StripePayment: Stripe,
   Product: Product,
   OauthToken: OauthToken,
   Ambassador: Ambassador,
@@ -342,4 +411,5 @@ module.exports = {
   Consultation: Consultation,
   Image : ProfileImage,
   PaypalPayment: PaypalPayment,
+  Service: Service,
 }

@@ -1,20 +1,21 @@
-<body class = "fixed-bg-sf"><div class="container-fluid network-profiles-container">
-  <h1>APIARY NETWORK MEMBERS</h1><br><br>
+
+<div style="" class="container-fluid network-profiles-container">
   <div class="scrolling-wrapper">
 {{#each users}}
-<div class="card card-profile members-profiles" style="padding:15px; border:solid 1px black; margin: 15px; justify-content: center" class = "container-fluid">
+<div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
 {{#if this.image}}
-<img class="center-block" style="height: 150px; width: 122px;" src="{{this.image.cloudinaryUrl}}"></img>
+<img class="center-block" style=" height: 240px; width: 200px;" src="{{this.image.cloudinaryUrl}}"></img>
 {{else}}
-<img class="center-block" style="height: 150px; width: 122px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+<img class="center-block" style=" height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
 {{/if}}
 <h5 style="text-transform: uppercase"><b>{{this.name}}</b></h5>
 <h5 style="text-transform: uppercase"><b>{{this.school}}</b></h5>
 <h5 style="text-transform: uppercase; color: maroon;"><b>{{this.email}}</b></h5>
-<h5 style="text-transform: uppercase; color: indianred;"><b>{{this.intendedMajor}}</b></h5>
-<a class = "btn btn-success" href = '/users/{{this._id}}'>View Profile</a><br><br>
+<h5 style="text-transform: uppercase; color: indianred;"><b>MAJOR: {{this.intendedMajor}}</b></h5>
+<a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
 </div>
 {{/each}}
 </div>
 </div>
-<br><br><br></body>
+
+<br><br><br>

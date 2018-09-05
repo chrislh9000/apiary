@@ -17,6 +17,54 @@
 
 </head>
 <style>
+.sidenav {
+    /* margin-top: 20%; */
+    float: left;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 200px; /* Set the width of the sidebar */
+    /* position: fixed /* Fixed Sidebar (stay in place on scroll) */ */
+    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 120px/; /* Stay at the top */
+    left: 0;
+    background-color: white; /* Light Gray */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    margin-right: 10px
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    text-transform: capitalize;
+    color: black;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #910000;
+}
+
+.side-nav-mini-link {
+  font-size: 15px;
+}
+
+/* Style page content */
+.main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
   .fixed-bg {
     background-image: url("images/grey.jpg");
     min-height: 350px;
@@ -79,74 +127,76 @@
   <div>
     {{#if loggedIn}}
     {{#if networkToggled}}
-    <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/logout">LOGOUT</a>
-    <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/?networkToggled=false">BACK TO HOME</a>
     {{else}}
-      <a class="btn btn-light btn-lg" style="float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/logout">LOGOUT</a>
-      <a class="btn btn-light btn-lg" style="text-transform: uppercase; float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/users/myProfile">{{username}}'S ALPINE NETWORK</a>
+      <a class="btn btn-light btn-lg" style="font-size: 12px; background-color: #910000; color: white; float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/logout">LOGOUT</a>
+      <a class="btn btn-light btn-lg" style="background-color: #910000; font-size: 12px; color: white; text-transform: uppercase; float:right; margin-right: 10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/users/all">{{username}}'S APIARY NETWORK</a>
       {{/if}}
     {{else}}
-      <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/login">LOGIN</a>
+      <!-- <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/login">LOGIN</a> -->
+      <center><button style="float: right; margin-right: 10px; margin-top: 7px; font-family: 'Montserrat', sans-serif"  data-toggle="modal" data-target="#login-modal" type="button" style="color: white" class="apiary-button btn btn-lg">LOGIN</button></center>
+    </div>
       <!-- <a class="btn btn-light btn-lg" style="float:right; margin-right:10px; margin-top: 7px;font-family:'Montserrat', sans-serif" href="/register">REGISTER</a> -->
     {{/if}}
   </div>
   <!-- Navbar -->
+{{#if networkToggled}}
 
+<nav style="display: flex; justify-content: center; align-items: center; background-color: #910000 " class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a style="display: flex; align-items: center; justify-content: center" class="navbar-brand" href="/users/all"><img src="/images/post-login-logo.jpg" style="border-radius: 10px; height: 38px" /></a>
+  <form style="margin-left: 2%" class="form-inline my-2 my-lg-0">
+    <input id="apiary-user-searchfield" class="form-control mr-sm-2" type="search" placeholder="Search For Users..." aria-label="Search">
+    <button id="apiary-user-search-btn" style="color: white; border: 1px solid white; border-radius: 10px" class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+  </form>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li style="display: flex; align-items: center;" class="nav-item">
+        <img style="float:left; height: 30px; border-radius: 50%" src='/images/avatar.png' /> <a style="font-family: 'Montserrat'; color: white" class="apiary-post-nav-text" href="/users/myProfile">My Profile</a>
+      </li>
+      <li class="nav-item">
+        <a style="font-family: 'Montserrat'; color: white;" class="nav-link" href="/">Back Home</a>
+      </li>
+      <li class="nav-item">
+        <a style="font-family: 'Montserrat'; color: white;" class="nav-link" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div style="float: left; border-top: solid 1px white" class="sidenav">
+  <a style="font-family: 'Montserrat'; border-bottom: solid 2px white;" href="#"> Apiary Network</a>
+  <ul>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/users/ambassadors"> <span class="glyphicon glyphicon-user"></span> Ambassadors</a>
+    <a style="font-size: 15px" class="side-nav-mini-link" href="/users/all"><span class="glyphicon glyphicon-user"></span> Users</a>
+  </ul>
+  <a style="font-family: 'Montserrat'; border-bottom: solid 2px white;" href="/network/forum"> Apiary Forums</a>
+  <a href="">Apiary Database</a>
+  <ul>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/essays"><span class="glyphicon glyphicon-list-alt"></span> Essays</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/resumes"><span class="glyphicon glyphicon-save-file"></span> Resumes</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/classNotes"><span class="glyphicon glyphicon-file"></span> Academic Excellence</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/test-prep"><span class="glyphicon glyphicon-book"></span> Test Prep</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/database/internships"><span class="glyphicon glyphicon-briefcase"></span> Internships</a>
+</ul>
+  <a style="border-top: solid 1px white;" href="#">Apiary Consulting</a>
+  <ul>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/products"><span class="glyphicon glyphicon-shopping-cart"></span> Purchase</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/scheduleSession"><span class="glyphicon glyphicon-calendar"></span> Schedule</a>
+  <a style="font-size: 15px" class="side-nav-mini-link" href="/sessions"><span class="glyphicon glyphicon-tasks"></span> Manage</a>
+</ul>
+<!-- <a style="border-bottom: solid 2px white;" href="#">See More...</a> -->
+</div>
+{{else}}
   <a href="/">
   <img src="/images/apiary.png" alt="Alpine Consulting" class="center-block logoimage">
   <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-maroon">
   </a>
+{{/if}}
 
   {{#if networkToggled}}
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-  <div class="container">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul style='float: none' class="navbar-nav mr-auto">
-
-        <a id="direct-nav" class="center-block nav-link" href="/users/myProfile" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
-          MY PROFILE
-        </a>
-
-        <li class="nav-item dropdown">
-          <a1  class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            NETWORK
-          </a1>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-            <a class="dropdown-item" href="/users/all">APIARY NETWORK</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/database/essays">ESSAYS</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/database/resumes">RESUMES</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/database/classNotes">ACADEMIC EXCELLENCE</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/database/test-prep">TEST PREP</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/database/internships">INTERNSHIPS</a>
-          </div>
-        </li>
-
-
-        <li class="nav-item dropdown">
-          <a1 class="nav-link center-block dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            CONSULTING
-          </a1>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-            <a class="dropdown-item" href="/products">PURCHASE CONSULATIONS</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/scheduleSession">SCHEDULE CONSULATIONS</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/sessions">MANAGE CONSULTATIONS</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  </nav>
-
   {{else}}
 
 
@@ -154,31 +204,38 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-    <div class="container-fluid">
+    <div style="margin-left: 5%" class="container-fluid">
       <div class = "row">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul style='float: none' class="navbar-nav mr-auto">
-          <a id="direct-nav" class="nav-link center-block" href="/about" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
+          <a style="" id="direct-nav" class="nav-link center-block" href="/about" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false">
             ABOUT
           </a>
 
           <li class="nav-item dropdown">
-            <a1 class="center-block nav-link dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a1 id="dropdown-apiary-nav" class="center-block nav-link dropdown-toggle" href="/services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               OUR SERVICES
             </a1>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
               <a class="dropdown-item" href="/services">THE APIARY SOLUTION</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/network">APIARY NETWORK</a>
+              <a class="dropdown-item" href="/about?scroll=network">THE APIARY NETWORK</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/about?scroll=consulting">CONSULTING</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/about?scroll=database">DATABASE</a>
+              <div class="dropdown-divider"></div>
             </div>
           </li>
 
           <li class="nav-item dropdown">
-            <a1 class="center-block nav-link dropdown-toggle" href="/apply" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a1 id="dropdown-apiary-nav" style="font-size: 25px" class="center-block nav-link dropdown-toggle" href="/apply" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               JOIN
             </a1>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-              <a class="dropdown-item" href="/register">REGISTER</a>
+              <a class="dropdown-item" href="/register">REGISTER AS AN APIARY CLIENT</a>
+              <a class="dropdown-item" href="/ambassadors/register">APPLY TO BE AN APIARY AMBASSADOR</a>
+              <!-- <a class="dropdown-item" href="/ambassadors/register">REGISTER AS A NETWORK AMBASSADOR</a> -->
               <!-- <a class="dropdown-item" href="/apply">APPLY</a> -->
             </div>
           </li>
@@ -191,12 +248,100 @@
   {{#if loggedIn}}
   {{#if networkToggled}}
   {{#if consultantSkype}}
-  <span class="skype-button bubble" data-contact-id={{consultantSkype}} data-color="#800000"></span>
+  <span class="skype-button bubble" data-contact-id={{consultantSkype}} data-text="Chat with Your Consultant" data-color="#800000"></span>
   <span class="skype-chat" data-color-message="#800000"></span>
   {{/if}}
   {{/if}}
   {{/if}}
   {{{body}}}
 </body>
+<!-- Modals -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login to the Apiary Network</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{#if success}}
+          <div style="text-align: center" class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{success}}
+          </div>
+        {{/if}}
+        {{#if failure}}
+          <div style="text-align: center" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{failure}}
+          </div>
+        {{/if}}
+
+
+        <style>
+        .fixed-bg-sf1 {
+            background-image: url("images/stanford.png");
+            min-height: 550px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.97;
+        }
+        </style>
+
+        <form method="POST" action="/login">
+        <div class="limiter">
+        		<div class="container-login100 fixed-bg-sf1  ">
+        			<div class="wrap-login100 p-t-30 p-b-50">
+        				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 30px;">
+        					Account Login
+                  <br>
+                  <br>
+        				</span>
+        				<form class="login100-form validate-form p-b-33 p-t-3">
+
+        					<div class="wrap-input100 validate-input form-group" data-validate = "Enter username">
+        						<input class="input100 " type="text" name="username" placeholder="USERNAME" style = "font-family: 'Montserrat', serif; font-size: 20px;color: white;">
+        						<span class="focus-input100" data-placeholder="	&#x1F464;"></span>
+        					</div>
+
+        					<div class="wrap-input100 validate-input form-group" data-validate="Enter password">
+        						<input class="input100" type="password" name="password" placeholder="PASSWORD" style = "font-family: 'Montserrat', serif; font-size: 20px;color: white;">
+        						<span class="focus-input100" data-placeholder="&#x1F512;"></span>
+        					</div>
+
+
+        					<div class="container-login100-form-btn m-t-32 form-group">
+        						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
+        							Login
+        						</button>
+        					</div>
+
+        				</form>
+        			</div>
+        		</div>
+        	</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#apiary-user-search-btn').on('click', (event) => {
+  event.preventDefault();
+  var searchOption = $('#apiary-user-searchfield').val();
+  window.location.href = `/users/all?search=${searchOption}`;
+})
+
+</script>
+
+
+
 
 </html>

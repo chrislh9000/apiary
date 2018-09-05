@@ -13,6 +13,7 @@ const OauthToken = models.OauthToken;
 const Consultant = models.Consultant;
 const Consultation = models.Consultation;
 const Image = models.Image;
+const Ambassador = models.Ambassador;
 //image uploading stuff
 
 //moments js
@@ -48,8 +49,20 @@ function hashPassword(password) {
   return hash.digest('hex');
 }
 
+//Apiary forum routes
+router.get('/network/forum', (req, res) => {
+  res.render('./Forum/forum', {
+    loggedIn: true,
+    networkToggled: true,
+    ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+  })
+})
+
 // Profile stuff
 router.get('/users/myProfile', function(req, res, next) {
+  if (req.user.userType === 'ambassador') {
+    res.redirect('/ambassadors/myProfile');
+  }
   let hasImage= true;
   Image.findOne({user: req.user._id})
   .then(image => {
@@ -63,20 +76,24 @@ router.get('/users/myProfile', function(req, res, next) {
     })
     .exec()
     .then((user) => {
-        res.render('profile', {
-          user: user,
-          logged: req.user.username,
-          username: req.user.username,
-          image: user.image? image.cloudinaryUrl : null,
-          owner: true,
-          networkToggled: true,
-          loggedIn: true,
-          consultantSkype: user.consultant ? user.consultant.skype : null,
-          consultantPortal: user.userType === 'admin' || user.userType === 'consultant' ? true : false,
-          adminPortal: user.userType === 'admin' ? true : false,
-          successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
-          failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
-        })
+      const names = user.name.split(' ');
+      res.render('profile', {
+        user: user,
+        logged: req.user.username,
+        username: req.user.username,
+        image: user.image? image.cloudinaryUrl : null,
+        owner: true,
+        ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+        networkToggled: true,
+        loggedIn: true,
+        firstName: names[0],
+        lastName: names[1],
+        consultantSkype: user.consultant ? user.consultant.skype : null,
+        consultantPortal: user.userType === 'admin' || user.userType === 'consultant' ? true : false,
+        adminPortal: user.userType === 'admin' ? true : false,
+        successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
+        failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
+      })
     })
     .catch(error => {
       res.send(error);
@@ -100,6 +117,7 @@ router.get('/users/edit', function(req, res, next) {
       lastName: user.name.split(" ")[1],
       networkToggled: true,
       loggedIn: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       logged: req.user.username,
       dateOfBirth: req.user.dateOfBirth,
       academicInterests: req.user.academicInterests,
@@ -150,26 +168,49 @@ router.post('/users/edit', function(req, res, next) {
 //Viewing other profiles
 //viewing all profiles
 router.get('/users/all', function(req, res, next) {
-  User.findById(req.user._id).then((user) => {
+  User.findById(req.user._id)
+  .populate({
+    path: 'consultant',
+    populate: {
+      path: 'user'
+    }
+  })
+  .exec()
+  .then((user) => {
     if (!user || user.userType === 'user') {
       res.render('network-payment-wall', {
         message: 'Apiary Network Members',
         loggedIn: true,
+        ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         canPurchase: true,
         networkToggled: true
       })
     } else {
       User.find()
-      .populate('image')
+      .populate({
+        path: 'consultant image',
+        populate: {
+          path: 'user'
+        }
+      })
       .exec()
-      .then((users) => {
+      .then(users => {
         const networkMembers = _.filter(users, (user) => {
-          return user.userType !== 'user';
+          return user.userType !== 'user' || 'ambassador';
         })
+        if (req.query.search) {
+          const searchUser = req.query.search.toLowerCase();
+          searchMembers = _.filter(users, (user) => {
+            return ((user.name).toLowerCase()).includes(searchUser);
+          })
+        }
         res.render('networkProfiles', {
-          users: networkMembers,
+          user: req.user,
+          users: req.query.search ? searchMembers : networkMembers,
           logged: req.user.username,
           networkToggled: true,
+          ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+          consultantSkype: user.consultant ? user.consultant.skype : null,
           loggedIn: true
         })
       }).catch((error) => {
@@ -180,6 +221,40 @@ router.get('/users/all', function(req, res, next) {
   }).catch((err) => {
     console.error(err);
   })
+})
+
+router.get('/users/ambassadors', (req, res) => {
+  if (req.user.userType === 'user' || !req.user.userType) {
+    res.render('network-payment-wall', {
+      message: 'Apiary Network Ambassadors',
+      loggedIn: true,
+      canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+      networkToggled: true
+    })
+  } else {
+    Ambassador.find()
+    .populate({
+      path: 'user',
+      populate: {
+        path: 'image'
+      }
+    })
+    .exec()
+    .then(ambassadors => {
+      res.render('./Ambassadors/ambassador-network-profiles', {
+        ambassadors: ambassadors,
+        logged: req.user.username,
+        ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+        networkToggled: true,
+        loggedIn: true
+      })
+    })
+    .catch(err => {
+      console.error(err);
+      res.redirect('/users/myProfile');
+    })
+  }
 })
 
 //view a single profile
@@ -193,6 +268,8 @@ router.get('/users/:userid', function(req, res, next) {
       user: user,
       logged: req.user.username,
       owner: false,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
+      consultantSkype: user.skype,
       image: user.image? user.image.cloudinaryUrl : null,
       networkToggled: true,
       loggedIn: true,
@@ -231,12 +308,11 @@ router.get('/consultants/profile', (req, res) => {
           name: consultation.client.name,
         }
       })
-      console.log('===CONSULTANT===', consultant)
       res.render('./Consultations/consultant-profile.hbs', {
         upcoming: upcomingTimes,
         past: pastTimes,
         networkToggled: true,
-        loggedIn: true
+        loggedIn: true,
       })
     })
   }
@@ -346,6 +422,7 @@ router.get('/database/essays', (req, res, next) => {
       message: 'Apiary Essay Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -353,6 +430,7 @@ router.get('/database/essays', (req, res, next) => {
       message: 'Apiary Academic Excellence Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
@@ -364,6 +442,7 @@ router.get('/database/internships', (req, res) => {
       message: 'Apiary Essay Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -371,6 +450,7 @@ router.get('/database/internships', (req, res) => {
       message: 'Apiary Internships Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
@@ -382,6 +462,7 @@ router.get('/database/test-prep', (req, res) => {
       message: 'Apiary Essay Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -389,6 +470,7 @@ router.get('/database/test-prep', (req, res) => {
       message: 'Apiary Test Prep Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
@@ -400,6 +482,7 @@ router.get('/database/classNotes', (req, res, next) => {
       message: 'Apiary Academic Excellence Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
@@ -417,26 +500,20 @@ router.get('/database/resumes', (req, res, next) => {
       message: 'Apiary Resume Database',
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   } else {
     res.render('resumes', {
       loggedIn: true,
       canPurchase: true,
+      ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
       networkToggled: true
     })
   }
 })
 
-//Image UPLOADING
-router.get('/uploadimage', (req, res) => {
-  res.render('./Profiles/images', {
-    networkToggled: true,
-    loggedIn: true,
-  })
-})
-
-
+//File UPLOADING
 
 router.post('/uploadimage', upload.single('image'), function (req, res, next) {
   const fileType = req.file.mimetype.slice(0,5);
@@ -516,6 +593,176 @@ router.post('/uploadimage', upload.single('image'), function (req, res, next) {
   }
 })
 
+// router.post('/images/information', (req, res) => {
+//   console.log('===========CALLBACK IMAGE INITIATED=======');
+//   console.log('===USER====', req.user._id);
+//   console.log('SENT INFO', req.body);
+// })
+
+router.post('/images/information', (req, res) => {
+  console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
+  // check if user already has previously uploaded an image
+  Image.findOne({user: req.user._id})
+  .then(image => {
+    console.log('=====IMAGE SEARCH INITIATED=====');
+    if (!image) {
+      //case 1: user is uploading an image for the first time: create a new image and link it to the user model
+      console.log('=====IMAGE NOT FOUND CREATING IN DB=====');
+      const newImage = new Image ({
+        filename: req.body.filename,
+        size: req.body.size,
+        type: req.body.type,
+        user: req.user._id,
+        cloudinaryUrl: req.body.cloudinaryUrl,
+        cloudinaryThumbnail: req.body.cloudinaryThumbnail,
+      })
+      newImage.save()
+      .then(img => {
+        //new image created, now update the user model to link the two together
+        console.log('====IMAGE SAVED===')
+        User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+        .then(user => {
+          console.log('USER SUCCESSFULLY LINKED TO IMAGE');
+          res.redirect('/ambassadors/myProfile?image=success');
+        })
+      })
+      .catch(err => {
+        console.error(err)
+        res.redirect('/ambassadors/myProfile?image=fail');
+      })
+    } else {
+      console.log('=====IMAGE FOUND UPDATING EXISTING MODEL=====');
+      Image.findOneAndUpdate({user: req.user._id}, {
+        filename: req.body.filename,
+        size: req.body.size,
+        type: req.body.type,
+        user: req.user._id,
+        cloudinaryUrl: req.body.cloudinaryUrl,
+        cloudinaryThumbnail: req.body.cloudinaryThumbnail,
+      }, {new: true})
+      .then(newImage => {
+        console.log('===SUCCESSFULLY UPDATED NEW IMAGE===')
+        res.redirect('/ambassadors/myProfile?image=success')
+      })
+      .catch(err => {
+        console.error(err)
+        res.redirect('/ambassadors/myProfile?image=fail')
+      })
+      //case 2: user has already uploaded image, in which case just modify the image and user models
+    }
+  })
+  .catch(err => {
+    console.error(err)
+    res.send("ERROR FINDING IMAGE")
+  })
+})
+
+router.get('/documents/information', (req, res) => {
+  res.send('DOCUMENTS')
+})
+
+router.post('/documents/information', (req, res) => {
+  Ambassador.findOne({user: req.user._id})
+  .then(ambassador => {
+    const newDocument = new Image ({
+      filename: req.body.filename,
+      size: req.body.size,
+      type: req.body.type,
+      user: req.user._id,
+      ambassador: ambassador._id,
+      cloudinaryUrl: req.body.cloudinaryUrl,
+      cloudinaryThumbnail: req.body.cloudinaryThumbnail,
+    })
+    newDocument.save()
+    .then(doc => {
+      console.log('=====DOCUMENT UPLOADED TO DATABASE=====');
+      Ambassador.findOneAndUpdate({user: req.user._id}, {$push: {documents: doc}}, {new: true})
+      .then(ambassador => {
+        console.log('SUCCESSFULLY UPLOADED NEW DOCUMENT')
+        res.send('SUCCESS!')
+      })
+      .catch(err => {
+        console.err(err)
+      })
+    })
+    .catch(err => {
+      console.error(err)
+    })
+  })
+  .catch(err => {
+    console.error(err);
+  })
+})
+
+router.post('/documents/addlink', (req, res) => {
+  Ambassador.findOneAndUpdate({user: req.user._id}, {$push : {links: req.body.link}}, {new: true})
+  .then(ambassador => {
+    console.log('====AMBASSADOR SUCCESSFULLY UPDATED======')
+    res.redirect('/ambassadors/myProfile?newlink=success');
+  })
+})
+
+// router.post('/images/information', (req, res) => {
+//   console.log('===========CALLBACK IMAGE INITIATED=======', req.body);
+//   console.log('====TEST IMAGE LOG=====');
+//   Image.findOne({user: req.user._id})
+//   .then(image => {
+//     console.log('=====IMAGE SEARCH INITIATED=====');
+//     if (!image) {
+//       console.log('=====IMAGE NOT FOUND CREATING IN DB=====');
+//       const newImage = new Image({
+//         filename: req.body.original_filename,
+//         size: req.body.bytes,
+//         type: req.body.format,
+//         user: req.user._id,
+//         cloudinaryUrl: req.body.url,
+//       })
+//       newImage.save()
+//       .then(img => {
+//         console.log('=====IMAGE SAVED=====');
+//         User.findByIdAndUpdate(req.user._id, {$set: {image: img._id}}, {new: true})
+//         .then(user => {
+//           console.log('USER SUCCESSFULLY UPDATED');
+//           console.log('=====CLOUDINARY IMAGE UPLOADED=====');
+//           res.redirect('/ambassadors/myProfile');
+//         })
+//         .catch(err => {
+//           console.error(err);
+//           res.redirect('/ambassadors/myProfile?image=fail');
+//         })
+//       })
+//       .catch(err => {
+//         console.error(err);
+//         res.redirect('/ambassadors/myProfile?image=fail');
+//       })
+//     } else {
+//       console.log('=====IMAGE FOUND UPDATING EXISTING MODEL=====');
+//       Image.findOneAndUpdate({user: req.user._id}, {
+//         filename: req.body.filename,
+//         size: req.body.bytes,
+//         type: req.body.format,
+//         user: req.user._id,
+//         cloudinaryUrl: req.body.url,
+//       })
+//       .then((newImage) => {
+//         console.log('UPDATED PROFILE IMAGE');
+//         User.findByIdAndUpdate(req.user._id, {$set: {image: newImage._id}}, {new: true})
+//         .then(user => {
+//           res.redirect('/ambassadors/myProfile?image=success');
+//         })
+//         .catch(err => {
+//           console.error(err)
+//           res.redirect('/ambassadors/myProfile?image=fail')
+//         })
+//       })
+//       .catch(err => {
+//         res.send('Error:', err);
+//         console.error(err);
+//         res.redirect('/users/myProfile?image=fail')
+//       })
+//     }
+//   })
+// })
 
 ////////////////////////////////////////Consulting/////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -524,8 +771,12 @@ router.get('/users/consultants/:userid', function(req, res, next) {
 })
 //sample consultant profile with google calendars API (maybe a skype API of some sort?)
 //test route for google calendar API
-router.get('/calendar', function(req, res, next) {
-  res.render('calendar')
+router.get('/test-nav', (req, res) => {
+  res.render('./Testing/sidenav-test.hbs');
 })
+
+
+
+
 
 module.exports = router;

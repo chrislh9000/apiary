@@ -5,6 +5,7 @@ var passport = require('passport');
 var expressValidator = require('express-validator')
 var models = require('../models/models')
 var User = models.User
+const Ambassador = models.Ambassador;
 var crypto = require('crypto');
 
 //hashing passwords
@@ -51,6 +52,42 @@ router.post('/register', function(req, res, next) {
     res.send('Error: Unable to save user')
   })
 })
+//ambassador login post route
+router.post('/ambassadors/register', (req, res) => {
+  var newUser = new User ({
+    username:req.body.username,
+    hashedPassword: hashPassword(req.body.password),
+    name:req.body.firstName + ' ' + req.body.lastName,
+    school: req.body.school,
+    email: req.body.email,
+    gender: req.body.gender,
+    dateOfBirth: req.body.dateOfBirth,
+    country: req.body.country,
+    intendedMajor: req.body.intendedMajor,
+    userType: 'ambassador',
+    skype: req.body.skypeName,
+    currentGrade: req.body.currentGrade,
+    dateJoined: new Date(),
+  })
+  newUser.save()
+  .then( (user) => {
+    console.log('new user saved!')
+    const newAmbassador = new Ambassador({
+      user: user._id,
+      address: req.body.address,
+      postalCode: req.body.postalCost,
+      city: req.body.city,
+    })
+    newAmbassador.save()
+    .then(ambassador => {
+      console.log('new ambassador created!')
+      res.redirect('/login?register=success')
+    })
+  })
+  .catch(function(error) {
+    res.send('Error: Unable to save user')
+  })
+})
 //Login functionality
 router.get('/login', (req, res, next) => {
   if (req.query.register === 'success') {
@@ -68,8 +105,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login?login=failed'}), function(req, res) {
-  res.redirect('/?loggedIn=success');
-  console.log('logged in !')
+  res.redirect('/users/all');
 });
 
 //logout functionality

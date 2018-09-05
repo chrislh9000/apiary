@@ -1,0 +1,27 @@
+<div class = "fixed-bg-sf">
+  <div class = "container-fluid fixed-bg-sf">
+    <br>
+<center class = "bigTitleFont-black"><h1>Add to Your Ambassador Profile</h1></center><br>
+<form method="POST" class = "fixed-bg-sf">
+<div style="font-size: 20" class = "profile-container fixed-bg-sf">
+  <center><label class = "stellarTesting">Accomplishments/Accolades</label></center>
+  <div class="wrap-input100 validate-input form-group" data-validate="Enter Accomplishments">
+    <input value="{{ambassador.accomplishments}}" class="input100" type="text" name="accomplishments" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+    <span class="focus-input100" data-placeholder="		&#x1F3C6;"></span>
+  </div>
+  <center><label class = "stellarTesting">Specialties</label></center>
+  <div class="wrap-input100 validate-input form-group" data-validate="Specialties">
+    <input value="{{ambassador.specialties}}" class="input100" type="text" name="specialties" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+    <span class="focus-input100" data-placeholder="&#x1F4AA;"></span>
+  </div>
+</div>
+<center><label class = "stellarTesting">Additional Info</label></center>
+<div class="wrap-input100 validate-input form-group" data-validate = "Add Additional Info if Needed">
+  <input value="{{ambassador.additionalInfo}}" class="input100" type="text" name="additionalInfo" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;">
+  <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+</div>
+<center><button type="submit" class="btn btn-info">Submit Changes</button></center><br>
+<center><a class = "btn btn-danger" href="/ambassadors/myProfile">Back to Ambassador Profile</a></center>
+
+</form>
+</div></div>

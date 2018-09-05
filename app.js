@@ -42,6 +42,7 @@ const googleRouter = require('./routes/google');
 const preloginRouter = require('./routes/prelogin');
 const adminRouter = require('./routes/admin');
 const paymentRouter = require('./routes/payment');
+const ambassadorsRouter = require('./routes/ambassadors')
 
 var models = require('./models/models');
 const User = models.User;
@@ -125,6 +126,7 @@ app.use('/', googleRouter);
 app.use('/', preloginRouter);
 app.use('/', adminRouter);
 app.use('/', paymentRouter);
+app.use('/ambassadors', ambassadorsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
