@@ -8,13 +8,10 @@ router.get('/', function(req, res, next) {
       name: req.user.name,
       loggedIn: true,
     });
-  } else if (req.user) {
-    res.render('index', {
-      username: req.user.username,
-      name: req.user.name,
-      loggedIn: true,
-      networkToggled: false
-    });
+  }
+
+  else if (req.user) {
+    res.redirect('/users/all')
   } else {
     res.render('index', {loggedIn: false})
   }

@@ -1,5 +1,25 @@
 <div class = "container-fluid fixed-bg-sf">
-<center class = "bigTitleFont-black"><h1>Add Services to Your Ambassador Page</h1></center><br>
+<center class = "bigTitleFont-black"><h1>Choose One of Our Service Templates</h1></center><br>
+<form>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+      <input type="checkbox" aria-label="Checkbox for following text input">
+    </div>
+  </div>
+  <input type="text" class="form-control" aria-label="Text input with checkbox">
+</div>
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+    <input type="radio" aria-label="Radio button for following text input">
+    </div>
+  </div>
+  <input type="text" class="form-control" aria-label="Text input with radio button">
+</div>
+</form>
+<center class = "bigTitleFont-black"><h1>Create Your Own Custom Service</h1></center><br>
 <form method="POST">
 <div style="font-size: 20" class = "profile-container">
   <center><label class = "stigma">Service Name</label></center>
@@ -7,11 +27,22 @@
     <input class="input100 " type="text" name="serviceTitle" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
     <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
   </div>
-  <center><label class = "stigma">Service Description</label></center>
+  <center><label class = "stigma">Service Short Description(This Will Be Displayed on Your Ambassadors Page)</label></center>
   <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
     <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
     <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
   </div>
+  <center><label class = "stigma">Service Detailed Description(This Will Be Dislplayed on the Service Page)</label></center>
+  <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
+    <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+    <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+  </div>
+  <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">With textarea</span>
+  </div>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
   <center><label class = "stigma">Service Price <b>(Price Must Be Between $30-$150)</b></label></center>
   <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Price">
     <input min="30" max="150" class="input100" type="text" name="servicePrice" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>

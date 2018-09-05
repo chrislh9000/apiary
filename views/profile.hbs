@@ -4,7 +4,7 @@
 <!-- <span class="skype-button bubble" data-contact-id="{{user.skype}}" data-color="#800000"></span>
 <span class="skype-chat" data-color-message="#800000"></span> -->
 <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
-
+<div class="container-fluid" >
 <div class="profile-page">
   <br>
   <br>
@@ -88,6 +88,19 @@
                 </div>
               </div>
             </div>
+            <br>
+            <div>
+            <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
+            {{#if owner}}
+              <center><button data-toggle="modal" data-target="#edit-user-profile-modal" type="button" style="font-family: 'Montserrat'; color: white" class="btn apiary-button">EDIT PROFILE</button></center> <br>
+            {{/if}}
+            {{#if consultantPortal}}
+            <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/consultants/profile">CONSULTANT PORTAL</a></center>
+            {{/if}}
+            {{#if adminPortal}}
+            <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/admin">ADMIN PAGE</a></center>
+            {{/if}}
+          </div>
           <!-- Card Two -->
       </div>
       </div>
@@ -97,16 +110,7 @@
   <br>
 
   <br>
-  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
-  {{#if owner}}
-    <center><button data-toggle="modal" data-target="#edit-user-profile-modal" type="button" style="font-family: 'Montserrat'; color: white" class="btn apiary-button">EDIT PROFILE</button></center> <br>
-  {{/if}}
-  {{#if consultantPortal}}
-  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/consultants/profile">CONSULTANT PORTAL</a></center>
-  {{/if}}
-  {{#if adminPortal}}
-  <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button" href="/admin">ADMIN PAGE</a></center>
-  {{/if}}
+</div>
 </div>
 
 

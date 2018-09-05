@@ -23,7 +23,7 @@
     <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
     <br>
     <div class="row profile-container" style="min-height: 600px">
-      <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
+      <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-10 center-block card">
         {{#if image}}
         <!-- <div class = "profile-image-frame container-fluid"> -->
         <img src="{{image}}" class="center-block" style="width:200px; height:250px; border: solid 10px #910000" />
@@ -144,9 +144,11 @@
                   <h5 class = "consultantTraining" >{{this.title}}</h5>
                   <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
                   <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
+                  {{#if owner}}
                   <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
                     <button type="submit" class="btn btn-danger">Delete Service</button><br>
                   </form>
+                  {{/if}}
                   <form action="/ambassadors/checkout/{{this._id}}" method="POST">
                     <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -165,7 +167,7 @@
                 </div>
                 {{/each}} <br>
                 {{#if owner}}
-                <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn btn-lg btn-success" href="/ambassadors/services/add">ADD TO YOUR AMBASSADOR SERVICES</a></center>
+                <center><button data-toggle="modal" data-target="#add-services-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Add An Ambassador Service</button></center>
                 {{/if}}
           </div>
         </div>
@@ -288,7 +290,7 @@
         					</div>
 
                   <div class="wrap-input100 validate-input form-group" data-validate="Enter biography">
-        						<input class="input100" type="text" name="biography" rows = "3" placeholder="BIOGRAPHY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.biography}}' required>
+        						<textarea class="input100" type="text" name="biography" rows = "3" placeholder="BIOGRAPHY" style = "height: 100px; font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.biography}}' required></textarea>
         						<span class="focus-input100" data-placeholder="	&#x270D;"></span>
         					</div>
                   {{#if user.academicInterests}}
@@ -331,11 +333,6 @@
                   <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">
         						<input class="input100" type="text" name="intendedMajor" placeholder="INTENDED MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.intendedMajor}}'required>
         						<span class="focus-input100" data-placeholder="		&#x1F4D6;"></span>
-        					</div>
-
-                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your dream university">
-        						<input class="input100" type="text" name="dreamUni" placeholder="DREAM UNIVERSITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.dreamUni}}' required>
-        						<span class="focus-input100" data-placeholder="		&#x1F393;"></span>
         					</div>
         					<div class="container-login100-form-btn m-t-32 form-group">
         						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
@@ -394,6 +391,50 @@
     </div>
   </div>
 </div>
+
+<!-- Add Services Modal -->
+<div class="modal fade" id="add-services-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apiary Network</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center class = "bigTitleFont-black"><h1>Choose One of Our Service Templates</h1></center><br>
+        <center class = "bigTitleFont-black"><h1>Create Your Own Custom Service</h1></center><br>
+        <form method="POST">
+        <div style="font-size: 20" class = "profile-container">
+          <center><label class = "stigma">Service Title</label></center>
+          <div class="wrap-input100 validate-input form-group" data-validate = "Enter Service Title">
+            <input class="input100 " type="text" name="serviceTitle" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+            <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+          </div>
+          <center><label class = "stigma">Service Short Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on Ambassador Page)</span></label></center>
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
+            <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+            <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+          </div>
+          <center><label class = "stigma">Service Detailed Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on the Service Page)</span></label></center>
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
+            <textarea class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="height: 100px; font-family: 'Montserrat', serif; font-size: 20px; color: black;" required></textarea>
+            <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+          </div>
+          <center><label class = "stigma">Service Price <br> <span style="color: gray; font-size: 18px">(Price has to be between $10-$150)</span></b></label></center>
+          <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Price">
+            <input min="10" max="150" class="input100" type="text" name="servicePrice" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+            <span class="focus-input100" data-placeholder="		&#x1F4B5;"></span>
+          </div>
+        </div>
+        <center><button type="submit" class="btn btn-info">Create New Service</button></center><br>
+        <center><a class = "btn btn-danger" href="/ambassadors/myProfile">Cancel</a></center>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
 
 
 
