@@ -10,7 +10,7 @@ const Ambassador = models.Ambassador;
 const Image = models.Image;
 const Service = models.Service;
 const StripePayment = models.StripePayment;
-
+//beep boop bop 
 
 var crypto = require('crypto');
 //stripe stuff//
