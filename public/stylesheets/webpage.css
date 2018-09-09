@@ -1409,6 +1409,7 @@ h2.a {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     padding: 10px;
+    margin-left: 15%;
   }
 
   .scrolling-wrapper {
@@ -1979,6 +1980,7 @@ iframe {
     background-color: #111; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+    padding-right: 10px;
 }
 
 /* The navigation menu links */
