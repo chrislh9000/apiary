@@ -17,7 +17,8 @@ dropdown-menu,
 dropdown-item, collapse, navbar-collapse
 {
   font-family: 'Alegreya Sans SC', sans-serif;
-  font-size: 31px;
+  font-size: 20px;
+  color: white;
 }
 
 /* FONTS */
@@ -41,14 +42,14 @@ dropdown-item, collapse, navbar-collapse
 .topTier {
   color: white;
   font-family: 'Alegreya Sans SC', sans-serif;
-  font-size: 50px;
+  font-size: 45px;
   text-transform: lowercase
 }
 
 .gotIn {
   color: white;
   font-family: 'Segan', sans-serif;
-  font-size: 25px;
+  font-size: 24px;
 }
 
 .competitiveCollege {
@@ -60,7 +61,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .bigStats {
-  color: #1a778e; font-family: 'Montserrat', sans-serif; font-size: 50px;
+  color: #1da4a7; font-family: 'Alegreya Sans SC', sans-serif; font-size: 40px;
   text-transform: lowercase;
 }
 
@@ -75,7 +76,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .interestedServices {
-  color: white; font-family: 'Montserrat', sans-serif; font-size: 44px;
+  color: white; font-family: 'Alegreya Sans SC', sans-serif; font-size: 45px;
 }
 
 .buttonFont {
@@ -94,6 +95,21 @@ dropdown-item, collapse, navbar-collapse
   font-size: 44px;
   text-align: center;
 }
+
+.database{
+  color: #1a778e;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 40px;
+  text-align: center;
+}
+
+.network{
+  color: #1a778e;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 40px;
+  text-align: center;
+}
+
 .secondTitleFont {
   color: white; font-family: 'Segan', sans-serif; font-size: 25px;
   line-height: 1.6;
@@ -101,7 +117,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .secondTitleFont-black {
-  color: #1a778e; font-family: 'Montserrat', sans-serif; font-size: 25px;
+  color: #1a778e; font-family: 'Montserrat', sans-serif; font-size: 22px;
   line-height: 1.6;
 }
 
@@ -128,7 +144,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .teamName  {
-  color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;
+  color: black; font-family: 'Alegreya Sans SC', sans-serif; font-size: 22px;color: #1a778e;
 }
 
 .twoWays {
@@ -148,22 +164,22 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .consultantTraining {
-  color: maroon; font-family: 'Montserrat', sans-serif; font-size: 32px;
+  color: maroon; font-family: 'Alegreya Sans SC', sans-serif; font-size: 40px;
 }
 .schoolsRepresented {
-  color: maroon; font-family: 'Montserrat', sans-serif; font-size: 32px;
+  color: #1a778e; font-family: 'Alegreya Sans SC', sans-serif; font-size: 30px;
 }
 
 .tab1 {
-  background:firebrick; color: white; font-family: 'Montserrat', sans-serif; font-size: 28px;
+  background:firebrick; color: white; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
 }
 
 .tab2 {
-  background:brown; color: white; font-family: 'Montserrat', sans-serif; font-size: 28px;
+  background:brown; color: white; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
 }
 
 .tab3 {
-  background:maroon; color: white; font-family: 'Montserrat', sans-serif; font-size: 28px;
+  background:maroon; color: white; font-family: 'Alegreya Sans SC', sans-serif; font-size: 25px;
 }
 
 .applyText {
@@ -187,7 +203,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .stat2{
-  color: white; font-family: 'Montserrat', sans-serif;  font-size: 18px;
+  color: white; font-family: 'Alegreya Sans SC', sans-serif;  font-size: 22px;
 }
 /* BACKDROPS FOR MOST PAGES */
 
@@ -268,6 +284,8 @@ dropdown-item, collapse, navbar-collapse
 .navbar {
   margin-top: 2px;
   margin-bottom: 0 !important;
+  font-size: 20px;
+  color: white;
 }
 
 .dropdown-toggle{
@@ -380,6 +398,10 @@ ul li {
     font-family: 'Montserrat', sans-serif;
 }
 
+.problem-font {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 20px;
+}
 .sec-font {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
@@ -393,8 +415,8 @@ ul li {
 img.logoimage {
    display: block;
    clear: both;
-   width: 350px;
-   height: 115px;
+   width: 300px;
+   height: 98.563px;
    box-align: center;
 }
 
@@ -504,7 +526,7 @@ div.college-admissions-g1 {
 }
 
 .feature_item-1 {
-    font-size: 18px;
+    font-size: 19px;
     font-family: 'Montserrat', sans-serif;
     margin: 0px 40px;
 }
@@ -950,7 +972,8 @@ div.polaroid {
 }
 
 .title {
-    color: grey;
+    color: #1a778e;
+    font-family: 'Alegreya Sans SC', sans-serif; font-size: 16px;
 }
 
 div.transbox {
@@ -1987,7 +2010,7 @@ iframe {
 .sidenav a {
     padding: 6px 10px 6px 16px;
     text-decoration: none;
-    
+
     font-size: 25px;
     color: #818181;
     display: block;

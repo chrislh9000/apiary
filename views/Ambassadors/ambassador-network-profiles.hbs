@@ -1,5 +1,5 @@
 <body class = "fixed-bg-sf"><div class="container-fluid network-profiles-container">
-  <h1 style="font-family: 'Alegreya Sans SC';">APIARY NETWORK AMBASSADORS</h1><br><br>
+  <h1 style="font-family: 'Montserrat';">APIARY NETWORK AMBASSADORS</h1><br><br>
   <div class="scrolling-wrapper">
 {{#each ambassadors}}
 <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
@@ -9,9 +9,9 @@
 <img class="center-block" style="border: solid 10px #910000; height: 150px; width: 122px;" src="/profiles/1535005509011-avatar1.jpg"></img>
 {{/if}}
 <h5 style=""><b>{{this.user.name}}</b></h5>
-<h5 style="text-transform: losercase"><b>{{this.user.school}}</b></h5>
-<h5 style="text-transform: uppercase; color: maroon;"><b>{{this.user.email}}</b></h5>
-<h5 style="text-transform: lowercase; color: indianred;"><b>{{this.user.intendedMajor}}</b></h5>
+<h5 style="text-transform: losercase; font-family: 'Montserrat';"><b>{{this.user.school}}</b></h5>
+<h5 style="text-transform: uppercase; color: maroon; font-family: 'Montserrat', sans-serif;"><b>{{this.user.email}}</b></h5>
+<h5 style="text-transform: losercase; color: indianred; font-family: 'Montserrat';"><b>{{this.user.intendedMajor}}</b></h5>
 <a class = "btn apiary-button" href = '/ambassadors/{{this._id}}'>View Ambassador Profile</a><br><br>
 </div>
 {{/each}}

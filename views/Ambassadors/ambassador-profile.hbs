@@ -20,17 +20,18 @@
       {{failureEdit}}
     </div>
     {{/if}}
-    <h1 class="type" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
+    <h1 class="" style="text-align: center; font-family: 'Montserrat', sans-serif; font-size: 48px;"> {{user.name}} </h1>
     <br>
     <div class="row profile-container" style="min-height: 600px">
       <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-10 center-block card">
+        <br>
         {{#if image}}
         <!-- <div class = "profile-image-frame container-fluid"> -->
-        <img src="{{image}}" class="center-block" style="width:200px; height:250px; border: solid 10px #910000" />
+        <img src="{{image}}" class="center-block" style="width:200px; height:250px; border: solid 2px #910000" />
         <!-- </div> -->
         {{else}}
         <!-- <div style="background-color: gray;" class = "profile-image-frame container-fluid"> -->
-        <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 10px #910000; width:250px; height:250px" />
+        <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 2px #910000; width:250px; height:250px" />
         <!-- </div> -->
         {{/if}} <br>
         {{#if owner}}
@@ -51,7 +52,7 @@
       <div class="card">
         <div class="card-header apiary-collapsable" id="headingOne">
           <h5 class="mb-0">
-            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style = "font-size: 18px">
               View {{user.name}}'s Biography and Interests
             </button>
           </h5>
@@ -59,20 +60,20 @@
 
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
-            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;"> Biography </h5>
-            <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 18px; text-style: "> {{user.biography}}</i> </center>
+            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 18px;"> Biography </h5>
+            <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 15px; text-style: "> {{user.biography}}</i> </center>
             <br><br>
-            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Academic Interests</h5>
+            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Academic Interests</h5>
             {{#each user.academicInterests}}
-            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 18px;">{{this}}</p>
             {{/each}}
             <br>
-            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Extracurricular Interests</h5>
+            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Extracurricular Interests</h5>
             {{#each user.extracurricularInterests}}
-            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{this}}</p>
+            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 18px;">{{this}}</p>
             {{/each}} <br>
-            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">  Intended Major </h5>
-            <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 22px;"> {{user.intendedMajor}}</h5>
+            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Intended Major </h5>
+            <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 18px;"> {{user.intendedMajor}}</h5>
             <br>
           </div>
         </div>
@@ -83,7 +84,7 @@
       <div class="card">
         <div class="card-header apiary-collapsable" id="headingTwo">
           <h5 class="mb-0">
-            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style = "font-size: 18px">
               View {{user.name}}'s Accomplishments
             </button>
           </h5>
@@ -131,14 +132,14 @@
       <div class="card">
         <div class="card-header apiary-collapsable" id="headingThree">
           <h5 class="mb-0">
-            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style = "font-size: 18px">
               View {{user.name}}'s Services
             </button>
           </h5>
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
-                <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Services </h1><br>
+                <h1 class = "bigTitleFont-black" style="text-align: center; font-size: 28px;"> Ambassador Services </h1><br>
                 {{#each services}}
                 <div style="text-align: center" class="profile-container card">
                   <h5 class = "consultantTraining" >{{this.title}}</h5>
@@ -179,7 +180,7 @@
   <div class="card">
     <div class="card-header apiary-collapsable" id="headingThree">
       <h5 class="mb-0">
-        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree" style = "font-size: 18px">
           Contact {{user.name}}
         </button>
       </h5>
