@@ -1,12 +1,13 @@
 <body class = "fixed-bg-sf"><div class="container-fluid network-profiles-container">
-  <h1 style="font-family: 'Montserrat';">APIARY NETWORK AMBASSADORS</h1><br><br>
+  <h1 style="font-family: 'Montserrat';">APIARY NETWORK AMBASSADORS</h1>
+  <center><h5 style="color: gray">Get the inside scoop on your dream school</h5></center> <br>
   <div class="scrolling-wrapper">
 {{#each ambassadors}}
 <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
 {{#if this.user.image}}
-<img class="center-block" style="border: solid 10px #910000; height: 150px; width: 122px;" src="{{this.user.image.cloudinaryUrl}}"></img>
+<img class="center-block" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border: solid 3px #e6e6e6; height: 240px; width: 200px;" src="{{this.user.image.cloudinaryUrl}}"></img>
 {{else}}
-<img class="center-block" style="border: solid 10px #910000; height: 150px; width: 122px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+<img class="center-block" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border: solid 3px #e6e6e6; height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
 {{/if}}
 <h5 style=""><b>{{this.user.name}}</b></h5>
 <h5 style="text-transform: losercase; font-family: 'Montserrat';"><b>{{this.user.school}}</b></h5>
