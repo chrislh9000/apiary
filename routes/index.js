@@ -167,7 +167,7 @@ router.post('/users/edit', function(req, res, next) {
 
 //Viewing other profiles
 //viewing all profiles
-router.get('/users/all', function(req, res, next) {
+router.get('/users/all', (req, res, next) => {
   User.findById(req.user._id)
   .populate({
     path: 'consultant',
@@ -199,10 +199,20 @@ router.get('/users/all', function(req, res, next) {
           return user.userType !== 'user' || 'ambassador';
         })
         if (req.query.search) {
-          const searchUser = req.query.search.toLowerCase();
-          searchMembers = _.filter(users, (user) => {
-            return ((user.name).toLowerCase()).includes(searchUser);
-          })
+          const searchInput = req.query.search.toLowerCase()
+          if (req.query.option === 'name') {
+            searchMembers = _.filter(users, (user) => {
+              return ((user.name).toLowerCase()).includes(searchInput);
+            })
+          } else if (req.query.option === 'school') {
+            searchMembers = _.filter(users, (user) => {
+              return ((user.school).toLowerCase()).includes(searchInput);
+            })
+          } else if (req.query.option === 'major') {
+            searchMembers = _.filter(users, (user) => {
+              return ((user.intendedMajor).toLowerCase()).includes(searchInput);
+            })
+          }
         }
         res.render('networkProfiles', {
           user: req.user,
@@ -642,7 +652,8 @@ router.post('/images/information', (req, res) => {
       }, {new: true})
       .then(newImage => {
         console.log('===SUCCESSFULLY UPDATED NEW IMAGE===')
-        res.redirect('/ambassadors/myProfile?image=success')
+        req.user.userType === 'ambassador' ? res.redirect('/ambassadors/myProfile?image=success') :
+        res.redirect('/users/myProfile?image=success')
       })
       .catch(err => {
         console.error(err)

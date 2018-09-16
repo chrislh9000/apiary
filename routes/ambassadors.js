@@ -10,7 +10,7 @@ const Ambassador = models.Ambassador;
 const Image = models.Image;
 const Service = models.Service;
 const StripePayment = models.StripePayment;
-//beep boop bop 
+//beep boop bop
 
 var crypto = require('crypto');
 //stripe stuff//
@@ -65,25 +65,20 @@ router.get('/edit', (req, res) => {
   })
 })
 
-router.post('/edit', function(req, res, next) {
-  User.findOneAndUpdate({
-    username: req.user.username
-  }, {
-    username: req.body.username,
-    name: req.body.firstName + ' ' + req.body.lastName,
-    school: req.body.school,
-    email: req.body.email,
-    gender: req.body.gender,
-    biography: req.body.biography,
-    academicInterests: [req.body.interest0, req.body.interest1, req.body.interest2],
-    extracurricularInterests: [req.body.hobby0, req.body.hobby1, req.body.hobby2],
-    intendedMajor: req.body.intendedMajor,
-  }).exec().then((resp) => {
-    console.log('User successfully updated', resp);
-    res.redirect('/ambassadors/myProfile?edit=success');
-  }).catch((error) => {
-    console.log('Error', error);
-    res.redirect('/ambassadors/myProfile?edit=fail');
+router.post('/edit', (req, res, next) => {
+  req.user.userType !== 'ambassador' ? res.redirect('/users/all') :
+  Ambassador.findOneAndUpdate({'user': req.user._id}, {
+    accomplishments: req.body.accomplishments,
+    specialties: req.body.specialties,
+    additionalInfo: req.body.additionalInfo,
+  }, {new: true})
+  .then(ambassador => {
+    console.log('successfully edited ambassador profile', ambassador)
+    res.redirect('/ambassadors/myProfile?edit=success')
+  })
+  .catch(err => {
+    console.error(err)
+    res.redirect('/ambassadors/myProfile?edit=fail')
   })
 })
 

@@ -344,6 +344,10 @@ const ambassadorSchema = new Schema({
   bioInfo: String,
   city: String,
   stripeAccountId: String,
+  categories: [{
+    type: String,
+    required: false,
+  }],
   created: {
     type: Date,
     default: Date.now(),
@@ -368,6 +372,11 @@ const serviceSchema = new Schema({
   description: {
     type: String,
     required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+    default: 'general',
   },
   created: {
     type: Date,

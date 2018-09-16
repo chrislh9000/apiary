@@ -40,7 +40,7 @@
           <center><button id="image-upload" class ="btn btn-primary">Upload New Image</button></center>
         </div>
         {{/if}}
-
+        <!-- </div> -->
         <!-- <form style="border-bottom: 1px solid gray;" method="POST" action="/uploadimage" enctype="multipart/form-data">
         <center><input style="float: left; display: inline text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 12px;" type= "file" name="image" id="image" class="btn custom-image-input" placeholder="CHOOSE FILE" required> </center>
         <center><button style="float: left; display: inline; font-family: Montserrat;" type = "submit" class = "btn btn-info">UPLOAD IMAGE</button> </center> <br><br>
@@ -49,6 +49,7 @@
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.school}}</h5>
       <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
       <!-- card one -->
+      <div class="accordion" id="accordion">
       <div class="card">
         <div class="card-header apiary-collapsable" id="headingOne">
           <h5 class="mb-0">
@@ -91,153 +92,146 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
-                <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
-                <div class = "container-fluid">
-                  <center><h3 style="color: #910000">Documents</h3></center>
-                  {{#each ambassador.documents}}
-                  <!-- <form>
-                  <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
-                  <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
-                </form> -->
-                <a target="_blank" href={{this.cloudinaryUrl}}>
-                  <img class="center-block" src={{this.cloudinaryThumbnail}} />
-                </a> <br>
-                {{#if owner}}
-                <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
-                {{/if}}
-                {{/each}}
-              </div>
-              <center><h3 style="color: #910000">Links</h3></center>
-              {{#each ambassador.links}}
-              <ul>
-                <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
-              </ul>
-              {{/each}}
-              {{#if owner}}
-              <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
-              <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
-              <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
-              <form method="POST" action="/documents/addlink">
-                <input class="form-control" name="link" placeholder="add links..."></input> <br>
-                <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
-              </form> <br>
-              {{/if}}
-        </div>
-      </div>
-      </div>
-      <br>
-      <!-- Card Two -->
-
-      <!-- Card Three -->
-      <div class="card">
-        <div class="card-header apiary-collapsable" id="headingThree">
-          <h5 class="mb-0">
-            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style = "font-size: 18px">
-              View {{user.name}}'s Services
-            </button>
-          </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body">
-                <h1 class = "bigTitleFont-black" style="text-align: center; font-size: 28px;"> Ambassador Services </h1><br>
-                {{#each services}}
-                <div style="text-align: center" class="profile-container card">
-                  <h5 class = "consultantTraining" >{{this.title}}</h5>
-                  <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
-                  <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
-                  {{#if owner}}
-                  <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
-                    <button type="submit" class="btn btn-danger">Delete Service</button><br>
-                  </form>
-                  {{/if}}
-                  <form action="/ambassadors/checkout/{{this._id}}" method="POST">
-                    <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
-                    data-amount={{this.stripePrice}}
-                    data-description="{{this.title}}: {{this.description}}"
-                    data-billing-address=true
-                    data-label="Purchase this Service"
-                    data-name="chrislh9000"
-                    data-zip-code="true"
-                    data-image="/images/apiarylogoblack.png"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto">
-                    </script>
-                  </form>
-                </div>
-                {{/each}} <br>
-                {{#if owner}}
-                <center><button data-toggle="modal" data-target="#add-services-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Add An Ambassador Service</button></center>
-                {{/if}}
+            <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
+            <div class = "container-fluid">
+              <center><h3 style="color: #910000">Documents</h3></center>
+              {{#each ambassador.documents}}
+              <!-- <form>
+              <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
+              <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
+            </form> -->
+            <a target="_blank" href={{this.cloudinaryUrl}}>
+              <img class="center-block" src={{this.cloudinaryThumbnail}} />
+            </a> <br>
+            {{#if owner}}
+            <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
+            {{/if}}
+            {{/each}}
           </div>
-        </div>
-      </div>
-      <br>
-    <!-- Card Three -->
-  <!-- Card Four -->
-
-  <div class="card">
-    <div class="card-header apiary-collapsable" id="headingThree">
-      <h5 class="mb-0">
-        <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree" style = "font-size: 18px">
-          Contact {{user.name}}
-        </button>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-            <h1 class = "bigTitleFont-black" style="text-align: center"> Email Ambassador </h1><br>
-            <form>
-              <input class="form-control" placeholder="Email Subject" />
+          <center><h3 style="color: #910000">Links</h3></center>
+          {{#each ambassador.links}}
+          <ul>
+            <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
+          </ul>
+          {{/each}}
+          {{#if owner}}
+          <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
+          <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
+          <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
+          <form method="POST" action="/documents/addlink">
+            <input class="form-control" name="link" placeholder="add links..."></input> <br>
+            <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
+          </form> <br>
+          {{/if}}
         </div>
       </div>
     </div>
     <br>
-    <!-- Card Four -->
-    <!-- Card Five -->
+    <!-- Card Two -->
 
-    {{#if owner}}
+    <!-- Card Three -->
     <div class="card">
-      <div class="card-header apiary-collapsable" id="headingFive">
+      <div class="card-header apiary-collapsable" id="headingThree">
         <h5 class="mb-0">
-          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style = "font-size: 18px">
+            View {{user.name}}'s Services
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          <h1 class = "bigTitleFont-black" style="text-align: center; font-size: 28px;"> Ambassador Services </h1><br>
+          {{#each services}}
+          <div style="text-align: center" class="profile-container card">
+            <h5 class = "consultantTraining" >{{this.title}}</h5>
+            <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
+            <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
+            {{#if owner}}
+            <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
+              <button type="submit" class="btn btn-danger">Delete Service</button><br>
+            </form>
+            {{/if}}
+            <form action="/ambassadors/checkout/{{this._id}}" method="POST">
+              <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
+              data-amount={{this.stripePrice}}
+              data-description="{{this.title}}: {{this.description}}"
+              data-billing-address=true
+              data-label="Purchase this Service"
+              data-name="chrislh9000"
+              data-zip-code="true"
+              data-image="/images/apiarylogoblack.png"
+              data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+              data-locale="auto">
+              </script>
+            </form>
+          </div>
+          {{/each}} <br>
+          {{#if owner}}
+          <center><button data-toggle="modal" data-target="#add-services-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Add An Ambassador Service</button></center>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- Card Three -->
+    <!-- Card Four -->
+{{#if owner}}
+    <div class="card">
+      <div class="card-header apiary-collapsable" id="headingFour">
+        <h5 class="mb-0">
+          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style = "font-size: 18px">
             Your Payment Settings
           </button>
         </h5>
       </div>
-      <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
         <div class="card-body">
           {{#if owner}}
-              <h1 class  = "consultantTraining" style="text-align: center"> Your Payment Settings </h1>
-              <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
-              <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
-              {{#if ambassador.stripeAccountId}}
-              <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
-              <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
-              <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
-              {{else}}
-              <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
-              <a style="margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Your Payment Route on Stripe</a>
-              {{/if}}
+          <h1 class="consultantTraining" style="text-align: center"> Your Payment Settings </h1>
+          <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
+          <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
+          {{#if ambassador.stripeAccountId}}
+          <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
+          <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
+          <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
+          {{else}}
+          <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
+          <a style="font-size: 12px; margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn-lg btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Payment Route with Stripe</a>
           {{/if}}
+          {{/if}}
+        </div>
+        </div>
+      </div>
+      <br>
+      {{/if}}
+      <!-- Card Four -->
+
+      <!-- Card Five -->
+      {{#if owner}}
+      <div class="card">
+        <div class="card-header apiary-collapsable" id="headingSix">
+          <h5 class="mb-0">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" style = "font-size: 18px">
+              Edit Profile
+            </button>
+          </h5>
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+          <div class="card-body">
+            <center><button data-toggle="modal" data-target="#edit-ambassador-profile-modal" type="button" style="background-color:#1a778e" class="apiary-button2 btn">Edit User Info</button></center> <br>
+            <center><button data-toggle="modal" data-target="#edit-ambassadorInfo-modal" type="button" style="background-color:#1a778e; font-family: 'Alegreya Sans SC'; color: white" class="btn apiary-button2">EDIT AMBASSADOR INFO</button></center> <br>
           </div>
         </div>
       </div>
-    {{/if}}
-    <!-- Card Five -->
-    <br>
-    <center> <a style="margin-bottom: 10px; font-family: 'Alegreya Sans SC', sans-serif; font-size: 14px; display: float;" class="btn apiary-button2" href="/users/all">GO TO THE APIARY NETWORK</a><br></center>
-    {{#if owner}}
-      <center><button data-toggle="modal" data-target="#edit-ambassador-profile-modal" type="button" style="font-family: 'Montserrat'; color: white" class="btn apiary-button2">EDIT USER INFO</button></center> <br>
-      <center><button data-toggle="modal" data-target="#edit-ambassadorInfo-modal" type="button" style="font-family: 'Montserrat'; color: white" class="btn apiary-button2">EDIT AMBASSADOR INFO</button></center> <br>
-    {{/if}}
-    {{#if consultantPortal}}
-    <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button2" href="/consultants/profile">CONSULTANT PORTAL</a></center>
-    {{/if}}
-    {{#if adminPortal}}
-    <center> <a style="margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-size: 14px; display: float;" class="btn apiary-button2" href="/admin">ADMIN PAGE</a></center>
-    {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
 
 
 <!-- Modals -->
@@ -251,104 +245,124 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <form method="POST" action="/users/edit">
-        <div class="limiter fixed-bg-sf">
-        		<div class="container-login100 fixed-bg-sf">
-        			<div class="wrap-login100 p-t-30 p-b-50">
-        				<span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 40px;">
+          <div class="limiter fixed-bg-sf">
+            <div class="container-login100 fixed-bg-sf">
+              <div class="wrap-login100 p-t-30 p-b-50">
+                <span class="login100-form-title p-b-41" style = "font-family: 'Montserrat', serif; font-size: 40px;">
                   <br>
                   <br>
-        					Edit User Profile
+                  Edit Profile
                   <br>
                   <br>
-        				</span>
-        				<form class="login100-form validate-form p-b-33 p-t-5">
+                </span>
+                <form class="login100-form validate-form p-b-33 p-t-5">
 
-        					<div class="wrap-input100 validate-input form-group" data-validate = "Enter firstname">
-        						<input class="input100 " type="text" name="firstName" placeholder="FIRSTNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{firstName}} required>
-        						<span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
-        					</div>
+                  <div class="wrap-input100 validate-input form-group" data-validate = "Enter firstname">
+                    <input class="input100 " type="text" name="firstName" placeholder="FIRSTNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{firstName}} required>
+                    <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+                  </div>
 
-        					<div class="wrap-input100 validate-input form-group" data-validate="Enter lastname">
-        						<input class="input100" type="text" name="lastName" placeholder="LASTNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{lastName}} required>
-        						<span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
-        					</div>
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter lastname">
+                    <input class="input100" type="text" name="lastName" placeholder="LASTNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{lastName}} required>
+                    <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+                  </div>
 
                   <div class="wrap-input100 validate-input form-group" data-validate="Enter email">
-        						<input class="input100" type="text" name="email" placeholder="E-MAIL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{user.email}} required>
-        						<span class="focus-input100" data-placeholder="	&#x1F4E7;"></span>
-        					</div>
+                    <input class="input100" type="text" name="email" placeholder="E-MAIL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{user.email}} required>
+                    <span class="focus-input100" data-placeholder="	&#x1F4E7;"></span>
+                  </div>
 
                   <div class="wrap-input100 validate-input form-group" data-validate="Enter school">
-        						<input class="input100" type="text" name="school" placeholder="SCHOOL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.school}}' required>
-        						<span class="focus-input100" data-placeholder="	&#x1F392;"></span>
-        					</div>
+                    <input class="input100" type="text" name="school" placeholder="SCHOOL" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.school}}' required>
+                    <span class="focus-input100" data-placeholder="	&#x1F392;"></span>
+                  </div>
 
                   <div class="wrap-input100 validate-input form-group" data-validate="Enter username">
-        						<input class="input100" type="text" name="username" placeholder="USERNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{user.username}} required>
-        						<span class="focus-input100" data-placeholder="&#x1F464;"></span>
-        					</div>
+                    <input class="input100" type="text" name="username" placeholder="USERNAME" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value={{user.username}} required>
+                    <span class="focus-input100" data-placeholder="&#x1F464;"></span>
+                  </div>
 
                   <div class="wrap-input100 validate-input form-group" data-validate="Enter biography">
-        						<textarea class="input100" type="text" name="biography" rows = "3" placeholder="BIOGRAPHY" style = "height: 100px; font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.biography}}' required></textarea>
-        						<span class="focus-input100" data-placeholder="	&#x270D;"></span>
-        					</div>
-                  {{#if user.academicInterests}}
-                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interests">
-                    {{#each user.academicInterests}}
-        						<input class="input100" type="text" name="interest{{@index}}" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
-        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
-                    {{/each}}
-        					</div>
-                  {{else}}
-                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
-        						<input class="input100" type="text" name="interest0" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
-                    <input class="input100" type="text" name="interest1" placeholder="SECOND ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
-                    <input class="input100" type="text" name="interest2" placeholder="THIRD ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-        						<span class="focus-input100" data-placeholder="	&#x1F913;"></span>
-        					</div>
-                  {{/if}}
-
-                  {{#if user.extracurricularInterests}}
-                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interests">
-                    {{#each user.extracurricularInterests}}
-        						<input class="input100" type="text" name="hobby{{@index}}" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
-        						<span class="focus-input100" data-placeholder="		&#x26BD;"></span>
-                    {{/each}}
-        					</div>
-                  {{else}}
-                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
-                    <input class="input100" type="text" name="hobby0" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-                    <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
-                    <input class="input100" type="text" name="hobby1" placeholder="SECOND HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-                    <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
-                    <input class="input100" type="text" name="hobbie2" placeholder="THIRD HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
-                    <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+                    <input class="input100" type="text" name="biography" rows = "3" placeholder="BIOGRAPHY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.biography}}' required>
+                    <span class="focus-input100" data-placeholder="	&#x270D;"></span>
                   </div>
-                  {{/if}}
+
+                  <!--
+                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
+                  <input class="input100" type="text" name="academicInterests" rows = "3" placeholder="ACADEMIC INTERESTS" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.academicInterests}}' required>
+                  <span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
+                <input class="input100" type="text" name="extracurricularInterests" rows = "3" placeholder="EXTRACURRICULAR INTERESTS" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.extracurricularInterests}}' required>
+                <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+              </div>
+            -->
+            {{#if user.academicInterests}}
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interests">
+              {{#each user.academicInterests}}
+              <input class="input100" type="text" name="interest{{@index}}" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
+              <span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+              {{/each}}
+            </div>
+            {{else}}
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter your academic interestes">
+              <input class="input100" type="text" name="interest0" placeholder="FIRST ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+              <span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+              <input class="input100" type="text" name="interest1" placeholder="SECOND ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+              <span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+              <input class="input100" type="text" name="interest2" placeholder="THIRD ACADEMIC INTEREST" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+              <span class="focus-input100" data-placeholder="	&#x1F913;"></span>
+            </div>
+            {{/if}}
+
+            {{#if user.extracurricularInterests}}
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interests">
+              {{#each user.extracurricularInterests}}
+              <input class="input100" type="text" name="hobby{{@index}}" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" value='{{this}}' required>
+              <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+              {{/each}}
+            </div>
+            {{else}}
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter your extracurricular interestes">
+              <input class="input100" type="text" name="hobby0" placeholder="FIRST HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+              <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+              <input class="input100" type="text" name="hobby1" placeholder="SECOND HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+              <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+              <input class="input100" type="text" name="hobbie2" placeholder="THIRD HOBBY" style = "font-family: 'Montserrat', serif; font-size: 17px; color: white;" required>
+              <span class="focus-input100" data-placeholder="		&#x26BD;"></span>
+            </div>
+            {{/if}}
 
 
-                  <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">
-        						<input class="input100" type="text" name="intendedMajor" placeholder="INTENDED MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.intendedMajor}}'required>
-        						<span class="focus-input100" data-placeholder="		&#x1F4D6;"></span>
-        					</div>
-        					<div class="container-login100-form-btn m-t-32 form-group">
-        						<button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
-        							Save Changes
-        						</button>
-        					</div>
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter your intended major at university">
+              <input class="input100" type="text" name="intendedMajor" placeholder="INTENDED MAJOR" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.intendedMajor}}'required>
+              <span class="focus-input100" data-placeholder="		&#x1F4D6;"></span>
+            </div>
 
-        				</form>
-        			</div>
-        		</div>
-        	</div>
-        </form>
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter your dream university">
+              <input class="input100" type="text" name="dreamUni" placeholder="DREAM UNIVERSITY" style = "font-family: 'Montserrat', serif; font-size: 20px; color: white;" value='{{user.dreamUni}}' required>
+              <span class="focus-input100" data-placeholder="		&#x1F393;"></span>
+            </div>
+            <div class="container-login100-form-btn m-t-32 form-group">
+              <button class="login100-form-btn" style = "font-family: 'Montserrat', serif; font-size: 20px;">
+                Save Changes
+              </button>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
+  <!-- Modal Body -->
+</div>
+
+</div>
+</div>
 </div>
 <!-- Edit User Profile -->
 <!-- Edit Ambassador Profile -->
@@ -367,25 +381,24 @@
       </div>
       <div class="modal-body">
         <form method="POST" action="/ambassadors/edit" class = "fixed-bg-sf">
-        <div style="font-size: 20" class = "profile-container fixed-bg-sf">
-          <center><label class = "stellarTesting">Accomplishments/Accolades</label></center>
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter Accomplishments">
-            <input value="{{ambassador.accomplishments}}" class="input100" type="text" name="accomplishments" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-            <span class="focus-input100" data-placeholder="		&#x1F3C6;"></span>
+          <div style="font-size: 20" class = "profile-container fixed-bg-sf">
+            <center><label class = "stellarTesting">Accomplishments/Accolades</label></center>
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter Accomplishments">
+              <input value="{{ambassador.accomplishments}}" class="input100" type="text" name="accomplishments" placeholder="Accomplishments" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+              <span class="focus-input100" data-placeholder="		&#x1F3C6;"></span>
+            </div>
+            <center><label class = "stellarTesting">Specialties</label></center>
+            <div class="wrap-input100 validate-input form-group" data-validate="Specialties">
+              <input value="{{ambassador.specialties}}" class="input100" type="text" name="specialties" placeholder="Specialties" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+              <span class="focus-input100" data-placeholder="&#x1F4AA;"></span>
+            </div>
           </div>
-          <center><label class = "stellarTesting">Specialties</label></center>
-          <div class="wrap-input100 validate-input form-group" data-validate="Specialties">
-            <input value="{{ambassador.specialties}}" class="input100" type="text" name="specialties" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-            <span class="focus-input100" data-placeholder="&#x1F4AA;"></span>
+          <center><label class = "stellarTesting">Additional Info</label></center>
+          <div class="wrap-input100 validate-input form-group" data-validate = "Add Additional Info if Needed">
+            <input value="{{ambassador.additionalInfo}}" class="input100" type="text" name="additionalInfo" placeholder="Additional Information" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;">
+            <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
           </div>
-        </div>
-        <center><label class = "stellarTesting">Additional Info</label></center>
-        <div class="wrap-input100 validate-input form-group" data-validate = "Add Additional Info if Needed">
-          <input value="{{ambassador.additionalInfo}}" class="input100" type="text" name="additionalInfo" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;">
-          <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
-        </div>
-        <center><button type="submit" class="btn btn-info">Submit Changes</button></center><br>
-        <center><a class = "btn btn-danger" href="/ambassadors/myProfile">Back to Ambassador Profile</a></center>
+          <center><button type="submit" class="btn apiary-button2">Submit Changes</button></center><br>
 
         </form>
       </div>
@@ -407,60 +420,86 @@
         <center class = "bigTitleFont-black"><h1>Choose One of Our Service Templates</h1></center><br>
         <center class = "bigTitleFont-black"><h1>Create Your Own Custom Service</h1></center><br>
         <form method="POST" action="/ambassadors/services/add">
-        <div style="font-size: 20" class = "profile-container">
-          <center><label class = "stigma">Service Title</label></center>
-          <div class="wrap-input100 validate-input form-group" data-validate = "Enter Service Title">
-            <input class="input100 " type="text" name="serviceTitle" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-            <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+          <div style="font-size: 20" class = "profile-container">
+            <center><label class = "stigma">Service Title</label></center>
+            <div class="wrap-input100 validate-input form-group" data-validate = "Enter Service Title">
+              <input class="input100 " type="text" name="serviceTitle" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+              <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+            </div>
+            <center><label class = "stigma">Service Short Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on Ambassador Page)</span></label></center>
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
+              <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+              <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+            </div>
+            <center><label class = "stigma">Service Detailed Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on the Service Page)</span></label></center>
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
+              <textarea class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="height: 100px; font-family: 'Montserrat', serif; font-size: 20px; color: black;" required></textarea>
+              <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+            </div>
+            <center><label class = "stigma">Service Price <br> <span style="color: gray; font-size: 18px">(Price has to be between $10-$150)</span></b></label></center>
+            <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Price">
+              <input min="10" max="150" class="input100" type="text" name="servicePrice" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+              <span class="focus-input100" data-placeholder="		&#x1F4B5;"></span>
+            </div>
           </div>
-          <center><label class = "stigma">Service Short Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on Ambassador Page)</span></label></center>
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
-            <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-            <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
-          </div>
-          <center><label class = "stigma">Service Detailed Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on the Service Page)</span></label></center>
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
-            <textarea class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="height: 100px; font-family: 'Montserrat', serif; font-size: 20px; color: black;" required></textarea>
-            <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
-          </div>
-          <center><label class = "stigma">Service Price <br> <span style="color: gray; font-size: 18px">(Price has to be between $10-$150)</span></b></label></center>
-          <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Price">
-            <input min="10" max="150" class="input100" type="text" name="servicePrice" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-            <span class="focus-input100" data-placeholder="		&#x1F4B5;"></span>
-          </div>
-        </div>
-        <center><button type="submit" class="btn btn-info">Create New Service</button></center><br>
-        <center><a class = "btn btn-danger" href="/ambassadors/myProfile">Cancel</a></center>
+          <center><button type="submit" class="btn btn-info">Create New Service</button></center><br>
+          <center><a class = "btn btn-danger" href="/ambassadors/myProfile">Cancel</a></center>
         </form>
-      </div>
       </div>
     </div>
   </div>
+</div>
 
 
 
-  <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-  <script type="text/javascript">
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script type="text/javascript">
 
-  $('#image-upload').cloudinary_upload_widget(
-    { cloud_name: 'apiary-solutions', upload_preset: 'test_upload',
-    cropping: 'server', folder: 'ambassador_profiles' },
+$('#image-upload').cloudinary_upload_widget(
+  { cloud_name: 'apiary-solutions', upload_preset: 'test_upload',
+  cropping: 'server', folder: 'ambassador_profiles' },
+  (error, result) => {
+    var imageInfo = result[0]
+    console.log(error, result);
+    $.ajax({
+      url: 'http://localhost:3000/images/information',
+      type:'POST',
+      data: {
+        filename: imageInfo.original_filename,
+        size: imageInfo.bytes,
+        type: imageInfo.format,
+        cloudinaryUrl: imageInfo.url,
+        cloudinaryThumbnail: imageInfo.thumbnail_url,
+      },
+      success: (response) => {
+        console.log(response);
+        window.location.href= "http://localhost:3000/ambassadors/myProfile?image=success"
+      },
+      error: (resp) => {
+        alert('incorrect input fields');
+      }
+    })
+  });
+
+  $('#document-upload').cloudinary_upload_widget(
+    { cloud_name: 'apiary-solutions', upload_preset: 'upload_pdf',
+    cropping: 'server', folder: 'ambassador_documents' },
     (error, result) => {
-      var imageInfo = result[0]
+      var docInfo = result[0];
       console.log(error, result);
       $.ajax({
-        url: 'http://localhost:3000/images/information',
+        url: 'http://localhost:3000/documents/information',
         type:'POST',
         data: {
-          filename: imageInfo.original_filename,
-          size: imageInfo.bytes,
-          type: imageInfo.format,
-          cloudinaryUrl: imageInfo.url,
-          cloudinaryThumbnail: imageInfo.thumbnail_url,
+          filename: docInfo.original_filename,
+          size: docInfo.bytes,
+          type: docInfo.format,
+          cloudinaryUrl: docInfo.url,
+          cloudinaryThumbnail: docInfo.thumbnail_url,
         },
         success: (response) => {
           console.log(response);
-          window.location.href= "http://localhost:3000/ambassadors/myProfile?image=success"
+          window.location.href= "http://localhost:3000/ambassadors/myProfile?document=success"
         },
         error: (resp) => {
           alert('incorrect input fields');
@@ -468,32 +507,6 @@
       })
     });
 
-    $('#document-upload').cloudinary_upload_widget(
-      { cloud_name: 'apiary-solutions', upload_preset: 'upload_pdf',
-      cropping: 'server', folder: 'ambassador_documents' },
-      (error, result) => {
-        var docInfo = result[0];
-        console.log(error, result);
-        $.ajax({
-          url: 'http://localhost:3000/documents/information',
-          type:'POST',
-          data: {
-            filename: docInfo.original_filename,
-            size: docInfo.bytes,
-            type: docInfo.format,
-            cloudinaryUrl: docInfo.url,
-            cloudinaryThumbnail: docInfo.thumbnail_url,
-          },
-          success: (response) => {
-            console.log(response);
-            window.location.href= "http://localhost:3000/ambassadors/myProfile?document=success"
-          },
-          error: (resp) => {
-            alert('incorrect input fields');
-          }
-        })
-      });
-
-      $('.cloudinary-button').text('Upload File')
-      </script>
-    </div>
+    $('.cloudinary-button').text('Upload File')
+    </script>
+  </div>
