@@ -3,6 +3,11 @@
 <!-- <span class="skype-button bubble" data-contact-id="{{user.skype}}" data-color="#800000"></span>
 <span class="skype-chat" data-color-message="#800000"></span> -->
 <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
 
 <div class="profile-page">
   <br>
@@ -47,161 +52,171 @@
       </form> -->
       <h3 style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.email}}</h3>
       <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 22px;">{{user.user.school}}</h5>
-      <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality: {{user.country}}</h5>
+      <h5 style="border-bottom: 1px solid gray; padding-bottom: 10px; text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 15px;">Nationality:{{user.country}}</h5>
       <!-- card one -->
       <div class="accordion" id="accordion">
-      <div class="card">
-        <div class="card-header apiary-collapsable" id="headingOne">
-          <h5 class="mb-0">
-            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style = "font-size: 18px">
-              View {{user.name}}'s Biography and Interests
-            </button>
-          </h5>
-        </div>
+        <div class="card">
+          <div class="card-header apiary-collapsable" id="headingOne">
+            <h5 class="mb-0">
+              <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style = "font-size: 18px">
+                View {{user.name}}'s Biography and Interests
+              </button>
+            </h5>
+          </div>
 
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 18px;"> Biography </h5>
-            <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 15px; text-style: "> {{user.biography}}</i> </center>
-            <br><br>
-            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Academic Interests</h5>
-            {{#each user.academicInterests}}
-            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 18px;">{{this}}</p>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 18px;"> Biography </h5>
+              <center><i style="color: black; font-family: 'Montserrat', sans-serif; font-size: 15px; text-style: "> {{user.biography}}</i> </center>
+              <br><br>
+              <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Academic Interests</h5>
+              {{#each user.academicInterests}}
+              <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 18px;">{{this}}</p>
+              {{/each}}
+              <br>
+              <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Extracurricular Interests</h5>
+              {{#each user.extracurricularInterests}}
+              <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 18px;">{{this}}</p>
+              {{/each}} <br>
+              <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Intended Major </h5>
+              <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 18px;"> {{user.intendedMajor}}</h5>
+              <br>
+            </div>
+          </div>
+        </div>
+        <!-- Card One -->
+        <br>
+        <!-- Card Two -->
+        <div class="card">
+          <div class="card-header apiary-collapsable" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style = "font-size: 18px">
+                View {{user.name}}'s Accomplishments
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
+              <div class = "container-fluid">
+                <center><h3 style="color: #910000">Documents</h3></center>
+                {{#each ambassador.documents}}
+                <!-- <form>
+                <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
+                <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
+              </form> -->
+              <a target="_blank" href={{this.cloudinaryUrl}}>
+                <img class="center-block" src={{this.cloudinaryThumbnail}} />
+              </a> <br>
+              {{#if owner}}
+              <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
+              {{/if}}
+              {{/each}}
+            </div>
+            <center><h3 style="color: #910000">Links</h3></center>
+            {{#each ambassador.links}}
+            <ul>
+              <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
+            </ul>
             {{/each}}
-            <br>
-            <h5 style="text-align: center; color: indianred; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Extracurricular Interests</h5>
-            {{#each user.extracurricularInterests}}
-            <p style="text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 18px;">{{this}}</p>
-            {{/each}} <br>
-            <h5 style="text-align: center; color: maroon; font-family: 'Montserrat', sans-serif; font-size: 18px;">  Intended Major </h5>
-            <h5 style="text-align: center; color:black; font-family: 'Montserrat', sans-serif; font-size: 18px;"> {{user.intendedMajor}}</h5>
-            <br>
+            {{#if owner}}
+            <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
+            <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
+            <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
+            <form method="POST" action="/documents/addlink">
+              <input class="form-control" name="link" placeholder="add links..."></input> <br>
+              <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
+            </form> <br>
+            {{/if}}
           </div>
         </div>
       </div>
-      <!-- Card One -->
       <br>
       <!-- Card Two -->
+
+      <!-- Card Three -->
       <div class="card">
-        <div class="card-header apiary-collapsable" id="headingTwo">
+        <div class="card-header apiary-collapsable" id="headingThree">
           <h5 class="mb-0">
-            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style = "font-size: 18px">
-              View {{user.name}}'s Accomplishments
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style = "font-size: 18px">
+              View {{user.name}}'s Services
             </button>
           </h5>
         </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
-            <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
-            <div class = "container-fluid">
-              <center><h3 style="color: #910000">Documents</h3></center>
-              {{#each ambassador.documents}}
-              <!-- <form>
-              <input style="width: 150px" class="center-block form-control" name="docTitle" placeholder="change title..."></input><br>
-              <center><button style="background-color:#910000; color:white" class="btn">Add Title</button></center>
-            </form> -->
-            <a target="_blank" href={{this.cloudinaryUrl}}>
-              <img class="center-block" src={{this.cloudinaryThumbnail}} />
-            </a> <br>
+            <h1 class = "bigTitleFont-black" style="text-align: center; font-size: 28px;"> Ambassador Services </h1><br>
             {{#if owner}}
-            <center><a style="color: white; background-color: #910000;" class="btn" href="/documents/delete">Delete Document</a></center><br>
-            {{/if}}
+            {{#each services}}
+            <div style="text-align: center" class="profile-container card">
+              <h5 class = "consultantTraining" >{{this.title}}</h5>
+              <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
+              <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
+              <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
+                <button type="submit" class="btn apiary-button">Delete Service</button><br>
+              </form> <br>
+            </div>
             {{/each}}
-          </div>
-          <center><h3 style="color: #910000">Links</h3></center>
-          {{#each ambassador.links}}
-          <ul>
-            <center><a target="_blank" href='{{this}}'>{{this}}</a></center>
-          </ul>
-          {{/each}}
-          {{#if owner}}
-          <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload New Resumes/Sample Essays (PDF FORMAT ONLY)</h6>
-          <center><button id="document-upload" class ="btn btn-primary">Upload Documents</button></center>
-          <h6 style="padding-top: 10px; text-align: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 14px;">Upload Links to Websites/Social Media/Artwork</h6>
-          <form method="POST" action="/documents/addlink">
-            <input class="form-control" name="link" placeholder="add links..."></input> <br>
-            <center><button style="color: white; background-color: #910000" class = "btn">Add links</button></center>
-          </form> <br>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-    <br>
-    <!-- Card Two -->
-
-    <!-- Card Three -->
-    <div class="card">
-      <div class="card-header apiary-collapsable" id="headingThree">
-        <h5 class="mb-0">
-          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style = "font-size: 18px">
-            View {{user.name}}'s Services
-          </button>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          <h1 class = "bigTitleFont-black" style="text-align: center; font-size: 28px;"> Ambassador Services </h1><br>
-          {{#each services}}
-          <div style="text-align: center" class="profile-container card">
-            <h5 class = "consultantTraining" >{{this.title}}</h5>
-            <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
-            <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
-            {{#if owner}}
-            <form method="POST" action="/ambassadors/services/delete/{{this.id}}">
-              <button type="submit" class="btn btn-danger">Delete Service</button><br>
-            </form>
+            <br>
+            <center><button data-toggle="modal" data-target="#add-services-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Add An Ambassador Service</button></center>
+            {{else}}
+            {{#each services}}
+            <div style="text-align: center" class="profile-container card">
+              <h5 class = "consultantTraining" >{{this.title}}</h5>
+              <h5 class = "transparencySecond" style = "line-height: 1.6;"><i> {{this.description}}</i></h5>
+              <h5 class = "stigma" >Price: ${{this.price}}</h5> <br>
+              <form action="/ambassadors/checkout/{{this._id}}" method="POST">
+                <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
+                data-amount={{this.stripePrice}}
+                data-description="{{this.title}}: {{this.description}}"
+                data-billing-address=true
+                data-label="Purchase this Service"
+                data-name="chrislh9000"
+                data-zip-code="true"
+                data-image="/images/apiarylogoblack.png"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto">
+                </script>
+              </form>
+            </div>
+            {{/each}} <br>
             {{/if}}
-            <form action="/ambassadors/checkout/{{this._id}}" method="POST">
-              <script
-              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="pk_test_MYTgIIF8vIHBBOjvpZ3X4fbD"
-              data-amount={{this.stripePrice}}
-              data-description="{{this.title}}: {{this.description}}"
-              data-billing-address=true
-              data-label="Purchase this Service"
-              data-name="chrislh9000"
-              data-zip-code="true"
-              data-image="/images/apiarylogoblack.png"
-              data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-              data-locale="auto">
-              </script>
-            </form>
           </div>
-          {{/each}} <br>
-          {{#if owner}}
-          <center><button data-toggle="modal" data-target="#add-services-modal" type="button" style="color: white" class="apiary-button btn btn-lg">Add An Ambassador Service</button></center>
-          {{/if}}
         </div>
       </div>
-    </div>
-    <br>
-    <!-- Card Three -->
-    <!-- Card Four -->
-{{#if owner}}
-    <div class="card">
-      <div class="card-header apiary-collapsable" id="headingFour">
-        <h5 class="mb-0">
-          <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style = "font-size: 18px">
-            Your Payment Settings
-          </button>
-        </h5>
-      </div>
-      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-        <div class="card-body">
-          {{#if owner}}
-          <h1 class="consultantTraining" style="text-align: center"> Your Payment Settings </h1>
-          <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
-          <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
-          {{#if ambassador.stripeAccountId}}
-          <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
-          <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
-          <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
-          {{else}}
-          <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
-          <a style="font-size: 12px; margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn-lg btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Payment Route with Stripe</a>
-          {{/if}}
-          {{/if}}
+      <br>
+      <!-- Card Three -->
+      <!-- Card Four -->
+      {{#if owner}}
+      <div class="card">
+        <div class="card-header apiary-collapsable" id="headingFour">
+          <h5 class="mb-0">
+            <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style = "font-size: 18px">
+              Your Payment Settings
+            </button>
+          </h5>
         </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+          <div class="card-body">
+            {{#if owner}}
+            <h1 class="consultantTraining" style="text-align: center"> Your Payment Settings </h1>
+            <center><h3 class = "stellarTesting" >Your Available Payment Balance: <span style="color: green">${{availableBalance}}</span> </h3></center>
+            <center><h3 class = "stellarTesting" >Your Pending Payment Balance: <span style="color: green">${{pendingBalance}}</span> </h3></center>
+            {{#if ambassador.stripeAccountId}}
+            <center><h3 class = "stellarTesting">Stripe Payment Info Status: <span style="color: green">Verified</span> </h3></center><br>
+            <center><a target="_blank" style="margin-bottom: 10px" class="btn btn-info" href="/ambassadors/stripe/transfers">Finish Stripe Verification and View Your Stripe Transfers</a></center>
+            <center><a style="margin-bottom: 10px; background-color: #910000" class="btn btn-primary" href="#">Edit Your Payment Route Information</a></center>
+            {{else}}
+            <h5 style="text-align: center"> Stripe Payment Info Status: <span style="color: red"> Not Verified</span></h5>
+            <button type="button" class="btn apiary-button" data-container="body" data-toggle="popover" data-placement="right" data-content="Stripe will allow us to pay you as soon as user purchases your services">
+              <span class="glyphicon glyphicon-info-sign"></span>
+            </button>
+            <a style="font-size: 12px; margin-left: 33%;margin-bottom: 10px" class="col-lg-4 btn-lg btn-primary" target="_blank" href="/ambassadors/stripe/authorize">Set Up Payment Route with Stripe</a>
+            {{/if}}
+            {{/if}}
+          </div>
         </div>
       </div>
       <br>
@@ -417,34 +432,125 @@
         </button>
       </div>
       <div class="modal-body">
-        <center class = "bigTitleFont-black"><h1>Choose One of Our Service Templates</h1></center><br>
-        <center class = "bigTitleFont-black"><h1>Create Your Own Custom Service</h1></center><br>
-        <form method="POST" action="/ambassadors/services/add">
-          <div style="font-size: 20" class = "profile-container">
-            <center><label class = "stigma">Service Title</label></center>
-            <div class="wrap-input100 validate-input form-group" data-validate = "Enter Service Title">
-              <input class="input100 " type="text" name="serviceTitle" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-              <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+
+        <div class="accordion" id="accordion">
+
+          <div class="card">
+            <div class="card-header apiary-collapsable" id="headingOne">
+              <h5 class="mb-0">
+                <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#serviceCollapseOne" aria-expanded="true" aria-controls="collapseOne" style = "font-size: 18px">
+                  Choose from one of our Service Templates
+                </button>
+              </h5>
             </div>
-            <center><label class = "stigma">Service Short Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on Ambassador Page)</span></label></center>
-            <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
-              <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-              <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+
+            <div id="serviceCollapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <div style="border-bottom: 1px solid gray" class="service-template-container">
+                <form method="POST" action="/ambassadors/services/add/essay_review">
+                <div class="input-group mb-3">
+                  <center><label class = "stigma">Essay Review Service</label></center>
+                  <input name="service-template-title" style="width: 80%" type="text" class="form-control" placeholder="Essay Review Service Title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn apiary-button" type="button">Add Service</button>
+                    <button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="A 45-Minute review session where you grammatical and conceptual issues a client has with one essay. Price is $10">
+                      <span class="glyphicon glyphicon-info-sign"></span>
+                    </button>
+                  </div>
+                  <!-- </div> -->
+                </div>
+              </form>
+            </div> <br>
+
+              <div style="border-bottom: 1px solid gray; margin-bottom: 10px" class="service-template-container">
+              <form method="POST" action="/ambassadors/services/add/faculty_referral">
+              <div class="input-group mb-3">
+                <center><label class = "stigma">Faculty Referral Service</label></center>
+                <input name="service-template-title" style="width: 80%" type="text" class="form-control" placeholder="Essay Review Service Title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button type="submit" class="btn apiary-button" type="button">Add Service</button>
+                  <button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="A 45-Minute review session where you grammatical and conceptual issues a client has with one essay. Price is $10">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                  </button>
+                </div>
+                <!-- </div> -->
+              </div>
+            </form>
+          </div> <br>
+
+            <div style="border-bottom: 1px solid gray; margin-bottom: 10px" class="service-template-container">
+            <form method="POST" action="/ambassadors/services/add/extracurriculars">
+            <div class="input-group mb-3">
+              <center><label class = "stigma">Extracurricular Consultation</label></center>
+              <input name="service-template-title" style="width: 80%" type="text" class="form-control" placeholder="Essay Review Service Title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button type="submit" class="btn apiary-button" type="button">Add Service</button>
+                <button type="button" class="btn btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="A 45-Minute review session where you grammatical and conceptual issues a client has with one essay. Price is $10">
+                  <span class="glyphicon glyphicon-info-sign"></span>
+                </button>
+              </div>
+              <!-- </div> -->
             </div>
-            <center><label class = "stigma">Service Detailed Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on the Service Page)</span></label></center>
-            <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
-              <textarea class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="height: 100px; font-family: 'Montserrat', serif; font-size: 20px; color: black;" required></textarea>
-              <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+          </form>
+        </div> <br>
+
+
+
             </div>
-            <center><label class = "stigma">Service Price <br> <span style="color: gray; font-size: 18px">(Price has to be between $10-$150)</span></b></label></center>
-            <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Price">
-              <input min="10" max="150" class="input100" type="text" name="servicePrice" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
-              <span class="focus-input100" data-placeholder="		&#x1F4B5;"></span>
             </div>
           </div>
-          <center><button type="submit" class="btn btn-info">Create New Service</button></center><br>
-          <center><a class = "btn btn-danger" href="/ambassadors/myProfile">Cancel</a></center>
-        </form>
+          <!-- Card One -->
+          <!-- Card Two -->
+          <div class="card">
+            <div class="card-header apiary-collapsable" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#serviceCollapseTwo" aria-expanded="false" aria-controls="serviceCollapseTwo" style = "font-size: 18px">
+                  Request Your Own Custom Service
+                </button>
+              </h5>
+            </div>
+
+            <div id="serviceCollapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <form method="POST" action="/ambassadors/services/add">
+                  <div style="font-size: 20" class = "profile-container">
+                    <center><label class = "stigma">Service Title</label></center>
+                    <div class="wrap-input100 validate-input form-group" data-validate = "Enter Service Title">
+                      <input class="input100 " type="text" name="serviceTitle" placeholder="SERVICE TITLE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+                      <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+                    </div>
+
+                    <center><label class = "stigma">Service Short Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on Ambassador Page)</span></label></center>
+                    <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
+                      <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+                      <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
+                    </div>
+                    <center><label class = "stigma">Service Category</label></center>
+                    <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Category">
+                      <select class="input100" type="text" name="serviceCategory" placeholder="Category" style = "font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+                        <option value="">CHOOSE CATEGORY...</option>
+                        <option value="essay">Essay Work</option>
+                        <option value="resume">Resume Work</option>
+                        <option value="extracurricular">Extracurricular Work</option>
+                        <option value="referral">Faculty Referrals</option>
+                        <option value="collegeApp">College App Review</option>
+                        <option value="academic">Academic Advice</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+
+                    <center><label class = "stigma">Service Price <br> <span style="color: gray; font-size: 18px">(Price has to be between $10-$150)</span></b></label></center>
+                    <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Price">
+                      <input min="10" max="150" class="input100" type="text" name="servicePrice" placeholder="SERVICE PRICE" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
+                      <span class="focus-input100" data-placeholder="		&#x1F4B5;"></span>
+                    </div>
+                  </div>
+                  <center><button type="submit" class="btn apiary-button">Create New Service</button></center><br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

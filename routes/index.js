@@ -268,12 +268,17 @@ router.get('/users/ambassadors', (req, res) => {
 })
 
 //view a single profile
-router.get('/users/:userid', function(req, res, next) {
-  var userId = req.params.userid;
+router.get('/users/:userid', (req, res) => {
+  const userId = req.params.userid;
   User.findById(userId)
   .populate('image')
   .exec()
   .then((user) => {
+    user.userType === 'ambassador' ?
+    Ambassador.findOne({user: user._id})
+    .then(ambassador => {
+      res.redirect(`/ambassadors/${ambassador._id}`);
+    }) :
     res.render('profile', {
       user: user,
       logged: req.user.username,

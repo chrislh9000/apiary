@@ -387,6 +387,10 @@ const serviceSchema = new Schema({
     required: true,
   },
   qualifications: String,
+  approved: {
+    type: Boolean,
+    default: false,
+  },
   exampleImages: [
     {
       type: Schema.Types.ObjectId,

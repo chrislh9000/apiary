@@ -1,18 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var passport = require('passport');
-var expressValidator = require('express-validator')
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const expressValidator = require('express-validator')
 //models//
-var models = require('../models/models');
-var User = models.User;
+const models = require('../models/models');
+const User = models.User;
 const Ambassador = models.Ambassador;
 const Image = models.Image;
 const Service = models.Service;
 const StripePayment = models.StripePayment;
 //beep boop bop
+const _ = require('underscore');
 
-var crypto = require('crypto');
+
+const crypto = require('crypto');
 //stripe stuff//
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const request = require('request');
@@ -184,9 +186,6 @@ router.get('/services/add', (req, res) => {
   });
 })
 
-router.get('/services/delete/:id', (req, res) => {
-  res.redirect('/ambassadors/myProfile')
-})
 
 router.post('/services/add', (req, res) => {
   Ambassador.findOne({user: req.user._id})
@@ -196,11 +195,12 @@ router.post('/services/add', (req, res) => {
       title: req.body.serviceTitle,
       description: req.body.serviceDescription,
       price: Number(req.body.servicePrice),
-      ambassador: ambassador._id
+      ambassador: ambassador._id,
+      category: req.body.serviceCategory,
     })
     newService.save()
     .then(service => {
-      Ambassador.findOneAndUpdate({user: req.user._id}, {$push : {services: service._id}}, {new: true})
+      Ambassador.findOneAndUpdate({user: req.user._id}, {$push : {services: service._id, categories: service.category}}, {new: true})
       .then(ambassador => {
         console.log('successfully added service!')
         res.redirect('/ambassadors/myProfile?serviceadd=success')
@@ -214,6 +214,38 @@ router.post('/services/add', (req, res) => {
   .catch(err => {
     console.error(err)
     res.redirect('/ambassadors/myProfile?serviceadd=fail')
+  })
+})
+
+router.post('/services/delete/:id', (req, res) => {
+  req.user.userType !== 'ambassador' ? res.redirect('/users/all') :
+  Ambassador.findOne({user: req.user._id})
+  .then(ambassador => {
+    const remainingServices = _.filter(ambassador.services, (service) => {
+      return String(service) !== String(req.params.id);
+    })
+    console.log('===remainingServices===', remainingServices);
+    Ambassador.findOneAndUpdate({user: req.user._id}, {$set: {services: remainingServices}})
+    .then(ambassador => {
+      console.log('Successfully removed service')
+      Service.findByIdAndDelete(req.params.id)
+      .then(service => {
+        console.log('succesfully deleted service', resp)
+        res.redirect('/ambassadors/myProfile?delete_service=success')
+      })
+      .catch(err => {
+        console.error(err)
+        res.redirect('/ambassadors/myProfile?delete_service=fail');
+      })
+    })
+    .catch(err => {
+      console.error(err)
+      res.redirect('/ambassadors/myProfile?delete_service=fail');
+    })
+  })
+  .catch(err => {
+    console.error(err)
+    res.redirect('/ambassadors/myProfile?delete_service=fail');
   })
 })
 

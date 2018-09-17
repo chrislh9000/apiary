@@ -12,8 +12,10 @@
 <h5 style=""><b>{{this.school}}</b></h5>
 <h5 style="text-transform: uppercase; color: maroon;"><b>{{this.email}}</b></h5>
 <h5 style="color: indianred;"><b>Major: {{this.intendedMajor}}</b></h5>
-<a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br><br>
+<a class = "btn apiary-button" href = '/users/{{this._id}}'>View Profile</a><br>
 </div>
+{{else}}
+<h1>No Profiles Found... Try Again</h1>
 {{/each}}
 </div>
 </div>
