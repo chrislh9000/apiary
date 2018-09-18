@@ -2,40 +2,74 @@ var tour = {
   id: "apiary-ambassador-profile-tour",
   steps: [
     {
-      title: "Finally an Ambassador Profile Page!",
-      content: "From here you'll have dozens of stellar college students at your disposal!",
-      target: "network-ambassador-header",
+      title: "Finally an Apiary Ambassador Profile Page!",
+      content: "From the ambassador profile page, you can directly message ambassadors, purchase services, and schedule sessions with Apiary Ambassadors",
+      target: "ambassador-profile-name",
       placement: "bottom",
       xOffset: 'center',
       onShow: () => {
-        $('#network-ambassador-header').addClass('tour-highlight')
+        $('#ambassador-profile-name').addClass('tour-highlight')
       }
     },
     {
-      title: "Find Apiary Ambassadors Currently at your Dream School",
-      content: 'Click on any of the schools below to find ambassadors who can help you on your application, beef up your resume and credentials, or give you juicy, insider information on your favorite schools.',
-      target: "ambassador-page-sidescroll",
+      title: "Viewing Ambassador Credentials",
+      content: 'Want to make sure your getting the best possible service? In addition to school prestige, you can also take a look at an ambassador\'s qualifications which can include their resume, links to awards and projects, as well as consulting work they have done in the past',
+      target: "ambassador-profile-accomplishments",
       placement: "bottom",
       xOffset: 'center',
       onShow: () => {
-        $('#network-ambassador-header').removeClass('tour-highlight')
-        $('#ambassador-page-sidescroll').addClass('tour-highlight')
+        $('#ambassador-profile-name').removeClass('tour-highlight')
+        $('#ambassador-profile-accomplishments').addClass('tour-highlight')
       },
     },
     {
-      title: "Let's go to an Apiary Ambassador Page",
-      content: 'Click this button or "Done" to go to an ambassador page and begin a conversation with an Apiary Ambassador!',
-      target: "view-ambassador-profile-btn",
+      title: "Purchasing Ambassador Services",
+      content: 'Click here to view services that an ambassador offers. Apiary Ambassador services can range from college essay reviews to art portfolio builds to college faculty referrals',
+      target: "ambassador-profile-services",
       placement: "bottom",
       onShow: () => {
-        $('#ambassador-page-sidescroll').removeClass('tour-highlight')
-        $('#view-ambassador-profile-btn').addClass('tour-highlight')
+        $('#ambassador-profile-accomplishments').removeClass('tour-highlight')
+        $('#ambassador-profile-services').addClass('tour-highlight')
+      },
+    },
+    {
+      title: "Interacting with Apiary Users is pretty much the same",
+      content: 'There are many Apiary Users who are in the same shoes as you right now: share tips and tricks with them or interact with each other on the Apiary Forums',
+      target: "sidebar-users",
+      placement: "right",
+      onShow: () => {
+        $('#ambassador-profile-services').removeClass('tour-highlight')
+        $('#sidebar-users').addClass('tour-highlight')
+        $('#sidebar-forums').addClass('tour-highlight')
+      },
+    },
+    {
+      title: "The End... and Beginning",
+      content: 'Hopefully you are ready to take full advantage of the Apiary Platform. If you have any questions don\'t hesitate to reach out!',
+      target: "apiary-network-navbar",
+      placement: "bottom",
+      xOffset: 'center',
+      onShow: () => {
+        $('#apiary-network-navbar').addClass('tour-highlight')
+        $('#sidebar-users').removeClass('tour-highlight')
+        $('#sidebar-forums').removeClass('tour-highlight')
         $('.hopscotch-next').on('click', (event) => {
           event.preventDefault()
-          window.location.href= "/ambassadors/5b9c82608f68f337ad0c8e0c"
+          //send ajax request to remove tour repetitiveness
+          window.location.href= "/users/all"
         })
       },
     },
+    //include skype chat button
+    // {
+    //   title: "Directly message or call with the Apiary Ambassador",
+    //   content: 'Want to find out more about an ambassador or his or her services? Click the chat button, sign on to skype and begin corresponding!',
+    //   target: "lwc-chat-button",
+    //   placement: "top",
+    //   onShow: () => {
+    //     $('#ambassador-profile-services').removeClass('tour-highlight')
+    //   },
+    // },
   ]
 };
 
