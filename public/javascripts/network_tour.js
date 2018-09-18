@@ -75,7 +75,7 @@ var tour = {
       onShow: () => {
         $('#navbar-searchbar').removeClass('tour-highlight')
         $('#navbar-myprofile').addClass('tour-highlight')
-        setTimeout(() => {window.location.href= "http://localhost:3000/users/myProfile"}, 3000)
+        setTimeout(() => {window.location.href= "/users/myProfile"}, 3000)
       }
     },
   ]

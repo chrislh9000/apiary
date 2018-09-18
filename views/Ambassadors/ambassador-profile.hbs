@@ -569,7 +569,7 @@ $('#image-upload').cloudinary_upload_widget(
     var imageInfo = result[0]
     console.log(error, result);
     $.ajax({
-      url: 'http://localhost:3000/images/information',
+      url: '/images/information',
       type:'POST',
       data: {
         filename: imageInfo.original_filename,
@@ -580,7 +580,7 @@ $('#image-upload').cloudinary_upload_widget(
       },
       success: (response) => {
         console.log(response);
-        window.location.href= "http://localhost:3000/ambassadors/myProfile?image=success"
+        window.location.href= "/ambassadors/myProfile?image=success"
       },
       error: (resp) => {
         alert('incorrect input fields');
@@ -606,7 +606,7 @@ $('#image-upload').cloudinary_upload_widget(
         },
         success: (response) => {
           console.log(response);
-          window.location.href= "http://localhost:3000/ambassadors/myProfile?document=success"
+          window.location.href= "/ambassadors/myProfile?document=success"
         },
         error: (resp) => {
           alert('incorrect input fields');
