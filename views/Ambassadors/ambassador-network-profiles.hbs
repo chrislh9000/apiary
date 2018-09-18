@@ -1,21 +1,74 @@
 <body class = "fixed-bg-sf"><div class="container-fluid network-profiles-container">
   <h1 id="network-ambassador-header" style="font-family: 'Montserrat';">APIARY NETWORK AMBASSADORS</h1>
-  <center><h5 style="color: gray">Get the inside scoop on your dream school</h5></center> <br>
+  <center><h5 style="color: gray">Select a university below to get the inside scoop on your dream school</h5></center> <br>
+  <div id="ambassador-page-sidescroll" class="side-scroll-wrapper">
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/yale.png" />
+      <h5 class="ambassador-school-text">Yale</h5>
+    </div>
+    <a href="/users/ambassadors?school=harvard">
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/harvard.png" />
+      <h5 class="ambassador-school-text">Harvard</h5>
+    </div>
+  </a>
+    <a href="/users/ambassadors?school=chicago">
+    <div class="ambassador-school-container">
+      <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/uchicago.png" />
+      <h5 class="ambassador-school-text">University of Chicago</h5>
+    </div>
+  </a>
+    <div class="ambassador-school-container">
+      <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/stanford.png" />
+      <h5 class="ambassador-school-text">Stanford</h5>
+    </div>
+    <div class="ambassador-school-container">
+      <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/princeton.png" />
+      <h5 class="ambassador-school-text">Princeton</h5>
+    </div>
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/columbia.jpg" />
+      <h5 class="ambassador-school-text">Columbia</h5>
+    </div>
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/cornell.png" />
+      <h5 class="ambassador-school-text">Cornell</h5>
+    </div>
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/brown.png" />
+      <h5 class="ambassador-school-text">Brown</h5>
+    </div>
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/upenn.jpg" />
+      <h5 class="ambassador-school-text">UPenn</h5>
+    </div>
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/dartmouth.png" />
+      <h5 class="ambassador-school-text">Dartmouth</h5>
+    </div>
+    <div class="ambassador-school-container">
+      <img class="ambassador-school-logo" src="/school-icons/williams.png" />
+      <h5 class="ambassador-school-text">Williams College</h5>
+    </div>
+  </div>
   <div class="scrolling-wrapper">
-{{#each ambassadors}}
-<div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
-{{#if this.user.image}}
-<img class="center-block" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border: solid 3px #e6e6e6; height: 240px; width: 200px;" src="{{this.user.image.cloudinaryUrl}}"></img>
-{{else}}
-<img class="center-block" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border: solid 3px #e6e6e6; height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
-{{/if}}
-<h5 style=""><b>{{this.user.name}}</b></h5>
-<h5 style="text-transform: losercase; font-family: 'Montserrat';"><b>{{this.user.school}}</b></h5>
-<h5 style="text-transform: uppercase; color: maroon; font-family: 'Montserrat', sans-serif;"><b>{{this.user.email}}</b></h5>
-<h5 style="text-transform: losercase; color: indianred; font-family: 'Montserrat';"><b>{{this.user.intendedMajor}}</b></h5>
-<a class = "btn apiary-button" href = '/ambassadors/{{this._id}}'>View Ambassador Profile</a><br><br>
-</div>
-{{/each}}
-</div>
+    {{#each ambassadors}}
+    <div class="card card-profile members-profiles" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
+      {{#if this.user.image}}
+      <img class="center-block" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border: solid 3px #e6e6e6; height: 240px; width: 200px;" src="{{this.user.image.cloudinaryUrl}}"></img>
+      {{else}}
+      <img class="center-block" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border: solid 3px #e6e6e6; height: 240px; width: 200px;" src="/profiles/1535005509011-avatar1.jpg"></img>
+      {{/if}}
+      <h5 style=""><b>{{this.user.name}}</b></h5>
+      <h5 style="text-transform: losercase; font-family: 'Montserrat';"><b>{{this.user.school}}</b></h5>
+      <h5 style="text-transform: uppercase; color: maroon; font-family: 'Montserrat', sans-serif;"><b>{{this.user.email}}</b></h5>
+      <h5 style="text-transform: losercase; color: indianred; font-family: 'Montserrat';"><b>{{this.user.intendedMajor}}</b></h5>
+      <a id="view-ambassador-profile-btn" class = "btn apiary-button" href = '/ambassadors/{{this._id}}'>View Ambassador Profile</a><br><br>
+    </div>
+    {{/each}}
+  </div>
 </div>
 <br><br><br></body>
+
+<script src="/javascripts/hopscotch.js"></script>
+<script src="/javascripts/ambassador-network-tour.js"></script>

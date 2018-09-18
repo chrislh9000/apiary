@@ -21,15 +21,15 @@
         {{failureEdit}}
       </div>
       {{/if}}
-      <h1 class="" style="text-align: center; font-family: 'Alegreya Sans SC', sans-serif; font-size: 45px; color: #"> {{user.name}} </h1>
+      <h1 id="myprofile-header" class="" style="text-align: center; font-family: 'Alegreya Sans SC', sans-serif; font-size: 45px; color: #"> {{user.name}} </h1>
       <br>
       <div class="row profile-container" style="min-height: 600px">
         <div style="overflow: auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-7 center-block card">
           <br>
           {{#if image}}
-          <img src="{{image}}" class="center-block" style="border: solid 2px #910000; width:200px; height:250px" />
+          <img id="myprofile-image" src="{{image}}" class="center-block" style="border: solid 2px #910000; width:200px; height:250px" />
           {{else}}
-          <img src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 2px #910000; width:250px; height:250px" />
+          <img id="myprofile-image" src="/profiles/1535005509011-avatar1.jpg" class="center-block" style="border: solid 2px #910000; width:250px; height:250px" />
           {{/if}}
           {{#if owner}}
           <br>
@@ -43,7 +43,7 @@
             <div class="card">
               <div class="card-header apiary-collapsable" id="headingOne">
                 <h5 class="mb-0">
-                  <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style = "font-size: 18px">
+                  <button id="myprofile-bio" class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style = "font-size: 18px">
                     View {{user.name}}'s Biography and Interests
                   </button>
                 </h5>
@@ -77,7 +77,7 @@
             <div class="card">
               <div class="card-header apiary-collapsable" id="headingTwo">
                 <h5 class="mb-0">
-                  <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style = "font-size: 18px">
+                  <button id="myprofile-edit" class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style = "font-size: 18px">
                     Edit Profile
                   </button>
                 </h5>
@@ -230,6 +230,8 @@
   </div>
 
   <!-- Modals -->
+  <script src="/javascripts/hopscotch.js"></script>
+  <script src="/javascripts/myprofile_tour.js"></script>
 
   <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
   <script type="text/javascript">

@@ -196,7 +196,7 @@ router.get('/users/all', (req, res, next) => {
       .exec()
       .then(users => {
         const networkMembers = _.filter(users, (user) => {
-          return user.userType !== 'user' || 'ambassador';
+          return user.userType !== 'user' && 'ambassador';
         })
         if (req.query.search) {
           const searchInput = req.query.search.toLowerCase()
@@ -252,8 +252,18 @@ router.get('/users/ambassadors', (req, res) => {
     })
     .exec()
     .then(ambassadors => {
+      console.log('==AMBASSADORS===', ambassadors)
+      let filteredAmbassadors;
+      if (req.query.school) {
+        const searchSchool = (req.query.school).toLowerCase();
+        filteredAmbassadors = _.filter(ambassadors, (ambassador) => {
+          return ((ambassador.user.school).toLowerCase()).includes(searchSchool);
+        })
+        console.log('==SCHOOL QUERY===', req.query.school)
+        console.log('==Filtered AMBASSADOR===', filteredAmbassadors)
+      }
       res.render('./Ambassadors/ambassador-network-profiles', {
-        ambassadors: ambassadors,
+        ambassadors: req.query.school ? filteredAmbassadors : ambassadors,
         logged: req.user.username,
         ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         networkToggled: true,

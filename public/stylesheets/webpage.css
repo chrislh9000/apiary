@@ -1438,7 +1438,29 @@ h2.a {
   .scrolling-wrapper {
     overflow-x: scroll;
     overflow-y: hidden;
-    /*white-space: nowrap;*/
+    /* white-space: nowrap; */
+  }
+
+  .side-scroll-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .ambassador-school-container {
+    display: inline-block;
+    margin: 0 20px;
+  }
+
+  .ambassador-school-text {
+    font-family: 'Montserrat';
+    color: #910000;
+    font-weight: bold
+  }
+
+  .ambassador-school-logo {
+    height: 100px;
+    width: 100px;
   }
 
   #apiary-user-search-btn:hover {
