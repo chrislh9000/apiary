@@ -1458,7 +1458,11 @@ h2.a {
     overflow: auto;
   }
 
-
+/* Network Tour Styling */
+  .tour-highlight {
+    background-color: #17EBEB;
+    padding: 5px
+  }
 
 
 
