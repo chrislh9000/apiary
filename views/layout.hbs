@@ -21,12 +21,12 @@
 <style>
 .sidenav {
   float: left;
-  height: 102%; /* Full-height: remove this if you want "auto" height */
+  height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 200px; /* Set the width of the sidebar */
   /* position: fixed /* Fixed Sidebar (stay in place on scroll) */
   position: sticky; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
-  top: 0px/; /* Stay at the top */
+  top: 0px; /* Stay at the top */
   left: 0;
   background-color: #efefef; /* Light Gray */
   overflow-x: hidden; /* Disable horizontal scroll */
@@ -57,7 +57,7 @@
 /* Style page content */
 .main {
   margin-left: 160px; /* Same as the width of the sidebar */
-  padding: 0px 10px;
+  padding: 0px 80px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
@@ -142,7 +142,7 @@
 <!-- Navbar -->
 {{#if networkToggled}}
 
-<nav id="apiary-network-navbar" style="display: flex; justify-content: center; align-items: center; background-color: #910000 " class="navbar navbar-expand-lg navbar-light">
+<nav id="apiary-network-navbar" style="display: flex; justify-content: center; align-items: center; background-color: #910000;" class="navbar navbar-expand-lg navbar-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -209,6 +209,7 @@
     <a id="sidebar-ambassadors" style="font-size: 16px" class="side-nav-mini-link" href="/users/ambassadors"> <span class="glyphicon glyphicon-user"></span> Ambassadors</a>
     <a id="sidebar-users"  style="font-size: 16px" class="side-nav-mini-link" href="/users/all"><span class="glyphicon glyphicon-user"></span> Users</a>
     <a id="sidebar-forums" style="font-size: 16px" class="side-nav-mini-link" href="/network/forum"><span class="glyphicon glyphicon-globe"></span> Apiary Forums</a>
+    <a id="sidebar-forums" style="font-size: 16px" class="side-nav-mini-link" href="/network/newsfeed"><span class="glyphicon glyphicon-blackboard"></span> Apiary Newsfeed</a>
   </ul>
   <a id="sidebar-database" style = "color: black" href="">Apiary Database</a>
   <ul>
@@ -223,6 +224,7 @@
     <a style="font-size: 16px" class="side-nav-mini-link" href="/products"><span class="glyphicon glyphicon-shopping-cart"></span> Purchase</a>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/scheduleSession"><span class="glyphicon glyphicon-calendar"></span> Schedule</a>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/sessions"><span class="glyphicon glyphicon-tasks"></span> Manage</a>
+    <a style="font-size: 16px; color: #efefef" class="side-nav-mini-link" href=""><span class=""></span> Manage </a>
   </ul>
   <!-- <a style="border-bottom: solid 2px white;" href="#">See More...</a> -->
 </div>
