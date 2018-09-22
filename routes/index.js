@@ -93,6 +93,7 @@ router.get('/users/myProfile', function(req, res, next) {
         adminPortal: user.userType === 'admin' ? true : false,
         successEdit: req.query.image === 'success' || req.query.edit === 'success' ? 'Successfully Updated Profile!' : null,
         failureEdit: req.query.image === 'fail' || req.query.edit === 'fail' ? 'Error Updating Profile!' : null,
+        tourToggled: req.user.showTour ? true : false,
       })
     })
     .catch(error => {
@@ -221,7 +222,8 @@ router.get('/users/all', (req, res, next) => {
           networkToggled: true,
           ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
           consultantSkype: user.consultant ? user.consultant.skype : null,
-          loggedIn: true
+          loggedIn: true,
+          tourToggled: req.user.showTour ? true : false,
         })
       }).catch((error) => {
         console.log('Error', error)
@@ -267,7 +269,8 @@ router.get('/users/ambassadors', (req, res) => {
         logged: req.user.username,
         ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         networkToggled: true,
-        loggedIn: true
+        loggedIn: true,
+        tourToggled: req.user.showTour? true : false,
       })
     })
     .catch(err => {
@@ -298,6 +301,7 @@ router.get('/users/:userid', (req, res) => {
       image: user.image? user.image.cloudinaryUrl : null,
       networkToggled: true,
       loggedIn: true,
+      tourToggled: req.user.showTour ? true : false,
     })
   }).catch((error) => {
     console.log('Error', error)
@@ -799,6 +803,20 @@ router.get('/users/consultants/:userid', function(req, res, next) {
 //test route for google calendar API
 router.get('/test-nav', (req, res) => {
   res.render('./Testing/sidenav-test.hbs');
+})
+
+
+//Tour stuff
+router.get('/users/tour/toggle', (req, res) => {
+  User.findByIdAndUpdate(req.user._id, {$set : {showTour: !Boolean(req.user.showTour)} })
+  .then(user => {
+    console.log('successfully toggled tour')
+    res.redirect('/users/all')
+  })
+  .catch(err => {
+    console.error(err);
+    res.redirect('/users/all');
+  })
 })
 
 

@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
+var hbs = require('hbs')
 //image upload
 const multer = require('multer');
 const cloudinary = require('cloudinary');
@@ -57,6 +58,18 @@ mongoose.connect(process.env.MONGODB_URI);
 app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'hbs');
+
+hbs.registerHelper("math", function(lvalue, operator, rvalue, options) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * Number($('#' + String(rvalue)).val()),
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];
+});
 
 app.use(logger('dev'));
 app.use(express.json());

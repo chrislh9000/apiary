@@ -226,7 +226,7 @@ dropdown-item, collapse, navbar-collapse
 }
 
 .fixed-bg-sf {
-  background-image: url("images/stanford.png");
+  background-image: url("./images/stanford.png");
   min-height: 250px;
   background-attachment: fixed;
   background-position: center;

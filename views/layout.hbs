@@ -158,13 +158,22 @@
       <!-- <div class="dropdown-menu"> -->
       <select id="apiary-search-options" style="font-size: 12px; color: black; margin-top: 10px; margin-right: 10px; height: 30px">
         <option value="name">Search By...</option>
-        <option value="name">Name</option>
-        <option value="school">School</option>
-        <option value="major">Major</option>
-        <optgroup label="Service Category">
+        <optgroup label="Apiary Users">
+        <option value="name">User Name</option>
+        <option value="school">User School</option>
+        <option value="major">User Major</option>
+      </optgroup>
+      <optgroup label="Apiary Ambassadors">
+      <option value="name">Ambassador Name</option>
+      <option value="school">Ambassador School</option>
+      <option value="major">Ambassador Major</option>
+    </optgroup>
+        <optgroup label="Ambassador Service Category">
           <option value="essay-review">Essay Review</option>
           <option value="resume-building">Resume Building</option>
           <option value="prof-referral">Professor Referral</option>
+          <option value="prof-referral">Extracurriculars</option>
+          <option value="prof-referral">Academic</option>
         </optgroup>
       </select>
       <!-- </div> -->
@@ -205,11 +214,11 @@
   <ul>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/database/essays"><span class="glyphicon glyphicon-list-alt"></span> Essays</a>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/database/resumes"><span class="glyphicon glyphicon-save-file"></span> Resumes</a>
-    <a style="font-size: 16px" class="side-nav-mini-link" href="/database/classNotes"><span class="glyphicon glyphicon-file"></span> Academic Excellence</a>
+    <a style="font-size: 16px" class="side-nav-mini-link" href="/database/classNotes"><span class="glyphicon glyphicon-file"></span> Academics</a>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/database/test-prep"><span class="glyphicon glyphicon-book"></span> Test Prep</a>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/database/internships"><span class="glyphicon glyphicon-briefcase"></span> Internships</a>
   </ul>
-  <a style = "color: black"  href="#">Apiary Consulting</a>
+  <a id="sidebar-consultations" style = "color: black"  href="#">Your Consultations</a>
   <ul>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/products"><span class="glyphicon glyphicon-shopping-cart"></span> Purchase</a>
     <a style="font-size: 16px" class="side-nav-mini-link" href="/scheduleSession"><span class="glyphicon glyphicon-calendar"></span> Schedule</a>

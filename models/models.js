@@ -132,6 +132,10 @@ var userSchema = new Schema({
   ],
   stripeCustomerId: {
     type: String,
+  },
+  showTour: {
+    type: Boolean,
+    default: true,
   }
 })
 

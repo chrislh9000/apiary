@@ -114,6 +114,7 @@ router.get('/myProfile', ambassadorRequired, async (req, res) => {
           image: ambassador.user.image? image.cloudinaryUrl : null,
           thumbnail: ambassador.user.image? image.cloudinaryThumbnail : null,
           owner: true,
+          tourToggled: req.user.showTour ? true: false,
           ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
           networkToggled: true,
           loggedIn: true,
@@ -164,9 +165,10 @@ router.get('/:id', (req, res) => {
         ambassadorProfile: req.user.userType === 'ambassador' ? true : false,
         owner: false,
         consultantSkype: ambassador.user.skype,
-        image: ambassador.user.image? ambassador.user.image.cloudinaryUrl : null,
+        image: ambassador.user.image ? ambassador.user.image.cloudinaryUrl : null,
         networkToggled: true,
         loggedIn: true,
+        tourToggled: req.user.showTour ? true : false,
       })
     }).catch((error) => {
       console.log('Error', error)

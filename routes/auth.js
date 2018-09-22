@@ -24,7 +24,12 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', function(req, res, next) {
-  // must check to see if email or username is already in use
+  if (req.body.password !== req.body.repeatPassword) {
+    res.redirect('/ambassadors/register?password_match=false')
+  } else if (req.body.slice(email_length - 3, email_length) !== 'edu' || !req.body.email.includes('@')) {
+    res.redirect('/ambassadors/register?email=false')
+  }
+  
   var newUser = new User ({
     username:req.body.username,
     hashedPassword: hashPassword(req.body.password),
@@ -38,7 +43,7 @@ router.post('/register', function(req, res, next) {
     country: req.body.country,
     intendedMajor: req.body.intendedMajor,
     dreamUni: req.body.dreamUni,
-    userType: 'user',
+    userType: 'client',
     skype: req.body.skypeName,
     currentGrade: req.body.currentGrade,
     dateJoined: new Date()
@@ -54,6 +59,13 @@ router.post('/register', function(req, res, next) {
 })
 //ambassador login post route
 router.post('/ambassadors/register', (req, res) => {
+  const email_length = req.body.email.length
+  if (req.body.password !== req.body.repeatPassword) {
+    res.redirect('/ambassadors/register?password_match=false')
+  } else if (req.body.slice(email_length - 3, email_length) !== 'edu' || !req.body.email.includes('@')) {
+    res.redirect('/ambassadors/register?email=false')
+  }
+
   var newUser = new User ({
     username:req.body.username,
     hashedPassword: hashPassword(req.body.password),
@@ -63,7 +75,7 @@ router.post('/ambassadors/register', (req, res) => {
     gender: req.body.gender,
     dateOfBirth: req.body.dateOfBirth,
     country: req.body.country,
-    intendedMajor: req.body.intendedMajor,
+    intendedMajor: req.body.intendedMajor2 ? req.body.intendedMajor + 'and' + req.body.intendedMajor2 : req.body.intendedMajor,
     userType: 'ambassador',
     skype: req.body.skypeName,
     currentGrade: req.body.currentGrade,

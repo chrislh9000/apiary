@@ -1,6 +1,5 @@
 <body class = "fixed-bg-sf"><div class="container-fluid network-profiles-container">
-  <h1 id="network-ambassador-header" style="font-family: 'Montserrat';">APIARY NETWORK AMBASSADORS</h1>
-  <center><h5 style="color: gray">Select a university below to get the inside scoop on your dream school</h5></center> <br>
+  <center><h3 style="color: gray">Select a university below to get the inside scoop on your dream school...</h3></center> <br>
   <div id="ambassador-page-sidescroll" class="side-scroll-wrapper">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/yale.png" />
@@ -70,5 +69,7 @@
 </div>
 <br><br><br></body>
 
+{{#if tourToggled}}
 <script src="/javascripts/hopscotch.js"></script>
 <script src="/javascripts/ambassador-network-tour.js"></script>
+{{/if}}
