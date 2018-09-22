@@ -187,6 +187,11 @@ router.get('/users/all', (req, res, next) => {
         networkToggled: true
       })
     } else {
+      let profLimit = 16
+      let profSkip = 0
+      if (req.query.page) {
+        profSkip = profSkip += (16 * (req.query.page - 1))
+      }
       User.find()
       .populate({
         path: 'consultant image',
@@ -194,6 +199,8 @@ router.get('/users/all', (req, res, next) => {
           path: 'user'
         }
       })
+      .skip(profSkip)
+      .limit(profLimit)
       .exec()
       .then(users => {
         const networkMembers = _.filter(users, (user) => {
@@ -245,6 +252,10 @@ router.get('/users/ambassadors', (req, res) => {
       networkToggled: true
     })
   } else {
+    let profSkip = 0
+    if (req.query.page) {
+      profSkip = profSkip += (9 * (req.query.page - 1))
+    }
     Ambassador.find()
     .populate({
       path: 'user',
@@ -252,9 +263,10 @@ router.get('/users/ambassadors', (req, res) => {
         path: 'image'
       }
     })
+    .limit(9)
+    .skip(profSkip)
     .exec()
     .then(ambassadors => {
-      console.log('==AMBASSADORS===', ambassadors)
       let filteredAmbassadors;
       if (req.query.school) {
         const searchSchool = (req.query.school).toLowerCase();
@@ -819,7 +831,9 @@ router.get('/users/tour/toggle', (req, res) => {
   })
 })
 
-
+router.get('/terms_and_conditions', (req, res) => {
+  res.render('./Legal/TaC')
+})
 
 
 

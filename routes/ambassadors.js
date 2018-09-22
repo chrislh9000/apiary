@@ -30,9 +30,7 @@ function ambassadorRequired (req, res, next) {
 
 
 router.get('/register', (req, res) => {
-  res.render('./Ambassadors/ambassador-register', {
-    loggedIn: req.user? true : false,
-  });
+  res.render('./Ambassadors/ambassador-register');
 })
 
 router.get('/edit', (req, res) => {

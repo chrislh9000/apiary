@@ -7,8 +7,11 @@ var tour = {
       content: "Welcome to the Apiary Network. This tour will take you through some of Apiary's key features. After this tour, you will be familiar with building your Apiary profile, interacting with other Apiary users through the Apiary platform, and working with Apiary's exceptional ambassadors.",
       target: "apiary-network-navbar",
       xOffset: 'center',
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       placement: "bottom",
     },
     {
@@ -16,8 +19,11 @@ var tour = {
       content: "This is the Apiary Navigation Sidebar. Find users and ambassadors to help you with your college application needs, browse our database and forums, or schedule and manage your consultations.",
       target: "apiary-network-sidebar",
       showPrevButton: true,
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       placement: "right",
       onShow: () => {
         $('#apiary-network-sidebar-title').addClass('tour-highlight')
@@ -36,8 +42,11 @@ var tour = {
       target: "sidebar-ambassadors",
       placement: "right",
       showPrevButton: true,
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       yOffset: -13,
       onShow: () => {
         $('#apiary-network-sidebar-title').removeClass('tour-highlight')
@@ -58,8 +67,11 @@ var tour = {
       target: "sidebar-users",
       placement: "right",
       showPrevButton: true,
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       yOffset: -13,
       onShow: () => {
         $('#sidebar-ambassadors').removeClass('tour-highlight')
@@ -76,8 +88,11 @@ var tour = {
       target: "sidebar-forums",
       placement: "right",
       showPrevButton: true,
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       yOffset: -13,
       onShow: () => {
         $('#sidebar-users').removeClass('tour-highlight')
@@ -94,8 +109,11 @@ var tour = {
       target: "sidebar-database",
       placement: "right",
       showPrevButton: true,
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       yOffset: -13,
       onShow: () => {
         $('#sidebar-forums').removeClass('tour-highlight')
@@ -112,8 +130,11 @@ var tour = {
       target: "sidebar-consultations",
       placement: "right",
       showPrevButton: true,
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       yOffset: -13,
       onShow: () => {
         $('#sidebar-database').removeClass('tour-highlight')
@@ -129,8 +150,11 @@ var tour = {
       content: "Use the 'Search By' dropdown to filter Apiary ambassadors or users by school, major, name, and a host of other categories.",
       target: "navbar-searchbar",
       showPrevButton: true,
-      // showCTAButton: true,
-      // ctaLabel: 'Close and Never Show',
+      showCTAButton: true,
+      ctaLabel: 'Close and Never Show',
+      onCTA: () => {
+        window.location.href= "/users/tour/toggle"
+      },
       placement: "bottom",
       onShow: () => {
         $('#sidebar-consultations').removeClass('tour-highlight')
