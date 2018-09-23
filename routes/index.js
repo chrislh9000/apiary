@@ -169,6 +169,7 @@ router.post('/users/edit', function(req, res, next) {
 //Viewing other profiles
 //viewing all profiles
 router.get('/users/all', (req, res, next) => {
+  console.log('===USER====', req.user);
   User.findById(req.user._id)
   .populate({
     path: 'consultant',

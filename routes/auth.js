@@ -26,10 +26,10 @@ router.get('/register', function(req, res, next) {
 router.post('/register', function(req, res, next) {
   if (req.body.password !== req.body.repeatPassword) {
     res.redirect('/ambassadors/register?password_match=false')
-  } else if (req.body.slice(email_length - 3, email_length) !== 'edu' || !req.body.email.includes('@')) {
+  } else if (req.body.email.slice(email_length - 3, email_length) !== 'edu' || !req.body.email.includes('@')) {
     res.redirect('/ambassadors/register?email=false')
   }
-  
+
   var newUser = new User ({
     username:req.body.username,
     hashedPassword: hashPassword(req.body.password),
@@ -62,7 +62,7 @@ router.post('/ambassadors/register', (req, res) => {
   const email_length = req.body.email.length
   if (req.body.password !== req.body.repeatPassword) {
     res.redirect('/ambassadors/register?password_match=false')
-  } else if (req.body.slice(email_length - 3, email_length) !== 'edu' || !req.body.email.includes('@')) {
+  } else if (req.body.email.slice(email_length - 3, email_length) !== 'edu' || !req.body.email.includes('@')) {
     res.redirect('/ambassadors/register?email=false')
   }
 
@@ -117,6 +117,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login?login=failed'}), function(req, res) {
+  console.log('=====LOGGED IN======')
   res.redirect('/users/all');
 });
 
