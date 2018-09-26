@@ -356,6 +356,9 @@ const ambassadorSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  setmoreUrl: {
+    type: String
+  },
 })
 
 const serviceSchema = new Schema({

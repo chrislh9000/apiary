@@ -1,10 +1,12 @@
 <body class = "fixed-bg-sf"><div class="container-fluid network-profiles-container">
   <center><h3 style="color: gray">Select a university below to get the inside scoop on your dream school...</h3></center> <br>
   <div id="ambassador-page-sidescroll" class="side-scroll-wrapper">
+    <a href="/users/ambassadors?school=yale">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/yale.png" />
       <h5 class="ambassador-school-text">Yale</h5>
     </div>
+  </a>
     <a href="/users/ambassadors?school=harvard">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/harvard.png" />
@@ -17,38 +19,52 @@
       <h5 class="ambassador-school-text">University of Chicago</h5>
     </div>
   </a>
+  <a href="/users/ambassadors?school=stanford">
     <div class="ambassador-school-container">
       <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/stanford.png" />
       <h5 class="ambassador-school-text">Stanford</h5>
     </div>
+  </a>
+  <a href="/users/ambassadors?school=princeton">
     <div class="ambassador-school-container">
       <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/princeton.png" />
       <h5 class="ambassador-school-text">Princeton</h5>
     </div>
+  </a>
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/columbia.jpg" />
       <h5 class="ambassador-school-text">Columbia</h5>
     </div>
+    <a href="/users/ambassadors?school=cornell">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/cornell.png" />
       <h5 class="ambassador-school-text">Cornell</h5>
     </div>
+  </a>
+  <a href="/users/ambassadors?school=brown">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/brown.png" />
       <h5 class="ambassador-school-text">Brown</h5>
     </div>
+  </a>
+  <a href="/users/ambassadors?school=penn">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/upenn.jpg" />
       <h5 class="ambassador-school-text">UPenn</h5>
     </div>
+  </a>
+  <a href="/users/ambassadors?school=dartmouth">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/dartmouth.png" />
       <h5 class="ambassador-school-text">Dartmouth</h5>
     </div>
+  </a>
+  <a href="/users/ambassadors?school=williams">
     <div class="ambassador-school-container">
       <img class="ambassador-school-logo" src="/school-icons/williams.png" />
       <h5 class="ambassador-school-text">Williams College</h5>
     </div>
+  </a>
   </div>
   <div class="scrolling-wrapper">
     {{#each ambassadors}}
@@ -64,6 +80,8 @@
       <h5 style="text-transform: losercase; color: indianred; font-family: 'Montserrat';"><b>{{this.user.intendedMajor}}</b></h5>
       <a id="view-ambassador-profile-btn" class = "btn apiary-button" href = '/ambassadors/{{this._id}}'>View Ambassador Profile</a><br><br>
     </div>
+    {{else}}
+    <h3>No Ambassadors Found... Please Try A Different Search.
     {{/each}}
   </div>
   <br>

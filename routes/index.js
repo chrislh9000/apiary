@@ -232,6 +232,7 @@ router.get('/users/all', (req, res, next) => {
           consultantSkype: user.consultant ? user.consultant.skype : null,
           loggedIn: true,
           tourToggled: req.user.showTour ? true : false,
+          paginationToggled: req.query.search ? false : true,
         })
       }).catch((error) => {
         console.log('Error', error)
@@ -812,6 +813,7 @@ router.post('/documents/addlink', (req, res) => {
 router.get('/users/consultants/:userid', function(req, res, next) {
   //consultant profile page
 })
+
 //sample consultant profile with google calendars API (maybe a skype API of some sort?)
 //test route for google calendar API
 router.get('/test-nav', (req, res) => {
@@ -834,6 +836,43 @@ router.get('/users/tour/toggle', (req, res) => {
 
 router.get('/terms_and_conditions', (req, res) => {
   res.render('./Legal/TaC')
+})
+
+//responsive profile updates
+router.post('/users/update_bio', (req, res) => {
+  User.findByIdAndUpdate(req.user._id, {$set: {biography: req.body.biography} })
+  .then(user => {
+    console.log('success')
+    res.redirect('/users/myProfile?edit=success')
+  })
+  .catch(err => {
+    console.error(err)
+    res.redirect('/users/myProfile?edit=fail')
+  })
+})
+
+router.post('/documents/add_title/:docid', (req, res) => {
+  Image.findByIdAndUpdate(req.params.docid, {$set: {title: req.body.doc_title} })
+  .then(doc => {
+    console.log('success doc update')
+    res.send(doc)
+  })
+  .catch(err => {
+    console.error(err)
+    res.redirect('/users/myProfile?edit=fail')
+  })
+})
+
+router.get('/documents/delete/:docid', (req, res) => {
+  Image.findByIdAndDelete(req.params.docid)
+  .then(img => {
+    console.log('successful delete');
+    res.redirect('/users/myProfile?delete=success')
+  })
+  .catch(err => {
+    console.error(err);
+    res.redirect('/users/myProfile?delete=fail')
+  })
 })
 
 

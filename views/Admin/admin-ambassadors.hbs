@@ -1,4 +1,4 @@
-<div style="margin-left: 2%" class="container-fluid">
+<div style="margin-left: 15%" class="container-fluid">
 <h1> Admin Page </h1>
 <h3 style="text-align:center">Ambassdors({{ambassadors.length}})</h3>
 <a class="btn btn-info center-block" href = '/'>Back to Home Page</a> <br>
@@ -62,6 +62,11 @@
     </form>
   </div>
 </ul> <br> <br>
+
+<form class="admin-form" method="POST" action="/ambassadors/assignSetmore/{{this._id}}">
+  <input class="form-control" name="setmoreUrl" placeholder="Setmore Url..."></input> <br>
+<button type="submit" class="admin-form btn apiary-button">Assign Setmore URL</button>
+</form>
 
 <!-- <form class="admin-form" method="POST" action="/admin/user/clearUpcomingConsultations/{{this._id}}">
 <button type="submit" class="admin-form btn btn-primary">Clear Upcoming User Consultations</button>

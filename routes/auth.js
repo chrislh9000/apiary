@@ -75,7 +75,7 @@ router.post('/ambassadors/register', (req, res) => {
     gender: req.body.gender,
     dateOfBirth: req.body.dateOfBirth,
     country: req.body.country,
-    intendedMajor: req.body.intendedMajor2 ? req.body.intendedMajor + 'and' + req.body.intendedMajor2 : req.body.intendedMajor,
+    intendedMajor: req.body.intendedMajor2 ? req.body.intendedMajor + ' and ' + req.body.intendedMajor2 : req.body.intendedMajor,
     userType: 'ambassador',
     skype: req.body.skypeName,
     currentGrade: req.body.currentGrade,

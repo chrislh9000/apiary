@@ -2,58 +2,76 @@
 <!-- </div> -->
 <center><h3 style="color: gray">Find like-minded students keen on getting in to their dream school...</h3></center> <br>
 <br>
+<a href="/users/all?option=school&search=yale">
 <div id="ambassador-page-sidescroll" class="side-scroll-wrapper">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/yale.png" />
     <center><h5 class="ambassador-school-text">Yale</h5></center>
   </div>
-  <a href="/users/ambassadors?school=harvard">
+</a>
+  <a href="/users/all?option=school&search=harvard">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/harvard.png" />
     <center><h5 class="ambassador-school-text">Harvard</h5></center>
   </div>
 </a>
-  <a href="/users/ambassadors?school=chicago">
+  <a href="/users/all?option=school&search=chicago">
   <div class="ambassador-school-container">
     <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/uchicago.png" />
     <center><h5 class="ambassador-school-text">UChicago</h5></center>
   </div>
 </a>
+<a href="/users/all?option=school&search=stanford">
   <div class="ambassador-school-container">
     <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/stanford.png" />
     <center><h5 class="ambassador-school-text">Stanford</h5></center>
   </div>
+</a>
+<a href="/users/all?option=school&search=princeton">
   <div class="ambassador-school-container">
     <img style="width: 80px" class="ambassador-school-logo" src="/school-icons/princeton.png" />
     <center><h5 class="ambassador-school-text">Princeton</h5></center>
   </div>
+</a>
+<a href="/users/all?option=school&search=columbia">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/columbia.jpg" />
     <center><h5 class="ambassador-school-text">Columbia</h5></center>
   </div>
+</a>
+<a href="/users/all?option=school&search=cornell">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/cornell.png" />
     <center><h5 class="ambassador-school-text">Cornell</h5></center>
   </div>
+</a>
+<a href="/users/all?option=school&search=brown">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/brown.png" />
     <center><h5 class="ambassador-school-text">Brown</h5></center>
   </div>
+</a>
+<a href="/users/all?option=school&search=penn">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/upenn.jpg" />
     <center><h5 class="ambassador-school-text">UPenn</h5></center>
   </div>
+</a>
+<a href="/users/all?option=school&search=dartmouth">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/dartmouth.png" />
     <center><h5 class="ambassador-school-text">Dartmouth</h5></center>
   </div>
+</a>
+<a href="/users/all?option=school&search=williams">
   <div class="ambassador-school-container">
     <img class="ambassador-school-logo" src="/school-icons/williams.png" />
     <center><h5 class="ambassador-school-text">Williams College</h5></center>
   </div>
+</a>
 </div>
 <div style="" class="container-fluid network-profiles-container">
-  <div class="scrolling-wrapper">
+  <div style="display: block" class="scrolling-wrapper">
 {{#each users}}
 <div class="col-sm-12 col-md-12 col-lg-3 card card-profile" style="padding:15px; margin: 15px; justify-content: center" class = "container-fluid">
 {{#if this.image}}
@@ -70,7 +88,11 @@
 {{else}}
 <h1>No Profiles Found... Try Again</h1>
 {{/each}}
-<nav aria-label="Page navigation example">
+<div style="display: block">
+</div>
+<br>
+{{#if paginationToggled}}
+<nav style="display: block" aria-label="Page navigation example">
   <ul class="justify-content-center pagination pagination-lg">
     <li class="page-item"><a id="network-prev-page" class="page-link">Previous</a></li>
     <li style="margin-left:10px" class="page-item"><a class="page-link" href="/users/all?page=1">1</a></li>
@@ -79,6 +101,7 @@
     <li style="margin-left:10px" class="page-item"><a id="network-next-page" class="page-link">Next</a></li>
   </ul>
 </nav>
+{{/if}}
 </div>
 <!-- <center><nav aria-label="Page navigation example"> -->
 <!-- </nav></center> -->

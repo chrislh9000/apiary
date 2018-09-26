@@ -321,6 +321,10 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
     }
   })
 
+  router.post('/ambassadors/assignSetmore/:ambassadorid', (req, res) => {
+
+  })
+
 
 
   module.exports = router;
