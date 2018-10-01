@@ -875,6 +875,15 @@ router.get('/documents/delete/:docid', (req, res) => {
   })
 })
 
+//apiary newsfeed
+
+router.get('/network/newsfeed', (req, res) => {
+  res.render('./Network/newsfeed', {
+    loggedIn: true,
+    networkToggled: true,
+  })
+})
+
 
 
 module.exports = router;
