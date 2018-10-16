@@ -108,6 +108,8 @@ $(function () {
               <h1 class = "bigTitleFont-black" style="text-align: center"> Ambassador Showcase </h1><br>
               <div class = "container-fluid">
                 <center><h3 style="color: #910000">Documents</h3></center>
+                <!-- if owner display with delete documents -->
+                {{#if owner}}
                 {{#each ambassador.documents}}
                 {{#if this.title}}
                 <center><h5 style='display: inline-block'>{{this.title}}</h5></center>
@@ -147,6 +149,21 @@ $(function () {
                 <center><a href="/documents/delete/{{this._id}}" id="ambassador-delete-document" class="btn apiary-button">Delete Document</a></center>
                 {{/each}}
               </div>
+            <!-- else display with no delete document -->
+
+              {{else}}
+              {{#each ambassador.documents}}
+              {{#if this.title}}
+              <center><h5 style='display: inline-block'>{{this.title}}</h5></center>
+              {{else}}
+              <center><h5 style='display: inline-block'>Ambassador Document</h5></center>
+              {{/if}}
+              <a id="ambassador-document{{@index}}" target="_blank" href={{this.cloudinaryUrl}}>
+                <img style="padding: 5px; border: 1px solid black" class="center-block" src={{this.cloudinaryThumbnail}} />
+              </a> <br>
+              {{/each}}
+            </div>
+              {{/if}}
 
               <center><h3 style="color: #910000">Links</h3></center>
               {{#each ambassador.links}}
@@ -168,7 +185,6 @@ $(function () {
         </div>
         <br>
         <!-- Card Two -->
-
         <!-- Card Three -->
         <div class="card">
           <div class="card-header apiary-collapsable" id="headingThree">
@@ -491,7 +507,7 @@ $(function () {
 
         <div class="accordion" id="accordion">
 
-          <div class="card">
+          <!-- <div class="card">
             <div class="card-header apiary-collapsable" id="headingOne">
               <h5 class="mb-0">
                 <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#serviceCollapseOne" aria-expanded="true" aria-controls="collapseOne" style = "font-size: 18px">
@@ -503,7 +519,7 @@ $(function () {
             <div id="serviceCollapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
                 <div style="border-bottom: 1px solid gray" class="service-template-container">
-                  <form method="POST" action="/ambassadors/services/add/essay_review">
+                  <form method="POST" action="/ambassadors/services/add/essay_review/{{ambassador._id}}">
                     <div class="input-group mb-3">
                       <center><label class = "stigma">Essay Review Service</label></center>
                       <input name="essay_template_title" style="width: 80%" type="text" class="form-control" placeholder="Essay Review Service Title" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -513,7 +529,6 @@ $(function () {
                           <span class="glyphicon glyphicon-info-sign"></span>
                         </button>
                       </div>
-                      <!-- </div> -->
                     </div>
                   </form>
                 </div> <br>
@@ -544,7 +559,7 @@ $(function () {
                           <span class="glyphicon glyphicon-info-sign"></span>
                         </button>
                       </div>
-                      <!-- </div> -->
+
                     </div>
                   </form>
                 </div> <br>
@@ -553,14 +568,14 @@ $(function () {
 
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- Card One -->
           <!-- Card Two -->
           <div class="card">
             <div class="card-header apiary-collapsable" id="headingTwo">
               <h5 class="mb-0">
                 <button class="apiary-collapse-btn btn collapsed" data-toggle="collapse" data-target="#serviceCollapseTwo" aria-expanded="false" aria-controls="serviceCollapseTwo" style = "font-size: 18px">
-                  Request Your Own Custom Service
+                  Create a Service for others to see
                 </button>
               </h5>
             </div>
@@ -575,7 +590,7 @@ $(function () {
                       <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
                     </div>
 
-                    <center><label class = "stigma">Service Short Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on Ambassador Page)</span></label></center>
+                    <center><label class = "stigma">Service Description<br><span style="color: gray; font-size: 18px">(This Will Be Displayed on Ambassador Page)</span></label></center>
                     <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Description">
                       <input class="input100" type="text" name="serviceDescription" placeholder="SERVICE DESCRIPTION" style="font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
                       <span class="focus-input100" data-placeholder="	&#x1F58A;"></span>
@@ -584,12 +599,17 @@ $(function () {
                     <div class="wrap-input100 validate-input form-group" data-validate="Enter Service Category">
                       <select class="input100" type="text" name="serviceCategory" placeholder="Category" style = "font-family: 'Montserrat', serif; font-size: 20px; color: black;" required>
                         <option value="">CHOOSE CATEGORY...</option>
-                        <option value="essay">Essay Work</option>
-                        <option value="resume">Resume Work</option>
-                        <option value="extracurricular">Extracurricular Work</option>
+                        <option value="essay_brainstorm">Essay Brainstorm</option>
+                        <option value="essay_review">Essay Review</option>
+                        <option value="resume">Resume or Portfolio Building</option>
+                        <option value="extracurricular">Extracurricular Advice</option>
                         <option value="referral">Faculty Referrals</option>
-                        <option value="collegeApp">College App Review</option>
+                        <option value="collegeApp">College-Specific Advice</option>
+                        <option value="campus_visit">On-Site Campus Visits</option>
                         <option value="academic">Academic Advice</option>
+                        <option value="financial_aid">Financial Aid Advice</option>
+                        <option value="standardized_test">Standardized Testing</option>
+                        <option value="careers">Internships and Careers</option>
                         <option value="other">Other</option>
                       </select>
                     </div>

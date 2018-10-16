@@ -321,6 +321,10 @@ const ambassadorSchema = new Schema({
     required: true,
     default: false,
   },
+  name: {
+    type: String,
+    required: true,
+  }
   services: [{
     type: Schema.Types.ObjectId,
     ref: 'Service',

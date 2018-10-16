@@ -11,6 +11,14 @@ const bodyParser = require('body-parser')
 const _ = require('underscore');
 
 //Ambassadors
+router.get('/admin', (req, res, next) => {
+  if (req.user.userType !== 'admin') {
+    res.redirect('/users/all');
+  } else {
+    next();
+  }
+})
+
 router.get('/admin/ambassadors', (req, res) => {
   if (req.user.userType !== 'admin') {
     res.redirect(404, '/?permissions=false');
@@ -321,10 +329,18 @@ router.post('/consultants/assign/:userid', (req, res, next) => {
     }
   })
 
-  router.post('/ambassadors/assignSetmore/:ambassadorid', (req, res) => {
-
+  router.post('/admin/ambassadors/assignSetmore/:ambassadorid', (req, res) => {
+    Ambassador.findByIdAndUpdate(req.params.ambassadorid, {$set : {
+      setmoreUrl: req.body.setmoreUrl}
+    })
+    .then(ambassador => {
+      console.log('ambassador setmore url set!');
+      res.redirect('/admin/ambassadors?setmore=success');
+    })
+    .catch(err => {
+      console.error(err);
+      res.redirect('/admin/ambassadors?setmore=fail');
+    })
   })
 
-
-
-  module.exports = router;
+module.exports = router;

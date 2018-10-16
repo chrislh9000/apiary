@@ -89,6 +89,7 @@ router.post('/ambassadors/register', (req, res) => {
       address: req.body.address,
       postalCode: req.body.postalCost,
       city: req.body.city,
+      name: req.body.firstName + ' ' + req.body.lastName,
     })
     newAmbassador.save()
     .then(ambassador => {

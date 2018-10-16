@@ -473,17 +473,24 @@ router.post('/checkout/:id', (req, res) => {
 
 // service template stuff
 
-router.post('/ambassadors/services/add/essay_review', (req, res) => {
+router.post('/ambassadors/services/add/essay_review/:ambassadorid', (req, res) => {
   Ambassador.findOne({user: req.user._id})
   .then(ambassador => {
-    const newService = new Service({
+    const essayService = new Service({
       user: req.user._id,
       ambassador: ambassador,
       title: req.body.essay_template_title,
       description: 'An hour long essay review session that covers grammatical and conceptual aspects of an essay. This can be for Common App Essays or School-Specific Essays',
       category: 'essay',
-      price: 10,
+      price: 15,
       approved: true,
+    })
+    essayService.save()
+    .then(essayService => {
+      Ambassador.findOneAndUpdate(req.params.ambassadorid, {$push : {services: essayService}})
+      .then(ambassador => {
+        
+      })
     })
   })
 })
