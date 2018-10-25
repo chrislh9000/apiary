@@ -324,7 +324,7 @@ const ambassadorSchema = new Schema({
   name: {
     type: String,
     required: true,
-  }
+  },
   services: [{
     type: Schema.Types.ObjectId,
     ref: 'Service',

@@ -28,11 +28,12 @@ function ambassadorRequired (req, res, next) {
   next();
 }
 
-
+//ambassador registration
 router.get('/register', (req, res) => {
   res.render('./Ambassadors/ambassador-register');
 })
 
+//editing ambassador profiles
 router.get('/edit', (req, res) => {
   User.findOne({username: req.user.username})
   .then((user) => {
@@ -62,6 +63,7 @@ router.get('/edit', (req, res) => {
     })
   }).catch((error) => {
     res.send(error);
+    res.redirect('/ambassadors/register');
   })
 })
 
@@ -489,7 +491,7 @@ router.post('/ambassadors/services/add/essay_review/:ambassadorid', (req, res) =
     .then(essayService => {
       Ambassador.findOneAndUpdate(req.params.ambassadorid, {$push : {services: essayService}})
       .then(ambassador => {
-        
+
       })
     })
   })
